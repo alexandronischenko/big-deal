@@ -177,10 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2113B2827CE746000EBA9A9 /* Build configuration list for PBXNativeTarget "BigDeal" */;
 			buildPhases = (
+				A281A14727CE791500E0D429 /* Swiftlint */,
 				5E85CCB180C0EDCBEE4B10E8 /* [CP] Check Pods Manifest.lock */,
 				A2113AF727CE745F00EBA9A9 /* Sources */,
 				A2113AF827CE745F00EBA9A9 /* Frameworks */,
 				A2113AF927CE745F00EBA9A9 /* Resources */,
+				E09206323DABD3B9DC781526 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -218,6 +220,7 @@
 				A2113B1A27CE746000EBA9A9 /* Sources */,
 				A2113B1B27CE746000EBA9A9 /* Frameworks */,
 				A2113B1C27CE746000EBA9A9 /* Resources */,
+				A01D8AF04CC5E768D9016839 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -364,6 +367,58 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A01D8AF04CC5E768D9016839 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BigDeal-BigDealUITests/Pods-BigDeal-BigDealUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BigDeal-BigDealUITests/Pods-BigDeal-BigDealUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BigDeal-BigDealUITests/Pods-BigDeal-BigDealUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A281A14727CE791500E0D429 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		E09206323DABD3B9DC781526 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BigDeal/Pods-BigDeal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BigDeal/Pods-BigDeal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BigDeal/Pods-BigDeal-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

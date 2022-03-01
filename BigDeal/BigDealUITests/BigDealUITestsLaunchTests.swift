@@ -8,7 +8,6 @@
 import XCTest
 
 class BigDealUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }

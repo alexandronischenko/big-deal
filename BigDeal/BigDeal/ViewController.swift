@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  BigDeal
-//
-//  Created by Alexandr Onischenko on 01.03.2022.
-//
-
 import UIKit
 
 class ViewController: UIViewController {

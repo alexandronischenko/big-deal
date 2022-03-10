@@ -292,8 +292,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2113B2827CE746000EBA9A9 /* Build configuration list for PBXNativeTarget "BigDeal" */;
 			buildPhases = (
-				A281A14727CE791500E0D429 /* Swiftlint */,
 				5E85CCB180C0EDCBEE4B10E8 /* [CP] Check Pods Manifest.lock */,
+				A281A14727CE791500E0D429 /* Swiftlint */,
 				A2113AF727CE745F00EBA9A9 /* Sources */,
 				A2113AF827CE745F00EBA9A9 /* Frameworks */,
 				A2113AF927CE745F00EBA9A9 /* Resources */,

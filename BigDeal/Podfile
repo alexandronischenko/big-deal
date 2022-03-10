@@ -10,6 +10,8 @@ target 'BigDeal' do
   
   pod 'SwiftLint', '~> 0.46.2'
 
+  pod 'IQKeyboardManagerSwift'
+
   target 'BigDealTests' do
     inherit! :search_paths
     # Pods for testing

@@ -19,6 +19,15 @@
 		A2113B1927CE746000EBA9A9 /* BigDealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B1827CE746000EBA9A9 /* BigDealTests.swift */; };
 		A2113B2327CE746000EBA9A9 /* BigDealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B2227CE746000EBA9A9 /* BigDealUITests.swift */; };
 		A2113B2527CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B2427CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift */; };
+		A2CF987127DA292F001A6C39 /* ProfileMainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987027DA292F001A6C39 /* ProfileMainScreenPresenter.swift */; };
+		A2CF987427DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987327DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift */; };
+		A2CF987627DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987527DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift */; };
+		A2CF987827DA29C0001A6C39 /* ProfileMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987727DA29C0001A6C39 /* ProfileMainScreenView.swift */; };
+		A2CF987A27DA29CC001A6C39 /* ProfileMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987927DA29CC001A6C39 /* ProfileMainScreenViewController.swift */; };
+		A2CF987D27DA2A0B001A6C39 /* ProfileMainScreenInteractorInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987C27DA2A0B001A6C39 /* ProfileMainScreenInteractorInputProtocol.swift */; };
+		A2CF987F27DA2A34001A6C39 /* ProfileMainScreenInteractorOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987E27DA2A34001A6C39 /* ProfileMainScreenInteractorOutputProtocol.swift */; };
+		A2CF988127DA2A57001A6C39 /* ProfileMainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF988027DA2A57001A6C39 /* ProfileMainScreenInteractor.swift */; };
+		A2CF988727DA2CDF001A6C39 /* ProfileMainScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF988627DA2CDF001A6C39 /* ProfileMainScreenAssembly.swift */; };
 		D0F7C04B678869DBE49DBDB6 /* Pods_BigDeal_BigDealUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8760B20FF8847648CB77B064 /* Pods_BigDeal_BigDealUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +69,15 @@
 		A2113B1E27CE746000EBA9A9 /* BigDealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BigDealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2113B2227CE746000EBA9A9 /* BigDealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigDealUITests.swift; sourceTree = "<group>"; };
 		A2113B2427CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigDealUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A2CF987027DA292F001A6C39 /* ProfileMainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenPresenter.swift; sourceTree = "<group>"; };
+		A2CF987327DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewInputProtocol.swift; sourceTree = "<group>"; };
+		A2CF987527DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewOutputProtocol.swift; sourceTree = "<group>"; };
+		A2CF987727DA29C0001A6C39 /* ProfileMainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenView.swift; sourceTree = "<group>"; };
+		A2CF987927DA29CC001A6C39 /* ProfileMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewController.swift; sourceTree = "<group>"; };
+		A2CF987C27DA2A0B001A6C39 /* ProfileMainScreenInteractorInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenInteractorInputProtocol.swift; sourceTree = "<group>"; };
+		A2CF987E27DA2A34001A6C39 /* ProfileMainScreenInteractorOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenInteractorOutputProtocol.swift; sourceTree = "<group>"; };
+		A2CF988027DA2A57001A6C39 /* ProfileMainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenInteractor.swift; sourceTree = "<group>"; };
+		A2CF988627DA2CDF001A6C39 /* ProfileMainScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenAssembly.swift; sourceTree = "<group>"; };
 		B191609E344FAD85EDA12B7E /* Pods-BigDeal-BigDealUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDeal-BigDealUITests.release.xcconfig"; path = "Target Support Files/Pods-BigDeal-BigDealUITests/Pods-BigDeal-BigDealUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC4CDA2571769D2695310218 /* Pods_BigDealTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BigDealTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC04F0D932F76B1339C4C2FA /* Pods-BigDealTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDealTests.debug.xcconfig"; path = "Target Support Files/Pods-BigDealTests/Pods-BigDealTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +159,7 @@
 		A2113AFD27CE745F00EBA9A9 /* BigDeal */ = {
 			isa = PBXGroup;
 			children = (
+				A2CF988A27DA2FEE001A6C39 /* Profile */,
 				A2113AFE27CE745F00EBA9A9 /* AppDelegate.swift */,
 				A2113B0027CE745F00EBA9A9 /* SceneDelegate.swift */,
 				A2113B0227CE745F00EBA9A9 /* ViewController.swift */,
@@ -168,6 +187,102 @@
 				A2113B2427CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift */,
 			);
 			path = BigDealUITests;
+			sourceTree = "<group>";
+		};
+		A2CF986B27DA28FF001A6C39 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A2CF988527DA2CBE001A6C39 /* Assembly */,
+				A2CF986F27DA2923001A6C39 /* Services */,
+				A2CF986E27DA290E001A6C39 /* Interactor */,
+				A2CF986D27DA290B001A6C39 /* View */,
+				A2CF986C27DA2906001A6C39 /* Presenter */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		A2CF986C27DA2906001A6C39 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A2CF987027DA292F001A6C39 /* ProfileMainScreenPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A2CF986D27DA290B001A6C39 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A2CF987927DA29CC001A6C39 /* ProfileMainScreenViewController.swift */,
+				A2CF987727DA29C0001A6C39 /* ProfileMainScreenView.swift */,
+				A2CF987227DA296D001A6C39 /* Protocols */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2CF986E27DA290E001A6C39 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A2CF988427DA2AB5001A6C39 /* Entities */,
+				A2CF987B27DA29EB001A6C39 /* Protocols */,
+				A2CF988027DA2A57001A6C39 /* ProfileMainScreenInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A2CF986F27DA2923001A6C39 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A2CF988327DA2A9D001A6C39 /* Protocols */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A2CF987227DA296D001A6C39 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A2CF987327DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift */,
+				A2CF987527DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A2CF987B27DA29EB001A6C39 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A2CF987C27DA2A0B001A6C39 /* ProfileMainScreenInteractorInputProtocol.swift */,
+				A2CF987E27DA2A34001A6C39 /* ProfileMainScreenInteractorOutputProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A2CF988327DA2A9D001A6C39 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A2CF988427DA2AB5001A6C39 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A2CF988527DA2CBE001A6C39 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				A2CF988627DA2CDF001A6C39 /* ProfileMainScreenAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		A2CF988A27DA2FEE001A6C39 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A2CF986B27DA28FF001A6C39 /* MainScreen */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,9 +543,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2CF987827DA29C0001A6C39 /* ProfileMainScreenView.swift in Sources */,
 				A2113B0927CE745F00EBA9A9 /* BigDeal.xcdatamodeld in Sources */,
+				A2CF987427DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift in Sources */,
 				A2113B0327CE745F00EBA9A9 /* ViewController.swift in Sources */,
 				A2113AFF27CE745F00EBA9A9 /* AppDelegate.swift in Sources */,
+				A2CF987627DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift in Sources */,
+				A2CF987A27DA29CC001A6C39 /* ProfileMainScreenViewController.swift in Sources */,
+				A2CF988727DA2CDF001A6C39 /* ProfileMainScreenAssembly.swift in Sources */,
+				A2CF987F27DA2A34001A6C39 /* ProfileMainScreenInteractorOutputProtocol.swift in Sources */,
+				A2CF987D27DA2A0B001A6C39 /* ProfileMainScreenInteractorInputProtocol.swift in Sources */,
+				A2CF987127DA292F001A6C39 /* ProfileMainScreenPresenter.swift in Sources */,
+				A2CF988127DA2A57001A6C39 /* ProfileMainScreenInteractor.swift in Sources */,
 				A2113B0127CE745F00EBA9A9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

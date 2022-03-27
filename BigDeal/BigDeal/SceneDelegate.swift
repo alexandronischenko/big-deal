@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = ProfileMainScreenAssembly.shared.assembledModule()
+        window?.rootViewController = MainCoordinator().start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

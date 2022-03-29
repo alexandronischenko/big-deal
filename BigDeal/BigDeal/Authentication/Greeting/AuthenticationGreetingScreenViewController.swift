@@ -7,11 +7,11 @@
 
 import UIKit
 
-class AuthenticationGreetingScreenViewController: UIViewController, AuthenticationBaseCoordinated {
+class AuthenticationGreetingScreenViewController: UIViewController, AuthenticationBaseCoordinatedProtocol {
     
-    var coordinator: AuthenticationBaseCoordinator?
+    var coordinator: AuthenticationBaseCoordinatorProtocol?
     
-    init(coordinator: AuthenticationBaseCoordinator) {
+    init(coordinator: AuthenticationBaseCoordinatorProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
     }

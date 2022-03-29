@@ -7,11 +7,11 @@
 
 import UIKit
 
-class FeedMainScreenViewController: UIViewController, FeedBaseCoordinated {
+class FeedMainScreenViewController: UIViewController, FeedBaseCoordinatedProtocol {
     
-    var coordinator: FeedBaseCoordinator?
+    var coordinator: FeedBaseCoordinatorProtocol?
     
-    init(coordinator: FeedBaseCoordinator) {
+    init(coordinator: FeedBaseCoordinatorProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
     }

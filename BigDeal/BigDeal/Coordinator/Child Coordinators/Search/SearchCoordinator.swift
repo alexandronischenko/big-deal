@@ -1,11 +1,48 @@
 import Foundation
 import UIKit
 
-class SearchCoordinator: SearchBaseCoordinator {
+class SearchCoordinator {
     
-    var parentCoordinator: MainBaseCoordinator?
+    // MARK: - Protocol properties
     
     var rootViewController: UIViewController = UIViewController()
+    weak var parentCoordinator: MainBaseCoordinatorProtocol?
+    
+    // the bottom link is weak so that there is no cycle of strong links
+    
+    // MARK: - Private funcs
+    
+    private func moveToSearchFlow(with screen: SearchScreen) {
+        switch screen {
+        case .main:
+            moveToSearchFlowMainScreen()
+        case .detail:
+            moveToSearchFlowDetailScreen()
+        case .filter:
+            moveToSearchFlowFilterScreen()
+        }
+    }
+    
+    private func moveToSearchFlowMainScreen() {
+        navigationRootViewController?.popToRootViewController(animated: true)
+    }
+    
+    private func moveToSearchFlowDetailScreen() {
+        let searchFlowDetailViewController = DetailItemViewController()
+        navigationRootViewController?.pushViewController(searchFlowDetailViewController, animated: true)
+    }
+    
+    private func moveToSearchFlowFilterScreen() {
+        let searchFlowFilterViewController = SearchFilterScreenViewController()
+        navigationRootViewController?.pushViewController(searchFlowFilterViewController, animated: true)
+    }
+}
+
+// MARK: - SearchBaseCoordinatorProtocol
+
+extension SearchCoordinator: SearchBaseCoordinatorProtocol {
+    
+    // Funcs
     
     func start() -> UIViewController {
         rootViewController = UINavigationController(rootViewController: SearchMainScreenViewController(coordinator: self))
@@ -19,30 +56,5 @@ class SearchCoordinator: SearchBaseCoordinator {
         default:
             parentCoordinator?.moveTo(flow: flow)
         }
-    }
-    
-    func moveToSearchFlow(with screen: SearchScreen) {
-        switch screen {
-        case .main:
-            moveToSearchFlowMainScreen()
-        case .detail:
-            moveToSearchFlowDetailScreen()
-        case .filter:
-            moveToSearchFlowFilterScreen()
-        }
-    }
-    
-    func moveToSearchFlowMainScreen() {
-        navigationRootViewController?.popToRootViewController(animated: true)
-    }
-    
-    func moveToSearchFlowDetailScreen() {
-        let searchFlowDetailViewController = DetailItemViewController()
-        navigationRootViewController?.pushViewController(searchFlowDetailViewController, animated: true)
-    }
-    
-    func moveToSearchFlowFilterScreen() {
-        let searchFlowFilterViewController = SearchFilterScreenViewController()
-        navigationRootViewController?.pushViewController(searchFlowFilterViewController, animated: true)
     }
 }

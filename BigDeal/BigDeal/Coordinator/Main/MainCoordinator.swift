@@ -1,19 +1,50 @@
 import Foundation
 import UIKit
 
-class MainCoordinator: MainBaseCoordinator {
+class MainCoordinator {
     
-    var isLoggedIn: Bool = false
+    // MARK: - Private properties
     
-    var profileCoordinator: ProfileBaseCoordinator = ProfileCoordinator()
-    var authenticationCoordinator: AuthenticationBaseCoordinator = AuthenticationCoordinator()
-    var feedCoordinator: FeedBaseCoordinator = FeedCoordinator()
-    var searchCoordinator: SearchBaseCoordinator = SearchCoordinator()
+    private var isLoggedIn: Bool = false
     
+    // It's temporary version of useless isLoggedIn variable. In future i suggest it will be stored in UserDefaults.
     
-    var viewControllerForLoggedUser: UIViewController = UITabBarController()
-    var viewControllerForUnloggedUser: UIViewController = UITabBarController()
+    // MARK: - Protocol properties
+    
+    var profileCoordinator: ProfileBaseCoordinatorProtocol = ProfileCoordinator()
+    var authenticationCoordinator: AuthenticationBaseCoordinatorProtocol = AuthenticationCoordinator()
+    var feedCoordinator: FeedBaseCoordinatorProtocol = FeedCoordinator()
+    var searchCoordinator: SearchBaseCoordinatorProtocol = SearchCoordinator()
     var rootViewController: UIViewController = UITabBarController()
+    
+    // MARK: - Private funcs
+    
+    private func checkoutProfile(with flow: AppFlow) {
+        profileCoordinator.moveTo(flow: flow)
+        (rootViewController as? UITabBarController)?.selectedIndex = 2
+    }
+    
+    private func checkoutAuth(with flow: AppFlow) {
+        authenticationCoordinator.moveTo(flow: flow)
+        (rootViewController as? UITabBarController)?.selectedIndex = 2
+    }
+    
+    private func checkoutSearch(with flow: AppFlow) {
+        searchCoordinator.moveTo(flow: flow)
+        (rootViewController as? UITabBarController)?.selectedIndex = 1
+    }
+    
+    private func checkoutFeed(with flow: AppFlow) {
+        feedCoordinator.moveTo(flow: flow)
+        (rootViewController as? UITabBarController)?.selectedIndex = 0
+    }
+}
+
+// MARK: - MainBaseCoordinatorProtocol
+
+extension MainCoordinator: MainBaseCoordinatorProtocol {
+    
+    // Funcs
     
     func start() -> UIViewController {
         
@@ -30,7 +61,10 @@ class MainCoordinator: MainBaseCoordinator {
             profileCoordinator.parentCoordinator = self
             profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
             
-            (viewControllerForLoggedUser as? UITabBarController)?.viewControllers = [feedViewController, searchViewController, profileViewController]
+            guard let viewControllerForLoggedUser = rootViewController as? UITabBarController else {
+                return UIViewController()
+            }
+            viewControllerForLoggedUser.viewControllers = [feedViewController, searchViewController, profileViewController]
             
             rootViewController = viewControllerForLoggedUser
             return rootViewController
@@ -39,7 +73,11 @@ class MainCoordinator: MainBaseCoordinator {
             authenticationCoordinator.parentCoordinator = self
             authenticationViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
             
-            (viewControllerForUnloggedUser as? UITabBarController)?.viewControllers = [feedViewController, searchViewController, authenticationViewController]
+            guard let viewControllerForUnloggedUser = rootViewController as? UITabBarController else {
+                return UIViewController()
+            }
+            viewControllerForUnloggedUser.viewControllers = [feedViewController, searchViewController, authenticationViewController]
+            
             
             rootViewController = viewControllerForUnloggedUser
             return rootViewController
@@ -57,25 +95,5 @@ class MainCoordinator: MainBaseCoordinator {
         case .search:
             checkoutSearch(with: flow)
         }
-    }
-    
-    func checkoutProfile(with flow: AppFlow) {
-        profileCoordinator.moveTo(flow: flow)
-        (rootViewController as? UITabBarController)?.selectedIndex = 2
-    }
-    
-    func checkoutAuth(with flow: AppFlow) {
-        authenticationCoordinator.moveTo(flow: flow)
-        (rootViewController as? UITabBarController)?.selectedIndex = 2
-    }
-    
-    func checkoutSearch(with flow: AppFlow) {
-        searchCoordinator.moveTo(flow: flow)
-        (rootViewController as? UITabBarController)?.selectedIndex = 1
-    }
-    
-    func checkoutFeed(with flow: AppFlow) {
-        feedCoordinator.moveTo(flow: flow)
-        (rootViewController as? UITabBarController)?.selectedIndex = 0
     }
 }

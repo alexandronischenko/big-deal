@@ -7,11 +7,11 @@
 
 import UIKit
 
-class SearchMainScreenViewController: UIViewController, SearchBaseCoordinated {
+class SearchMainScreenViewController: UIViewController, SearchBaseCoordinatedProtocol {
     
-    var coordinator: SearchBaseCoordinator?
+    var coordinator: SearchBaseCoordinatorProtocol?
     
-    init(coordinator: SearchBaseCoordinator) {
+    init(coordinator: SearchBaseCoordinatorProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
     }

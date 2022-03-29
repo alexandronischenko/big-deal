@@ -38,20 +38,20 @@
 		A2CF988127DA2A57001A6C39 /* ProfileMainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF988027DA2A57001A6C39 /* ProfileMainScreenInteractor.swift */; };
 		A2CF988727DA2CDF001A6C39 /* ProfileMainScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF988627DA2CDF001A6C39 /* ProfileMainScreenAssembly.swift */; };
 		A2EFD5C927F0B370001E4071 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5C827F0B370001E4071 /* Enums.swift */; };
-		A2EFD5CB27F0BD0C001E4071 /* ProfileBaseCoordinated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinated.swift */; };
-		A2EFD5CD27F0D3E6001E4071 /* AuthenticationBaseCoordinated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5CC27F0D3E6001E4071 /* AuthenticationBaseCoordinated.swift */; };
-		A2EFD5CF27F0D40C001E4071 /* FeedBaseCoordinated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5CE27F0D40C001E4071 /* FeedBaseCoordinated.swift */; };
-		A2EFD5D127F0D451001E4071 /* SearchBaseCoordinated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5D027F0D451001E4071 /* SearchBaseCoordinated.swift */; };
-		A2F24F4027EEEEAB000B02D6 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F3F27EEEEAB000B02D6 /* FlowCoordinator.swift */; };
-		A2F24F4227EEEF5B000B02D6 /* MainBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F4127EEEF5B000B02D6 /* MainBaseCoordinator.swift */; };
+		A2EFD5CB27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */; };
+		A2EFD5CD27F0D3E6001E4071 /* AuthenticationBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5CC27F0D3E6001E4071 /* AuthenticationBaseCoordinatedProtocol.swift */; };
+		A2EFD5CF27F0D40C001E4071 /* FeedBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5CE27F0D40C001E4071 /* FeedBaseCoordinatedProtocol.swift */; };
+		A2EFD5D127F0D451001E4071 /* SearchBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5D027F0D451001E4071 /* SearchBaseCoordinatedProtocol.swift */; };
+		A2F24F4027EEEEAB000B02D6 /* FlowCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F3F27EEEEAB000B02D6 /* FlowCoordinatorProtocol.swift */; };
+		A2F24F4227EEEF5B000B02D6 /* MainBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F4127EEEF5B000B02D6 /* MainBaseCoordinatorProtocol.swift */; };
 		A2F24F4527EEF6A8000B02D6 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F4427EEF6A8000B02D6 /* ProfileCoordinator.swift */; };
-		A2F24F4727EEF7E5000B02D6 /* ProfileBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F4627EEF7E5000B02D6 /* ProfileBaseCoordinator.swift */; };
-		A2F24F4B27EEF84C000B02D6 /* AuthenticationBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F4A27EEF84C000B02D6 /* AuthenticationBaseCoordinator.swift */; };
+		A2F24F4727EEF7E5000B02D6 /* ProfileBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F4627EEF7E5000B02D6 /* ProfileBaseCoordinatorProtocol.swift */; };
+		A2F24F4B27EEF84C000B02D6 /* AuthenticationBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F4A27EEF84C000B02D6 /* AuthenticationBaseCoordinatorProtocol.swift */; };
 		A2F24F4D27EEF871000B02D6 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F4C27EEF871000B02D6 /* AuthenticationCoordinator.swift */; };
 		A2F24F5027EEF8CF000B02D6 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F4F27EEF8CF000B02D6 /* MainCoordinator.swift */; };
-		A2F24F5627EEFBFA000B02D6 /* SearchBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F5527EEFBFA000B02D6 /* SearchBaseCoordinator.swift */; };
+		A2F24F5627EEFBFA000B02D6 /* SearchBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F5527EEFBFA000B02D6 /* SearchBaseCoordinatorProtocol.swift */; };
 		A2F24F5827EEFC50000B02D6 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F5727EEFC50000B02D6 /* SearchCoordinator.swift */; };
-		A2F24F5A27EEFC8E000B02D6 /* FeedBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F5927EEFC8E000B02D6 /* FeedBaseCoordinator.swift */; };
+		A2F24F5A27EEFC8E000B02D6 /* FeedBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F5927EEFC8E000B02D6 /* FeedBaseCoordinatorProtocol.swift */; };
 		A2F24F5C27EEFCB4000B02D6 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F5B27EEFCB4000B02D6 /* FeedCoordinator.swift */; };
 		D0F7C04B678869DBE49DBDB6 /* Pods_BigDeal_BigDealUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8760B20FF8847648CB77B064 /* Pods_BigDeal_BigDealUITests.framework */; };
 /* End PBXBuildFile section */
@@ -113,20 +113,20 @@
 		A2CF988027DA2A57001A6C39 /* ProfileMainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenInteractor.swift; sourceTree = "<group>"; };
 		A2CF988627DA2CDF001A6C39 /* ProfileMainScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenAssembly.swift; sourceTree = "<group>"; };
 		A2EFD5C827F0B370001E4071 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseCoordinated.swift; sourceTree = "<group>"; };
-		A2EFD5CC27F0D3E6001E4071 /* AuthenticationBaseCoordinated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationBaseCoordinated.swift; sourceTree = "<group>"; };
-		A2EFD5CE27F0D40C001E4071 /* FeedBaseCoordinated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBaseCoordinated.swift; sourceTree = "<group>"; };
-		A2EFD5D027F0D451001E4071 /* SearchBaseCoordinated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseCoordinated.swift; sourceTree = "<group>"; };
-		A2F24F3F27EEEEAB000B02D6 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
-		A2F24F4127EEEF5B000B02D6 /* MainBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinator.swift; sourceTree = "<group>"; };
+		A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
+		A2EFD5CC27F0D3E6001E4071 /* AuthenticationBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
+		A2EFD5CE27F0D40C001E4071 /* FeedBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
+		A2EFD5D027F0D451001E4071 /* SearchBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
+		A2F24F3F27EEEEAB000B02D6 /* FlowCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		A2F24F4127EEEF5B000B02D6 /* MainBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		A2F24F4427EEF6A8000B02D6 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
-		A2F24F4627EEF7E5000B02D6 /* ProfileBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseCoordinator.swift; sourceTree = "<group>"; };
-		A2F24F4A27EEF84C000B02D6 /* AuthenticationBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationBaseCoordinator.swift; sourceTree = "<group>"; };
+		A2F24F4627EEF7E5000B02D6 /* ProfileBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		A2F24F4A27EEF84C000B02D6 /* AuthenticationBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		A2F24F4C27EEF871000B02D6 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		A2F24F4F27EEF8CF000B02D6 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		A2F24F5527EEFBFA000B02D6 /* SearchBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseCoordinator.swift; sourceTree = "<group>"; };
+		A2F24F5527EEFBFA000B02D6 /* SearchBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		A2F24F5727EEFC50000B02D6 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
-		A2F24F5927EEFC8E000B02D6 /* FeedBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBaseCoordinator.swift; sourceTree = "<group>"; };
+		A2F24F5927EEFC8E000B02D6 /* FeedBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		A2F24F5B27EEFCB4000B02D6 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		B191609E344FAD85EDA12B7E /* Pods-BigDeal-BigDealUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDeal-BigDealUITests.release.xcconfig"; path = "Target Support Files/Pods-BigDeal-BigDealUITests/Pods-BigDeal-BigDealUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC4CDA2571769D2695310218 /* Pods_BigDealTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BigDealTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -422,7 +422,7 @@
 			children = (
 				A2F24F4E27EEF8B7000B02D6 /* Main */,
 				A2F24F4327EEF677000B02D6 /* Child Coordinators */,
-				A2F24F3F27EEEEAB000B02D6 /* FlowCoordinator.swift */,
+				A2F24F3F27EEEEAB000B02D6 /* FlowCoordinatorProtocol.swift */,
 				A2EFD5C827F0B370001E4071 /* Enums.swift */,
 			);
 			path = Coordinator;
@@ -442,8 +442,8 @@
 		A2F24F4827EEF81A000B02D6 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinated.swift */,
-				A2F24F4627EEF7E5000B02D6 /* ProfileBaseCoordinator.swift */,
+				A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */,
+				A2F24F4627EEF7E5000B02D6 /* ProfileBaseCoordinatorProtocol.swift */,
 				A2F24F4427EEF6A8000B02D6 /* ProfileCoordinator.swift */,
 			);
 			path = Profile;
@@ -452,8 +452,8 @@
 		A2F24F4927EEF829000B02D6 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				A2EFD5CC27F0D3E6001E4071 /* AuthenticationBaseCoordinated.swift */,
-				A2F24F4A27EEF84C000B02D6 /* AuthenticationBaseCoordinator.swift */,
+				A2EFD5CC27F0D3E6001E4071 /* AuthenticationBaseCoordinatedProtocol.swift */,
+				A2F24F4A27EEF84C000B02D6 /* AuthenticationBaseCoordinatorProtocol.swift */,
 				A2F24F4C27EEF871000B02D6 /* AuthenticationCoordinator.swift */,
 			);
 			path = Authentication;
@@ -462,7 +462,7 @@
 		A2F24F4E27EEF8B7000B02D6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				A2F24F4127EEEF5B000B02D6 /* MainBaseCoordinator.swift */,
+				A2F24F4127EEEF5B000B02D6 /* MainBaseCoordinatorProtocol.swift */,
 				A2F24F4F27EEF8CF000B02D6 /* MainCoordinator.swift */,
 			);
 			path = Main;
@@ -471,8 +471,8 @@
 		A2F24F5327EEFBDB000B02D6 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				A2EFD5CE27F0D40C001E4071 /* FeedBaseCoordinated.swift */,
-				A2F24F5927EEFC8E000B02D6 /* FeedBaseCoordinator.swift */,
+				A2EFD5CE27F0D40C001E4071 /* FeedBaseCoordinatedProtocol.swift */,
+				A2F24F5927EEFC8E000B02D6 /* FeedBaseCoordinatorProtocol.swift */,
 				A2F24F5B27EEFCB4000B02D6 /* FeedCoordinator.swift */,
 			);
 			path = Feed;
@@ -481,8 +481,8 @@
 		A2F24F5427EEFBE9000B02D6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				A2EFD5D027F0D451001E4071 /* SearchBaseCoordinated.swift */,
-				A2F24F5527EEFBFA000B02D6 /* SearchBaseCoordinator.swift */,
+				A2EFD5D027F0D451001E4071 /* SearchBaseCoordinatedProtocol.swift */,
+				A2F24F5527EEFBFA000B02D6 /* SearchBaseCoordinatorProtocol.swift */,
 				A2F24F5727EEFC50000B02D6 /* SearchCoordinator.swift */,
 			);
 			path = Search;
@@ -752,14 +752,14 @@
 				A2EFD5C927F0B370001E4071 /* Enums.swift in Sources */,
 				A2F24F5827EEFC50000B02D6 /* SearchCoordinator.swift in Sources */,
 				A27EBC4827F0D98500532EDE /* DetailItemViewController.swift in Sources */,
-				A2EFD5D127F0D451001E4071 /* SearchBaseCoordinated.swift in Sources */,
+				A2EFD5D127F0D451001E4071 /* SearchBaseCoordinatedProtocol.swift in Sources */,
 				A2F24F4D27EEF871000B02D6 /* AuthenticationCoordinator.swift in Sources */,
 				A2CF987427DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift in Sources */,
 				A27EBC4E27F0D9E900532EDE /* FeedMainScreenViewController.swift in Sources */,
-				A2F24F5A27EEFC8E000B02D6 /* FeedBaseCoordinator.swift in Sources */,
+				A2F24F5A27EEFC8E000B02D6 /* FeedBaseCoordinatorProtocol.swift in Sources */,
 				A2113B0327CE745F00EBA9A9 /* ViewController.swift in Sources */,
 				A27EBC3927F0D88D00532EDE /* ProfileSubscriptionsScreenViewController.swift in Sources */,
-				A2F24F4227EEEF5B000B02D6 /* MainBaseCoordinator.swift in Sources */,
+				A2F24F4227EEEF5B000B02D6 /* MainBaseCoordinatorProtocol.swift in Sources */,
 				A27EBC4127F0D8FE00532EDE /* AuthenticationLoginScreenViewController.swift in Sources */,
 				A2113AFF27CE745F00EBA9A9 /* AppDelegate.swift in Sources */,
 				A2CF987627DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift in Sources */,
@@ -767,20 +767,20 @@
 				A2F24F4527EEF6A8000B02D6 /* ProfileCoordinator.swift in Sources */,
 				A27EBC3F27F0D8EF00532EDE /* AuthenticationRegisterScreenViewController.swift in Sources */,
 				A2CF988727DA2CDF001A6C39 /* ProfileMainScreenAssembly.swift in Sources */,
-				A2F24F4027EEEEAB000B02D6 /* FlowCoordinator.swift in Sources */,
+				A2F24F4027EEEEAB000B02D6 /* FlowCoordinatorProtocol.swift in Sources */,
 				A2CF987F27DA2A34001A6C39 /* ProfileMainScreenInteractorOutputProtocol.swift in Sources */,
-				A2F24F5627EEFBFA000B02D6 /* SearchBaseCoordinator.swift in Sources */,
+				A2F24F5627EEFBFA000B02D6 /* SearchBaseCoordinatorProtocol.swift in Sources */,
 				A2F24F5C27EEFCB4000B02D6 /* FeedCoordinator.swift in Sources */,
 				A2F24F5027EEF8CF000B02D6 /* MainCoordinator.swift in Sources */,
 				A2CF987D27DA2A0B001A6C39 /* ProfileMainScreenInteractorInputProtocol.swift in Sources */,
 				A27EBC4A27F0D9AA00532EDE /* SearchMainScreenViewController.swift in Sources */,
 				A2CF987127DA292F001A6C39 /* ProfileMainScreenPresenter.swift in Sources */,
 				A27EBC4327F0D90C00532EDE /* AuthenticationGreetingScreenViewController.swift in Sources */,
-				A2EFD5CB27F0BD0C001E4071 /* ProfileBaseCoordinated.swift in Sources */,
-				A2F24F4727EEF7E5000B02D6 /* ProfileBaseCoordinator.swift in Sources */,
-				A2EFD5CF27F0D40C001E4071 /* FeedBaseCoordinated.swift in Sources */,
-				A2F24F4B27EEF84C000B02D6 /* AuthenticationBaseCoordinator.swift in Sources */,
-				A2EFD5CD27F0D3E6001E4071 /* AuthenticationBaseCoordinated.swift in Sources */,
+				A2EFD5CB27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift in Sources */,
+				A2F24F4727EEF7E5000B02D6 /* ProfileBaseCoordinatorProtocol.swift in Sources */,
+				A2EFD5CF27F0D40C001E4071 /* FeedBaseCoordinatedProtocol.swift in Sources */,
+				A2F24F4B27EEF84C000B02D6 /* AuthenticationBaseCoordinatorProtocol.swift in Sources */,
+				A2EFD5CD27F0D3E6001E4071 /* AuthenticationBaseCoordinatedProtocol.swift in Sources */,
 				A2CF988127DA2A57001A6C39 /* ProfileMainScreenInteractor.swift in Sources */,
 				A2113B0127CE745F00EBA9A9 /* SceneDelegate.swift in Sources */,
 				A27EBC3727F0D87800532EDE /* ProfileSettingsScreenViewController.swift in Sources */,

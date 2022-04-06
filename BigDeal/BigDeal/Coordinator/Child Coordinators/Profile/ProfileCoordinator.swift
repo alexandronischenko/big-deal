@@ -35,7 +35,7 @@ class ProfileCoordinator {
     }
     
     private func moveToProfileFlowSettingScreen() {
-        let profileFlowSettingsViewController = ProfileSettingsScreenViewController()
+        let profileFlowSettingsViewController = ProfileSettingsModuleBuilder.buildModule(coordinator: self)
         navigationRootViewController?.pushViewController(profileFlowSettingsViewController, animated: true)
     }
     
@@ -52,7 +52,7 @@ extension ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     // Funcs
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: ProfileMainScreenAssembly().assembledModule())
+        rootViewController = UINavigationController(rootViewController: ProfileSettingsModuleBuilder.buildModule(coordinator: self))
         return rootViewController
     }
     

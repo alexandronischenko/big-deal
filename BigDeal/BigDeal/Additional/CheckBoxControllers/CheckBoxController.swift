@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class ShopsCheckBoxController: NSObject {
+class CheckBoxController: NSObject {
     
     // MARK: - Properties
     
@@ -14,9 +14,14 @@ class ShopsCheckBoxController: NSObject {
             }
         }
     }
-    var defaultButton: UIButton = UIButton() {
+    var defaultButtonForBrandsCategory: UIButton = UIButton() {
         didSet {
-            buttonsArrayUpdated(buttonSelected: self.defaultButton)
+            buttonsArrayUpdated(buttonSelected: self.defaultButtonForBrandsCategory)
+        }
+    }
+    var defaultButtonForShopsCategory: UIButton = UIButton() {
+        didSet {
+            buttonsArrayUpdated(buttonSelected: self.defaultButtonForShopsCategory)
         }
     }
     

@@ -78,7 +78,7 @@ extension MainCoordinator: MainBaseCoordinatorProtocol {
             }
             viewControllerForUnloggedUser.viewControllers = [feedViewController, searchViewController, authenticationViewController]
             
-            
+        
             rootViewController = viewControllerForUnloggedUser
             return rootViewController
         }

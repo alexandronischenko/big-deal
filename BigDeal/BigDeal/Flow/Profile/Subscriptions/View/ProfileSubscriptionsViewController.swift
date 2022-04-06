@@ -6,8 +6,8 @@ class ProfileSubscriptionsViewController: UIViewController {
     
     private let profileSubscriptionsView = ProfileSubscriptionsView()
     private var output: ProfileSubscriptionsPresenterOutputProtocol?
-    private let brandsCheckBoxController: BrandsCheckBoxController = BrandsCheckBoxController()
-    private let shopsCheckBoxController: ShopsCheckBoxController = ShopsCheckBoxController()
+    private let brandsCheckBoxController: CheckBoxController = CheckBoxController()
+    private let shopsCheckBoxController: CheckBoxController = CheckBoxController()
     
     // MARK: - Protocol properties
     
@@ -32,12 +32,17 @@ class ProfileSubscriptionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
         setUpProfileSubscriptionsTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpDefaultButtonsForCheckBoxControllers()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        configureView()
         setUpDefaultButtonsForCheckBoxControllers()
     }
     
@@ -50,8 +55,8 @@ class ProfileSubscriptionsViewController: UIViewController {
         guard let defaultButtonForShopsCategory = shopsCheckBoxController.buttonsArray.first(where: { $0.currentTitle == "ASOS" }) else {
             return
         }
-        brandsCheckBoxController.defaultButton = defaultButtonForBrandsCategory
-        shopsCheckBoxController.defaultButton = defaultButtonForShopsCategory
+        brandsCheckBoxController.defaultButtonForBrandsCategory = defaultButtonForBrandsCategory
+        shopsCheckBoxController.defaultButtonForShopsCategory = defaultButtonForShopsCategory
     }
     
     private func configureView() {

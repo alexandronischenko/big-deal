@@ -40,7 +40,7 @@ class ProfileCoordinator {
     }
     
     private func moveToProfileFlowSubscriptionsScreen() {
-        let profileFlowSubscriptionsViewController = ProfileSubscriptionsScreenViewController()
+        let profileFlowSubscriptionsViewController = ProfileSubscriptionsModuleBuilder.buildModule(coordinator: self)
         navigationRootViewController?.pushViewController(profileFlowSubscriptionsViewController, animated: true)
     }
 }

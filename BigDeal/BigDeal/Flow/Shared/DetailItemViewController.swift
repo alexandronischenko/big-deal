@@ -1,6 +1,6 @@
 import UIKit
 
-class ProfileSubscriptionsScreenViewController: UIViewController {
+class DetailItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

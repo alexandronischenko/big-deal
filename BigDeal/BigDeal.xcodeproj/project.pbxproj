@@ -62,6 +62,11 @@
 		A2A3F52F27FE3356003417D6 /* RadioButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F52E27FE3356003417D6 /* RadioButtonController.swift */; };
 		A2A3F53527FE3975003417D6 /* CustomRadioButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F53427FE3975003417D6 /* CustomRadioButtonTableViewCell.swift */; };
 		A2A3F53727FE3987003417D6 /* CustomTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F53627FE3987003417D6 /* CustomTextFieldTableViewCell.swift */; };
+		A2B6815C27FF555D00518A90 /* ProfileSettingsUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */; };
+		A2B6816027FF57D100518A90 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6815F27FF57D100518A90 /* ValidationService.swift */; };
+		A2B6816527FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */; };
+		A2B6816827FF5DDA00518A90 /* ValidationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816727FF5DDA00518A90 /* ValidationServiceProtocol.swift */; };
+		A2B6816A27FF602D00518A90 /* ProfileIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816927FF602D00518A90 /* ProfileIntegrationTests.swift */; };
 		A2CF987127DA292F001A6C39 /* ProfileMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987027DA292F001A6C39 /* ProfileMainPresenter.swift */; };
 		A2CF987427DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987327DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift */; };
 		A2CF987627DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987527DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift */; };
@@ -188,6 +193,11 @@
 		A2A3F52E27FE3356003417D6 /* RadioButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonController.swift; sourceTree = "<group>"; };
 		A2A3F53427FE3975003417D6 /* CustomRadioButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRadioButtonTableViewCell.swift; sourceTree = "<group>"; };
 		A2A3F53627FE3987003417D6 /* CustomTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsUnitTests.swift; sourceTree = "<group>"; };
+		A2B6815F27FF57D100518A90 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
+		A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsPresenterInputMock.swift; sourceTree = "<group>"; };
+		A2B6816727FF5DDA00518A90 /* ValidationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationServiceProtocol.swift; sourceTree = "<group>"; };
+		A2B6816927FF602D00518A90 /* ProfileIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIntegrationTests.swift; sourceTree = "<group>"; };
 		A2CF987027DA292F001A6C39 /* ProfileMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainPresenter.swift; sourceTree = "<group>"; };
 		A2CF987327DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewInputProtocol.swift; sourceTree = "<group>"; };
 		A2CF987527DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewOutputProtocol.swift; sourceTree = "<group>"; };
@@ -364,6 +374,7 @@
 		A2113AFD27CE745F00EBA9A9 /* BigDeal */ = {
 			isa = PBXGroup;
 			children = (
+				A2B6816327FF586B00518A90 /* Mocks */,
 				A297430027FECEAD009E5E7D /* Managers */,
 				A2A3F51327FE0CE7003417D6 /* Additional */,
 				A2F0ED8727FDA88E0049EBAC /* Repositories */,
@@ -379,6 +390,7 @@
 		A2113B1727CE746000EBA9A9 /* BigDealTests */ = {
 			isa = PBXGroup;
 			children = (
+				A2B6815A27FF552E00518A90 /* ProfileFlow */,
 				A26256C627FF282D007FA967 /* AuthenticationTest */,
 				A2113B1827CE746000EBA9A9 /* BigDealTests.swift */,
 			);
@@ -409,6 +421,7 @@
 		A23E572427F78A090069F74E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A2B6815E27FF577E00518A90 /* Helpers */,
 				A2F0EDAA27FDEF910049EBAC /* Category */,
 				A2F0ED9C27FDEE2D0049EBAC /* Hot */,
 				A2F0ED9B27FDEE210049EBAC /* Product */,
@@ -736,6 +749,56 @@
 				A2A3F52E27FE3356003417D6 /* RadioButtonController.swift */,
 			);
 			path = RadioButtonControllers;
+			sourceTree = "<group>";
+		};
+		A2B6815827FF54FB00518A90 /* ProfileSettingsUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */,
+			);
+			path = ProfileSettingsUnitTests;
+			sourceTree = "<group>";
+		};
+		A2B6815927FF551D00518A90 /* ProfileIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				A2B6816927FF602D00518A90 /* ProfileIntegrationTests.swift */,
+			);
+			path = ProfileIntegrationTests;
+			sourceTree = "<group>";
+		};
+		A2B6815A27FF552E00518A90 /* ProfileFlow */ = {
+			isa = PBXGroup;
+			children = (
+				A2B6815927FF551D00518A90 /* ProfileIntegrationTests */,
+				A2B6815827FF54FB00518A90 /* ProfileSettingsUnitTests */,
+			);
+			path = ProfileFlow;
+			sourceTree = "<group>";
+		};
+		A2B6815E27FF577E00518A90 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A2B6816627FF5DCC00518A90 /* Protocols */,
+				A2B6815F27FF57D100518A90 /* ValidationService.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A2B6816327FF586B00518A90 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		A2B6816627FF5DCC00518A90 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A2B6816727FF5DDA00518A90 /* ValidationServiceProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A2CF986B27DA28FF001A6C39 /* Main */ = {
@@ -1316,10 +1379,12 @@
 				A2F24F4027EEEEAB000B02D6 /* FlowCoordinatorProtocol.swift in Sources */,
 				A2F0EDA527FDEEA30049EBAC /* HotLocalDataSource.swift in Sources */,
 				A2F0ED8E27FDB8C50049EBAC /* ProductDataRepository.swift in Sources */,
+				A2B6816027FF57D100518A90 /* ValidationService.swift in Sources */,
 				A2F24F5627EEFBFA000B02D6 /* SearchBaseCoordinatorProtocol.swift in Sources */,
 				A26256C527FF2750007FA967 /* AuthenticationLoginBuilder.swift in Sources */,
 				A20022FF27F6FBFA002D04AE /* FeedMainView.swift in Sources */,
 				A2F24F5C27EEFCB4000B02D6 /* FeedCoordinator.swift in Sources */,
+				A2B6816827FF5DDA00518A90 /* ValidationServiceProtocol.swift in Sources */,
 				A2F24F5027EEF8CF000B02D6 /* MainCoordinator.swift in Sources */,
 				A26256C227FF2750007FA967 /* AuthenticationLoginViewPresenter.swift in Sources */,
 				A26256BE27FF2750007FA967 /* AuthenticationRegisterView.swift in Sources */,
@@ -1328,6 +1393,7 @@
 				A27EBC4A27F0D9AA00532EDE /* SearchMainScreenViewController.swift in Sources */,
 				A2CF987127DA292F001A6C39 /* ProfileMainPresenter.swift in Sources */,
 				A26256BC27FF2750007FA967 /* AuthenticationGreetingBuilder.swift in Sources */,
+				A2B6816527FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift in Sources */,
 				A2EFD5CB27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift in Sources */,
 				A2F0EDC027FE07A70049EBAC /* ProfileSubscriptionsPresenter.swift in Sources */,
 				A2F24F4727EEF7E5000B02D6 /* ProfileBaseCoordinatorProtocol.swift in Sources */,
@@ -1345,8 +1411,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A26256CC27FF282D007FA967 /* MockCoordinator.swift in Sources */,
+				A2B6815C27FF555D00518A90 /* ProfileSettingsUnitTests.swift in Sources */,
 				A26256CE27FF282D007FA967 /* AuthRegisterPresenterTest.swift in Sources */,
 				A26256CD27FF282D007FA967 /* MockAuthRegisterView.swift in Sources */,
+				A2B6816A27FF602D00518A90 /* ProfileIntegrationTests.swift in Sources */,
 				A2113B1927CE746000EBA9A9 /* BigDealTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

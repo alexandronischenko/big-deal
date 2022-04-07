@@ -1,6 +1,8 @@
 import UIKit
 
-class ProfileMainScreenViewController: UIViewController, ProfileMainScreenViewInputProtocol {
+class ProfileMainScreenViewController: UIViewController, ProfileMainScreenViewInputProtocol, ProfileBaseCoordinatedProtocol {
+    
+    var coordinator: ProfileBaseCoordinatorProtocol?
     
     var profileMainScreenPresenter: ProfileMainScreenViewOutputProtocol!
     var profileMainScreenView = ProfileMainScreenView()

@@ -1,13 +1,12 @@
 import UIKit
 
 class ProfileSubscriptionsViewController: UIViewController {
-
     // MARK: - Private properties
     
     private let profileSubscriptionsView = ProfileSubscriptionsView()
     private var output: ProfileSubscriptionsPresenterOutputProtocol?
-    private let brandsCheckBoxController: CheckBoxController = CheckBoxController()
-    private let shopsCheckBoxController: CheckBoxController = CheckBoxController()
+    private let brandsCheckBoxController = CheckBoxController()
+    private let shopsCheckBoxController = CheckBoxController()
     
     // MARK: - Initializers
     
@@ -69,13 +68,11 @@ class ProfileSubscriptionsViewController: UIViewController {
 // MARK: - FeedMainPresenterInputProtocol
 
 extension ProfileSubscriptionsViewController: ProfileSubscriptionsPresenterInputProtocol {
-    
 }
 
 // MARK: - UITableViewDelegate
 
 extension ProfileSubscriptionsViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
@@ -83,7 +80,7 @@ extension ProfileSubscriptionsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: .leastNormalMagnitude))
         let label = UILabel()
-        label.frame = CGRect.init(x: 16, y: 40, width: headerView.frame.width-32, height: headerView.frame.height-30)
+        label.frame = CGRect.init(x: 16, y: 40, width: headerView.frame.width - 32, height: headerView.frame.height - 30)
         switch section {
         case 0:
             label.text = "Brands"
@@ -107,7 +104,6 @@ extension ProfileSubscriptionsViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 
 extension ProfileSubscriptionsViewController: UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -172,5 +168,4 @@ extension ProfileSubscriptionsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
     }
-    
 }

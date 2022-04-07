@@ -1,7 +1,6 @@
 import Foundation
 
 protocol MainBaseCoordinatorProtocol: FlowCoordinatorProtocol {
-    
     // MARK: - Properties
     
     var profileCoordinator: ProfileBaseCoordinatorProtocol { get set }
@@ -9,5 +8,5 @@ protocol MainBaseCoordinatorProtocol: FlowCoordinatorProtocol {
     var feedCoordinator: FeedBaseCoordinatorProtocol { get set }
     var searchCoordinator: SearchBaseCoordinatorProtocol { get set }
     
-     // This is MainCoordinator's child coordinators which can be managed by them.
+    // This is MainCoordinator's child coordinators which can be managed by them.
 }

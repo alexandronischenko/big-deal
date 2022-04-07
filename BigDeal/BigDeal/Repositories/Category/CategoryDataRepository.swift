@@ -1,7 +1,6 @@
 import Foundation
 
-class CategoryDataRepository: CategoryRepositoryProtocol {
-    
+class CategoryDataRepository: CategoryRepositoryProtocol {    
     // MARK: - Private properties
     
     private let remoteDataSource: CategoryRemoteDataSourceProtocol

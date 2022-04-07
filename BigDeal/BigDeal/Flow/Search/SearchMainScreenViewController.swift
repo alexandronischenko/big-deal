@@ -8,7 +8,6 @@
 import UIKit
 
 class SearchMainScreenViewController: UIViewController, SearchBaseCoordinatedProtocol {
-    
     var coordinator: SearchBaseCoordinatorProtocol?
     
     init(coordinator: SearchBaseCoordinatorProtocol) {
@@ -25,9 +24,6 @@ class SearchMainScreenViewController: UIViewController, SearchBaseCoordinatedPro
         view.backgroundColor = .systemBackground
         // Do any additional setup after loading the view.
     }
-    
-    
-    
 
     /*
     // MARK: - Navigation
@@ -38,5 +34,4 @@ class SearchMainScreenViewController: UIViewController, SearchBaseCoordinatedPro
         // Pass the selected object to the new view controller.
     }
     */
-
 }

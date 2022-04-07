@@ -8,7 +8,6 @@
 import UIKit
 
 class AuthenticationGreetingViewController: UIViewController {
-        
     var presenter: AuthenticationGreetingViewPresenterProtocol
     var greetingView = AuthenticationGreetingView()
     

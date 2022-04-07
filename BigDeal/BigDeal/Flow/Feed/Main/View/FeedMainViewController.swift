@@ -1,7 +1,6 @@
 import UIKit
 
 class FeedMainViewController: UIViewController {
-    
     // MARK: - Private properties
     
     private let feedMainView = FeedMainView()
@@ -37,11 +36,9 @@ class FeedMainViewController: UIViewController {
 // MARK: - FeedBaseCoordinatedProtocol
 
 extension FeedMainViewController: FeedBaseCoordinatedProtocol {
-    
 }
 
 // MARK: - FeedMainPresenterInputProtocol
 
 extension FeedMainViewController: FeedMainPresenterInputProtocol {
-    
 }

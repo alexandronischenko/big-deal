@@ -1,7 +1,6 @@
 import Foundation
 
 class FeedMainPresenter {
-    
     // MARK: - Properties
     
     weak var input: FeedMainPresenterInputProtocol?
@@ -25,9 +24,7 @@ class FeedMainPresenter {
 }
 
 extension FeedMainPresenter: FeedMainPresenterOutputProtocol {
-    
 }
 
 extension FeedMainPresenter: FeedBaseCoordinatedProtocol {
-    
 }

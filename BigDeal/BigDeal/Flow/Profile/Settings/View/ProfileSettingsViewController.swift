@@ -1,12 +1,11 @@
 import UIKit
 
 class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
-    
     // MARK: - Private properties
     
     private var output: ProfileSettingsPresenterOutputProtocol?
     private let profileSettingsView = ProfileSettingsView()
-    private let sexRadioButtonController: RadioButtonController = RadioButtonController()
+    private let sexRadioButtonController = RadioButtonController()
     
     // MARK: - Initializers
     
@@ -67,14 +66,11 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
 // MARK: - ProfileSettingsPresenterInputProtocol
 
 extension ProfileSettingsViewController: ProfileSettingsPresenterInputProtocol {
-    
 }
-
 
 // MARK: - UITableViewDelegate
 
 extension ProfileSettingsViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
@@ -82,7 +78,7 @@ extension ProfileSettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: .leastNormalMagnitude))
         let label = UILabel()
-        label.frame = CGRect.init(x: 16, y: 40, width: headerView.frame.width-32, height: headerView.frame.height-30)
+        label.frame = CGRect.init(x: 16, y: 40, width: headerView.frame.width - 32, height: headerView.frame.height - 30)
         switch section {
         case 0:
             label.text = "Your preferences"
@@ -105,8 +101,7 @@ extension ProfileSettingsViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension ProfileSettingsViewController: UITableViewDataSource {
-    
+extension ProfileSettingsViewController: UITableViewDataSource {    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }

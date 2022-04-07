@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class CustomRadioButtonTableViewCell: UITableViewCell {
-    
     // MARK: - Static properties
     
     static let customRadioButtonTableViewCellReuseId: String = "customRadioButtonTableViewCell"

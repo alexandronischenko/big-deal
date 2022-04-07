@@ -1,5 +1,4 @@
 import Foundation
 
-protocol CategoryRemoteDataSourceProtocol: AnyObject {
-    
+protocol CategoryRemoteDataSourceProtocol: AnyObject {    
 }

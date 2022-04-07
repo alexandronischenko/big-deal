@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class RadioButtonController: NSObject {
-    
     // MARK: - Properties
     
     var selectedButtons: [UIButton] = []
@@ -14,17 +13,17 @@ class RadioButtonController: NSObject {
             }
         }
     }
-    var defaultButtonForSexCategory: UIButton = UIButton() {
+    var defaultButtonForSexCategory = UIButton() {
         didSet {
             buttonArrayUpdated(buttonSelected: self.defaultButtonForSexCategory)
         }
     }
-    var defaultButtonForSortByCategory: UIButton = UIButton() {
+    var defaultButtonForSortByCategory = UIButton() {
         didSet {
             buttonArrayUpdated(buttonSelected: self.defaultButtonForSortByCategory)
         }
     }
-    var defaultButtonForPriceRangeCategory: UIButton = UIButton() {
+    var defaultButtonForPriceRangeCategory = UIButton() {
         didSet {
             buttonArrayUpdated(buttonSelected: self.defaultButtonForPriceRangeCategory)
         }

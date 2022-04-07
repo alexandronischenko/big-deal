@@ -1,7 +1,6 @@
 import UIKit
 
 class CustomItemCollectionViewCell: UICollectionViewCell {
-    
     // MARK: - Static properties
     
     static let customItemCollectionViewCellReuseId: String = "customItemCollectionViewCell"
@@ -17,7 +16,7 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
             itemShopTitleLabel.text = data.shopTitle
             itemTitleLabel.text = data.clothTitle
             itemAvailableSizesLabel.text = data.sizes.joined(separator: ",")
-            let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: "\(data.oldPrice)")
+            let attributeString = NSMutableAttributedString(string: "\(data.oldPrice)")
                 attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
             itemOldPriceLabel.attributedText = attributeString
             itemNewPriceLabel.text = data.newPrice

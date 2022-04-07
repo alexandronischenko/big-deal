@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class ProfileSettingsView: UIView {
-    
     // MARK: - Properties
     
     lazy var profileSettingsTableView: UITableView = {

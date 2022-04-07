@@ -1,7 +1,6 @@
 import UIKit
 
 class ProfileMainView: UIView {
-    
     // MARK: - Properties
     
     lazy var profileMainCollectionView: UICollectionView = {

@@ -1,10 +1,9 @@
 import UIKit
 
 class CustomHeaderCollectionReusableView: UICollectionReusableView {
-    
     // MARK: - Static properties
     
-    static let customHeaderCollectionReusableViewReuseId: String = "customHeaderCollectionReusableView"
+    static let customHeaderCollectionReusableViewId = "customHeaderCollectionReusableView"
     
     // MARK: - Properies
     
@@ -36,7 +35,7 @@ class CustomHeaderCollectionReusableView: UICollectionReusableView {
             .userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
         button.contentHorizontalAlignment = .left
         button.sizeToFit()
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: self.frame.width-32-button.frame.width, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: self.frame.width - 32 - button.frame.width, bottom: 0, right: 0)
         button.addTarget(self, action: #selector(profileSettingsButtonDidPressed), for: .touchUpInside)
         return button
     }()
@@ -53,7 +52,7 @@ class CustomHeaderCollectionReusableView: UICollectionReusableView {
             .userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
         button.contentHorizontalAlignment = .left
         button.sizeToFit()
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: self.frame.width-32-button.frame.width, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: self.frame.width - 32 - button.frame.width, bottom: 0, right: 0)
         button.addTarget(self, action: #selector(subscriptionsSettingsButtonDidPressed), for: .touchUpInside)
         return button
     }()

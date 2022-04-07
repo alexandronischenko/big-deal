@@ -8,7 +8,6 @@
 import UIKit
 
 class AuthenticationLoginScreenViewController: UIViewController {
-    
     var presenter: AuthenticationLoginViewPresenterProtocol
     var loginView = AuthenticationLoginView()
     

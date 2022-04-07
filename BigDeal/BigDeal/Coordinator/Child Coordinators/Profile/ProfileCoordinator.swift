@@ -2,10 +2,9 @@ import Foundation
 import UIKit
 
 class ProfileCoordinator {
-    
     // MARK: - Protocol properties
     
-    var rootViewController: UIViewController = UIViewController()
+    var rootViewController = UIViewController()
     var parentCoordinator: MainBaseCoordinatorProtocol?
     
     // the bottom link is weak so that there is no cycle of strong links
@@ -35,12 +34,12 @@ class ProfileCoordinator {
     }
     
     private func moveToProfileFlowSettingScreen() {
-        let profileFlowSettingsViewController = ProfileSettingsModuleBuilder.buildModule(coordinator: self)
+        let profileFlowSettingsViewController = ProfileSettingsModuleBuilder().buildModule(coordinator: self)
         navigationRootViewController?.pushViewController(profileFlowSettingsViewController, animated: true)
     }
     
     private func moveToProfileFlowSubscriptionsScreen() {
-        let profileFlowSubscriptionsViewController = ProfileSubscriptionsModuleBuilder.buildModule(coordinator: self)
+        let profileFlowSubscriptionsViewController = ProfileSubscriptionsModuleBuilder().buildModule(coordinator: self)
         navigationRootViewController?.pushViewController(profileFlowSubscriptionsViewController, animated: true)
     }
 }
@@ -48,11 +47,10 @@ class ProfileCoordinator {
 // MARK: - ProfileBaseCoordinatorProtocol
 
 extension ProfileCoordinator: ProfileBaseCoordinatorProtocol {
-    
     // Funcs
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: ProfileMainModuleBuilder.buildModule(coordinator: self))
+        rootViewController = UINavigationController(rootViewController: ProfileMainModuleBuilder().buildModule(coordinator: self))
         return rootViewController
     }
     

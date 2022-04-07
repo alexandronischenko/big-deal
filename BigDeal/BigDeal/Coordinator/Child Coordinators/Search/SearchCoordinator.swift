@@ -6,7 +6,7 @@ class SearchCoordinator {
     // MARK: - Protocol properties
     
     var rootViewController: UIViewController = UIViewController()
-    weak var parentCoordinator: MainBaseCoordinatorProtocol?
+    var parentCoordinator: MainBaseCoordinatorProtocol?
     
     // the bottom link is weak so that there is no cycle of strong links
     

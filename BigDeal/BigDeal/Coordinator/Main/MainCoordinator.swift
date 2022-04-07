@@ -5,7 +5,7 @@ class MainCoordinator {
     
     // MARK: - Private properties
     
-    private var isLoggedIn: Bool = true
+    var isLoggedIn = true
     
     // It's temporary version of useless isLoggedIn variable. In future i suggest it will be stored in UserDefaults.
     

@@ -28,12 +28,12 @@ class AuthenticationCoordinator {
     }
     
     private func moveToAuthenticationFlowLoginScreen() {
-        let authenticationFlowLoginViewController = AuthenticationLoginScreenViewController()
+        let authenticationFlowLoginViewController = AuthenticationLoginBuilder(coordinator: self).build()
         navigationRootViewController?.pushViewController(authenticationFlowLoginViewController, animated: true)
     }
     
     private func moveToAuthenticationFlowRegisterScreen() {
-        let authenticationFlowRegisterViewController = AuthenticationRegisterScreenViewController()
+        let authenticationFlowRegisterViewController = AuthenticationRegisterBuilder(coordinator: self).build()
         navigationRootViewController?.pushViewController(authenticationFlowRegisterViewController, animated: true)
     }
 }
@@ -45,7 +45,11 @@ extension AuthenticationCoordinator: AuthenticationBaseCoordinatorProtocol {
     // Funcs
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: AuthenticationGreetingScreenViewController(coordinator: self))
+//        rootViewController = UINavigationController(rootViewController: AuthenticationGreetingScreenViewController(coordinator: self))
+        
+        rootViewController = UINavigationController(rootViewController: AuthenticationGreetingBuilder(coordinator: self).build())
+        
+        // MARK: TESTING
         return rootViewController
     }
     

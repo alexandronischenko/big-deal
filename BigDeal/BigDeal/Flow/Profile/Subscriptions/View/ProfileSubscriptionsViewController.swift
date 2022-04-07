@@ -9,10 +9,6 @@ class ProfileSubscriptionsViewController: UIViewController {
     private let brandsCheckBoxController: CheckBoxController = CheckBoxController()
     private let shopsCheckBoxController: CheckBoxController = CheckBoxController()
     
-    // MARK: - Protocol properties
-    
-    var coordinator: ProfileBaseCoordinatorProtocol?
-    
     // MARK: - Initializers
     
     init(output: ProfileSubscriptionsPresenterOutputProtocol) {
@@ -68,12 +64,6 @@ class ProfileSubscriptionsViewController: UIViewController {
         profileSubscriptionsView.profileSubscriptionsTableView.dataSource = self
         profileSubscriptionsView.profileSubscriptionsTableView.register(CustomCheckBoxTableViewCell.self, forCellReuseIdentifier: CustomCheckBoxTableViewCell.customCheckBoxTableViewCellReuseId)
     }
-}
-
-// MARK: - FeedBaseCoordinatedProtocol
-
-extension ProfileSubscriptionsViewController: ProfileBaseCoordinatedProtocol {
-    
 }
 
 // MARK: - FeedMainPresenterInputProtocol

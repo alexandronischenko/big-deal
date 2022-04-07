@@ -52,7 +52,7 @@ extension ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     // Funcs
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: ProfileSettingsModuleBuilder.buildModule(coordinator: self))
+        rootViewController = UINavigationController(rootViewController: ProfileMainModuleBuilder.buildModule(coordinator: self))
         return rootViewController
     }
     

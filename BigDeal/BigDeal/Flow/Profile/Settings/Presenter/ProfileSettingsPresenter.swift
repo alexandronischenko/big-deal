@@ -1,6 +1,7 @@
 import Foundation
 
 class ProfileSettingsPresenter {
+    
     // MARK: - Properties
     
     weak var input: ProfileSettingsPresenterInputProtocol?

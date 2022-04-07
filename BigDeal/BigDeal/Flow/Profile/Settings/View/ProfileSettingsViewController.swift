@@ -2,13 +2,11 @@ import UIKit
 
 class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Private properties
+    
     private var output: ProfileSettingsPresenterOutputProtocol?
     private let profileSettingsView = ProfileSettingsView()
     private let sexRadioButtonController: RadioButtonController = RadioButtonController()
-    
-    // MARK: - Protocol properties
-    
-    var coordinator: ProfileBaseCoordinatorProtocol?
     
     // MARK: - Initializers
     
@@ -64,12 +62,6 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
     private func setUpProfileSettingsTextField(_ textField: UITextField) {
         textField.delegate = self
     }
-}
-
-// MARK: - ProfileBaseCoordinatedProtocol
-
-extension ProfileSettingsViewController: ProfileBaseCoordinatedProtocol {
-    
 }
 
 // MARK: - ProfileSettingsPresenterInputProtocol

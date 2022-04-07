@@ -2,32 +2,32 @@
 
 Big deal is an application for finding the best price offer of the requested category or a specific product among numerous online stores.
 
-## Цель работы
-Разработка мобильного приложения для выбранной ОС (iOS или Android).
-### Процесс работы
-- Обсуждение идеи с менторами, соответствие идеи требованиям, функциональность проекта
-- Студенты готовят описание проекта в виде основных тезисов и макеты в Figma для MVP
-- Определение и обсуждение архитектуры проекта
-- Определение промежуточных этапов и сроков их выполнения, обязанностей в команде 
-- Начинается работа над проектом
-- Встречи с менторам раз в неделю, менторы дают обратную связь по проделанной работе
-- Оценка работы (ментор готовит отзыв о работе)
+## Objective
+- Development of a mobile application for iOS.
+### Work process
+- Discussion of the idea with mentors, compliance of the idea with the requirements, project functionality
+- Students prepare a project description in the form of main theses and layouts in Figma for MVP
+- Definition and discussion of the project architecture
+- Definition of intermediate stages and deadlines for their implementation, responsibilities in the team
+- Work on the project begins
+- Meetings with mentors once a week, mentors give feedback on the work done
+- Evaluation of work (the mentor prepares a review of the work)
 
  
-## Обязательные требования
-1. Язык программирования Swift 5+
+## Mandatory requirements
+1. Programming language Swift 5+
 2. Xcode 13+
-3. Поддерживаемая версия iOS 13
-4. Для UI использовать UIKit, SnapKit
-5. Проверка codestyle с помощью Swiftlint
-6. Использование GitFlow
-7. Для менеджмента зависимостей использовать CocoaPods / SPM
-8. Для персистентного хранения данных использовать нативные инструменты (CoreData, UserDefaults, Keychain и т.д.)
-9. Работа с сетью Alamofire, URLSession, Moya 
-### На дополнительные баллы
-1. Использование DI (Swinject)
-2. Наличие тестов (Unit, UI) 
-3. Поддержка темной темы
+3. Supported version iOS 13
+4. For UI use UIKit, SnapKit
+5. Checking codestyle with Swiftlint
+6. Using GitFlow
+7. Use CocoaPods / SPM to manage dependencies
+8. Use native tools for persistent data storage (CoreData, UserDefaults, Keychain, etc.)
+9. Work with Alamofire network, URLSession, Moya
+### For extra points
+1. Using DI (Swinject)
+2. Availability of tests (Unit, UI)
+3. Dark theme support
 
 ## Links
 

@@ -2,12 +2,11 @@ import Foundation
 import UIKit
 
 class AuthenticationCoordinator {
-    
     // MARK: - Protocol properties
     
-    var rootViewController: UIViewController = UIViewController()
+    var rootViewController = UIViewController()
     var parentCoordinator: MainBaseCoordinatorProtocol?
-    
+
     // the bottom link is weak so that there is no cycle of strong links
     
     // MARK: - Private properties
@@ -40,9 +39,8 @@ class AuthenticationCoordinator {
 
 // MARK: - AuthenticationBaseCoordinatorProtocol
 
-extension AuthenticationCoordinator: AuthenticationBaseCoordinatorProtocol {
-    
-    // Funcs
+extension AuthenticationCoordinator: AuthenticationBaseCoordinatorProtocol {    
+    // Functions
     
     func start() -> UIViewController {
         rootViewController = UINavigationController(rootViewController: AuthenticationGreetingBuilder(coordinator: self).build())

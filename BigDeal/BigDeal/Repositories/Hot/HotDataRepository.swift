@@ -1,7 +1,6 @@
 import Foundation
 
 class HotDataRepository: HotRepositoryProtocol {
-    
     // MARK: - Private properties
     
     private let remoteDataSource: HotRemoteDataSourceProtocol

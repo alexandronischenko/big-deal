@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class ProductDataRepository: ProductRepositoryProtocol {
-    
     // MARK: - Private properties
     
     private let remoteDataSource: ProductRemoteDataSourceProtocol

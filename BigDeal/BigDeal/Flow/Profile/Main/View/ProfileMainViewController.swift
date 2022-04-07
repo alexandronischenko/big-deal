@@ -1,13 +1,12 @@
 import UIKit
 
 class ProfileMainViewController: UIViewController {
-    
     // MARK: - Private properties
     
     private let profileMainView = ProfileMainView()
     private var output: ProfileMainPresenterOutputProtocol?
     private let headerView = CustomHeaderCollectionReusableView.self
-    private let reuseIdForHeaderView = CustomHeaderCollectionReusableView.customHeaderCollectionReusableViewReuseId
+    private let reuseIdForHeaderView = CustomHeaderCollectionReusableView.customHeaderCollectionReusableViewId
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     
@@ -55,13 +54,11 @@ class ProfileMainViewController: UIViewController {
 // MARK: - ProfileMainPresenterInputProtocol
 
 extension ProfileMainViewController: ProfileMainPresenterInputProtocol {
-    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension ProfileMainViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 175.5)
     }
@@ -75,14 +72,13 @@ extension ProfileMainViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width/2.3, height: 230)
+        return CGSize(width: view.frame.width / 2.3, height: 230)
     }
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension ProfileMainViewController: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }

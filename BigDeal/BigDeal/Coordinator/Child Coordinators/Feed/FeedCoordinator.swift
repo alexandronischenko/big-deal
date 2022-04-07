@@ -2,10 +2,9 @@ import Foundation
 import UIKit
 
 class FeedCoordinator {
-    
     // MARK: - Protocol properties
     
-    var rootViewController: UIViewController = UIViewController()
+    var rootViewController = UIViewController()
     var parentCoordinator: MainBaseCoordinatorProtocol?
     
     // the bottom link is weak so that there is no cycle of strong links
@@ -34,11 +33,10 @@ class FeedCoordinator {
 // MARK: - FeedBaseCoordinatorProtocol
 
 extension FeedCoordinator: FeedBaseCoordinatorProtocol {
-    
-    // Funcs
+    // Functions
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: FeedMainModuleBuilder.buildModule(coordinator: self))
+        rootViewController = UINavigationController(rootViewController: FeedMainModuleBuilder().buildModule(coordinator: self))
         return rootViewController
     }
     

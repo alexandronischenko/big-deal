@@ -1,7 +1,6 @@
 import Foundation
 
 class ProfileSettingsPresenter {
-    
     // MARK: - Properties
     
     weak var input: ProfileSettingsPresenterInputProtocol?
@@ -17,11 +16,9 @@ class ProfileSettingsPresenter {
 // MARK: - ProfileSubscriptionsPresenterOutputProtocol
 
 extension ProfileSettingsPresenter: ProfileSettingsPresenterOutputProtocol {
-    
 }
 
 // MARK: - ProfileBaseCoordinatedProtocol
 
 extension ProfileSettingsPresenter: ProfileBaseCoordinatedProtocol {
-    
 }

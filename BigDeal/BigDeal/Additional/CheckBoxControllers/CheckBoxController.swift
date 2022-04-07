@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class CheckBoxController: NSObject {
-    
     // MARK: - Properties
     
     var selectedButtons: [UIButton] = []
@@ -14,12 +13,12 @@ class CheckBoxController: NSObject {
             }
         }
     }
-    var defaultButtonForBrandsCategory: UIButton = UIButton() {
+    var defaultButtonForBrandsCategory = UIButton() {
         didSet {
             buttonsArrayUpdated(buttonSelected: self.defaultButtonForBrandsCategory)
         }
     }
-    var defaultButtonForShopsCategory: UIButton = UIButton() {
+    var defaultButtonForShopsCategory = UIButton() {
         didSet {
             buttonsArrayUpdated(buttonSelected: self.defaultButtonForShopsCategory)
         }
@@ -29,7 +28,7 @@ class CheckBoxController: NSObject {
     
     private func buttonsArrayUpdated(buttonSelected: UIButton) {
         for button in buttonsArray {
-            if ((button == buttonSelected) && !button.isSelected) {
+            if (button == buttonSelected) && !button.isSelected {
                 selectedButtons.append(button)
                 button.isSelected = true
             } else if button == buttonSelected && button.isSelected {

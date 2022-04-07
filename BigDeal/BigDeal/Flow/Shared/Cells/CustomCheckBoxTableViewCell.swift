@@ -1,7 +1,6 @@
 import UIKit
 
 class CustomCheckBoxTableViewCell: UITableViewCell {
-    
     // MARK: - Static properties
     
     static let customCheckBoxTableViewCellReuseId: String = "CustomCheckBoxTableViewCell"

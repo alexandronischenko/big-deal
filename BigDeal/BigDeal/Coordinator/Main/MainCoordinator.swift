@@ -2,10 +2,9 @@ import Foundation
 import UIKit
 
 class MainCoordinator {
-    
     // MARK: - Private properties
     
-    var isLoggedIn = true
+    private var isLoggedIn = true
     
     // It's temporary version of useless isLoggedIn variable. In future i suggest it will be stored in UserDefaults.
     
@@ -43,11 +42,9 @@ class MainCoordinator {
 // MARK: - MainBaseCoordinatorProtocol
 
 extension MainCoordinator: MainBaseCoordinatorProtocol {
-    
-    // Funcs
+    // Functions
     
     func start() -> UIViewController {
-        
         let feedViewController = feedCoordinator.start()
         feedCoordinator.parentCoordinator = self
         feedViewController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
@@ -78,7 +75,6 @@ extension MainCoordinator: MainBaseCoordinatorProtocol {
             }
             viewControllerForUnloggedUser.viewControllers = [feedViewController, searchViewController, authenticationViewController]
             
-        
             rootViewController = viewControllerForUnloggedUser
             return rootViewController
         }

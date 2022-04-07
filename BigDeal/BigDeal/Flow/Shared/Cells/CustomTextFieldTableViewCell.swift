@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class CustomTextFieldTableViewCell: UITableViewCell {
-    
     // MARK: - Static properties
     
     static let customTextFieldTableViewCellReuseId: String = "customTextFieldTableViewCell"

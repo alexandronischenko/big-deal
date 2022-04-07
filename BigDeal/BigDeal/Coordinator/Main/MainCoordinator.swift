@@ -5,7 +5,7 @@ class MainCoordinator {
     
     // MARK: - Private properties
     
-    private var isLoggedIn: Bool = false
+    private var isLoggedIn: Bool = true
     
     // It's temporary version of useless isLoggedIn variable. In future i suggest it will be stored in UserDefaults.
     
@@ -78,7 +78,7 @@ extension MainCoordinator: MainBaseCoordinatorProtocol {
             }
             viewControllerForUnloggedUser.viewControllers = [feedViewController, searchViewController, authenticationViewController]
             
-            
+        
             rootViewController = viewControllerForUnloggedUser
             return rootViewController
         }

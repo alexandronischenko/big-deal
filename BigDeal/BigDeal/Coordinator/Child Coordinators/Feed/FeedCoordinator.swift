@@ -38,7 +38,7 @@ extension FeedCoordinator: FeedBaseCoordinatorProtocol {
     // Funcs
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: FeedMainModuleBuilder.buildModule(coordinator: self))
+        rootViewController = UINavigationController(rootViewController: FeedMainScreenViewController(coordinator: self))
         return rootViewController
     }
     

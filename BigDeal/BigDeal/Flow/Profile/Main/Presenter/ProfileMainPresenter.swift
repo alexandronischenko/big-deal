@@ -21,4 +21,7 @@ extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 // MARK: - ProfileMainPresenterOutputProtocol
 
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
+    func moveToSettingsScreen() {
+        coordinator?.moveTo(flow: .profile(.settings))
+    }
 }

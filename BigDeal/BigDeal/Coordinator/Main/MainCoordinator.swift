@@ -57,24 +57,24 @@ extension MainCoordinator: MainBaseCoordinatorProtocol {
             let profileViewController = profileCoordinator.start()
             profileCoordinator.parentCoordinator = self
             profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
-            
+
             guard let viewControllerForLoggedUser = rootViewController as? UITabBarController else {
                 return UIViewController()
             }
             viewControllerForLoggedUser.viewControllers = [feedViewController, searchViewController, profileViewController]
-            
+
             rootViewController = viewControllerForLoggedUser
             return rootViewController
         } else {
             let authenticationViewController = authenticationCoordinator.start()
             authenticationCoordinator.parentCoordinator = self
             authenticationViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
-            
+
             guard let viewControllerForUnloggedUser = rootViewController as? UITabBarController else {
                 return UIViewController()
             }
             viewControllerForUnloggedUser.viewControllers = [feedViewController, searchViewController, authenticationViewController]
-            
+
             rootViewController = viewControllerForUnloggedUser
             return rootViewController
         }

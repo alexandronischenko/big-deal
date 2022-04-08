@@ -5,7 +5,7 @@ class ProfileMainViewController: UIViewController {
     
     private let profileMainView = ProfileMainView()
     private var output: ProfileMainPresenterOutputProtocol?
-    private let headerView = CustomHeaderCollectionReusableView.self
+    
     private let reuseIdForHeaderView = CustomHeaderCollectionReusableView.customHeaderCollectionReusableViewId
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     private let sectionHeader = UICollectionView.elementKindSectionHeader
@@ -33,6 +33,8 @@ class ProfileMainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let headerView = CustomHeaderCollectionReusableView()
+        headerView.delegate = self
         configureView()
         setUpProfileMainCollectionView()
     }
@@ -42,12 +44,22 @@ class ProfileMainViewController: UIViewController {
     private func setUpProfileMainCollectionView() {
         profileMainView.profileMainCollectionView.delegate = self
         profileMainView.profileMainCollectionView.dataSource = self
-        profileMainView.profileMainCollectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
-        profileMainView.profileMainCollectionView.register(headerView, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: reuseIdForHeaderView)
+        let cellClass = CustomItemCollectionViewCell.self
+        let viewClass = CustomHeaderCollectionReusableView.self
+        profileMainView.profileMainCollectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdForItemCell)
+        profileMainView.profileMainCollectionView.register(viewClass, forSupplementaryViewOfKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView)
     }
     
     private func configureView() {
         title = "Profile"
+    }
+}
+
+// MARK: - HeaderCollectionReusableViewDelegate
+
+extension ProfileMainViewController: HeaderCollectionReusableViewDelegate {
+    func moveToSettingsScreen() {
+        output?.moveToSettingsScreen()
     }
 }
 

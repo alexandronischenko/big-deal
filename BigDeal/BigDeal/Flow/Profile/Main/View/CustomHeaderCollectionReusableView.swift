@@ -1,11 +1,17 @@
 import UIKit
 
+protocol HeaderCollectionReusableViewDelegate: AnyObject {
+    func moveToSettingsScreen()
+}
+
 class CustomHeaderCollectionReusableView: UICollectionReusableView {
     // MARK: - Static properties
     
     static let customHeaderCollectionReusableViewId = "customHeaderCollectionReusableView"
     
     // MARK: - Properies
+    
+    weak var delegate: HeaderCollectionReusableViewDelegate?
     
     private lazy var profileHeaderImageView: UIImageView = {
         let imageView = UIImageView()
@@ -120,8 +126,9 @@ class CustomHeaderCollectionReusableView: UICollectionReusableView {
     
     // MARK: - OBJC funcs
     
-    @objc private func profileSettingsButtonDidPressed() {
+    @objc func profileSettingsButtonDidPressed() {
         print("profile settings button has been pressed")
+        delegate?.moveToSettingsScreen()
     }
     
     @objc private func subscriptionsSettingsButtonDidPressed() {

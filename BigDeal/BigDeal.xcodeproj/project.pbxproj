@@ -49,7 +49,7 @@
 		A27EBC4E27F0D9E900532EDE /* FeedMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4D27F0D9E900532EDE /* FeedMainViewController.swift */; };
 		A297430227FECEB8009E5E7D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430127FECEB8009E5E7D /* DataManager.swift */; };
 		A297430527FECF6A009E5E7D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430427FECF6A009E5E7D /* Item.swift */; };
-		A297430727FED162009E5E7D /* CustomHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430627FED162009E5E7D /* CustomHeaderCollectionReusableView.swift */; };
+		A297430727FED162009E5E7D /* ProfileMainCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430627FED162009E5E7D /* ProfileMainCollectionReusableView.swift */; };
 		A297430927FED25E009E5E7D /* CustomItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430827FED25E009E5E7D /* CustomItemCollectionViewCell.swift */; };
 		A2A3F51527FE0D0E003417D6 /* CheckBoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F51427FE0D0E003417D6 /* CheckBoxController.swift */; };
 		A2A3F51727FE126D003417D6 /* CustomCheckBoxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F51627FE126D003417D6 /* CustomCheckBoxTableViewCell.swift */; };
@@ -115,6 +115,7 @@
 		A2FC10722800D02B0087AA35 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC10712800D02B0087AA35 /* SearchResultsView.swift */; };
 		A2FC10742800D0410087AA35 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC10732800D0410087AA35 /* SearchResultsViewController.swift */; };
 		A2FC10762800D0690087AA35 /* SearchResultsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC10752800D0690087AA35 /* SearchResultsModuleBuilder.swift */; };
+		A2FC107C280166C00087AA35 /* SearchResultsCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC107B280166C00087AA35 /* SearchResultsCollectionReusableView.swift */; };
 		D0F7C04B678869DBE49DBDB6 /* Pods_BigDeal_BigDealUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8760B20FF8847648CB77B064 /* Pods_BigDeal_BigDealUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -186,7 +187,7 @@
 		A27EBC4D27F0D9E900532EDE /* FeedMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainViewController.swift; sourceTree = "<group>"; };
 		A297430127FECEB8009E5E7D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A297430427FECF6A009E5E7D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		A297430627FED162009E5E7D /* CustomHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		A297430627FED162009E5E7D /* ProfileMainCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainCollectionReusableView.swift; sourceTree = "<group>"; };
 		A297430827FED25E009E5E7D /* CustomItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		A2A3F51427FE0D0E003417D6 /* CheckBoxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxController.swift; sourceTree = "<group>"; };
 		A2A3F51627FE126D003417D6 /* CustomCheckBoxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckBoxTableViewCell.swift; sourceTree = "<group>"; };
@@ -252,6 +253,7 @@
 		A2FC10712800D02B0087AA35 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		A2FC10732800D0410087AA35 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		A2FC10752800D0690087AA35 /* SearchResultsModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsModuleBuilder.swift; sourceTree = "<group>"; };
+		A2FC107B280166C00087AA35 /* SearchResultsCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCollectionReusableView.swift; sourceTree = "<group>"; };
 		B191609E344FAD85EDA12B7E /* Pods-BigDeal-BigDealUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDeal-BigDealUITests.release.xcconfig"; path = "Target Support Files/Pods-BigDeal-BigDealUITests/Pods-BigDeal-BigDealUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC4CDA2571769D2695310218 /* Pods_BigDealTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BigDealTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC04F0D932F76B1339C4C2FA /* Pods-BigDealTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDealTests.debug.xcconfig"; path = "Target Support Files/Pods-BigDealTests/Pods-BigDealTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -885,7 +887,7 @@
 			children = (
 				A2CF987927DA29CC001A6C39 /* ProfileMainViewController.swift */,
 				A2CF987727DA29C0001A6C39 /* ProfileMainView.swift */,
-				A297430627FED162009E5E7D /* CustomHeaderCollectionReusableView.swift */,
+				A297430627FED162009E5E7D /* ProfileMainCollectionReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1120,6 +1122,7 @@
 			children = (
 				A2FC10732800D0410087AA35 /* SearchResultsViewController.swift */,
 				A2FC10712800D02B0087AA35 /* SearchResultsView.swift */,
+				A2FC107B280166C00087AA35 /* SearchResultsCollectionReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1501,7 +1504,7 @@
 				A23E572C27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift in Sources */,
 				A2F24F4527EEF6A8000B02D6 /* ProfileCoordinator.swift in Sources */,
 				A2F0EDAF27FDEFC70049EBAC /* CategoryRemoteDataSourceProtocol.swift in Sources */,
-				A297430727FED162009E5E7D /* CustomHeaderCollectionReusableView.swift in Sources */,
+				A297430727FED162009E5E7D /* ProfileMainCollectionReusableView.swift in Sources */,
 				A200230827F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift in Sources */,
 				A2A3F53727FE3987003417D6 /* CustomTextFieldTableViewCell.swift in Sources */,
 				A2A3F51C27FE287A003417D6 /* ProfileSubscriptionsModuleBuilder.swift in Sources */,
@@ -1514,6 +1517,7 @@
 				A2F0EDA527FDEEA30049EBAC /* HotLocalDataSource.swift in Sources */,
 				A2FC106C2800CFCB0087AA35 /* SearchResultsPresenterInputProtocol.swift in Sources */,
 				A2F0ED8E27FDB8C50049EBAC /* ProductDataRepository.swift in Sources */,
+				A2FC107C280166C00087AA35 /* SearchResultsCollectionReusableView.swift in Sources */,
 				A2B6816027FF57D100518A90 /* ValidationService.swift in Sources */,
 				A2F24F5627EEFBFA000B02D6 /* SearchBaseCoordinatorProtocol.swift in Sources */,
 				A26256C527FF2750007FA967 /* AuthenticationLoginBuilder.swift in Sources */,

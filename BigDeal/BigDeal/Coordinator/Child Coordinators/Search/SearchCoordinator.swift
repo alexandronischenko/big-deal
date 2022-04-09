@@ -19,6 +19,8 @@ class SearchCoordinator {
             moveToSearchFlowDetailScreen()
         case .filter:
             moveToSearchFlowFilterScreen()
+        case .results:
+            moveToSearchFlowResultsScreen()
         }
     }
     
@@ -35,6 +37,11 @@ class SearchCoordinator {
         let searchFlowFilterViewController = SearchFilterScreenViewController()
         navigationRootViewController?.pushViewController(searchFlowFilterViewController, animated: true)
     }
+    
+    private func moveToSearchFlowResultsScreen() {
+        let searchFlowResultsViewController = SearchResultsModuleBuilder().buildModule(coordinator: self)
+        navigationRootViewController?.pushViewController(searchFlowResultsViewController, animated: true)
+    }
 }
 
 // MARK: - SearchBaseCoordinatorProtocol
@@ -43,8 +50,12 @@ extension SearchCoordinator: SearchBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: SearchMainScreenViewController(coordinator: self))
-        return rootViewController
+        rootViewController = UINavigationController(rootViewController: SearchResultsModuleBuilder().buildModule(coordinator: self))
+        guard let navigationController = rootViewController as? UINavigationController else {
+            return UIViewController()
+        }
+        navigationController.navigationBar.prefersLargeTitles = true
+        return navigationController
     }
     
     func moveTo(flow: AppFlow) {

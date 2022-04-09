@@ -5,7 +5,7 @@ protocol HeaderCollectionReusableViewDelegate: AnyObject {
     func moveToSubscriptionsScreen()
 }
 
-class CustomHeaderCollectionReusableView: UICollectionReusableView {
+class ProfileMainCollectionReusableView: UICollectionReusableView {
     // MARK: - Static properties
     
     static let customHeaderCollectionReusableViewId = "customHeaderCollectionReusableView"

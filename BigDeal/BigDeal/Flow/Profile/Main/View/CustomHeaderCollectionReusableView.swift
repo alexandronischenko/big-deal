@@ -2,6 +2,7 @@ import UIKit
 
 protocol HeaderCollectionReusableViewDelegate: AnyObject {
     func moveToSettingsScreen()
+    func moveToSubscriptionsScreen()
 }
 
 class CustomHeaderCollectionReusableView: UICollectionReusableView {
@@ -127,11 +128,10 @@ class CustomHeaderCollectionReusableView: UICollectionReusableView {
     // MARK: - OBJC funcs
     
     @objc func profileSettingsButtonDidPressed() {
-        print("profile settings button has been pressed")
         delegate?.moveToSettingsScreen()
     }
     
     @objc private func subscriptionsSettingsButtonDidPressed() {
-        print("subscriptions settings button has been pressed")
+        delegate?.moveToSubscriptionsScreen()
     }
 }

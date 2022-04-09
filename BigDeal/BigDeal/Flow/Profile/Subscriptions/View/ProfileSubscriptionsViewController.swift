@@ -80,7 +80,7 @@ extension ProfileSubscriptionsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: .leastNormalMagnitude))
         let label = UILabel()
-        label.frame = CGRect.init(x: 16, y: 40, width: headerView.frame.width - 32, height: headerView.frame.height - 30)
+        label.frame = CGRect.init(x: 16, y: 15, width: headerView.frame.width - 32, height: headerView.frame.height - 30)
         switch section {
         case 0:
             label.text = "Brands"
@@ -97,7 +97,11 @@ extension ProfileSubscriptionsViewController: UITableViewDelegate {
     }
         
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
     }
 }
 

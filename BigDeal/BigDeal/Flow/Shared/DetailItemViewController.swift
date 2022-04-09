@@ -41,6 +41,7 @@ class DetailItemViewController: UIViewController {
         var image = UIImage(systemName: "bag")
         var imageView = UIImageView(image: image)
         imageView.tintColor = .label
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -88,6 +89,23 @@ class DetailItemViewController: UIViewController {
         button.layer.cornerRadius = 6
         return button
     }()
+    
+    init(model: Item) {
+        super.init(nibName: nil, bundle: nil)
+        title = model.clothTitle
+        sizesLabel.text = model.sizes.joined(separator: " ")
+        currentPriceLabel.text = model.newPrice
+        defaultPriceLabel.text = model.oldPrice
+        imageView.image = model.clothImage
+    }
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,7 +185,6 @@ class DetailItemViewController: UIViewController {
             make.leading.equalTo(imageView.snp.centerX)
             make.trailing.equalTo(imageView.snp.trailing)
         }
-        
         button.snp.makeConstraints { make in
             make.top.equalTo(currentPrice.snp.bottom).offset(16)
             make.bottom.equalTo(scrollView.snp.bottom).offset(-16)
@@ -176,4 +193,3 @@ class DetailItemViewController: UIViewController {
         }
     }
 }
-

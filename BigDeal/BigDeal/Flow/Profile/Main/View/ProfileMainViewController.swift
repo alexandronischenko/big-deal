@@ -110,4 +110,10 @@ extension ProfileMainViewController: UICollectionViewDataSource {
         }
         return header
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = data[indexPath.row]
+        let viewController = DetailItemViewController(model: model)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }

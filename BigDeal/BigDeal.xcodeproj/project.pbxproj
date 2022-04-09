@@ -109,6 +109,12 @@
 		A2F24F5827EEFC50000B02D6 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F5727EEFC50000B02D6 /* SearchCoordinator.swift */; };
 		A2F24F5A27EEFC8E000B02D6 /* FeedBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F5927EEFC8E000B02D6 /* FeedBaseCoordinatorProtocol.swift */; };
 		A2F24F5C27EEFCB4000B02D6 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F24F5B27EEFCB4000B02D6 /* FeedCoordinator.swift */; };
+		A2FC106C2800CFCB0087AA35 /* SearchResultsPresenterInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC106B2800CFCB0087AA35 /* SearchResultsPresenterInputProtocol.swift */; };
+		A2FC106E2800CFE40087AA35 /* SearchResultsPresenterOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC106D2800CFE40087AA35 /* SearchResultsPresenterOutputProtocol.swift */; };
+		A2FC10702800CFFD0087AA35 /* SearchResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC106F2800CFFD0087AA35 /* SearchResultsPresenter.swift */; };
+		A2FC10722800D02B0087AA35 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC10712800D02B0087AA35 /* SearchResultsView.swift */; };
+		A2FC10742800D0410087AA35 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC10732800D0410087AA35 /* SearchResultsViewController.swift */; };
+		A2FC10762800D0690087AA35 /* SearchResultsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC10752800D0690087AA35 /* SearchResultsModuleBuilder.swift */; };
 		D0F7C04B678869DBE49DBDB6 /* Pods_BigDeal_BigDealUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8760B20FF8847648CB77B064 /* Pods_BigDeal_BigDealUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -240,6 +246,12 @@
 		A2F24F5727EEFC50000B02D6 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		A2F24F5927EEFC8E000B02D6 /* FeedBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		A2F24F5B27EEFCB4000B02D6 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		A2FC106B2800CFCB0087AA35 /* SearchResultsPresenterInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsPresenterInputProtocol.swift; sourceTree = "<group>"; };
+		A2FC106D2800CFE40087AA35 /* SearchResultsPresenterOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsPresenterOutputProtocol.swift; sourceTree = "<group>"; };
+		A2FC106F2800CFFD0087AA35 /* SearchResultsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsPresenter.swift; sourceTree = "<group>"; };
+		A2FC10712800D02B0087AA35 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		A2FC10732800D0410087AA35 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		A2FC10752800D0690087AA35 /* SearchResultsModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsModuleBuilder.swift; sourceTree = "<group>"; };
 		B191609E344FAD85EDA12B7E /* Pods-BigDeal-BigDealUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDeal-BigDealUITests.release.xcconfig"; path = "Target Support Files/Pods-BigDeal-BigDealUITests/Pods-BigDeal-BigDealUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC4CDA2571769D2695310218 /* Pods_BigDealTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BigDealTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC04F0D932F76B1339C4C2FA /* Pods-BigDealTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDealTests.debug.xcconfig"; path = "Target Support Files/Pods-BigDealTests/Pods-BigDealTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -459,6 +471,52 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		A248D86C2800CD4900DF73AC /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				A2FC10672800CF890087AA35 /* Model */,
+				A2FC10662800CF830087AA35 /* View */,
+				A2FC10682800CF8D0087AA35 /* Presenter */,
+				A2FC10692800CF910087AA35 /* ModuleBuilder */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
+		A248D86D2800CD5100DF73AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A27EBC4B27F0D9C600532EDE /* SearchFilterScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A248D86F2800CD5C00DF73AC /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				A2FC10782800D1340087AA35 /* Model */,
+				A2FC10772800D1290087AA35 /* Presenter */,
+				A248D86D2800CD5100DF73AC /* View */,
+				A2FC10792800D1380087AA35 /* ModuleBuilder */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		A248D8702800CD6C00DF73AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A27EBC4927F0D9AA00532EDE /* SearchMainScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A248D8712800CD7100DF73AC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A248D8702800CD6C00DF73AC /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		A26256A027FF2750007FA967 /* Greeting */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,8 +692,9 @@
 		A27EBC4527F0D91B00532EDE /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				A27EBC4927F0D9AA00532EDE /* SearchMainScreenViewController.swift */,
-				A27EBC4B27F0D9C600532EDE /* SearchFilterScreenViewController.swift */,
+				A248D8712800CD7100DF73AC /* Main */,
+				A248D86C2800CD4900DF73AC /* Results */,
+				A248D86F2800CD5C00DF73AC /* Filter */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1056,6 +1115,77 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		A2FC10662800CF830087AA35 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A2FC10732800D0410087AA35 /* SearchResultsViewController.swift */,
+				A2FC10712800D02B0087AA35 /* SearchResultsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2FC10672800CF890087AA35 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A2FC10682800CF8D0087AA35 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A2FC106A2800CFB00087AA35 /* Protocols */,
+				A2FC106F2800CFFD0087AA35 /* SearchResultsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A2FC10692800CF910087AA35 /* ModuleBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				A2FC10752800D0690087AA35 /* SearchResultsModuleBuilder.swift */,
+			);
+			path = ModuleBuilder;
+			sourceTree = "<group>";
+		};
+		A2FC106A2800CFB00087AA35 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A2FC106B2800CFCB0087AA35 /* SearchResultsPresenterInputProtocol.swift */,
+				A2FC106D2800CFE40087AA35 /* SearchResultsPresenterOutputProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A2FC10772800D1290087AA35 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A2FC107A2800D14A0087AA35 /* Protocols */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A2FC10782800D1340087AA35 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A2FC10792800D1380087AA35 /* ModuleBuilder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModuleBuilder;
+			sourceTree = "<group>";
+		};
+		A2FC107A2800D14A0087AA35 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1341,6 +1471,8 @@
 				A2CF987427DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift in Sources */,
 				A200231027F6FF86002D04AE /* FeedMainModuleBuilder.swift in Sources */,
 				A2F0ED8C27FDB8730049EBAC /* ProductRepositoryProtocol.swift in Sources */,
+				A2FC10742800D0410087AA35 /* SearchResultsViewController.swift in Sources */,
+				A2FC10702800CFFD0087AA35 /* SearchResultsPresenter.swift in Sources */,
 				A26256C427FF2750007FA967 /* AuthenticationLoginView.swift in Sources */,
 				A2A3F51F27FE2CDC003417D6 /* ProfileSettingsView.swift in Sources */,
 				A27EBC4E27F0D9E900532EDE /* FeedMainViewController.swift in Sources */,
@@ -1354,6 +1486,7 @@
 				A26256C127FF2750007FA967 /* BuilderPrototcol.swift in Sources */,
 				A2F0EDB127FDEFDE0049EBAC /* CategoryRemoteDataSource.swift in Sources */,
 				A2A3F53527FE3975003417D6 /* CustomRadioButtonTableViewCell.swift in Sources */,
+				A2FC10762800D0690087AA35 /* SearchResultsModuleBuilder.swift in Sources */,
 				A26256BD27FF2750007FA967 /* AuthenticationRegisterViewPresenter.swift in Sources */,
 				A2F0ED9627FDEDAD0049EBAC /* HotDataRepository.swift in Sources */,
 				A2113AFF27CE745F00EBA9A9 /* AppDelegate.swift in Sources */,
@@ -1377,7 +1510,9 @@
 				A2CF988727DA2CDF001A6C39 /* ProfileMainModuleBuilder.swift in Sources */,
 				A2A3F51727FE126D003417D6 /* CustomCheckBoxTableViewCell.swift in Sources */,
 				A2F24F4027EEEEAB000B02D6 /* FlowCoordinatorProtocol.swift in Sources */,
+				A2FC10722800D02B0087AA35 /* SearchResultsView.swift in Sources */,
 				A2F0EDA527FDEEA30049EBAC /* HotLocalDataSource.swift in Sources */,
+				A2FC106C2800CFCB0087AA35 /* SearchResultsPresenterInputProtocol.swift in Sources */,
 				A2F0ED8E27FDB8C50049EBAC /* ProductDataRepository.swift in Sources */,
 				A2B6816027FF57D100518A90 /* ValidationService.swift in Sources */,
 				A2F24F5627EEFBFA000B02D6 /* SearchBaseCoordinatorProtocol.swift in Sources */,
@@ -1400,6 +1535,7 @@
 				A2EFD5CF27F0D40C001E4071 /* FeedBaseCoordinatedProtocol.swift in Sources */,
 				A2F24F4B27EEF84C000B02D6 /* AuthenticationBaseCoordinatorProtocol.swift in Sources */,
 				A2EFD5CD27F0D3E6001E4071 /* AuthenticationBaseCoordinatedProtocol.swift in Sources */,
+				A2FC106E2800CFE40087AA35 /* SearchResultsPresenterOutputProtocol.swift in Sources */,
 				A2113B0127CE745F00EBA9A9 /* SceneDelegate.swift in Sources */,
 				A27EBC3727F0D87800532EDE /* ProfileSettingsViewController.swift in Sources */,
 				A2F0EDA927FDEF740049EBAC /* CategoryDataRepository.swift in Sources */,

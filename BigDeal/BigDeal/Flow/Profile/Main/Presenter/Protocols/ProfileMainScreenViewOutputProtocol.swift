@@ -2,4 +2,5 @@ import Foundation
 
 protocol ProfileMainPresenterOutputProtocol: AnyObject {
     func moveToSettingsScreen()
+    func moveToSubscriptionsScreen()
 }

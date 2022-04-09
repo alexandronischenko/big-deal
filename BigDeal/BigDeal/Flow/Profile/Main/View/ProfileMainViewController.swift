@@ -33,8 +33,6 @@ class ProfileMainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let headerView = CustomHeaderCollectionReusableView()
-        headerView.delegate = self
         configureView()
         setUpProfileMainCollectionView()
     }
@@ -60,6 +58,9 @@ class ProfileMainViewController: UIViewController {
 extension ProfileMainViewController: HeaderCollectionReusableViewDelegate {
     func moveToSettingsScreen() {
         output?.moveToSettingsScreen()
+    }
+    func moveToSubscriptionsScreen() {
+        output?.moveToSubscriptionsScreen()
     }
 }
 
@@ -108,6 +109,7 @@ extension ProfileMainViewController: UICollectionViewDataSource {
         guard let header = header as? CustomHeaderCollectionReusableView else {
             return UICollectionReusableView()
         }
+        header.delegate = self
         return header
     }
 }

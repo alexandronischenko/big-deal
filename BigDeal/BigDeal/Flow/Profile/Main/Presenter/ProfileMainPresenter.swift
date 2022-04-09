@@ -24,4 +24,7 @@ extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
     func moveToSettingsScreen() {
         coordinator?.moveTo(flow: .profile(.settings))
     }
+    func moveToSubscriptionsScreen() {
+        coordinator?.moveTo(flow: .profile(.subscriptions))
+    }
 }

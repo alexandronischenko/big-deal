@@ -118,7 +118,6 @@ extension ProfileSubscriptionsViewController: UITableViewDataSource {
             return 1
         }
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: CustomCheckBoxTableViewCell.customCheckBoxTableViewCellReuseId) as? CustomCheckBoxTableViewCell else {
             return UITableViewCell()

@@ -34,8 +34,10 @@ class SearchCoordinator {
     }
     
     private func moveToSearchFlowFilterScreen() {
-        let searchFlowFilterViewController = SearchFilterScreenViewController()
-        navigationRootViewController?.pushViewController(searchFlowFilterViewController, animated: true)
+        let searchFlowFilterViewController = UINavigationController(rootViewController: SearchFilterModuleBuilder().buildModule(coordinator: self))
+        searchFlowFilterViewController.modalPresentationStyle = .fullScreen
+        searchFlowFilterViewController.navigationBar.prefersLargeTitles = false
+        self.navigationRootViewController?.present(searchFlowFilterViewController, animated: true)
     }
     
     private func moveToSearchFlowResultsScreen() {

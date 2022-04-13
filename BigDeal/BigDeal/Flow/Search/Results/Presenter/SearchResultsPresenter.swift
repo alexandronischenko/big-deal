@@ -13,6 +13,10 @@ class SearchResultsPresenter {
     }
 }
 
-extension SearchResultsPresenter: SearchResultsPresenterOutputProtocol {}
+extension SearchResultsPresenter: SearchResultsPresenterOutputProtocol {
+    func moveToFilterScreen() {
+        coordinator?.moveTo(flow: .search(.filter))
+    }
+}
 
 extension SearchResultsPresenter: SearchBaseCoordinatedProtocol {}

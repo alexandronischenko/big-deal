@@ -52,8 +52,13 @@ class CustomCheckBoxTableViewCell: UITableViewCell {
     private func setUpConstraintsForViews() {
         checkBoxButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.top.equalToSuperview().inset(5)
+            make.top.equalToSuperview().inset(3)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        checkBoxButton.isSelected = true
     }
     
     // MARK: - Other funcs

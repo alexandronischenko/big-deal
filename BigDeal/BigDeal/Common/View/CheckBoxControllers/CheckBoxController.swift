@@ -43,13 +43,13 @@ class CheckBoxController: NSObject {
     // MARK: - Other funcs
     
     func addButtonToCheckBoxController(_ button: UIButton) {
-        button.addTarget(self, action: #selector(buttonDidPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(categoryButtonDidPressed), for: .touchUpInside)
         buttonsArray.append(button)
     }
     
     // MARK: - OBJC funcs
     
-    @objc private func buttonDidPressed(_ sender: UIButton) {
+    @objc private func categoryButtonDidPressed(_ sender: UIButton) {
         buttonsArrayUpdated(buttonSelected: sender)
     }
 }

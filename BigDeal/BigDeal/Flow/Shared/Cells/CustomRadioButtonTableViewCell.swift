@@ -42,7 +42,7 @@ class CustomRadioButtonTableViewCell: UITableViewCell {
     private func setUpConstraintsForViews() {
         radioButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.top.equalToSuperview().inset(5)
+            make.top.bottom.equalToSuperview().inset(5)
         }
     }
     

@@ -73,6 +73,7 @@ extension SearchResultsViewController: UICollectionViewDataSource {
         guard let header = header as? SearchResultsCollectionReusableView else {
             return UICollectionReusableView()
         }
+        header.delegate = self
         return header
     }
 }
@@ -93,7 +94,13 @@ extension SearchResultsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width/2.3, height: 230)
+        return CGSize(width: view.frame.width / 2.3, height: 230)
+    }
+}
+
+extension SearchResultsViewController: SearchResultsReusableViewDelegate {
+    func moveToFilterScreen() {
+        output?.moveToFilterScreen()
     }
 }
 

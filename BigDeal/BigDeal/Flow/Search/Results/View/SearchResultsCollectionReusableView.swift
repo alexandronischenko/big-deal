@@ -1,11 +1,17 @@
 import UIKit
 
+protocol SearchResultsReusableViewDelegate: AnyObject {
+    func moveToFilterScreen()
+}
+
 class SearchResultsCollectionReusableView: UICollectionReusableView {
     // MARK: - Static properties
     
     static let searchResultsCollectionReusableViewId = "searchResultsCollectionReusableView"
     
     // MARK: - Properties
+    
+    weak var delegate: SearchResultsReusableViewDelegate?
     
     private lazy var searchResultsFilterButton: UIButton = {
         let button = UIButton()
@@ -51,6 +57,6 @@ class SearchResultsCollectionReusableView: UICollectionReusableView {
     // MARK: - OBJC functions
     
     @objc private func searchResultsFilterButtonDidPressed(_ sender: UIButton) {
-        print("aything")
+        delegate?.moveToFilterScreen()
     }
 }

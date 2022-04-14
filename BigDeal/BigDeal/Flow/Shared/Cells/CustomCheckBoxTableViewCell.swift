@@ -3,7 +3,10 @@ import UIKit
 class CustomCheckBoxTableViewCell: UITableViewCell {
     // MARK: - Static properties
     
-    static let customCheckBoxTableViewCellReuseId: String = "CustomCheckBoxTableViewCell"
+    static let customReuseIdForCategoriesCheckBox: String = "customReuseIdForCategoriesCheckBox"
+    static let customReuseIdForBrandsCheckBox: String = "customReuseIdForBrandsCheckBox"
+    static let customReuseIdForSizesCheckBox: String = "customReuseIdForSizesCheckBox"
+    static let customReuseIdForShopsCheckBox: String = "customReuseIdForShopsCheckBox"
     
     // MARK: - Properties
     
@@ -22,14 +25,18 @@ class CustomCheckBoxTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        setUpSelfContentView()
         setUpConstraintsForViews()
+    }
+    
+    override func prepareForReuse() {
+        checkBoxButton.isSelected = false
     }
     
     // Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUpSelfContentView()
     }
     
     required init?(coder: NSCoder) {
@@ -54,11 +61,6 @@ class CustomCheckBoxTableViewCell: UITableViewCell {
             make.leading.trailing.equalToSuperview().inset(16)
             make.top.equalToSuperview().inset(3)
         }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        checkBoxButton.isSelected = true
     }
     
     // MARK: - Other funcs

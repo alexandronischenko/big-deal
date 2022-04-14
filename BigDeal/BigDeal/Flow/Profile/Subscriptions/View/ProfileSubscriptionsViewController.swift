@@ -31,28 +31,7 @@ class ProfileSubscriptionsViewController: UIViewController {
         setUpProfileSubscriptionsTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setUpDefaultButtonsForCheckBoxControllers()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setUpDefaultButtonsForCheckBoxControllers()
-    }
-    
     // MARK: - Private funcs
-    
-    private func setUpDefaultButtonsForCheckBoxControllers() {
-        guard let defaultButtonForBrandsCategory = brandsCheckBoxController.buttonsArray.first(where: { $0.currentTitle == "Adidas" }) else {
-            return
-        }
-        guard let defaultButtonForShopsCategory = shopsCheckBoxController.buttonsArray.first(where: { $0.currentTitle == "ASOS" }) else {
-            return
-        }
-        brandsCheckBoxController.defaultButtonForBrandsCategory = defaultButtonForBrandsCategory
-        shopsCheckBoxController.defaultButtonForShopsCategory = defaultButtonForShopsCategory
-    }
     
     private func configureView() {
         title = "Subscriptions"
@@ -61,7 +40,7 @@ class ProfileSubscriptionsViewController: UIViewController {
     private func setUpProfileSubscriptionsTableView() {
         profileSubscriptionsView.profileSubscriptionsTableView.delegate = self
         profileSubscriptionsView.profileSubscriptionsTableView.dataSource = self
-        profileSubscriptionsView.profileSubscriptionsTableView.register(CustomCheckBoxTableViewCell.self, forCellReuseIdentifier: CustomCheckBoxTableViewCell.customCheckBoxTableViewCellReuseId)
+        profileSubscriptionsView.profileSubscriptionsTableView.register(CustomCheckBoxTableViewCell.self, forCellReuseIdentifier: CustomCheckBoxTableViewCell.customReuseIdForCategoriesCheckBox)
     }
 }
 
@@ -123,7 +102,7 @@ extension ProfileSubscriptionsViewController: UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: CustomCheckBoxTableViewCell.customCheckBoxTableViewCellReuseId) as? CustomCheckBoxTableViewCell else {
+        guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: CustomCheckBoxTableViewCell.customReuseIdForCategoriesCheckBox) as? CustomCheckBoxTableViewCell else {
             return UITableViewCell()
         }
         switch indexPath.section {

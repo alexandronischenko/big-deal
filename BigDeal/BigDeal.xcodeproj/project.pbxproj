@@ -28,7 +28,6 @@
 		A23D05C3280176C700040980 /* SearchFilterPresenterOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23D05C2280176C700040980 /* SearchFilterPresenterOutputProtocol.swift */; };
 		A23D05C52801773400040980 /* SearchFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23D05C42801773400040980 /* SearchFilterView.swift */; };
 		A23D05C72801778200040980 /* SearchFilterModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23D05C62801778200040980 /* SearchFilterModuleBuilder.swift */; };
-		A23D05C92801C2C900040980 /* CustomCategoryButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23D05C82801C2C900040980 /* CustomCategoryButtonTableViewCell.swift */; };
 		A23E572927F78AB60069F74E /* ProductLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E572827F78AB60069F74E /* ProductLocalDataSource.swift */; };
 		A23E572C27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E572B27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift */; };
 		A26256B927FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256A227FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift */; };
@@ -173,7 +172,6 @@
 		A23D05C2280176C700040980 /* SearchFilterPresenterOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterPresenterOutputProtocol.swift; sourceTree = "<group>"; };
 		A23D05C42801773400040980 /* SearchFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterView.swift; sourceTree = "<group>"; };
 		A23D05C62801778200040980 /* SearchFilterModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterModuleBuilder.swift; sourceTree = "<group>"; };
-		A23D05C82801C2C900040980 /* CustomCategoryButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryButtonTableViewCell.swift; sourceTree = "<group>"; };
 		A23E572827F78AB60069F74E /* ProductLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLocalDataSource.swift; sourceTree = "<group>"; };
 		A23E572B27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
 		A26256A227FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationGreetingViewPresenter.swift; sourceTree = "<group>"; };
@@ -782,7 +780,6 @@
 				A2A3F53427FE3975003417D6 /* CustomRadioButtonTableViewCell.swift */,
 				A2A3F53627FE3987003417D6 /* CustomTextFieldTableViewCell.swift */,
 				A297430827FED25E009E5E7D /* CustomItemCollectionViewCell.swift */,
-				A23D05C82801C2C900040980 /* CustomCategoryButtonTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1502,7 +1499,6 @@
 				A2F0EDBC27FE07700049EBAC /* ProfileSubscriptionsPresenterInputProtocol.swift in Sources */,
 				A27EBC4827F0D98500532EDE /* DetailItemViewController.swift in Sources */,
 				A2EFD5D127F0D451001E4071 /* SearchBaseCoordinatedProtocol.swift in Sources */,
-				A23D05C92801C2C900040980 /* CustomCategoryButtonTableViewCell.swift in Sources */,
 				A26256B927FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift in Sources */,
 				A2F0ED9227FDB95A0049EBAC /* ProductLocalDataSourceProtocol.swift in Sources */,
 				A26256C027FF2750007FA967 /* AuthenticationRegisterBuilder.swift in Sources */,

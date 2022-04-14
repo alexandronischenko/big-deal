@@ -48,7 +48,7 @@ extension SearchFilterPresenter: SearchFilterPresenterOutputProtocol {
         return defaultButtonForBrands
     }
     func obtainDefaultButtonForSizesCheckBoxController(_ sizesController: CheckBoxController) -> UIButton {
-        guard let defaultButtonForSizes = sizesController.buttonsArray.first(where: { $0.currentTitle == "41, 42, 43" }) else {
+        guard let defaultButtonForSizes = sizesController.buttonsArray.first(where: { $0.currentTitle == "41" }) else {
             return UIButton()
         }
         return defaultButtonForSizes

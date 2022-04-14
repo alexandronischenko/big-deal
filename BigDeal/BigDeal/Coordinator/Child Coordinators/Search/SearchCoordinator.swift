@@ -35,7 +35,7 @@ class SearchCoordinator {
     
     private func moveToSearchFlowFilterScreen() {
         let searchFlowFilterViewController = UINavigationController(rootViewController: SearchFilterModuleBuilder().buildModule(coordinator: self))
-        searchFlowFilterViewController.modalPresentationStyle = .fullScreen
+        searchFlowFilterViewController.modalPresentationStyle = .automatic
         searchFlowFilterViewController.navigationBar.prefersLargeTitles = false
         self.navigationRootViewController?.present(searchFlowFilterViewController, animated: true)
     }

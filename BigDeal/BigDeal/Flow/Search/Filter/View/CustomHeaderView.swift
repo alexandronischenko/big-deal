@@ -7,7 +7,10 @@ protocol CustomHeaderViewDelegate: AnyObject {
 class CustomHeaderView: UITableViewHeaderFooterView {
     // MARK: - Static properties
     
-    static let customHeaderViewReuseId: String = "customHeaderFooterView"
+    static let customCategoriesHeaderViewReuseId: String = "customCategoriesHeaderViewReuseId"
+    static let customBrandsHeaderViewReuseId: String = "customBrandsHeaderViewReuseId"
+    static let customSizesHeaderViewReuseId: String = "customSizesHeaderViewReuseId"
+    static let customShopsHeaderViewReuseId: String = "customShopsHeaderViewReuseId"
     
     // MARK: - Properies
     
@@ -27,19 +30,26 @@ class CustomHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     
+    // MARK: - Overrided
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.addSubview(customHeaderViewButton)
+        contentView.isUserInteractionEnabled = true
+        setUpConstrainst()
+    }
+    
+    // Initializers
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(customHeaderViewButton)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setUpConstrainst()
-    }
+    // MARK: - Functions
     
     func setUpConstrainst() {
         customHeaderViewButton.snp.makeConstraints { make in
@@ -51,6 +61,7 @@ class CustomHeaderView: UITableViewHeaderFooterView {
     
     func configure(title: String, section: Int) {
         customHeaderViewButton.setTitle(title, for: .normal)
+        customHeaderViewButton.setTitle(title, for: .selected)
         customHeaderViewButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: self.frame.width - 32 - customHeaderViewButton.intrinsicContentSize.width, bottom: 0, right: 0)
         customHeaderViewButton.tag = section
     }

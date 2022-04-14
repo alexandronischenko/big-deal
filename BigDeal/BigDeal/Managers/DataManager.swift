@@ -17,4 +17,12 @@ class DataManager {
         Item(shopTitle: "ASOS", clothTitle: "Sneakers", sizes: ["42", "43", "44"], oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1")),
         Item(shopTitle: "ASOS", clothTitle: "Sneakers", sizes: ["42", "43", "44"], oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img2"))
     ]
+    
+    var isExpandedArray: [Bool] = [
+        false, false, false, false, false, false, false
+    ]
+    
+    var isDoneArray: [Bool] = [
+        
+    ]
 }

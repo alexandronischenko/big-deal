@@ -56,6 +56,9 @@
 		A297430527FECF6A009E5E7D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430427FECF6A009E5E7D /* Item.swift */; };
 		A297430727FED162009E5E7D /* ProfileMainCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430627FED162009E5E7D /* ProfileMainCollectionReusableView.swift */; };
 		A297430927FED25E009E5E7D /* CustomItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430827FED25E009E5E7D /* CustomItemCollectionViewCell.swift */; };
+		A299494728089E7E00285BF1 /* DetailBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299494628089E7E00285BF1 /* DetailBaseCoordinatedProtocol.swift */; };
+		A299494928089E8900285BF1 /* DetailBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299494828089E8900285BF1 /* DetailBaseCoordinatorProtocol.swift */; };
+		A299494B28089E9A00285BF1 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299494A28089E9A00285BF1 /* DetailCoordinator.swift */; };
 		A2A3F51527FE0D0E003417D6 /* CheckBoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F51427FE0D0E003417D6 /* CheckBoxController.swift */; };
 		A2A3F51727FE126D003417D6 /* CustomCheckBoxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F51627FE126D003417D6 /* CustomCheckBoxTableViewCell.swift */; };
 		A2A3F51C27FE287A003417D6 /* ProfileSubscriptionsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F51B27FE287A003417D6 /* ProfileSubscriptionsModuleBuilder.swift */; };
@@ -200,6 +203,9 @@
 		A297430427FECF6A009E5E7D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A297430627FED162009E5E7D /* ProfileMainCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainCollectionReusableView.swift; sourceTree = "<group>"; };
 		A297430827FED25E009E5E7D /* CustomItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		A299494628089E7E00285BF1 /* DetailBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
+		A299494828089E8900285BF1 /* DetailBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		A299494A28089E9A00285BF1 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		A2A3F51427FE0D0E003417D6 /* CheckBoxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxController.swift; sourceTree = "<group>"; };
 		A2A3F51627FE126D003417D6 /* CustomCheckBoxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckBoxTableViewCell.swift; sourceTree = "<group>"; };
 		A2A3F51B27FE287A003417D6 /* ProfileSubscriptionsModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubscriptionsModuleBuilder.swift; sourceTree = "<group>"; };
@@ -725,9 +731,9 @@
 		A27EBC4527F0D91B00532EDE /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				A248D86F2800CD5C00DF73AC /* Filter */,
 				A248D8712800CD7100DF73AC /* Main */,
 				A248D86C2800CD4900DF73AC /* Results */,
-				A248D86F2800CD5C00DF73AC /* Filter */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -763,6 +769,16 @@
 				A297430427FECF6A009E5E7D /* Item.swift */,
 			);
 			path = Structs;
+			sourceTree = "<group>";
+		};
+		A299494528089E6600285BF1 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				A299494628089E7E00285BF1 /* DetailBaseCoordinatedProtocol.swift */,
+				A299494828089E8900285BF1 /* DetailBaseCoordinatorProtocol.swift */,
+				A299494A28089E9A00285BF1 /* DetailCoordinator.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		A2A3F51327FE0CE7003417D6 /* Common */ = {
@@ -1094,6 +1110,7 @@
 				A2F24F5327EEFBDB000B02D6 /* Feed */,
 				A2F24F4927EEF829000B02D6 /* Authentication */,
 				A2F24F4827EEF81A000B02D6 /* Profile */,
+				A299494528089E6600285BF1 /* Detail */,
 			);
 			path = "Child Coordinators";
 			sourceTree = "<group>";
@@ -1507,6 +1524,7 @@
 				A2F0EDA727FDEF530049EBAC /* CategoryRepositoryProtocol.swift in Sources */,
 				A2CF987427DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift in Sources */,
 				A200231027F6FF86002D04AE /* FeedMainModuleBuilder.swift in Sources */,
+				A299494928089E8900285BF1 /* DetailBaseCoordinatorProtocol.swift in Sources */,
 				A2F0ED8C27FDB8730049EBAC /* ProductRepositoryProtocol.swift in Sources */,
 				A2FC10742800D0410087AA35 /* SearchResultsViewController.swift in Sources */,
 				A2FC10702800CFFD0087AA35 /* SearchResultsPresenter.swift in Sources */,
@@ -1543,6 +1561,7 @@
 				A2F0EDAF27FDEFC70049EBAC /* CategoryRemoteDataSourceProtocol.swift in Sources */,
 				A297430727FED162009E5E7D /* ProfileMainCollectionReusableView.swift in Sources */,
 				A200230827F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift in Sources */,
+				A299494B28089E9A00285BF1 /* DetailCoordinator.swift in Sources */,
 				A23D05C72801778200040980 /* SearchFilterModuleBuilder.swift in Sources */,
 				A2A3F53727FE3987003417D6 /* CustomTextFieldTableViewCell.swift in Sources */,
 				A2A3F51C27FE287A003417D6 /* ProfileSubscriptionsModuleBuilder.swift in Sources */,
@@ -1552,6 +1571,7 @@
 				A2A3F51727FE126D003417D6 /* CustomCheckBoxTableViewCell.swift in Sources */,
 				A2F24F4027EEEEAB000B02D6 /* FlowCoordinatorProtocol.swift in Sources */,
 				A2FC10722800D02B0087AA35 /* SearchResultsView.swift in Sources */,
+				A299494728089E7E00285BF1 /* DetailBaseCoordinatedProtocol.swift in Sources */,
 				A2F0EDA527FDEEA30049EBAC /* HotLocalDataSource.swift in Sources */,
 				A2FC106C2800CFCB0087AA35 /* SearchResultsPresenterInputProtocol.swift in Sources */,
 				A2F0ED8E27FDB8C50049EBAC /* ProductDataRepository.swift in Sources */,

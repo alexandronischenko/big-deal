@@ -15,8 +15,6 @@ class SearchCoordinator {
         switch screen {
         case .main:
             moveToSearchFlowMainScreen()
-        case .detail:
-            moveToSearchFlowDetailScreen()
         case .filter:
             moveToSearchFlowFilterScreen()
         case .results:
@@ -26,11 +24,6 @@ class SearchCoordinator {
     
     private func moveToSearchFlowMainScreen() {
         navigationRootViewController?.popToRootViewController(animated: true)
-    }
-    
-    private func moveToSearchFlowDetailScreen() {
-        let searchFlowDetailViewController = DetailItemViewController()
-        navigationRootViewController?.pushViewController(searchFlowDetailViewController, animated: true)
     }
     
     private func moveToSearchFlowFilterScreen() {

@@ -4,7 +4,9 @@ import UIKit
 class CustomRadioButtonTableViewCell: UITableViewCell {
     // MARK: - Static properties
     
-    static let customRadioButtonTableViewCellReuseId: String = "customRadioButtonTableViewCell"
+    static let customReuseIdForSexCategory: String = "customReuseIdForSexCategory"
+    static let customReuseIdForSortByCategory: String = "customReuseIdForSortByCategory"
+    static let customReuseIdForPriceRangeCategory: String = "customReuseIdForPriceRangeCategory"
 
     // MARK: - Properties
     
@@ -23,6 +25,7 @@ class CustomRadioButtonTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        setUpSelfContentView()
         setUpConstraintsForViews()
     }
     
@@ -30,7 +33,6 @@ class CustomRadioButtonTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUpSelfContentView()
     }
     
     required init?(coder: NSCoder) {
@@ -42,7 +44,7 @@ class CustomRadioButtonTableViewCell: UITableViewCell {
     private func setUpConstraintsForViews() {
         radioButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.top.equalToSuperview().inset(5)
+            make.top.bottom.equalToSuperview().inset(5)
         }
     }
     

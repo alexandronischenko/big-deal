@@ -13,19 +13,9 @@ class RadioButtonController: NSObject {
             }
         }
     }
-    var defaultButtonForSexCategory = UIButton() {
+    var defaultButton = UIButton() {
         didSet {
-            buttonArrayUpdated(buttonSelected: self.defaultButtonForSexCategory)
-        }
-    }
-    var defaultButtonForSortByCategory = UIButton() {
-        didSet {
-            buttonArrayUpdated(buttonSelected: self.defaultButtonForSortByCategory)
-        }
-    }
-    var defaultButtonForPriceRangeCategory = UIButton() {
-        didSet {
-            buttonArrayUpdated(buttonSelected: self.defaultButtonForPriceRangeCategory)
+            buttonArrayUpdated(buttonSelected: self.defaultButton)
         }
     }
     
@@ -37,6 +27,9 @@ class RadioButtonController: NSObject {
                 selectedButtons.append(button)
                 button.isSelected = true
             } else {
+                selectedButtons = selectedButtons.filter {
+                    $0 !== button
+                }
                 button.isSelected = false
             }
         }
@@ -45,13 +38,15 @@ class RadioButtonController: NSObject {
     // MARK: - Other funcs
     
     func addButtonForRadioController(_ button: UIButton) {
-        button.addTarget(self, action: #selector(buttonDidPressed), for: .touchUpInside)
-        buttonsArray.append(button)
+        button.addTarget(self, action: #selector(categoryButtonDidPressed), for: .touchUpInside)
+        if !buttonsArray.contains(button) {
+            buttonsArray.append(button)
+        }
     }
     
     // MARK: - OBJC funcs
     
-    @objc private func buttonDidPressed(_ sender: UIButton) {
+    @objc private func categoryButtonDidPressed(_ sender: UIButton) {
         buttonArrayUpdated(buttonSelected: sender)
     }
 }

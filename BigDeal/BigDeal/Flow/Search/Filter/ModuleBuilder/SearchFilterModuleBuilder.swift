@@ -1,10 +1,10 @@
 import Foundation
 import UIKit
 
-class SearchResultsModuleBuilder {
+class SearchFilterModuleBuilder {
     func buildModule(coordinator: SearchBaseCoordinatorProtocol) -> UIViewController {
-        let presenter = SearchResultsPresenter(coordinator: coordinator)
-        let viewController = SearchResultsViewController(output: presenter)
+        let presenter = SearchFilterPresenter(coordinator: coordinator)
+        let viewController = SearchFilterViewController(output: presenter)
         presenter.input = viewController
         return viewController
     }

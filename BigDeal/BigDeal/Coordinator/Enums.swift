@@ -29,4 +29,5 @@ enum SearchScreen {
     case main
     case detail
     case filter
+    case results
 }

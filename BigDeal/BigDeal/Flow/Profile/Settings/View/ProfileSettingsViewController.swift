@@ -48,14 +48,14 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
         guard let defaultButtonForSexCategory = sexRadioButtonController.buttonsArray.first(where: { $0.currentTitle == "Male" }) else {
             return
         }
-        sexRadioButtonController.defaultButtonForSexCategory = defaultButtonForSexCategory
+        sexRadioButtonController.defaultButton = defaultButtonForSexCategory
     }
     
     private func setUpProfileSettingsTableView() {
         profileSettingsView.profileSettingsTableView.delegate = self
         profileSettingsView.profileSettingsTableView.dataSource = self
         profileSettingsView.profileSettingsTableView.register(CustomTextFieldTableViewCell.self, forCellReuseIdentifier: CustomTextFieldTableViewCell.customTextFieldTableViewCellReuseId)
-        profileSettingsView.profileSettingsTableView.register(CustomRadioButtonTableViewCell.self, forCellReuseIdentifier: CustomRadioButtonTableViewCell.customRadioButtonTableViewCellReuseId)
+        profileSettingsView.profileSettingsTableView.register(CustomRadioButtonTableViewCell.self, forCellReuseIdentifier: CustomRadioButtonTableViewCell.customReuseIdForSexCategory)
     }
     
     private func setUpProfileSettingsTextField(_ textField: UITextField) {
@@ -127,7 +127,7 @@ extension ProfileSettingsViewController: UITableViewDataSource {
         case 0:
             switch indexPath.row {
             case 0...2:
-                guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: CustomRadioButtonTableViewCell.customRadioButtonTableViewCellReuseId) as? CustomRadioButtonTableViewCell else {
+                guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: CustomRadioButtonTableViewCell.customReuseIdForSexCategory) as? CustomRadioButtonTableViewCell else {
                     return UITableViewCell()
                 }
                 switch indexPath.row {

@@ -27,4 +27,7 @@ extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
     func moveToSubscriptionsScreen() {
         coordinator?.moveTo(flow: .profile(.subscriptions))
     }
+    func moveToDetailFlow() {
+        coordinator?.moveTo(flow: .detail(.main))
+    }
 }

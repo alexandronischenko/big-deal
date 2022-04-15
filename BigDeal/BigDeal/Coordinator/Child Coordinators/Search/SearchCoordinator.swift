@@ -15,10 +15,10 @@ class SearchCoordinator {
         switch screen {
         case .main:
             moveToSearchFlowMainScreen()
-        case .detail:
-            moveToSearchFlowDetailScreen()
         case .filter:
             moveToSearchFlowFilterScreen()
+        case .results:
+            moveToSearchFlowResultsScreen()
         }
     }
     
@@ -26,14 +26,16 @@ class SearchCoordinator {
         navigationRootViewController?.popToRootViewController(animated: true)
     }
     
-    private func moveToSearchFlowDetailScreen() {
-        let searchFlowDetailViewController = DetailItemBuilder(coordinator: self).build()
-        navigationRootViewController?.pushViewController(searchFlowDetailViewController, animated: true)
+    private func moveToSearchFlowFilterScreen() {
+        let searchFlowFilterViewController = UINavigationController(rootViewController: SearchFilterModuleBuilder().buildModule(coordinator: self))
+        searchFlowFilterViewController.modalPresentationStyle = .automatic
+        searchFlowFilterViewController.navigationBar.prefersLargeTitles = false
+        self.navigationRootViewController?.present(searchFlowFilterViewController, animated: true)
     }
     
-    private func moveToSearchFlowFilterScreen() {
-        let searchFlowFilterViewController = SearchFilterScreenViewController()
-        navigationRootViewController?.pushViewController(searchFlowFilterViewController, animated: true)
+    private func moveToSearchFlowResultsScreen() {
+        let searchFlowResultsViewController = SearchResultsModuleBuilder().buildModule(coordinator: self)
+        navigationRootViewController?.pushViewController(searchFlowResultsViewController, animated: true)
     }
 }
 
@@ -43,8 +45,12 @@ extension SearchCoordinator: SearchBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: SearchMainScreenViewController(coordinator: self))
-        return rootViewController
+        rootViewController = UINavigationController(rootViewController: SearchResultsModuleBuilder().buildModule(coordinator: self))
+        guard let navigationController = rootViewController as? UINavigationController else {
+            return UIViewController()
+        }
+        navigationController.navigationBar.prefersLargeTitles = true
+        return navigationController
     }
     
     func moveTo(flow: AppFlow) {

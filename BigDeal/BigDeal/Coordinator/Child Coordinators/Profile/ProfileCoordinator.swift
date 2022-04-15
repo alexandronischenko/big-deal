@@ -15,8 +15,6 @@ class ProfileCoordinator {
         switch screen {
         case .main:
             moveToProfileFlowMainScreen()
-        case .detail:
-            moveToProfileFlowDetailScreen()
         case .settings:
             moveToProfileFlowSettingScreen()
         case .subscriptions:
@@ -26,11 +24,6 @@ class ProfileCoordinator {
     
     private func moveToProfileFlowMainScreen() {
         navigationRootViewController?.popToRootViewController(animated: true)
-    }
-    
-    private func moveToProfileFlowDetailScreen() {
-        let profileFlowDetailViewController = DetailItemViewController(
-        navigationRootViewController?.pushViewController(profileFlowDetailViewController, animated: true)
     }
     
     private func moveToProfileFlowSettingScreen() {

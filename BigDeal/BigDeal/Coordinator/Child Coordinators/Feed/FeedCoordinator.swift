@@ -15,18 +15,11 @@ class FeedCoordinator {
         switch screen {
         case .main:
             moveToFeedFlowMainScreen()
-        case .detail:
-            moveToFeedFlowDetailScreen()
         }
     }
     
     private func moveToFeedFlowMainScreen() {
         navigationRootViewController?.popToRootViewController(animated: true)
-    }
-    
-    private func moveToFeedFlowDetailScreen() {
-        let feedFlowDetailViewController = DetailItemViewController()
-        navigationRootViewController?.pushViewController(feedFlowDetailViewController, animated: true)
     }
 }
 

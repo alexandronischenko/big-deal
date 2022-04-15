@@ -5,11 +5,11 @@ enum AppFlow {
     case authentication(AuthenticationScreen)
     case feed(FeedScreen)
     case search(SearchScreen)
+    case detail(DetailScreen)
 }
 
 enum ProfileScreen {
     case main
-    case detail
     case settings
     case subscriptions
 }
@@ -22,11 +22,14 @@ enum AuthenticationScreen {
 
 enum FeedScreen {
     case main
-    case detail
 }
 
 enum SearchScreen {
     case main
-    case detail
     case filter
+    case results
+}
+
+enum DetailScreen {
+    case main
 }

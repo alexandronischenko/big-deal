@@ -6,7 +6,7 @@ class ProfileMainViewController: UIViewController {
     private let profileMainView = ProfileMainView()
     private var output: ProfileMainPresenterOutputProtocol?
     
-    private let reuseIdForHeaderView = CustomHeaderCollectionReusableView.customHeaderCollectionReusableViewId
+    private let reuseIdForHeaderView = ProfileMainCollectionReusableView.customHeaderCollectionReusableViewId
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     
@@ -43,7 +43,7 @@ class ProfileMainViewController: UIViewController {
         profileMainView.profileMainCollectionView.delegate = self
         profileMainView.profileMainCollectionView.dataSource = self
         let cellClass = CustomItemCollectionViewCell.self
-        let viewClass = CustomHeaderCollectionReusableView.self
+        let viewClass = ProfileMainCollectionReusableView.self
         profileMainView.profileMainCollectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdForItemCell)
         profileMainView.profileMainCollectionView.register(viewClass, forSupplementaryViewOfKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView)
     }
@@ -72,6 +72,10 @@ extension ProfileMainViewController: ProfileMainPresenterInputProtocol {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension ProfileMainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        output?.moveToDetailFlow()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 175.5)
     }
@@ -106,7 +110,7 @@ extension ProfileMainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView, for: indexPath)
-        guard let header = header as? CustomHeaderCollectionReusableView else {
+        guard let header = header as? ProfileMainCollectionReusableView else {
             return UICollectionReusableView()
         }
         header.delegate = self

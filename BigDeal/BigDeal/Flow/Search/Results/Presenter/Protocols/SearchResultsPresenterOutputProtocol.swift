@@ -1,3 +1,6 @@
 import Foundation
 
-protocol SearchResultsPresenterOutputProtocol: AnyObject {}
+protocol SearchResultsPresenterOutputProtocol: AnyObject {
+    func moveToFilterScreen()
+    func moveToDetailFlow()
+}

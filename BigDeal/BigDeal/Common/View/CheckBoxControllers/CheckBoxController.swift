@@ -13,14 +13,9 @@ class CheckBoxController: NSObject {
             }
         }
     }
-    var defaultButtonForBrandsCategory = UIButton() {
+    var defaultButton = UIButton() {
         didSet {
-            buttonsArrayUpdated(buttonSelected: self.defaultButtonForBrandsCategory)
-        }
-    }
-    var defaultButtonForShopsCategory = UIButton() {
-        didSet {
-            buttonsArrayUpdated(buttonSelected: self.defaultButtonForShopsCategory)
+            buttonsArrayUpdated(buttonSelected: self.defaultButton)
         }
     }
     
@@ -31,7 +26,7 @@ class CheckBoxController: NSObject {
             if (button == buttonSelected) && !button.isSelected {
                 selectedButtons.append(button)
                 button.isSelected = true
-            } else if button == buttonSelected && button.isSelected {
+            } else if (button == buttonSelected) && button.isSelected {
                 selectedButtons = selectedButtons.filter {
                     $0 !== button
                 }
@@ -43,13 +38,15 @@ class CheckBoxController: NSObject {
     // MARK: - Other funcs
     
     func addButtonToCheckBoxController(_ button: UIButton) {
-        button.addTarget(self, action: #selector(buttonDidPressed), for: .touchUpInside)
-        buttonsArray.append(button)
+        button.addTarget(self, action: #selector(categoryButtonDidPressed), for: .touchUpInside)
+        if !buttonsArray.contains(button) {
+            buttonsArray.append(button)
+        }
     }
     
     // MARK: - OBJC funcs
     
-    @objc private func buttonDidPressed(_ sender: UIButton) {
+    @objc private func categoryButtonDidPressed(_ sender: UIButton) {
         buttonsArrayUpdated(buttonSelected: sender)
     }
 }

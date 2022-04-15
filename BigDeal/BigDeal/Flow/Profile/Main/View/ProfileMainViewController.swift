@@ -115,7 +115,7 @@ extension ProfileMainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = data[indexPath.row]
-        let viewController = DetailItemViewController(model: model)
+        let viewController = DetailItemBuilder(coordinator: self).build(model: model)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

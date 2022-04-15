@@ -41,6 +41,8 @@
 		A26256CC27FF282D007FA967 /* MockCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256C927FF282D007FA967 /* MockCoordinator.swift */; };
 		A26256CD27FF282D007FA967 /* MockAuthRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256CA27FF282D007FA967 /* MockAuthRegisterView.swift */; };
 		A26256CE27FF282D007FA967 /* AuthRegisterPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256CB27FF282D007FA967 /* AuthRegisterPresenterTest.swift */; };
+		A278FE532801F4C900FD29A1 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A278FE522801F4C900FD29A1 /* ModuleBuilder.swift */; };
+		A278FE552801F9FC00FD29A1 /* DetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A278FE542801F9FC00FD29A1 /* DetailItemView.swift */; };
 		A27EBC3727F0D87800532EDE /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC3627F0D87800532EDE /* ProfileSettingsViewController.swift */; };
 		A27EBC3927F0D88D00532EDE /* ProfileSubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC3827F0D88D00532EDE /* ProfileSubscriptionsViewController.swift */; };
 		A27EBC4827F0D98500532EDE /* DetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4727F0D98500532EDE /* DetailItemViewController.swift */; };
@@ -115,6 +117,7 @@
 		A2FC10722800D02B0087AA35 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC10712800D02B0087AA35 /* SearchResultsView.swift */; };
 		A2FC10742800D0410087AA35 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC10732800D0410087AA35 /* SearchResultsViewController.swift */; };
 		A2FC10762800D0690087AA35 /* SearchResultsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FC10752800D0690087AA35 /* SearchResultsModuleBuilder.swift */; };
+		AFC9B41308BA9C35E6E8BA07 /* DetailItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC9BAA5D81F86700CEA047A /* DetailItemPresenter.swift */; };
 		D0F7C04B678869DBE49DBDB6 /* Pods_BigDeal_BigDealUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8760B20FF8847648CB77B064 /* Pods_BigDeal_BigDealUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +181,8 @@
 		A26256C927FF282D007FA967 /* MockCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCoordinator.swift; sourceTree = "<group>"; };
 		A26256CA27FF282D007FA967 /* MockAuthRegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthRegisterView.swift; sourceTree = "<group>"; };
 		A26256CB27FF282D007FA967 /* AuthRegisterPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRegisterPresenterTest.swift; sourceTree = "<group>"; };
+		A278FE522801F4C900FD29A1 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		A278FE542801F9FC00FD29A1 /* DetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemView.swift; sourceTree = "<group>"; };
 		A27EBC3627F0D87800532EDE /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		A27EBC3827F0D88D00532EDE /* ProfileSubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubscriptionsViewController.swift; sourceTree = "<group>"; };
 		A27EBC4727F0D98500532EDE /* DetailItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +257,7 @@
 		A2FC10712800D02B0087AA35 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		A2FC10732800D0410087AA35 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		A2FC10752800D0690087AA35 /* SearchResultsModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsModuleBuilder.swift; sourceTree = "<group>"; };
+		AFC9BAA5D81F86700CEA047A /* DetailItemPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailItemPresenter.swift; sourceTree = "<group>"; };
 		B191609E344FAD85EDA12B7E /* Pods-BigDeal-BigDealUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDeal-BigDealUITests.release.xcconfig"; path = "Target Support Files/Pods-BigDeal-BigDealUITests/Pods-BigDeal-BigDealUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC4CDA2571769D2695310218 /* Pods_BigDealTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BigDealTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC04F0D932F76B1339C4C2FA /* Pods-BigDealTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDealTests.debug.xcconfig"; path = "Target Support Files/Pods-BigDealTests/Pods-BigDealTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -648,6 +654,41 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		A278FE4E2801F3DC00FD29A1 /* DetailItem */ = {
+			isa = PBXGroup;
+			children = (
+				A278FE512801F3F200FD29A1 /* ModuleBuilder */,
+				A278FE502801F3E900FD29A1 /* ViewController */,
+				A278FE4F2801F3E500FD29A1 /* Presenter */,
+			);
+			path = DetailItem;
+			sourceTree = "<group>";
+		};
+		A278FE4F2801F3E500FD29A1 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				AFC9BAA5D81F86700CEA047A /* DetailItemPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A278FE502801F3E900FD29A1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A27EBC4727F0D98500532EDE /* DetailItemViewController.swift */,
+				A278FE542801F9FC00FD29A1 /* DetailItemView.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A278FE512801F3F200FD29A1 /* ModuleBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				A278FE522801F4C900FD29A1 /* ModuleBuilder.swift */,
+			);
+			path = ModuleBuilder;
+			sourceTree = "<group>";
+		};
 		A27EBC3427F0D83200532EDE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,8 +744,8 @@
 			isa = PBXGroup;
 			children = (
 				A297430327FECF5E009E5E7D /* Structs */,
+				A278FE4E2801F3DC00FD29A1 /* DetailItem */,
 				A2A3F51827FE1279003417D6 /* Cells */,
-				A27EBC4727F0D98500532EDE /* DetailItemViewController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1503,6 +1544,7 @@
 				A2F0EDAF27FDEFC70049EBAC /* CategoryRemoteDataSourceProtocol.swift in Sources */,
 				A297430727FED162009E5E7D /* CustomHeaderCollectionReusableView.swift in Sources */,
 				A200230827F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift in Sources */,
+				A278FE532801F4C900FD29A1 /* ModuleBuilder.swift in Sources */,
 				A2A3F53727FE3987003417D6 /* CustomTextFieldTableViewCell.swift in Sources */,
 				A2A3F51C27FE287A003417D6 /* ProfileSubscriptionsModuleBuilder.swift in Sources */,
 				A297430227FECEB8009E5E7D /* DataManager.swift in Sources */,
@@ -1520,6 +1562,7 @@
 				A20022FF27F6FBFA002D04AE /* FeedMainView.swift in Sources */,
 				A2F24F5C27EEFCB4000B02D6 /* FeedCoordinator.swift in Sources */,
 				A2B6816827FF5DDA00518A90 /* ValidationServiceProtocol.swift in Sources */,
+				A278FE552801F9FC00FD29A1 /* DetailItemView.swift in Sources */,
 				A2F24F5027EEF8CF000B02D6 /* MainCoordinator.swift in Sources */,
 				A26256C227FF2750007FA967 /* AuthenticationLoginViewPresenter.swift in Sources */,
 				A26256BE27FF2750007FA967 /* AuthenticationRegisterView.swift in Sources */,
@@ -1539,6 +1582,7 @@
 				A2113B0127CE745F00EBA9A9 /* SceneDelegate.swift in Sources */,
 				A27EBC3727F0D87800532EDE /* ProfileSettingsViewController.swift in Sources */,
 				A2F0EDA927FDEF740049EBAC /* CategoryDataRepository.swift in Sources */,
+				AFC9B41308BA9C35E6E8BA07 /* DetailItemPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

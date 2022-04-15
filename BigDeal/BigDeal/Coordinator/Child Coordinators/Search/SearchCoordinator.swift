@@ -27,7 +27,7 @@ class SearchCoordinator {
     }
     
     private func moveToSearchFlowDetailScreen() {
-        let searchFlowDetailViewController = DetailItemViewController()
+        let searchFlowDetailViewController = DetailItemBuilder(coordinator: self).build()
         navigationRootViewController?.pushViewController(searchFlowDetailViewController, animated: true)
     }
     

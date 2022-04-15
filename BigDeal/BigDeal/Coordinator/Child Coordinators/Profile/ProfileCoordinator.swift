@@ -29,7 +29,7 @@ class ProfileCoordinator {
     }
     
     private func moveToProfileFlowDetailScreen() {
-        let profileFlowDetailViewController = DetailItemViewController()
+        let profileFlowDetailViewController = DetailItemViewController(
         navigationRootViewController?.pushViewController(profileFlowDetailViewController, animated: true)
     }
     

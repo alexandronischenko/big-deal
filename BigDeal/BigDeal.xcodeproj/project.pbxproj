@@ -48,7 +48,6 @@
 		A26256CE27FF282D007FA967 /* AuthRegisterPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256CB27FF282D007FA967 /* AuthRegisterPresenterTest.swift */; };
 		A27EBC3727F0D87800532EDE /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC3627F0D87800532EDE /* ProfileSettingsViewController.swift */; };
 		A27EBC3927F0D88D00532EDE /* ProfileSubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC3827F0D88D00532EDE /* ProfileSubscriptionsViewController.swift */; };
-		A27EBC4827F0D98500532EDE /* DetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4727F0D98500532EDE /* DetailItemViewController.swift */; };
 		A27EBC4A27F0D9AA00532EDE /* SearchMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4927F0D9AA00532EDE /* SearchMainScreenViewController.swift */; };
 		A27EBC4C27F0D9C600532EDE /* SearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4B27F0D9C600532EDE /* SearchFilterViewController.swift */; };
 		A27EBC4E27F0D9E900532EDE /* FeedMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4D27F0D9E900532EDE /* FeedMainViewController.swift */; };
@@ -81,6 +80,10 @@
 		A2CF987827DA29C0001A6C39 /* ProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987727DA29C0001A6C39 /* ProfileMainView.swift */; };
 		A2CF987A27DA29CC001A6C39 /* ProfileMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987927DA29CC001A6C39 /* ProfileMainViewController.swift */; };
 		A2CF988727DA2CDF001A6C39 /* ProfileMainModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF988627DA2CDF001A6C39 /* ProfileMainModuleBuilder.swift */; };
+		A2DFB8072809643300349967 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8012809643300349967 /* ModuleBuilder.swift */; };
+		A2DFB8082809643300349967 /* DetailItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8032809643300349967 /* DetailItemPresenter.swift */; };
+		A2DFB8092809643300349967 /* DetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8052809643300349967 /* DetailItemViewController.swift */; };
+		A2DFB80A2809643300349967 /* DetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8062809643300349967 /* DetailItemView.swift */; };
 		A2EE6D492802CC9400D2BA4E /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EE6D482802CC9400D2BA4E /* CustomHeaderView.swift */; };
 		A2EFD5C927F0B370001E4071 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5C827F0B370001E4071 /* Enums.swift */; };
 		A2EFD5CB27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */; };
@@ -195,7 +198,6 @@
 		A26256CB27FF282D007FA967 /* AuthRegisterPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRegisterPresenterTest.swift; sourceTree = "<group>"; };
 		A27EBC3627F0D87800532EDE /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		A27EBC3827F0D88D00532EDE /* ProfileSubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubscriptionsViewController.swift; sourceTree = "<group>"; };
-		A27EBC4727F0D98500532EDE /* DetailItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemViewController.swift; sourceTree = "<group>"; };
 		A27EBC4927F0D9AA00532EDE /* SearchMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainScreenViewController.swift; sourceTree = "<group>"; };
 		A27EBC4B27F0D9C600532EDE /* SearchFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterViewController.swift; sourceTree = "<group>"; };
 		A27EBC4D27F0D9E900532EDE /* FeedMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +230,10 @@
 		A2CF987727DA29C0001A6C39 /* ProfileMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainView.swift; sourceTree = "<group>"; };
 		A2CF987927DA29CC001A6C39 /* ProfileMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainViewController.swift; sourceTree = "<group>"; };
 		A2CF988627DA2CDF001A6C39 /* ProfileMainModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainModuleBuilder.swift; sourceTree = "<group>"; };
+		A2DFB8012809643300349967 /* ModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		A2DFB8032809643300349967 /* DetailItemPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailItemPresenter.swift; sourceTree = "<group>"; };
+		A2DFB8052809643300349967 /* DetailItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailItemViewController.swift; sourceTree = "<group>"; };
+		A2DFB8062809643300349967 /* DetailItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailItemView.swift; sourceTree = "<group>"; };
 		A2EE6D482802CC9400D2BA4E /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		A2EFD5C827F0B370001E4071 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
@@ -741,9 +747,9 @@
 		A27EBC4627F0D96300532EDE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A2DFB7FF2809643300349967 /* DetailItem */,
 				A297430327FECF5E009E5E7D /* Structs */,
 				A2A3F51827FE1279003417D6 /* Cells */,
-				A27EBC4727F0D98500532EDE /* DetailItemViewController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -963,6 +969,42 @@
 				A2CF986B27DA28FF001A6C39 /* Main */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		A2DFB7FF2809643300349967 /* DetailItem */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB8002809643300349967 /* ModuleBuilder */,
+				A2DFB8022809643300349967 /* Presenter */,
+				A2DFB8042809643300349967 /* ViewController */,
+			);
+			name = DetailItem;
+			path = Structs/DetailItem;
+			sourceTree = "<group>";
+		};
+		A2DFB8002809643300349967 /* ModuleBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB8012809643300349967 /* ModuleBuilder.swift */,
+			);
+			path = ModuleBuilder;
+			sourceTree = "<group>";
+		};
+		A2DFB8022809643300349967 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB8032809643300349967 /* DetailItemPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A2DFB8042809643300349967 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB8052809643300349967 /* DetailItemViewController.swift */,
+				A2DFB8062809643300349967 /* DetailItemView.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		A2F0ED8727FDA88E0049EBAC /* Repositories */ = {
@@ -1505,6 +1547,7 @@
 				A2CF987827DA29C0001A6C39 /* ProfileMainView.swift in Sources */,
 				A2A3F52927FE2DAD003417D6 /* ProfileSettingsModuleBuilder.swift in Sources */,
 				A297430927FED25E009E5E7D /* CustomItemCollectionViewCell.swift in Sources */,
+				A2DFB80A2809643300349967 /* DetailItemView.swift in Sources */,
 				A2A3F52727FE2D7D003417D6 /* ProfileSettingsPresenter.swift in Sources */,
 				A27EBC4C27F0D9C600532EDE /* SearchFilterViewController.swift in Sources */,
 				A26256BF27FF2750007FA967 /* AuthenticationRegisterViewController.swift in Sources */,
@@ -1514,7 +1557,6 @@
 				A26256BA27FF2750007FA967 /* AuthenticationGreetingView.swift in Sources */,
 				A2F24F5827EEFC50000B02D6 /* SearchCoordinator.swift in Sources */,
 				A2F0EDBC27FE07700049EBAC /* ProfileSubscriptionsPresenterInputProtocol.swift in Sources */,
-				A27EBC4827F0D98500532EDE /* DetailItemViewController.swift in Sources */,
 				A2EFD5D127F0D451001E4071 /* SearchBaseCoordinatedProtocol.swift in Sources */,
 				A26256B927FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift in Sources */,
 				A2F0ED9227FDB95A0049EBAC /* ProductLocalDataSourceProtocol.swift in Sources */,
@@ -1531,6 +1573,7 @@
 				A26256C427FF2750007FA967 /* AuthenticationLoginView.swift in Sources */,
 				A2A3F51F27FE2CDC003417D6 /* ProfileSettingsView.swift in Sources */,
 				A23D05C3280176C700040980 /* SearchFilterPresenterOutputProtocol.swift in Sources */,
+				A2DFB8072809643300349967 /* ModuleBuilder.swift in Sources */,
 				A27EBC4E27F0D9E900532EDE /* FeedMainViewController.swift in Sources */,
 				A2A3F52327FE2D23003417D6 /* ProfileSettingsPresenterInputProtocol.swift in Sources */,
 				A200230A27F6FD2C002D04AE /* FeedMainPresenterOutputProtocol.swift in Sources */,
@@ -1583,6 +1626,7 @@
 				A2F24F5C27EEFCB4000B02D6 /* FeedCoordinator.swift in Sources */,
 				A2B6816827FF5DDA00518A90 /* ValidationServiceProtocol.swift in Sources */,
 				A2F24F5027EEF8CF000B02D6 /* MainCoordinator.swift in Sources */,
+				A2DFB8092809643300349967 /* DetailItemViewController.swift in Sources */,
 				A26256C227FF2750007FA967 /* AuthenticationLoginViewPresenter.swift in Sources */,
 				A26256BE27FF2750007FA967 /* AuthenticationRegisterView.swift in Sources */,
 				A200230527F6FCB2002D04AE /* FeedMainPresenter.swift in Sources */,
@@ -1592,6 +1636,7 @@
 				A26256BC27FF2750007FA967 /* AuthenticationGreetingBuilder.swift in Sources */,
 				A23D05BF2801769400040980 /* SearchFilterPresenter.swift in Sources */,
 				A23D05C52801773400040980 /* SearchFilterView.swift in Sources */,
+				A2DFB8082809643300349967 /* DetailItemPresenter.swift in Sources */,
 				A2B6816527FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift in Sources */,
 				A2EFD5CB27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift in Sources */,
 				A2F0EDC027FE07A70049EBAC /* ProfileSubscriptionsPresenter.swift in Sources */,

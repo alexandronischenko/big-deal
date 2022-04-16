@@ -8,6 +8,7 @@ class DetailCoordinator {
     var parentCoordinator: MainBaseCoordinatorProtocol?
     
     // the bottom link is weak so that there is no cycle of strong links
+    let mockItem = Item(shopTitle: "", clothTitle: "", sizes: ["1"], oldPrice: "", newPrice: "", clothImage: UIImage())
     
     // MARK: - Private funcs
     
@@ -19,7 +20,7 @@ class DetailCoordinator {
     }
     
     private func moveToDetailFlowMainScreen() {
-        navigationRootViewController?.popToRootViewController(animated: true)
+        
     }
 }
 
@@ -27,7 +28,7 @@ extension DetailCoordinator: DetailBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: DetailItemViewController())
+        rootViewController = UINavigationController(rootViewController: DetailItemBuilder(coordinator: self).build(model: mockItem))
         guard let navigationController = rootViewController as? UINavigationController else {
             return UIViewController()
         }

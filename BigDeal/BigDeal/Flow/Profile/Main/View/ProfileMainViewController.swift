@@ -73,7 +73,8 @@ extension ProfileMainViewController: ProfileMainPresenterInputProtocol {
 
 extension ProfileMainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        output?.moveToDetailFlow()
+        let model = data[indexPath.row]
+        output?.moveToDetailFlow(model: model)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -119,7 +120,6 @@ extension ProfileMainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = data[indexPath.row]
-        let viewController = DetailItemViewController(model: model)
-        navigationController?.pushViewController(viewController, animated: true)
+        output?.moveToDetailFlow(model: model)
     }
 }

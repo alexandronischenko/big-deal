@@ -82,7 +82,8 @@ extension SearchResultsViewController: UICollectionViewDataSource {
 
 extension SearchResultsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        output?.moveToDetailFlow()
+        let model = data[indexPath.row]
+        output?.moveToDetailFlow(model: model)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 40)

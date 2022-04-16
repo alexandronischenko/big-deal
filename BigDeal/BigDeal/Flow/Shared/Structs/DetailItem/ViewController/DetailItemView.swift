@@ -1,7 +1,20 @@
-import UIKit
-import SnapKit
+//
+//  DetailItemView.swift
+//  BigDeal
+//
+//  Created by Alexandr Onischenko on 09.04.2022.
+//
 
-class DetailItemViewController: UIViewController {
+import UIKit
+
+protocol DetailItemViewProtocol: AnyObject {
+    func goToShopSite()
+    func configureModel(model: Item)
+}
+
+class DetailItemView: UIView {
+    weak var delegate: DetailItemViewProtocol?
+    
     var scrollView: UIScrollView = {
         var scroll = UIScrollView()
         scroll.showsVerticalScrollIndicator = false
@@ -90,29 +103,14 @@ class DetailItemViewController: UIViewController {
         return button
     }()
     
-    init(model: Item) {
-        super.init(nibName: nil, bundle: nil)
-        title = model.clothTitle
-        sizesLabel.text = model.sizes.joined(separator: " ")
-        currentPriceLabel.text = model.newPrice
-        defaultPriceLabel.text = model.oldPrice
-        imageView.image = model.clothImage
-    }
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        view.backgroundColor = .systemBackground
+        backgroundColor = .systemBackground
+        
+        backgroundColor = .systemBackground
 
-        view.addSubview(scrollView)
+        addSubview(scrollView)
         scrollView.addSubview(imageView)
         
         scrollView.addSubview(shopNameLabel)
@@ -127,14 +125,17 @@ class DetailItemViewController: UIViewController {
         
         scrollView.addSubview(button)
         
+        setConstraints()
         // MARK: - FIX IT
-        title = "krossovrki"
-        navigationController?.navigationBar.prefersLargeTitles = true
+//        title = "krossovrki"
+//        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setConstraints() {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -191,5 +192,16 @@ class DetailItemViewController: UIViewController {
             make.leading.equalTo(imageView.snp.leading)
             make.trailing.equalTo(imageView.snp.trailing)
         }
+    }
+    
+    func goToShopSite() {
+        delegate?.goToShopSite()
+    }
+    
+    func configureModel(model: Item) {
+        sizesLabel.text = model.sizes.joined(separator: " ")
+        currentPriceLabel.text = model.newPrice
+        defaultPriceLabel.text = model.oldPrice
+        imageView.image = model.clothImage
     }
 }

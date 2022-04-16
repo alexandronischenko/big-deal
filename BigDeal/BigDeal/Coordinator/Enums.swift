@@ -31,5 +31,5 @@ enum SearchScreen {
 }
 
 enum DetailScreen {
-    case main
+    case main(Item)
 }

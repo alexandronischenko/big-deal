@@ -17,8 +17,8 @@ extension SearchResultsPresenter: SearchResultsPresenterOutputProtocol {
     func moveToFilterScreen() {
         coordinator?.moveTo(flow: .search(.filter))
     }
-    func moveToDetailFlow() {
-        coordinator?.moveTo(flow: .detail(.main))
+    func moveToDetailFlow(model: Item) {
+        coordinator?.moveTo(flow: .detail(.main(model)))
     }
 }
 

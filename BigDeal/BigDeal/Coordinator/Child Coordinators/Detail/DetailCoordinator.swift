@@ -5,7 +5,7 @@ class DetailCoordinator {
     // MARK: - Protocol properties
     
     var rootViewController = UIViewController()
-    var parentCoordinator: MainBaseCoordinatorProtocol?
+    weak var parentCoordinator: MainBaseCoordinatorProtocol?
     
     // the bottom link is weak so that there is no cycle of strong links
     let mockItem = Item(shopTitle: "", clothTitle: "", sizes: ["1"], oldPrice: "", newPrice: "", clothImage: UIImage())

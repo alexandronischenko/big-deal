@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class ProfileMainPresenter {
     // MARK: - Properties
@@ -21,13 +22,17 @@ extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 // MARK: - ProfileMainPresenterOutputProtocol
 
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
+    func moveToDetailFlow(model: Item) {
+        let image = UIImage(systemName: "circle")
+        guard let image = image else {
+            return
+        }
+        coordinator?.moveTo(flow: .detail(.main(Item(shopTitle: "", clothTitle: "", sizes: [], oldPrice: "", newPrice: "", clothImage: image))))
+    }
     func moveToSettingsScreen() {
         coordinator?.moveTo(flow: .profile(.settings))
     }
     func moveToSubscriptionsScreen() {
         coordinator?.moveTo(flow: .profile(.subscriptions))
-    }
-    func moveToDetailFlow() {
-        coordinator?.moveTo(flow: .detail(.main))
     }
 }

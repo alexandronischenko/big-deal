@@ -32,7 +32,8 @@ class AuthenticationRegisterViewPresenter: AuthenticationRegisterViewPresenterPr
     
     func didPressedRegister() {
         // MARK: CHECK DATA
-        coordinator?.moveTo(flow: .profile(.main))
+//        coordinator?.moveTo(flow: .profile(.main))
+        coordinator?.moveTo(flow: .authProfile(.profile(.main)))
     }
         
     func emailDidChange(textField: UITextField) {

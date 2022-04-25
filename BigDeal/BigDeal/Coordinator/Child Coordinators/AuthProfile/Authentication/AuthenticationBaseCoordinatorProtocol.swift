@@ -3,5 +3,5 @@ import Foundation
 protocol AuthenticationBaseCoordinatorProtocol: FlowCoordinatorProtocol {
     // MARK: - Properties
     
-    var parentCoordinator: MainBaseCoordinatorProtocol? { get set }
+    var parentCoordinator: AuthenticationProfileBaseCoordinatorProtocol? { get set }
 }

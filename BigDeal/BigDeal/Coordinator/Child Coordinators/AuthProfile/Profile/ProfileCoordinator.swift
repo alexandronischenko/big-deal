@@ -28,17 +28,20 @@ class ProfileCoordinator {
     }
     
     private func moveToProfileFlowMainScreen() {
-        navigationRootViewController?.popToRootViewController(animated: true)
+//        navigationRootViewController?.popToRootViewController(animated: true)
+        rootNavigationViewController.popToRootViewController(animated: true)
     }
     
     private func moveToProfileFlowSettingScreen() {
         let profileFlowSettingsViewController = ProfileSettingsModuleBuilder().buildModule(coordinator: self)
-        navigationRootViewController?.pushViewController(profileFlowSettingsViewController, animated: true)
+//        navigationRootViewController?.pushViewController(profileFlowSettingsViewController, animated: true)
+        rootNavigationViewController.pushViewController(profileFlowSettingsViewController, animated: true)
     }
     
     private func moveToProfileFlowSubscriptionsScreen() {
         let profileFlowSubscriptionsViewController = ProfileSubscriptionsModuleBuilder().buildModule(coordinator: self)
-        navigationRootViewController?.pushViewController(profileFlowSubscriptionsViewController, animated: true)
+//        navigationRootViewController?.pushViewController(profileFlowSubscriptionsViewController, animated: true)
+        rootNavigationViewController.pushViewController(profileFlowSubscriptionsViewController, animated: true)
     }
 }
 
@@ -48,19 +51,21 @@ extension ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: ProfileMainModuleBuilder().buildModule(coordinator: self))
-        guard let navigationController = rootViewController as? UINavigationController else {
-            return UIViewController()
-        }
-        navigationController.navigationBar.prefersLargeTitles = true
-        return navigationController
+        let profileMainVC = ProfileMainModuleBuilder().buildModule(coordinator: self)
+        rootViewController = profileMainVC
+        return rootViewController
     }
     
     func moveTo(flow: AppFlow) {
         switch flow {
-        case .profile(let profileScreen):
-            moveToProfileFlow(with: profileScreen)
-        default:
+        case .authProfile(let appSubflow):
+            switch appSubflow {
+            case .profile(let profileScreen):
+                moveToProfileFlow(with: profileScreen)
+            case .authentication:
+                parentCoordinator?.moveTo(flow: flow)
+            }
+        default :
             parentCoordinator?.moveTo(flow: flow)
         }
     }

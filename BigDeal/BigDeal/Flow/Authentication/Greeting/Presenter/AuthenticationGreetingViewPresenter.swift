@@ -22,7 +22,8 @@ class AuthenticationGreetingViewPresenter: AuthenticationGreetingViewPresenterPr
     }
     
     func buttonPressedLetsGetStarted() {
-        coordinator?.moveTo(flow: .authentication(.login))
+//        coordinator?.moveTo(flow: .authentication(.login))
+        coordinator?.moveTo(flow: .authProfile(.authentication(.login)))
     }
     
     func buttonPressedPrivacyPolicy() {

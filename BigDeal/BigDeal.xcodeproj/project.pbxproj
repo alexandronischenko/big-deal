@@ -69,6 +69,9 @@
 		A2A3F52F27FE3356003417D6 /* RadioButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F52E27FE3356003417D6 /* RadioButtonController.swift */; };
 		A2A3F53527FE3975003417D6 /* CustomRadioButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F53427FE3975003417D6 /* CustomRadioButtonTableViewCell.swift */; };
 		A2A3F53727FE3987003417D6 /* CustomTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F53627FE3987003417D6 /* CustomTextFieldTableViewCell.swift */; };
+		A2B289A42816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289A32816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift */; };
+		A2B289A62816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289A52816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift */; };
+		A2B289A82816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */; };
 		A2B6815C27FF555D00518A90 /* ProfileSettingsUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */; };
 		A2B6816027FF57D100518A90 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6815F27FF57D100518A90 /* ValidationService.swift */; };
 		A2B6816527FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */; };
@@ -219,6 +222,9 @@
 		A2A3F52E27FE3356003417D6 /* RadioButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonController.swift; sourceTree = "<group>"; };
 		A2A3F53427FE3975003417D6 /* CustomRadioButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRadioButtonTableViewCell.swift; sourceTree = "<group>"; };
 		A2A3F53627FE3987003417D6 /* CustomTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		A2B289A32816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileCoordinator.swift; sourceTree = "<group>"; };
+		A2B289A52816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
 		A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsUnitTests.swift; sourceTree = "<group>"; };
 		A2B6815F27FF57D100518A90 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsPresenterInputMock.swift; sourceTree = "<group>"; };
@@ -864,6 +870,18 @@
 			path = RadioButtonControllers;
 			sourceTree = "<group>";
 		};
+		A2B289A22816C0BA008D2B75 /* AuthProfile */ = {
+			isa = PBXGroup;
+			children = (
+				A2F24F4927EEF829000B02D6 /* Authentication */,
+				A2F24F4827EEF81A000B02D6 /* Profile */,
+				A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */,
+				A2B289A52816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift */,
+				A2B289A32816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift */,
+			);
+			path = AuthProfile;
+			sourceTree = "<group>";
+		};
 		A2B6815827FF54FB00518A90 /* ProfileSettingsUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1150,8 +1168,7 @@
 			children = (
 				A2F24F5427EEFBE9000B02D6 /* Search */,
 				A2F24F5327EEFBDB000B02D6 /* Feed */,
-				A2F24F4927EEF829000B02D6 /* Authentication */,
-				A2F24F4827EEF81A000B02D6 /* Profile */,
+				A2B289A22816C0BA008D2B75 /* AuthProfile */,
 				A299494528089E6600285BF1 /* Detail */,
 			);
 			path = "Child Coordinators";
@@ -1588,6 +1605,7 @@
 				A2F0EDB127FDEFDE0049EBAC /* CategoryRemoteDataSource.swift in Sources */,
 				A2A3F53527FE3975003417D6 /* CustomRadioButtonTableViewCell.swift in Sources */,
 				A2FC10762800D0690087AA35 /* SearchResultsModuleBuilder.swift in Sources */,
+				A2B289A42816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift in Sources */,
 				A26256BD27FF2750007FA967 /* AuthenticationRegisterViewPresenter.swift in Sources */,
 				A2F0ED9627FDEDAD0049EBAC /* HotDataRepository.swift in Sources */,
 				A2113AFF27CE745F00EBA9A9 /* AppDelegate.swift in Sources */,
@@ -1626,6 +1644,7 @@
 				A2F24F5C27EEFCB4000B02D6 /* FeedCoordinator.swift in Sources */,
 				A2B6816827FF5DDA00518A90 /* ValidationServiceProtocol.swift in Sources */,
 				A2F24F5027EEF8CF000B02D6 /* MainCoordinator.swift in Sources */,
+				A2B289A62816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift in Sources */,
 				A2DFB8092809643300349967 /* DetailItemViewController.swift in Sources */,
 				A26256C227FF2750007FA967 /* AuthenticationLoginViewPresenter.swift in Sources */,
 				A26256BE27FF2750007FA967 /* AuthenticationRegisterView.swift in Sources */,
@@ -1646,6 +1665,7 @@
 				A2EFD5CD27F0D3E6001E4071 /* AuthenticationBaseCoordinatedProtocol.swift in Sources */,
 				A2FC106E2800CFE40087AA35 /* SearchResultsPresenterOutputProtocol.swift in Sources */,
 				A2113B0127CE745F00EBA9A9 /* SceneDelegate.swift in Sources */,
+				A2B289A82816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift in Sources */,
 				A27EBC3727F0D87800532EDE /* ProfileSettingsViewController.swift in Sources */,
 				A2F0EDA927FDEF740049EBAC /* CategoryDataRepository.swift in Sources */,
 			);

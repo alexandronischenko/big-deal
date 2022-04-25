@@ -4,10 +4,15 @@ import UIKit
 class AuthenticationCoordinator {
     // MARK: - Protocol properties
     
+    var rootNavigationViewController: UINavigationController
     var rootViewController = UIViewController()
-    var parentCoordinator: MainBaseCoordinatorProtocol?
+    var parentCoordinator: AuthenticationProfileBaseCoordinatorProtocol?
 
     // the bottom link is weak so that there is no cycle of strong links
+    
+    init(rootNavigationViewController: UINavigationController) {
+        self.rootNavigationViewController = rootNavigationViewController
+    }
     
     // MARK: - Private properties
     

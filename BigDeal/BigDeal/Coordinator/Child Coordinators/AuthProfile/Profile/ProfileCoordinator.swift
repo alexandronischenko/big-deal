@@ -4,10 +4,15 @@ import UIKit
 class ProfileCoordinator {
     // MARK: - Protocol properties
     
+    var rootNavigationViewController: UINavigationController
     var rootViewController = UIViewController()
-    weak var parentCoordinator: MainBaseCoordinatorProtocol?
+    weak var parentCoordinator: AuthenticationProfileBaseCoordinatorProtocol?
     
     // the bottom link is weak so that there is no cycle of strong links
+    
+    init(rootNavigationViewController: UINavigationController) {
+        self.rootNavigationViewController = rootNavigationViewController
+    }
     
     // MARK: - Private funcs
     

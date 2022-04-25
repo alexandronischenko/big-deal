@@ -94,4 +94,84 @@ class ProfileSettingsUnitTests: XCTestCase {
         // Assert
         XCTAssertNil(name)
     }
+    
+    func testNamesAreEqual() {
+        // Arrange
+        guard let profileSettingsViewController = profileSettingsViewController else {
+            return
+        }
+        // Act
+        let name = profileSettingsViewController.obtainTextFieldData()
+        let comparisonName = "Dmitriy"
+        // Assert
+        XCTAssertEqual(name, comparisonName)
+    }
+    
+    func testNamesAreNotEqual() {
+        // Arrange
+        guard let profileSettingsViewController = profileSettingsViewController else {
+            return
+        }
+        // Act
+        let name = profileSettingsViewController.obtainTextFieldData()
+        let comparisonName = "Dmitriy"
+        // Assert
+        XCTAssertNotEqual(name, comparisonName)
+    }
+    
+    func testLenghtIsEqual() {
+        // Arrange
+        guard let profileSettingsViewController = profileSettingsViewController else {
+            return
+        }
+        // Act
+        let lenght = profileSettingsViewController.obtainTextFieldDataLenght()
+        let comparisonData = "Pierre"
+        let comparisonLenght = comparisonData.count
+        
+        // Assert
+        XCTAssertEqual(lenght, comparisonLenght)
+    }
+    
+    func testLenghtIsNotEqual() {
+        // Arrange
+        guard let profileSettingsViewController = profileSettingsViewController else {
+            return
+        }
+        // Act
+        let lenght = profileSettingsViewController.obtainTextFieldDataLenght()
+        let comparisonData = "Pierre"
+        let comparisonLenght = comparisonData.count
+        
+        // Assert
+        XCTAssertNotEqual(lenght, comparisonLenght)
+    }
+    
+    func testInpuLenghtIsBigger() {
+        // Arrange
+        guard let profileSettingsViewController = profileSettingsViewController else {
+            return
+        }
+        // Act
+        let lenght = profileSettingsViewController.obtainTextFieldDataLenght()
+        let comparisonData = "Pierre"
+        let comparisonLenght = comparisonData.count
+        
+        // Assert
+        XCTAssertTrue(lenght > comparisonLenght)
+    }
+    
+    func testInpuLenghtIsSmaller() {
+        // Arrange
+        guard let profileSettingsViewController = profileSettingsViewController else {
+            return
+        }
+        // Act
+        let lenght = profileSettingsViewController.obtainTextFieldDataLenght()
+        let comparisonData = "Pierre"
+        let comparisonLenght = comparisonData.count
+        
+        // Assert
+        XCTAssertTrue(lenght < comparisonLenght)
+    }
 }

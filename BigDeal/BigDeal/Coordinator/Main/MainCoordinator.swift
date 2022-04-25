@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class MainCoordinator {
-    
     // MARK: - Protocol properties
     
     var authProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol = AuthenticationProfileCoordinator()

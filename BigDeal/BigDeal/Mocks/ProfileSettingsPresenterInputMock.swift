@@ -1,7 +1,9 @@
 import Foundation
+import UIKit
 
 class ProfileSettingsPresenterInputMock: ProfileSettingsPresenterInputProtocol {
     // MARK: - Properties
+    
     var output: ProfileSettingsPresenterOutputProtocol?
     
     // MARK: - Initializers
@@ -17,5 +19,10 @@ class ProfileSettingsPresenterInputMock: ProfileSettingsPresenterInputProtocol {
     func obtainTextFieldData() -> String {
         let textFieldData = "Renat"
         return textFieldData
+    }
+    
+    func obtainTextFieldDataLenght() -> Int {
+        let textFieldData = "Carti"
+        return textFieldData.count
     }
 }

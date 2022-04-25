@@ -78,6 +78,7 @@
 		A2B6816527FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */; };
 		A2B6816827FF5DDA00518A90 /* ValidationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816727FF5DDA00518A90 /* ValidationServiceProtocol.swift */; };
 		A2B6816A27FF602D00518A90 /* ProfileIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816927FF602D00518A90 /* ProfileIntegrationTests.swift */; };
+		A2CF0057281310360091CFA8 /* FeedHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF0056281310360091CFA8 /* FeedHeaderCollectionReusableView.swift */; };
 		A2CF987127DA292F001A6C39 /* ProfileMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987027DA292F001A6C39 /* ProfileMainPresenter.swift */; };
 		A2CF987427DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987327DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift */; };
 		A2CF987627DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF987527DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift */; };
@@ -232,6 +233,7 @@
 		A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsPresenterInputMock.swift; sourceTree = "<group>"; };
 		A2B6816727FF5DDA00518A90 /* ValidationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationServiceProtocol.swift; sourceTree = "<group>"; };
 		A2B6816927FF602D00518A90 /* ProfileIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIntegrationTests.swift; sourceTree = "<group>"; };
+		A2CF0056281310360091CFA8 /* FeedHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		A2CF987027DA292F001A6C39 /* ProfileMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainPresenter.swift; sourceTree = "<group>"; };
 		A2CF987327DA297B001A6C39 /* ProfileMainScreenViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewInputProtocol.swift; sourceTree = "<group>"; };
 		A2CF987527DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewOutputProtocol.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 			children = (
 				A27EBC4D27F0D9E900532EDE /* FeedMainViewController.swift */,
 				A20022FE27F6FBFA002D04AE /* FeedMainView.swift */,
+				A2CF0056281310360091CFA8 /* FeedHeaderCollectionReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1601,6 +1604,7 @@
 				A26256C427FF2750007FA967 /* AuthenticationLoginView.swift in Sources */,
 				A2A3F51F27FE2CDC003417D6 /* ProfileSettingsView.swift in Sources */,
 				A23D05C3280176C700040980 /* SearchFilterPresenterOutputProtocol.swift in Sources */,
+				A2CF0057281310360091CFA8 /* FeedHeaderCollectionReusableView.swift in Sources */,
 				A2DFB8072809643300349967 /* ModuleBuilder.swift in Sources */,
 				A27EBC4E27F0D9E900532EDE /* FeedMainViewController.swift in Sources */,
 				A2A3F52327FE2D23003417D6 /* ProfileSettingsPresenterInputProtocol.swift in Sources */,

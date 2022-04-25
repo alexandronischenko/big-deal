@@ -30,6 +30,10 @@ extension FeedCoordinator: FeedBaseCoordinatorProtocol {
     
     func start() -> UIViewController {
         rootViewController = UINavigationController(rootViewController: FeedMainModuleBuilder().buildModule(coordinator: self))
+        guard let navigationController = rootViewController as? UINavigationController else {
+            return UIViewController()
+        }
+        navigationController.navigationBar.prefersLargeTitles = true
         return rootViewController
     }
     

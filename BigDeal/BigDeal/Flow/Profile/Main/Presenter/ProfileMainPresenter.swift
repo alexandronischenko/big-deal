@@ -21,13 +21,15 @@ extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 // MARK: - ProfileMainPresenterOutputProtocol
 
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
+    func moveToDetailFlow(model: Item) {
+        coordinator?.moveTo(flow: .detail(.main(model)))
+    }
+    
     func moveToSettingsScreen() {
         coordinator?.moveTo(flow: .profile(.settings))
     }
+    
     func moveToSubscriptionsScreen() {
         coordinator?.moveTo(flow: .profile(.subscriptions))
-    }
-    func moveToDetailFlow() {
-        coordinator?.moveTo(flow: .detail(.main))
     }
 }

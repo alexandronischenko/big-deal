@@ -30,6 +30,9 @@ class FeedMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        title = "Сatalog"
+        navigationItem.searchController = feedMainView.searchController
     }
 }
 
@@ -41,4 +44,7 @@ extension FeedMainViewController: FeedBaseCoordinatedProtocol {
 // MARK: - FeedMainPresenterInputProtocol
 
 extension FeedMainViewController: FeedMainPresenterInputProtocol {
+    func updateData(data: [Item]) {
+        feedMainView.updateData(data: data)
+    }
 }

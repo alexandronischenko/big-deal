@@ -66,6 +66,10 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
 // MARK: - ProfileSettingsPresenterInputProtocol
 
 extension ProfileSettingsViewController: ProfileSettingsPresenterInputProtocol {
+    func obtainTextFieldDataLenght() -> Int {
+        return 0
+    }
+    
     func obtainTextFieldData() -> String {
         return ""
     }

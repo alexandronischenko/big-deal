@@ -73,6 +73,7 @@
 		A2B289A62816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289A52816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift */; };
 		A2B289A82816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */; };
 		A2B289AB2816C43C008D2B75 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289AA2816C43C008D2B75 /* UserDefaultsKeys.swift */; };
+		A2B289AD28170855008D2B75 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289AC28170855008D2B75 /* KeychainManager.swift */; };
 		A2B6815C27FF555D00518A90 /* ProfileSettingsUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */; };
 		A2B6816027FF57D100518A90 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6815F27FF57D100518A90 /* ValidationService.swift */; };
 		A2B6816527FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */; };
@@ -228,6 +229,7 @@
 		A2B289A52816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
 		A2B289AA2816C43C008D2B75 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		A2B289AC28170855008D2B75 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsUnitTests.swift; sourceTree = "<group>"; };
 		A2B6815F27FF57D100518A90 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsPresenterInputMock.swift; sourceTree = "<group>"; };
@@ -424,7 +426,6 @@
 			isa = PBXGroup;
 			children = (
 				A2732F27280472D100104EB4 /* Models */,
-				A2B6816327FF586B00518A90 /* Mocks */,
 				A297430027FECEAD009E5E7D /* Managers */,
 				A2A3F51327FE0CE7003417D6 /* Common */,
 				A2F0ED8727FDA88E0049EBAC /* Repositories */,
@@ -776,6 +777,7 @@
 			isa = PBXGroup;
 			children = (
 				A297430127FECEB8009E5E7D /* DataManager.swift */,
+				A2B289AC28170855008D2B75 /* KeychainManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -915,6 +917,7 @@
 		A2B6815A27FF552E00518A90 /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
+				A2B6816327FF586B00518A90 /* Mocks */,
 				A2B6815927FF551D00518A90 /* ProfileIntegrationTests */,
 				A2B6815827FF54FB00518A90 /* ProfileSettingsUnitTests */,
 			);
@@ -1632,6 +1635,7 @@
 				A26256BB27FF2750007FA967 /* AuthenticationGreetingViewController.swift in Sources */,
 				A2A3F51527FE0D0E003417D6 /* CheckBoxController.swift in Sources */,
 				A2A3F52527FE2D60003417D6 /* ProfileSettingsPresenterOutputProtocol.swift in Sources */,
+				A2B289AD28170855008D2B75 /* KeychainManager.swift in Sources */,
 				A2CF987A27DA29CC001A6C39 /* ProfileMainViewController.swift in Sources */,
 				A23E572C27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift in Sources */,
 				A2F24F4527EEF6A8000B02D6 /* ProfileCoordinator.swift in Sources */,

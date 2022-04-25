@@ -1,11 +1,15 @@
 import Foundation
 
 enum AppFlow {
-    case profile(ProfileScreen)
-    case authentication(AuthenticationScreen)
+    case authProfile(AppSubflow)
     case feed(FeedScreen)
     case search(SearchScreen)
     case detail(DetailScreen)
+}
+
+enum AppSubflow {
+    case profile(ProfileScreen)
+    case authentication(AuthenticationScreen)
 }
 
 enum ProfileScreen {

@@ -39,6 +39,7 @@ extension MainCoordinator: MainBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
+        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isLoggeInKey)
         
         let feedViewController = feedCoordinator.start()
         feedCoordinator.parentCoordinator = self

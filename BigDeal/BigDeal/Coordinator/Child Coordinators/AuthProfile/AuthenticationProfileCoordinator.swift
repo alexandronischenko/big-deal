@@ -15,8 +15,11 @@ class AuthenticationProfileCoordinator {
             profileCoordinator.moveTo(flow: flow)
         } else {
             profileCoordinator = ProfileCoordinator(rootNavigationViewController: self.rootNavigationViewController)
-            _ = profileCoordinator?.start()
+            guard let controller = profileCoordinator?.start() else {
+                return
+            }
             profileCoordinator?.parentCoordinator = self
+            rootNavigationViewController.pushViewController(controller, animated: true)
             rootNavigationViewController.viewControllers = []
             authCoordinator = nil
         }
@@ -27,8 +30,11 @@ class AuthenticationProfileCoordinator {
             authCoordinator.moveTo(flow: flow)
         } else {
             authCoordinator = AuthenticationCoordinator(rootNavigationViewController: self.rootNavigationViewController)
-            _ = authCoordinator?.start()
+            guard let controller = authCoordinator?.start() else {
+                return
+            }
             authCoordinator?.parentCoordinator = self
+            rootNavigationViewController.pushViewController(controller, animated: true)
             rootNavigationViewController.viewControllers = []
             profileCoordinator = nil
         }
@@ -40,17 +46,19 @@ extension AuthenticationProfileCoordinator: AuthenticationProfileBaseCoordinator
         let isLoggedIn = UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLoggeInKey)
         if isLoggedIn {
             profileCoordinator = ProfileCoordinator(rootNavigationViewController: self.rootNavigationViewController)
+            profileCoordinator?.parentCoordinator = self
             guard let profileVC = profileCoordinator?.start() else {
                 return UIViewController()
             }
-            profileCoordinator?.parentCoordinator = self
+            navigationRootViewController?.pushViewController(profileVC, animated: true)
             return profileVC
         } else {
             authCoordinator = AuthenticationCoordinator(rootNavigationViewController: self.rootNavigationViewController)
+            authCoordinator?.parentCoordinator = self
             guard let authVC = authCoordinator?.start() else {
                 return UIViewController()
             }
-            authCoordinator?.parentCoordinator = self
+            navigationRootViewController?.pushViewController(authVC, animated: true)
             return authVC
         }
     }

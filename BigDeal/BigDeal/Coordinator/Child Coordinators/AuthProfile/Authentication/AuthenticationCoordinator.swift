@@ -33,13 +33,11 @@ class AuthenticationCoordinator {
     
     private func moveToAuthenticationFlowLoginScreen() {
         let authenticationFlowLoginViewController = AuthenticationLoginBuilder(coordinator: self).build()
-//        navigationRootViewController?.pushViewController(authenticationFlowLoginViewController, animated: true)
         rootNavigationViewController.pushViewController(authenticationFlowLoginViewController, animated: true)
     }
     
     private func moveToAuthenticationFlowRegisterScreen() {
         let authenticationFlowRegisterViewController = AuthenticationRegisterBuilder(coordinator: self).build()
-//        navigationRootViewController?.pushViewController(authenticationFlowRegisterViewController, animated: true)
         rootNavigationViewController.pushViewController(authenticationFlowRegisterViewController, animated: true)
     }
 }

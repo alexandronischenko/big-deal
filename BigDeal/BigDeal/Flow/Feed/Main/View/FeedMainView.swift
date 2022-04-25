@@ -98,7 +98,8 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
 
 extension FeedMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data?.count
+//        return data?.count
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

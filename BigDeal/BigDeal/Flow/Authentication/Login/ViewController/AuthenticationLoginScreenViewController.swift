@@ -31,8 +31,8 @@ class AuthenticationLoginScreenViewController: UIViewController {
 }
 
 extension AuthenticationLoginScreenViewController: AuthenticationLoginViewProtocol {
-    func didPressedLogin() {
-        presenter.didPressedLogin()
+    func didPressedLogin(email: String, password: String) {
+        presenter.didPressedLogin(email: email, password: password)
     }
     
     func didPressedRegister() {

@@ -11,7 +11,7 @@ import SnapKit
 
 protocol AuthenticationRegisterViewProtocol: AnyObject {
     func didPressedLogin()
-    func didPressedRegister()
+    func didPressedRegister(email: String, password: String)
     
     func showErrorLabel(_ error: String)
     func changeTextFieldColor(_ sender: UITextField)
@@ -225,11 +225,19 @@ class AuthenticationRegisterView: UIView {
     }
     
     @objc func didPressedRegisterButton() {
-        delegate?.didPressedRegister()
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            return
+        }
+        delegate?.didPressedRegister(email: email, password: password)
     }
     
     func showErrorLabel(text: String) {
-        errorLabel.text = text
+        if text.isEmpty {
+            button.isEnabled = true
+        } else {
+            errorLabel.text = text
+            button.isEnabled = false
+        }
     }
     
     func changeTextFieldColor(_ sender: UITextField) {

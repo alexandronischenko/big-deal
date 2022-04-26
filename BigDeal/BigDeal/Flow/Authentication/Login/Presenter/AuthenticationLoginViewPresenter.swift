@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 protocol AuthenticationLoginViewPresenterProtocol: AnyObject {
     init(coordinator: AuthenticationCoordinator)
-    func didPressedLogin()
+    func didPressedLogin(email: String, password: String)
     func didPressedRegister()
 }
 
@@ -21,14 +22,18 @@ class AuthenticationLoginViewPresenter: AuthenticationLoginViewPresenterProtocol
         self.coordinator = coordinator
     }
     
-    func didPressedLogin() {
-        // MARK: - TODO check data and login
-//        coordinator?.moveTo(flow: .authentication(.greeting))
-        coordinator?.moveTo(flow: .authProfile(.authentication(.greeting)))
+    func didPressedLogin(email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                print("Error sign in \(error)")
+                return
+            } else {
+                self.coordinator?.moveTo(flow: .authProfile(.authentication(.greeting)))
+            }
+        }
     }
     
     func didPressedRegister() {
-//        coordinator?.moveTo(flow: .authentication(.register))
         coordinator?.moveTo(flow: .authProfile(.authentication(.register)))
     }
 }

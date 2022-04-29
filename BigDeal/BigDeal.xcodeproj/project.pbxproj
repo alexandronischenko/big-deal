@@ -74,7 +74,7 @@
 		A2B289A82816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */; };
 		A2B289AB2816C43C008D2B75 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289AA2816C43C008D2B75 /* UserDefaultsKeys.swift */; };
 		A2B289AD28170855008D2B75 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289AC28170855008D2B75 /* KeychainManager.swift */; };
-		A2B6815C27FF555D00518A90 /* ProfileSettingsUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */; };
+		A2B6815C27FF555D00518A90 /* ProfileSettingsValidatorUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6815B27FF555D00518A90 /* ProfileSettingsValidatorUnitTests.swift */; };
 		A2B6816027FF57D100518A90 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6815F27FF57D100518A90 /* ValidationService.swift */; };
 		A2B6816527FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */; };
 		A2B6816827FF5DDA00518A90 /* ValidationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B6816727FF5DDA00518A90 /* ValidationServiceProtocol.swift */; };
@@ -230,7 +230,7 @@
 		A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
 		A2B289AA2816C43C008D2B75 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		A2B289AC28170855008D2B75 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsUnitTests.swift; sourceTree = "<group>"; };
+		A2B6815B27FF555D00518A90 /* ProfileSettingsValidatorUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsValidatorUnitTests.swift; sourceTree = "<group>"; };
 		A2B6815F27FF57D100518A90 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		A2B6816427FF58AE00518A90 /* ProfileSettingsPresenterInputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsPresenterInputMock.swift; sourceTree = "<group>"; };
 		A2B6816727FF5DDA00518A90 /* ValidationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationServiceProtocol.swift; sourceTree = "<group>"; };
@@ -901,7 +901,7 @@
 		A2B6815827FF54FB00518A90 /* ProfileSettingsUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				A2B6815B27FF555D00518A90 /* ProfileSettingsUnitTests.swift */,
+				A2B6815B27FF555D00518A90 /* ProfileSettingsValidatorUnitTests.swift */,
 			);
 			path = ProfileSettingsUnitTests;
 			sourceTree = "<group>";
@@ -1696,7 +1696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A26256CC27FF282D007FA967 /* MockCoordinator.swift in Sources */,
-				A2B6815C27FF555D00518A90 /* ProfileSettingsUnitTests.swift in Sources */,
+				A2B6815C27FF555D00518A90 /* ProfileSettingsValidatorUnitTests.swift in Sources */,
 				A26256CE27FF282D007FA967 /* AuthRegisterPresenterTest.swift in Sources */,
 				A26256CD27FF282D007FA967 /* MockAuthRegisterView.swift in Sources */,
 				A2B6816A27FF602D00518A90 /* ProfileIntegrationTests.swift in Sources */,

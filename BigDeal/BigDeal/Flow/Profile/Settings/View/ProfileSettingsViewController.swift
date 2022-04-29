@@ -7,6 +7,10 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
     private let profileSettingsView = ProfileSettingsView()
     private let sexRadioButtonController = RadioButtonController()
     
+    // Reuse identifiers
+    
+    private let reuseIdForSexRadioButtonCell = CustomRadioButtonTableViewCell.customReuseIdForSexCategory
+    
     // MARK: - Initializers
     
     init(output: ProfileSettingsPresenterOutputProtocol) {
@@ -30,32 +34,52 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
         setUpProfileSettingsTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setUpDefaultButtonsForRadioControllers()
+    // MARK: - Private functions
+    
+    private func setUpSexCategoryCells(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
+        guard let radioButtonCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForSexRadioButtonCell, for: indexPath) as? CustomRadioButtonTableViewCell else {
+            return UITableViewCell()
+        }
+        setUpTitleForRadioButtonByIndexPath(indexPath, cell: radioButtonCell)
+        sexRadioButtonController.addButtonForRadioController(radioButtonCell.radioButton)
+        guard let defaultButton = output?.obtainDefaultButtonForSexRadioController(sexRadioButtonController) else {
+            return UITableViewCell()
+        }
+        sexRadioButtonController.defaultButton = defaultButton
+        return radioButtonCell
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setUpDefaultButtonsForRadioControllers()
+    private func setUpTitleForRadioButtonByIndexPath(_ indexPath: IndexPath, cell: CustomRadioButtonTableViewCell) {
+        switch indexPath.section {
+        case 0:
+            setUpTitleForRadioButtonsInSexCategory(indexPath: indexPath, cell: cell)
+        default:
+            break
+        }
+    }
+    
+    private func setUpTitleForRadioButtonsInSexCategory(indexPath: IndexPath, cell: CustomRadioButtonTableViewCell) {
+        switch indexPath.row {
+        case 0:
+            cell.configureCell(with: "Male")
+        case 1:
+            cell.configureCell(with: "Female")
+        case 2:
+            cell.configureCell(with: "Unisex")
+        default:
+            break
+        }
     }
     
     private func configureView() {
         title = "Settings"
     }
     
-    private func setUpDefaultButtonsForRadioControllers() {
-        guard let defaultButtonForSexCategory = sexRadioButtonController.buttonsArray.first(where: { $0.currentTitle == "Male" }) else {
-            return
-        }
-        sexRadioButtonController.defaultButton = defaultButtonForSexCategory
-    }
-    
     private func setUpProfileSettingsTableView() {
         profileSettingsView.profileSettingsTableView.delegate = self
         profileSettingsView.profileSettingsTableView.dataSource = self
         profileSettingsView.profileSettingsTableView.register(CustomTextFieldTableViewCell.self, forCellReuseIdentifier: CustomTextFieldTableViewCell.customTextFieldTableViewCellReuseId)
-        profileSettingsView.profileSettingsTableView.register(CustomRadioButtonTableViewCell.self, forCellReuseIdentifier: CustomRadioButtonTableViewCell.customReuseIdForSexCategory)
+        profileSettingsView.profileSettingsTableView.register(CustomRadioButtonTableViewCell.self, forCellReuseIdentifier: reuseIdForSexRadioButtonCell)
     }
     
     private func setUpProfileSettingsTextField(_ textField: UITextField) {
@@ -129,26 +153,7 @@ extension ProfileSettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            switch indexPath.row {
-            case 0...2:
-                guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: CustomRadioButtonTableViewCell.customReuseIdForSexCategory) as? CustomRadioButtonTableViewCell else {
-                    return UITableViewCell()
-                }
-                switch indexPath.row {
-                case 0:
-                    tableViewCell.configureCell(with: "Male")
-                case 1:
-                    tableViewCell.configureCell(with: "Female")
-                case 2:
-                    tableViewCell.configureCell(with: "Unisex")
-                default:
-                    break
-                }
-                sexRadioButtonController.addButtonForRadioController(tableViewCell.radioButton)
-                return tableViewCell
-            default:
-                return UITableViewCell()
-            }
+            return setUpSexCategoryCells(by: indexPath, tableView: tableView)
         case 1:
             switch indexPath.row {
             case 0:

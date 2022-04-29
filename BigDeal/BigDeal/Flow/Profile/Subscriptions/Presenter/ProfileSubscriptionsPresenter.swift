@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class ProfileSubscriptionsPresenter {
     // MARK: - Properties
@@ -16,6 +17,18 @@ class ProfileSubscriptionsPresenter {
 // MARK: - ProfileSubscriptionsPresenterOutputProtocol
 
 extension ProfileSubscriptionsPresenter: ProfileSubscriptionsPresenterOutputProtocol {
+    func obtainDefaultButtonForBrandsCheckBoxController(_ brandsController: CheckBoxController) -> UIButton {
+        guard let defaultButtonForBrands = brandsController.buttonsArray.first(where: { $0.currentTitle == "Adidas" }) else {
+            return UIButton()
+        }
+        return defaultButtonForBrands
+    }
+    func obtainDefaultButtonForShopsCheckBoxController(_ shopsController: CheckBoxController) -> UIButton {
+        guard let defaultButtonForShops = shopsController.buttonsArray.first(where: { $0.currentTitle == "Asos" }) else {
+            return UIButton()
+        }
+        return defaultButtonForShops
+    }
 }
 
 // MARK: - ProfileBaseCoordinatedProtocol

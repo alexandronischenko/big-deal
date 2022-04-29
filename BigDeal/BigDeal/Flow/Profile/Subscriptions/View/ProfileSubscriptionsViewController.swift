@@ -8,6 +8,11 @@ class ProfileSubscriptionsViewController: UIViewController {
     private let brandsCheckBoxController = CheckBoxController()
     private let shopsCheckBoxController = CheckBoxController()
     
+    // Reuse identifiers
+    
+    private let reuseIdForBrandsCheckBoxCell = CustomCheckBoxTableViewCell.customReuseIdForBrandsCheckBox
+    private let reuseIdForShopsCheckBoxCell = CustomCheckBoxTableViewCell.customReuseIdForShopsCheckBox
+    
     // MARK: - Initializers
     
     init(output: ProfileSubscriptionsPresenterOutputProtocol) {
@@ -33,6 +38,75 @@ class ProfileSubscriptionsViewController: UIViewController {
     
     // MARK: - Private funcs
     
+    private func setUpBrandsCell(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
+        guard let checkBoxCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForBrandsCheckBoxCell, for: indexPath) as? CustomCheckBoxTableViewCell else {
+            return UITableViewCell()
+        }
+        setUpTitleForCheckBoxByIndexPath(indexPath, cell: checkBoxCell)
+        brandsCheckBoxController.addButtonToCheckBoxController(checkBoxCell.checkBoxButton)
+        guard let defaultButton = output?.obtainDefaultButtonForBrandsCheckBoxController(brandsCheckBoxController) else {
+            return UITableViewCell()
+        }
+        brandsCheckBoxController.defaultButton = defaultButton
+        brandsCheckBoxController.defaultButton.isSelected = true
+        return checkBoxCell
+    }
+    
+    private func setUpShopsCell(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
+        guard let checkBoxCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForShopsCheckBoxCell, for: indexPath) as? CustomCheckBoxTableViewCell else {
+            return UITableViewCell()
+        }
+        setUpTitleForCheckBoxByIndexPath(indexPath, cell: checkBoxCell)
+        shopsCheckBoxController.addButtonToCheckBoxController(checkBoxCell.checkBoxButton)
+        guard let defaultButton = output?.obtainDefaultButtonForShopsCheckBoxController(shopsCheckBoxController) else {
+            return UITableViewCell()
+        }
+        shopsCheckBoxController.defaultButton = defaultButton
+        shopsCheckBoxController.defaultButton.isSelected = true
+        return checkBoxCell
+    }
+    
+    private func setUpTitleForCheckBoxByIndexPath(_ indexPath: IndexPath, cell: CustomCheckBoxTableViewCell) {
+        switch indexPath.section {
+        case 0:
+            setUpTitleForCheckBoxesInBrands(indexPath: indexPath, cell: cell)
+        case 1:
+            setUpTitleForCheckBoxesInShops(indexPath: indexPath, cell: cell)
+        default:
+            break
+        }
+    }
+    
+    private func setUpTitleForCheckBoxesInShops(indexPath: IndexPath, cell: CustomCheckBoxTableViewCell) {
+        switch indexPath.row {
+        case 0:
+            cell.configureCell(with: "Asos")
+        case 1:
+            cell.configureCell(with: "Stock-X")
+        case 2:
+            cell.configureCell(with: "Ozon")
+        case 3:
+            cell.configureCell(with: "NB")
+        default:
+            break
+        }
+    }
+    
+    private func setUpTitleForCheckBoxesInBrands(indexPath: IndexPath, cell: CustomCheckBoxTableViewCell) {
+        switch indexPath.row {
+        case 0:
+            cell.configureCell(with: "Adidas")
+        case 1:
+            cell.configureCell(with: "Nike")
+        case 2:
+            cell.configureCell(with: "Reebok")
+        case 3:
+            cell.configureCell(with: "New Balance")
+        default:
+            break
+        }
+    }
+    
     private func configureView() {
         title = "Subscriptions"
     }
@@ -40,7 +114,8 @@ class ProfileSubscriptionsViewController: UIViewController {
     private func setUpProfileSubscriptionsTableView() {
         profileSubscriptionsView.profileSubscriptionsTableView.delegate = self
         profileSubscriptionsView.profileSubscriptionsTableView.dataSource = self
-        profileSubscriptionsView.profileSubscriptionsTableView.register(CustomCheckBoxTableViewCell.self, forCellReuseIdentifier: CustomCheckBoxTableViewCell.customReuseIdForCategoriesCheckBox)
+        profileSubscriptionsView.profileSubscriptionsTableView.register(CustomCheckBoxTableViewCell.self, forCellReuseIdentifier: reuseIdForBrandsCheckBoxCell)
+        profileSubscriptionsView.profileSubscriptionsTableView.register(CustomCheckBoxTableViewCell.self, forCellReuseIdentifier: reuseIdForShopsCheckBoxCell)
     }
 }
 
@@ -102,50 +177,11 @@ extension ProfileSubscriptionsViewController: UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: CustomCheckBoxTableViewCell.customReuseIdForCategoriesCheckBox) as? CustomCheckBoxTableViewCell else {
-            return UITableViewCell()
-        }
         switch indexPath.section {
         case 0:
-            switch indexPath.row {
-            case 0...3:
-                switch indexPath.row {
-                case 0:
-                    tableViewCell.configureCell(with: "Adidas")
-                case 1:
-                    tableViewCell.configureCell(with: "Nike")
-                case 2:
-                    tableViewCell.configureCell(with: "Reebok")
-                case 3:
-                    tableViewCell.configureCell(with: "New Balance")
-                default:
-                    break
-                }
-                brandsCheckBoxController.addButtonToCheckBoxController(tableViewCell.checkBoxButton)
-                return tableViewCell
-            default:
-                return UITableViewCell()
-            }
+            return setUpBrandsCell(by: indexPath, tableView: tableView)
         case 1:
-            switch indexPath.row {
-            case 0...3:
-                switch indexPath.row {
-                case 0:
-                    tableViewCell.configureCell(with: "ASOS")
-                case 1:
-                    tableViewCell.configureCell(with: "StockX")
-                case 2:
-                    tableViewCell.configureCell(with: "Ozon")
-                case 3:
-                    tableViewCell.configureCell(with: "New Balance")
-                default:
-                    break
-                }
-                shopsCheckBoxController.addButtonToCheckBoxController(tableViewCell.checkBoxButton)
-                return tableViewCell
-            default:
-                return UITableViewCell()
-            }
+            return setUpShopsCell(by: indexPath, tableView: tableView)
         default:
             return UITableViewCell()
         }

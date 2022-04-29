@@ -51,7 +51,7 @@ extension ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        let profileMainVC = ProfileMainModuleBuilder().buildModule(coordinator: self)
+        let profileMainVC = ProfileSettingsModuleBuilder().buildModule(coordinator: self)
         rootViewController = profileMainVC
         return rootViewController
     }

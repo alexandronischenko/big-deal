@@ -1,9 +1,9 @@
 import UIKit
 
-class FeedMainView: UIView {
+class SearchMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
-    var data: [Item] = DataManager.shared.data
+    private var data: [Item]?
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -37,14 +37,16 @@ class FeedMainView: UIView {
         super.init(frame: frame)
         
         backgroundColor = .systemBackground
+        
+        collectionView.register(
+            SearchHeaderCollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SearchHeaderCollectionReusableView.identifier)
         collectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
-        collectionView.register(HeaderLabel.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "label")
 
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-//        addSubview(scrollView)
-//        scrollView.addSubview(collectionView)
+ 
         addSubview(collectionView)
         layoutSubviews()
     }
@@ -57,9 +59,9 @@ class FeedMainView: UIView {
 //        scrollView.snp.makeConstraints { make in
 //            make.edges.equalToSuperview()
 //        }
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+    collectionView.snp.makeConstraints { make in
+        make.edges.equalToSuperview()
+    }
     }
     
     func updateData(data: [Item]) {
@@ -67,15 +69,15 @@ class FeedMainView: UIView {
     }
 }
 
-extension FeedMainView: UICollectionViewDelegateFlowLayout {
+extension SearchMainView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: frame.size.width, height: 20)
+        return CGSize(width: frame.size.width, height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = data[indexPath.row]
-        //        delegate?.moveToDetailFlow(model: model)
-        print("item pressed")
+//        let model = data?[indexPath.row]
+//        delegate?.moveToDetailFlow(model: model)
+    print("item pressed")
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -89,28 +91,29 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: frame.width / 2.3, height: 230)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-             let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "label", for: indexPath) as! HeaderLabel
-             sectionHeader.label.text = "TRENDING🔥"
-             return sectionHeader
-        } else { //No footer in this case but can add option for that
-             return UICollectionReusableView()
-        }
-    }
 }
 
-extension FeedMainView: UICollectionViewDataSource {
+extension SearchMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+//        return data?.count
+    return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.data = self.data[indexPath.row]
+        cell.data = self.data?[indexPath.row]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SearchHeaderCollectionReusableView.identifier,
+            for: indexPath) as? SearchHeaderCollectionReusableView else {
+            return UICollectionReusableView()
+        }
+        return header
     }
 }

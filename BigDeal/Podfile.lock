@@ -596,6 +596,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - Alamofire (5.0.5)
   - BoringSSL-GRPC (0.0.24):
     - BoringSSL-GRPC/Implementation (= 0.0.24)
     - BoringSSL-GRPC/Interface (= 0.0.24)
@@ -766,7 +767,6 @@ PODS:
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
   - GTMSessionFetcher/Core (1.7.2)
-  - Alamofire (5.0.5)
   - IQKeyboardManagerSwift (6.5.9)
   - leveldb-library (1.22.1)
   - Libuv-gRPC (0.0.10):
@@ -785,11 +785,11 @@ PODS:
   - SwiftLint (0.46.5)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.0.0)
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Firestore
-  - Alamofire (~> 5.0.0)
   - IQKeyboardManagerSwift
   - SnapKit (~> 5.0.0)
   - SwiftLint (~> 0.46.2)
@@ -797,6 +797,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - Alamofire
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -812,7 +813,6 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
-    - Alamofire
     - IQKeyboardManagerSwift
     - leveldb-library
     - Libuv-gRPC
@@ -823,6 +823,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
   FirebaseAnalytics: 7761cbadb00a717d8d0939363eb46041526474fa
@@ -838,7 +839,6 @@ SPEC CHECKSUMS:
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
-  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
@@ -847,6 +847,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
 
-PODFILE CHECKSUM: 89cd9eba1ba359accff3b694665d02a8ec91e6e0
+PODFILE CHECKSUM: 681f06db541aa7f22238342450f0720d4ac59361
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.11.2

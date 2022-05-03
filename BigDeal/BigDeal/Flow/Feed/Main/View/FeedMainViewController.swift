@@ -31,8 +31,8 @@ class FeedMainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
-        title = "Сatalog"
-        navigationItem.searchController = feedMainView.searchController
+        title = "Feed"
+//        navigationItem.searchController = feedMainView.searchController
     }
 }
 

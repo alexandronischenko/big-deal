@@ -1,6 +1,6 @@
 import UIKit
 
-class FeedHeaderCollectionReusableView: UICollectionReusableView {
+class SearchHeaderCollectionReusableView: UICollectionReusableView {
     static let identifier = "HeaderCollectionReusableView"
     
     let filterButton: UIButton = {

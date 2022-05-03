@@ -766,6 +766,7 @@ PODS:
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
   - GTMSessionFetcher/Core (1.7.2)
+  - Alamofire (5.0.5)
   - IQKeyboardManagerSwift (6.5.9)
   - leveldb-library (1.22.1)
   - Libuv-gRPC (0.0.10):
@@ -788,6 +789,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Firestore
+  - Alamofire (~> 5.0.0)
   - IQKeyboardManagerSwift
   - SnapKit (~> 5.0.0)
   - SwiftLint (~> 0.46.2)
@@ -810,6 +812,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - Alamofire
     - IQKeyboardManagerSwift
     - leveldb-library
     - Libuv-gRPC
@@ -835,6 +838,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378

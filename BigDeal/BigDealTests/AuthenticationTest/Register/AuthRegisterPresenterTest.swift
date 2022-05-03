@@ -15,8 +15,8 @@ class AuthRegisterPresenterTest: XCTestCase {
     
     override func setUpWithError() throws {
         view = MockAuthRegisterView()
-        coordinator = MockCoordinator()
-        presenter = AuthenticationRegisterViewPresenter(coordinator: coordinator ?? MockCoordinator())
+        coordinator = MockCoordinator(rootNavigationViewController: UINavigationController())
+        presenter = AuthenticationRegisterViewPresenter(coordinator: coordinator ?? MockCoordinator(rootNavigationViewController: UINavigationController()))
         presenter?.view = view
     }
 

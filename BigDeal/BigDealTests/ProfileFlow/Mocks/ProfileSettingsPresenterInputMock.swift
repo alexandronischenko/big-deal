@@ -16,13 +16,16 @@ class ProfileSettingsPresenterInputMock: ProfileSettingsPresenterInputProtocol {
     
     // MARK: - Functions
     
+    var obtainTextFieldDataStubbed: String = ""
+    
     func obtainTextFieldData() -> String {
-        let textFieldData = "Renat"
-        return textFieldData
+        return obtainTextFieldDataStubbed
     }
     
     func obtainTextFieldDataLenght() -> Int {
         let textFieldData = "Carti"
         return textFieldData.count
     }
+    
+    
 }

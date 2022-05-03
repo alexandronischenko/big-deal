@@ -1,11 +1,11 @@
 import XCTest
 @testable import BigDeal
 
-class ProfileSettingsUnitTests: XCTestCase {
+class ProfileSettingsValidatorUnitTests: XCTestCase {
     // MARK: - Properties
     
-    private var profileSettingsViewController: ProfileSettingsPresenterInputProtocol?
-    private var validationService: ValidationServiceProtocol?
+    private var profileSettingsViewController: ProfileSettingsPresenterInputMock!
+    private var validationService: ValidationServiceProtocol!
     
     // MARK: - Overrided functions
 
@@ -21,11 +21,9 @@ class ProfileSettingsUnitTests: XCTestCase {
     
     // MARK: - Test functions
     
-    func testNameIsShort() {
+    func testValidationResultFalseToShortName() {
         // Arrange
-        guard let profileSettingsViewController = profileSettingsViewController else {
-            return
-        }
+        profileSettingsViewController.obtainTextFieldDataStubbed = "Ян"
         let name = profileSettingsViewController.obtainTextFieldData()
         // Act
         guard let isValidName = validationService?.isValidName(name) else { return }

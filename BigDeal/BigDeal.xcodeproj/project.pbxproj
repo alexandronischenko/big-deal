@@ -58,6 +58,9 @@
 		A27EBC4A27F0D9AA00532EDE /* SearchMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4927F0D9AA00532EDE /* SearchMainScreenViewController.swift */; };
 		A27EBC4C27F0D9C600532EDE /* SearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4B27F0D9C600532EDE /* SearchFilterViewController.swift */; };
 		A27EBC4E27F0D9E900532EDE /* FeedMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4D27F0D9E900532EDE /* FeedMainViewController.swift */; };
+		A28A344D2818376D00512017 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28A344C2818376D00512017 /* DatabaseManager.swift */; };
+		A28A344F28183C4B00512017 /* DatabaseManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28A344E28183C4B00512017 /* DatabaseManagerProtocol.swift */; };
+		A28A345228183E1E00512017 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28A345128183E1E00512017 /* UserModel.swift */; };
 		A297430227FECEB8009E5E7D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430127FECEB8009E5E7D /* DataManager.swift */; };
 		A297430527FECF6A009E5E7D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430427FECF6A009E5E7D /* Item.swift */; };
 		A297430727FED162009E5E7D /* ProfileMainCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297430627FED162009E5E7D /* ProfileMainCollectionReusableView.swift */; };
@@ -96,6 +99,8 @@
 		A2DFB8082809643300349967 /* DetailItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8032809643300349967 /* DetailItemPresenter.swift */; };
 		A2DFB8092809643300349967 /* DetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8052809643300349967 /* DetailItemViewController.swift */; };
 		A2DFB80A2809643300349967 /* DetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8062809643300349967 /* DetailItemView.swift */; };
+		A2E216E228181EBB00B87E67 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2E216E128181EBB00B87E67 /* GoogleService-Info.plist */; };
+		A2E216E42818210500B87E67 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E216E32818210500B87E67 /* ViewExtension.swift */; };
 		A2EE6D492802CC9400D2BA4E /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EE6D482802CC9400D2BA4E /* CustomHeaderView.swift */; };
 		A2EFD5C927F0B370001E4071 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5C827F0B370001E4071 /* Enums.swift */; };
 		A2EFD5CB27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */; };
@@ -220,6 +225,9 @@
 		A27EBC4927F0D9AA00532EDE /* SearchMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainScreenViewController.swift; sourceTree = "<group>"; };
 		A27EBC4B27F0D9C600532EDE /* SearchFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterViewController.swift; sourceTree = "<group>"; };
 		A27EBC4D27F0D9E900532EDE /* FeedMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainViewController.swift; sourceTree = "<group>"; };
+		A28A344C2818376D00512017 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		A28A344E28183C4B00512017 /* DatabaseManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerProtocol.swift; sourceTree = "<group>"; };
+		A28A345128183E1E00512017 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		A297430127FECEB8009E5E7D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A297430427FECF6A009E5E7D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A297430627FED162009E5E7D /* ProfileMainCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -258,6 +266,8 @@
 		A2DFB8032809643300349967 /* DetailItemPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailItemPresenter.swift; sourceTree = "<group>"; };
 		A2DFB8052809643300349967 /* DetailItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailItemViewController.swift; sourceTree = "<group>"; };
 		A2DFB8062809643300349967 /* DetailItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailItemView.swift; sourceTree = "<group>"; };
+		A2E216E128181EBB00B87E67 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A2E216E32818210500B87E67 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		A2EE6D482802CC9400D2BA4E /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		A2EFD5C827F0B370001E4071 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
@@ -518,6 +528,7 @@
 		A23E572427F78A090069F74E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A28A344B2818375700512017 /* Firebase */,
 				A2B6815E27FF577E00518A90 /* Helpers */,
 				A2F0EDAA27FDEF910049EBAC /* Category */,
 				A2F0ED9C27FDEE2D0049EBAC /* Hot */,
@@ -529,6 +540,7 @@
 		A23E572627F78A190069F74E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A2E216E128181EBB00B87E67 /* GoogleService-Info.plist */,
 				A2113B0A27CE746000EBA9A9 /* Assets.xcassets */,
 				A2113B0427CE745F00EBA9A9 /* Main.storyboard */,
 				A2113B0C27CE746000EBA9A9 /* LaunchScreen.storyboard */,
@@ -744,6 +756,7 @@
 			children = (
 				A2A3F52D27FE3314003417D6 /* RadioButtonControllers */,
 				A2A3F52C27FE330B003417D6 /* CheckBoxControllers */,
+				A2E216E32818210500B87E67 /* ViewExtension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -814,6 +827,24 @@
 				A2A3F51827FE1279003417D6 /* Cells */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		A28A344B2818375700512017 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				A28A345028183E0F00512017 /* Models */,
+				A28A344C2818376D00512017 /* DatabaseManager.swift */,
+				A28A344E28183C4B00512017 /* DatabaseManagerProtocol.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		A28A345028183E0F00512017 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A28A345128183E1E00512017 /* UserModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A29742FF27FECB69009E5E7D /* Model */ = {
@@ -1477,6 +1508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2113B0E27CE746000EBA9A9 /* LaunchScreen.storyboard in Resources */,
+				A2E216E228181EBB00B87E67 /* GoogleService-Info.plist in Resources */,
 				A2113B0B27CE746000EBA9A9 /* Assets.xcassets in Resources */,
 				A2113B0627CE745F00EBA9A9 /* Main.storyboard in Resources */,
 			);
@@ -1627,6 +1659,7 @@
 				A2F0ED9427FDB9D20049EBAC /* ProductRemoteDataSource.swift in Sources */,
 				A2F0ED9E27FDEE490049EBAC /* HotLocalDataSourceProtocol.swift in Sources */,
 				A297430527FECF6A009E5E7D /* Item.swift in Sources */,
+				A28A344D2818376D00512017 /* DatabaseManager.swift in Sources */,
 				A2A3F52F27FE3356003417D6 /* RadioButtonController.swift in Sources */,
 				A2CF987827DA29C0001A6C39 /* ProfileMainView.swift in Sources */,
 				A2A3F52927FE2DAD003417D6 /* ProfileSettingsModuleBuilder.swift in Sources */,
@@ -1643,6 +1676,7 @@
 				A2F0EDBC27FE07700049EBAC /* ProfileSubscriptionsPresenterInputProtocol.swift in Sources */,
 				A2EFD5D127F0D451001E4071 /* SearchBaseCoordinatedProtocol.swift in Sources */,
 				A26256B927FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift in Sources */,
+				A2E216E42818210500B87E67 /* ViewExtension.swift in Sources */,
 				A2F0ED9227FDB95A0049EBAC /* ProductLocalDataSourceProtocol.swift in Sources */,
 				A26256C027FF2750007FA967 /* AuthenticationRegisterBuilder.swift in Sources */,
 				A2F24F4D27EEF871000B02D6 /* AuthenticationCoordinator.swift in Sources */,
@@ -1673,6 +1707,7 @@
 				A2EE6D492802CC9400D2BA4E /* CustomHeaderView.swift in Sources */,
 				A26256C127FF2750007FA967 /* BuilderPrototcol.swift in Sources */,
 				A2F0EDB127FDEFDE0049EBAC /* CategoryRemoteDataSource.swift in Sources */,
+				A28A344F28183C4B00512017 /* DatabaseManagerProtocol.swift in Sources */,
 				A2A3F53527FE3975003417D6 /* CustomRadioButtonTableViewCell.swift in Sources */,
 				A2FC10762800D0690087AA35 /* SearchResultsModuleBuilder.swift in Sources */,
 				A2B289A42816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift in Sources */,
@@ -1702,6 +1737,7 @@
 				A297430227FECEB8009E5E7D /* DataManager.swift in Sources */,
 				A2F0EDB927FE07220049EBAC /* ProfileSubscriptionsView.swift in Sources */,
 				A2CF988727DA2CDF001A6C39 /* ProfileMainModuleBuilder.swift in Sources */,
+				A28A345228183E1E00512017 /* UserModel.swift in Sources */,
 				A2A3F51727FE126D003417D6 /* CustomCheckBoxTableViewCell.swift in Sources */,
 				A2F24F4027EEEEAB000B02D6 /* FlowCoordinatorProtocol.swift in Sources */,
 				A2FC10722800D02B0087AA35 /* SearchResultsView.swift in Sources */,

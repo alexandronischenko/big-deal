@@ -12,6 +12,12 @@ target 'BigDeal' do
 
   pod 'IQKeyboardManagerSwift'
 
+  # Firebase
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
+  
   pod 'Alamofire', '~> 5.0.0'
 
   target 'BigDealTests' do

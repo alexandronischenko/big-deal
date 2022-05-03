@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol AuthenticationLoginViewProtocol: AnyObject {
-    func didPressedLogin()
+    func didPressedLogin(email: String, password: String)
     func didPressedRegister()
 }
 
@@ -144,7 +144,10 @@ class AuthenticationLoginView: UIView {
     }
     
     @objc func didPressedLoginButton() {
-        delegate?.didPressedLogin()
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            return
+        }
+        delegate?.didPressedLogin(email: email, password: password)
     }
     
     @objc func didPressedRegisterButton() {

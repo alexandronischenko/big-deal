@@ -7,17 +7,18 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 protocol AuthenticationRegisterViewPresenterProtocol: AnyObject {
     init(coordinator: AuthenticationCoordinator)
     func didPressedLogin()
-    func didPressedRegister()
+    func didPressedRegister(email: String, password: String)
     func emailDidChange(textField: UITextField)
     func nameDidChange(textField: UITextField)
     func passwordDidChange(textField: UITextField)
 }
 
-class AuthenticationRegisterViewPresenter: AuthenticationRegisterViewPresenterProtocol, AuthenticationBaseCoordinatedProtocol {
+class AuthenticationRegisterViewPresenter: AuthenticationBaseCoordinatedProtocol, AuthenticationRegisterViewPresenterProtocol {
     weak var view: AuthenticationRegisterViewProtocol?
     var coordinator: AuthenticationBaseCoordinatorProtocol?
     
@@ -26,14 +27,18 @@ class AuthenticationRegisterViewPresenter: AuthenticationRegisterViewPresenterPr
     }
     
     func didPressedLogin() {
-        // MARK: CHECK DATA
-//        coordinator?.moveTo(flow: .profile(.main))
+        coordinator?.moveTo(flow: .authProfile(.authentication(.login)))
     }
     
-    func didPressedRegister() {
-        // MARK: CHECK DATA
-//        coordinator?.moveTo(flow: .profile(.main))
-        coordinator?.moveTo(flow: .authProfile(.profile(.main)))
+    func didPressedRegister(email: String, password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                print("Error creating user: \(error)")
+                return
+            }
+            
+            self.coordinator?.moveTo(flow: .authProfile(.authentication(.login)))
+        }
     }
         
     func emailDidChange(textField: UITextField) {

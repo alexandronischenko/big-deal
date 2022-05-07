@@ -34,6 +34,27 @@ struct Item {
         self.newPrice = newPrice
     }
     
+    init?(stockXItem: StockXItem) {
+        guard
+            let shopTtile = String?("StockX"),
+            let clothTitle = String?(stockXItem.brand),
+            let sizes = [String]?([""]),
+            let oldPrice = String?("Sold"),
+            let newPrice = String?("Buy"),
+            let clothUrl = URL(string: stockXItem.image),
+            let clothData = try? Data(contentsOf: clothUrl),
+            let clothImage = UIImage(data: clothData)
+        else {
+            return nil
+        }
+        self.oldPrice = oldPrice
+        self.clothImage = clothImage
+        self.shopTitle = shopTtile
+        self.clothTitle = clothTitle
+        self.sizes = sizes
+        self.newPrice = newPrice
+    }
+    
     init(shopTitle: String, clothTitle: String, sizes: [String], oldPrice: String, newPrice: String, clothImage: UIImage) {
         self.shopTitle = shopTitle
         self.clothTitle = clothTitle
@@ -43,10 +64,20 @@ struct Item {
         self.clothImage = clothImage
     }
 
-    static func getArray(from products: [Product]) -> [Item]? {
+    static func getAsosArray(from products: [Product]) -> [Item]? {
         var items: [Item] = []
         for product in products {
             if let item = Item(product: product) {
+                items.append(item)
+            }
+        }
+        return items
+    }
+    
+    static func getStockXArray(from stockXItems: [StockXItem]) -> [Item]? {
+        var items: [Item] = []
+        for stockXItem in stockXItems {
+            if let item = Item(stockXItem: stockXItem) {
                 items.append(item)
             }
         }

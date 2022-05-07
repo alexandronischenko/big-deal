@@ -27,6 +27,7 @@ class SearchMainPresenter {
         self.coordinator = coordinator
     }
 }
+// MARK: - SearchMainPresenterOutputProtocol
 
 extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
     func updateData(data: [Item]) {
@@ -37,7 +38,13 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
             completion(response)
         }
     }
+    func obtainProductByNameFromStockX(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
+        productRepository?.obtainProductByNameFromStockX(name: name) { response in
+            completion(response)
+        }
+    }
 }
+// MARK: - SearchBaseCoordinatedProtocol
 
 extension SearchMainPresenter: SearchBaseCoordinatedProtocol {
 }

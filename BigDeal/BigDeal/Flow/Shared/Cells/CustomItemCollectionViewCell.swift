@@ -114,19 +114,19 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
             make.left.equalToSuperview()
         }
         itemShopTitleLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(25)
+            make.bottom.equalToSuperview().offset(23)
             make.left.equalToSuperview()
         }
         itemTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemShopTitleLabel).inset(17)
+            make.top.equalTo(itemShopTitleLabel).inset(15)
             make.left.equalToSuperview()
         }
         itemOldPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemTitleLabel).inset(22)
+            make.top.equalTo(itemTitleLabel).inset(19)
             make.left.equalToSuperview()
         }
         itemNewPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemOldPriceLabel).inset(18)
+            make.top.equalTo(itemOldPriceLabel).inset(15)
             make.left.equalToSuperview()
         }
     }

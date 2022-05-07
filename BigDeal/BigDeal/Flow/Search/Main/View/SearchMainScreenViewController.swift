@@ -58,12 +58,38 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
                         self?.dataCollectingErrorAlert() 
                         return
                     }
-                    let result = try JSONDecoder().decode(Result.self, from: data)
-                    guard let items = Item.getArray(from: result.products) else {
+                    let result = try JSONDecoder().decode(Asos.self, from: data)
+                    guard let items = Item.getAsosArray(from: result.products) else {
                         self?.dataCollectingErrorAlert()
                         return
                     }
-                    self?.searchMainView.data = items
+                    self?.searchMainView.data += items
+                    DispatchQueue.main.async {
+                        self?.searchMainView.collectionView.reloadData()
+                    }
+                } catch {
+                    self?.obtainDataErrorAlert(error: error)
+                }
+            case .failure(let error):
+                self?.resposeResultFailureAlert(with: error)
+            }
+        }
+    }
+    func obtainProductByNameFromStockX(name: String) {
+        output?.obtainProductByNameFromStockX(name: name) { [weak self] response in
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data else {
+                        self?.dataCollectingErrorAlert()
+                        return
+                    }
+                    let result = try JSONDecoder().decode(StockX.self, from: data)
+                    guard let items = Item.getStockXArray(from: result.stockXData.stockXItems) else {
+                        self?.dataCollectingErrorAlert()
+                        return
+                    }
+                    self?.searchMainView.data += items
                     DispatchQueue.main.async {
                         self?.searchMainView.collectionView.reloadData()
                     }
@@ -107,7 +133,16 @@ extension SearchMainViewController: UISearchBarDelegate {
         guard let searchBarText = searchBar.text else {
             return
         }
-        obtainProductByNameFromAsos(name: searchBarText)
+//        obtainProductByNameFromAsos(name: searchBarText)
+        obtainProductByNameFromStockX(name: searchBarText)
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchMainView.data = []
+        DispatchQueue.main.async {
+            self.searchMainView.collectionView.reloadData()
+        }
         searchBar.resignFirstResponder()
     }
 }

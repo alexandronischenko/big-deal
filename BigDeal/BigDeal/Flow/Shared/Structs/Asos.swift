@@ -1,6 +1,6 @@
 import Foundation
 
-struct Result: Codable {
+struct Asos: Codable {
     let products: [Product]
 }
 

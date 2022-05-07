@@ -3,7 +3,7 @@ import UIKit
 class SearchMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
-    private var data: [Item]?
+    var data: [Item]?
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -95,8 +95,10 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
 
 extension SearchMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return data?.count
-    return 5
+        guard let data = data else {
+            return 0
+        }
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -45,7 +45,7 @@ extension SearchCoordinator: SearchBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: SearchResultsModuleBuilder().buildModule(coordinator: self))
+        rootViewController = UINavigationController(rootViewController: SearchMainModuleBuilder().buildModule(coordinator: self))
         guard let navigationController = rootViewController as? UINavigationController else {
             return UIViewController()
         }

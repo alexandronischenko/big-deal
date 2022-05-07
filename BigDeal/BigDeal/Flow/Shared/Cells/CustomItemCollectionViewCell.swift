@@ -102,7 +102,6 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(itemImageView)
         contentView.addSubview(itemShopTitleLabel)
         contentView.addSubview(itemTitleLabel)
-        contentView.addSubview(itemAvailableSizesLabel)
         contentView.addSubview(itemOldPriceLabel)
         contentView.addSubview(itemNewPriceLabel)
     }
@@ -115,23 +114,19 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
             make.left.equalToSuperview()
         }
         itemShopTitleLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview().offset(25)
             make.left.equalToSuperview()
         }
         itemTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemShopTitleLabel).inset(12)
-            make.left.equalToSuperview()
-        }
-        itemAvailableSizesLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemTitleLabel).inset(15)
+            make.top.equalTo(itemShopTitleLabel).inset(17)
             make.left.equalToSuperview()
         }
         itemOldPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemAvailableSizesLabel).inset(12)
+            make.top.equalTo(itemTitleLabel).inset(22)
             make.left.equalToSuperview()
         }
         itemNewPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemOldPriceLabel).inset(12)
+            make.top.equalTo(itemOldPriceLabel).inset(18)
             make.left.equalToSuperview()
         }
     }

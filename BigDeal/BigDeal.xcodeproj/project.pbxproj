@@ -14,6 +14,8 @@
 		A200230827F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200230727F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift */; };
 		A200230A27F6FD2C002D04AE /* FeedMainPresenterOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200230927F6FD2C002D04AE /* FeedMainPresenterOutputProtocol.swift */; };
 		A200231027F6FF86002D04AE /* FeedMainModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200230F27F6FF86002D04AE /* FeedMainModuleBuilder.swift */; };
+		A200B7B12823BFD3002D541E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200B7B02823BFD3002D541E /* Result.swift */; };
+		A200B7B32826AA3F002D541E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200B7B22826AA3F002D541E /* Errors.swift */; };
 		A2113AFF27CE745F00EBA9A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113AFE27CE745F00EBA9A9 /* AppDelegate.swift */; };
 		A2113B0127CE745F00EBA9A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B0027CE745F00EBA9A9 /* SceneDelegate.swift */; };
 		A2113B0627CE745F00EBA9A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2113B0427CE745F00EBA9A9 /* Main.storyboard */; };
@@ -177,6 +179,8 @@
 		A200230727F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainPresenterInputProtocol.swift; sourceTree = "<group>"; };
 		A200230927F6FD2C002D04AE /* FeedMainPresenterOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainPresenterOutputProtocol.swift; sourceTree = "<group>"; };
 		A200230F27F6FF86002D04AE /* FeedMainModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainModuleBuilder.swift; sourceTree = "<group>"; };
+		A200B7B02823BFD3002D541E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		A200B7B22826AA3F002D541E /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		A2113AFB27CE745F00EBA9A9 /* BigDeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BigDeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2113AFE27CE745F00EBA9A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2113B0027CE745F00EBA9A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -867,6 +871,7 @@
 			isa = PBXGroup;
 			children = (
 				A297430427FECF6A009E5E7D /* Item.swift */,
+				A200B7B02823BFD3002D541E /* Result.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -975,6 +980,7 @@
 			isa = PBXGroup;
 			children = (
 				A2B289AA2816C43C008D2B75 /* UserDefaultsKeys.swift */,
+				A200B7B22826AA3F002D541E /* Errors.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1687,8 +1693,10 @@
 				A299494928089E8900285BF1 /* DetailBaseCoordinatorProtocol.swift in Sources */,
 				A2F0ED8C27FDB8730049EBAC /* ProductRepositoryProtocol.swift in Sources */,
 				A2FC10742800D0410087AA35 /* SearchResultsViewController.swift in Sources */,
+				A200B7B12823BFD3002D541E /* Result.swift in Sources */,
 				A2FC10702800CFFD0087AA35 /* SearchResultsPresenter.swift in Sources */,
 				A26256C427FF2750007FA967 /* AuthenticationLoginView.swift in Sources */,
+				A200B7B32826AA3F002D541E /* Errors.swift in Sources */,
 				A2A3F51F27FE2CDC003417D6 /* ProfileSettingsView.swift in Sources */,
 				A23D05C3280176C700040980 /* SearchFilterPresenterOutputProtocol.swift in Sources */,
 				A22CF8F8281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift in Sources */,
@@ -1964,6 +1972,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S75KQYF72G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BigDeal/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1991,6 +2000,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S75KQYF72G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BigDeal/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

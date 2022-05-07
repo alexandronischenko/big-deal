@@ -133,7 +133,7 @@ extension SearchMainViewController: UISearchBarDelegate {
         guard let searchBarText = searchBar.text else {
             return
         }
-//        obtainProductByNameFromAsos(name: searchBarText)
+        obtainProductByNameFromAsos(name: searchBarText)
         obtainProductByNameFromStockX(name: searchBarText)
         searchBar.resignFirstResponder()
     }

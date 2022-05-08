@@ -1,10 +1,10 @@
 import Foundation
 
 struct Asos: Codable {
-    let products: [Product]
+    let products: [AsosProduct]
 }
 
-struct Product: Codable {
+struct AsosProduct: Codable {
     let name: String
     let price: Price
     let url: String

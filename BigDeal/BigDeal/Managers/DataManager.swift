@@ -20,16 +20,23 @@ class DataManager {
     
     var accessTokensForAsos: [String: String] = [
         "tokenForSearch": "1279077585mshb23d041886d9bb3p1b1539jsnfe59a7f5a95c",
-        "tokenForFeed": "",
-        "tokenForFilter": "",
-        "tokenForCategories": ""
+        "tokenForFeed": "15801b7014mshb9c59eb4950d191p127171jsnb11bc270dac0",
+        "tokenForFilter": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
+        "tokenForCategories": "895743ac99msh9c876e80d25b3d8p1c7c54jsnfcc7f96fe3ae"
     ]
     
     var accessTokensForStockX: [String: String] = [
         "tokenForSearch": "1279077585mshb23d041886d9bb3p1b1539jsnfe59a7f5a95c",
-        "tokenForFeed": "",
-        "tokenForFilter": "",
-        "tokenForCategories": ""
+        "tokenForFeed": "15801b7014mshb9c59eb4950d191p127171jsnb11bc270dac0",
+        "tokenForFilter": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
+        "tokenForCategories": "895743ac99msh9c876e80d25b3d8p1c7c54jsnfcc7f96fe3ae"
+    ]
+    
+    var accessTokensForFarfetch: [String: String] = [
+        "tokenForSearch": "1279077585mshb23d041886d9bb3p1b1539jsnfe59a7f5a95c",
+        "tokenForFeed": "15801b7014mshb9c59eb4950d191p127171jsnb11bc270dac0",
+        "tokenForFilter": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
+        "tokenForCategories": "895743ac99msh9c876e80d25b3d8p1c7c54jsnfcc7f96fe3ae"
     ]
     
     var isExpandedArray: [Bool] = [

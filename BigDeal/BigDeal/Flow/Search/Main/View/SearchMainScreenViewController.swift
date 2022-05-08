@@ -36,9 +36,11 @@ class SearchMainViewController: UIViewController {
         
         let accessTokenForAsosSearch = DataManager.shared.accessTokensForAsos["tokenForSearch"]
         let accessTokenForStockXSearch = DataManager.shared.accessTokensForStockX["tokenForSearch"]
+        let accessTokenForStockXFarfetch = DataManager.shared.accessTokensForFarfetch["tokenForSearch"]
         
         KeychainManager.standard.save(accessTokenForAsosSearch, service: ApiServices.accessToken.rawValue, account: ApiAccounts.asos.rawValue)
         KeychainManager.standard.save(accessTokenForStockXSearch, service: ApiServices.accessToken.rawValue, account: ApiAccounts.stockX.rawValue)
+        KeychainManager.standard.save(accessTokenForStockXFarfetch, service: ApiServices.accessToken.rawValue, account: ApiAccounts.farfetch.rawValue)
     }
 }
 
@@ -105,6 +107,32 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
             }
         }
     }
+    func obtainProductByNameFromFarfetch(name: String) {
+        output?.obtainProductByNameFromFarfetch(name: name) { [weak self] response in
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data else {
+                        self?.dataCollectingErrorAlert()
+                        return
+                    }
+                    let result = try JSONDecoder().decode(Farfetch.self, from: data)
+                    guard let items = Item.getFarfetchArray(from: result.products.entries) else {
+                        self?.dataCollectingErrorAlert()
+                        return
+                    }
+                    self?.searchMainView.data += items
+                    DispatchQueue.main.async {
+                        self?.searchMainView.collectionView.reloadData()
+                    }
+                } catch {
+                    self?.obtainDataErrorAlert(error: error)
+                }
+            case .failure(let error):
+                self?.resposeResultFailureAlert(with: error)
+            }
+        }
+    }
     func dataCollectingErrorAlert() {
         guard let collectingError = String?(ErrorsDescriptions.collectingError.rawValue) else {
             return
@@ -138,7 +166,8 @@ extension SearchMainViewController: UISearchBarDelegate {
             return
         }
         obtainProductByNameFromAsos(name: searchBarText)
-        obtainProductByNameFromStockX(name: searchBarText)
+//        obtainProductByNameFromStockX(name: searchBarText )
+        print(self.searchMainView.data)
         searchBar.resignFirstResponder()
     }
     

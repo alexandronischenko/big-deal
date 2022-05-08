@@ -1,4 +1,5 @@
 import Foundation
+import Alamofire
 
 class FeedMainPresenter {
     // MARK: - Properties
@@ -30,6 +31,16 @@ class FeedMainPresenter {
 extension FeedMainPresenter: FeedMainPresenterOutputProtocol {
     func updateData(data: [Item]) {
         input?.updateData(data: data)
+    }
+    func obtainHotProductsFromAsos(completion: @escaping(AFDataResponse<Any>) -> Void) {
+        hotRepository?.obtainHotProductsFromAsos { response in
+            completion(response)
+        }
+    }
+    func obtainHotProductsFromStockX(completion: @escaping(AFDataResponse<Any>) -> Void) {
+        hotRepository?.obtainHotProductsFromStockX { response in
+            completion(response)
+        }
     }
 }
 

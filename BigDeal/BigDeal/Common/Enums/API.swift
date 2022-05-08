@@ -1,7 +1,10 @@
 import Foundation
 
 enum ApiServices: String {
-    case accessToken
+    case accessTokenForSearch
+    case accessTokenForFeed
+    case accessTokenForCategories
+    case accessTokenForFilter
 }
 
 enum ApiAccounts: String {
@@ -9,3 +12,4 @@ enum ApiAccounts: String {
     case stockX
     case farfetch
 }
+

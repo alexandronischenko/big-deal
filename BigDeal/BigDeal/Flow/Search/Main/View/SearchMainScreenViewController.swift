@@ -36,11 +36,11 @@ class SearchMainViewController: UIViewController {
         
         let accessTokenForAsosSearch = DataManager.shared.accessTokensForAsos["tokenForSearch"]
         let accessTokenForStockXSearch = DataManager.shared.accessTokensForStockX["tokenForSearch"]
-        let accessTokenForStockXFarfetch = DataManager.shared.accessTokensForFarfetch["tokenForSearch"]
+        let accessTokenForFarfetchSearch = DataManager.shared.accessTokensForFarfetch["tokenForSearch"]
         
-        KeychainManager.standard.save(accessTokenForAsosSearch, service: ApiServices.accessToken.rawValue, account: ApiAccounts.asos.rawValue)
-        KeychainManager.standard.save(accessTokenForStockXSearch, service: ApiServices.accessToken.rawValue, account: ApiAccounts.stockX.rawValue)
-        KeychainManager.standard.save(accessTokenForStockXFarfetch, service: ApiServices.accessToken.rawValue, account: ApiAccounts.farfetch.rawValue)
+        KeychainManager.standard.save(accessTokenForAsosSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.asos.rawValue)
+        KeychainManager.standard.save(accessTokenForStockXSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.stockX.rawValue)
+        KeychainManager.standard.save(accessTokenForFarfetchSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.farfetch.rawValue)
     }
 }
 
@@ -162,12 +162,12 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
 
 extension SearchMainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchMainView.data = []
         guard let searchBarText = searchBar.text else {
             return
         }
         obtainProductByNameFromAsos(name: searchBarText)
 //        obtainProductByNameFromStockX(name: searchBarText )
-        print(self.searchMainView.data)
         searchBar.resignFirstResponder()
     }
     

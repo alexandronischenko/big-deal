@@ -22,7 +22,6 @@ extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 // MARK: - ProfileMainPresenterOutputProtocol
 
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
-    
     func moveToDetailFlow(model: Item) {
         let image = UIImage(systemName: "circle")
         guard let image = image else {
@@ -32,13 +31,10 @@ extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
     }
 
     func moveToSettingsScreen() {
-//        coordinator?.moveTo(flow: .profile(.settings))
         coordinator?.moveTo(flow: .authProfile(.profile(.settings)))
     }
     
     func moveToSubscriptionsScreen() {
-//        coordinator?.moveTo(flow: .profile(.subscriptions))
         coordinator?.moveTo(flow: .authProfile(.profile(.subscriptions)))
-//        coordinator?.moveTo(flow: .profile(.subscriptions))
     }
 }

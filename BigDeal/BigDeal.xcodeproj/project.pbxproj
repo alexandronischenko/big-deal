@@ -26,6 +26,7 @@
 		A2113B1927CE746000EBA9A9 /* BigDealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B1827CE746000EBA9A9 /* BigDealTests.swift */; };
 		A2113B2327CE746000EBA9A9 /* BigDealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B2227CE746000EBA9A9 /* BigDealUITests.swift */; };
 		A2113B2527CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B2427CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift */; };
+		A228EB882827F00A0097D3D3 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A228EB872827F00A0097D3D3 /* API.swift */; };
 		A22CF8F8281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CF8F7281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift */; };
 		A22CF8FA281F2DEC00CAEDB7 /* SearchMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CF8F9281F2DEC00CAEDB7 /* SearchMainPresenter.swift */; };
 		A22CF8FD281F2E4000CAEDB7 /* SearchMainPresenterInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CF8FC281F2E4000CAEDB7 /* SearchMainPresenterInputProtocol.swift */; };
@@ -196,6 +197,7 @@
 		A2113B1E27CE746000EBA9A9 /* BigDealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BigDealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2113B2227CE746000EBA9A9 /* BigDealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigDealUITests.swift; sourceTree = "<group>"; };
 		A2113B2427CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigDealUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A228EB872827F00A0097D3D3 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A22CF8F7281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainModuleBuilder.swift; sourceTree = "<group>"; };
 		A22CF8F9281F2DEC00CAEDB7 /* SearchMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainPresenter.swift; sourceTree = "<group>"; };
 		A22CF8FC281F2E4000CAEDB7 /* SearchMainPresenterInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainPresenterInputProtocol.swift; sourceTree = "<group>"; };
@@ -984,6 +986,7 @@
 			children = (
 				A2B289AA2816C43C008D2B75 /* UserDefaultsKeys.swift */,
 				A200B7B22826AA3F002D541E /* Errors.swift */,
+				A228EB872827F00A0097D3D3 /* API.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1675,6 +1678,7 @@
 				A297430927FED25E009E5E7D /* CustomItemCollectionViewCell.swift in Sources */,
 				A2DFB80A2809643300349967 /* DetailItemView.swift in Sources */,
 				A2A3F52727FE2D7D003417D6 /* ProfileSettingsPresenter.swift in Sources */,
+				A228EB882827F00A0097D3D3 /* API.swift in Sources */,
 				A27EBC4C27F0D9C600532EDE /* SearchFilterViewController.swift in Sources */,
 				A26256BF27FF2750007FA967 /* AuthenticationRegisterViewController.swift in Sources */,
 				A2113B0927CE745F00EBA9A9 /* BigDeal.xcdatamodeld in Sources */,

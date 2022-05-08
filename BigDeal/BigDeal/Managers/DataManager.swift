@@ -18,11 +18,24 @@ class DataManager {
         Item(shopTitle: "ASOS", clothTitle: "Sneakers", sizes: ["42", "43", "44"], oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img2"))
     ]
     
+    var accessTokensForAsos: [String: String] = [
+        "tokenForSearch": "1279077585mshb23d041886d9bb3p1b1539jsnfe59a7f5a95c",
+        "tokenForFeed": "",
+        "tokenForFilter": "",
+        "tokenForCategories": ""
+    ]
+    
+    var accessTokensForStockX: [String: String] = [
+        "tokenForSearch": "1279077585mshb23d041886d9bb3p1b1539jsnfe59a7f5a95c",
+        "tokenForFeed": "",
+        "tokenForFilter": "",
+        "tokenForCategories": ""
+    ]
+    
     var isExpandedArray: [Bool] = [
         false, false, false, false, false, false, false
     ]
     
     var isDoneArray: [Bool] = [
-        
     ]
 }

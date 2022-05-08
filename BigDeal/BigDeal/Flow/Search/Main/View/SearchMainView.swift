@@ -68,6 +68,7 @@ class SearchMainView: UIView {
         self.data = data
     }
 }
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension SearchMainView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -92,6 +93,7 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: frame.width / 2.3, height: 230)
     }
 }
+// MARK: - UICollectionViewDataSource
 
 extension SearchMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -21,9 +21,6 @@ class DetailItemPresenter: DetailItemPresenterProtocol, DetailBaseCoordinatedPro
     }
 
     func buttonPressedGoToShopSite() {
-
-
-//        coordinator?.moveTo(flow: .authentication(.login))
         coordinator?.moveTo(flow: .authProfile(.authentication(.login)))
     }
 }

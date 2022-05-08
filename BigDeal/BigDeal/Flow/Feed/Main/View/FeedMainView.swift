@@ -43,8 +43,6 @@ class FeedMainView: UIView {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-//        addSubview(scrollView)
-//        scrollView.addSubview(collectionView)
         addSubview(collectionView)
         layoutSubviews()
     }
@@ -54,9 +52,6 @@ class FeedMainView: UIView {
     }
     
     override func layoutSubviews() {
-//        scrollView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -74,7 +69,6 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = data[indexPath.row]
-        //        delegate?.moveToDetailFlow(model: model)
         print("item pressed")
     }
     

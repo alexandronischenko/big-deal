@@ -6,11 +6,9 @@ class SearchMainViewController: UIViewController {
     
     private let searchMainView = SearchMainView()
     private var output: SearchMainPresenterOutputProtocol?
-    
     // MARK: - Protocol properties
     
     var coordinator: SearchBaseCoordinatorProtocol?
-    
     // MARK: - Initializers
     
     init(output: SearchMainPresenterOutputProtocol) {
@@ -21,7 +19,6 @@ class SearchMainViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - View life cycle
     
     override func loadView() {
@@ -30,11 +27,18 @@ class SearchMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         
+        view.backgroundColor = .systemBackground
         title = "Сatalog"
+        
         navigationItem.searchController = searchMainView.searchController
         searchMainView.searchController.searchBar.delegate = self
+        
+        let accessTokenForAsosSearch = DataManager.shared.accessTokensForAsos["tokenForSearch"]
+        let accessTokenForStockXSearch = DataManager.shared.accessTokensForStockX["tokenForSearch"]
+        
+        KeychainManager.standard.save(accessTokenForAsosSearch, service: ApiServices.accessToken.rawValue, account: ApiAccounts.asos.rawValue)
+        KeychainManager.standard.save(accessTokenForStockXSearch, service: ApiServices.accessToken.rawValue, account: ApiAccounts.stockX.rawValue)
     }
 }
 

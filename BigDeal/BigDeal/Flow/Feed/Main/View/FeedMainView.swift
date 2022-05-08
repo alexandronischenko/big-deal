@@ -3,7 +3,7 @@ import UIKit
 class FeedMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
-    var data: [Item] = DataManager.shared.data
+    var data: [Item] = []
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

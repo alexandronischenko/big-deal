@@ -4,9 +4,9 @@ import Alamofire
 class ProductRemoteDataSource: ProductRemoteDataSourceProtocol {
     // MARK: - Private properties
     
-    private let accessTokenForAsos = KeychainManager.standard.read(service: ApiServices.accessToken.rawValue, account: ApiAccounts.asos.rawValue, type: String.self)
-    private let accessTokenForStockX = KeychainManager.standard.read(service: ApiServices.accessToken.rawValue, account: ApiAccounts.stockX.rawValue, type: String.self)
-    private let accessTokenForFarfetch = KeychainManager.standard.read(service: ApiServices.accessToken.rawValue, account: ApiAccounts.farfetch.rawValue, type: String.self)
+    private let accessTokenForAsos = KeychainManager.standard.read(service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.asos.rawValue, type: String.self)
+    private let accessTokenForStockX = KeychainManager.standard.read(service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.stockX.rawValue, type: String.self)
+    private let accessTokenForFarfetch = KeychainManager.standard.read(service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.farfetch.rawValue, type: String.self)
     // MARK: - Functions
     
     // Requests from ASOS API

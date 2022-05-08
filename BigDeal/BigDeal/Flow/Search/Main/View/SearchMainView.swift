@@ -3,7 +3,7 @@ import UIKit
 class SearchMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
-    private var data: [Item]?
+    var data: [Item] = []
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -68,6 +68,7 @@ class SearchMainView: UIView {
         self.data = data
     }
 }
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension SearchMainView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -92,18 +93,18 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: frame.width / 2.3, height: 230)
     }
 }
+// MARK: - UICollectionViewDataSource
 
 extension SearchMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return data?.count
-    return 5
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.data = self.data?[indexPath.row]
+        cell.data = self.data[indexPath.row]
         return cell
     }
     

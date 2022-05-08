@@ -28,19 +28,16 @@ class ProfileCoordinator {
     }
     
     private func moveToProfileFlowMainScreen() {
-//        navigationRootViewController?.popToRootViewController(animated: true)
         rootNavigationViewController.popToRootViewController(animated: true)
     }
     
     private func moveToProfileFlowSettingScreen() {
         let profileFlowSettingsViewController = ProfileSettingsModuleBuilder().buildModule(coordinator: self)
-//        navigationRootViewController?.pushViewController(profileFlowSettingsViewController, animated: true)
         rootNavigationViewController.pushViewController(profileFlowSettingsViewController, animated: true)
     }
     
     private func moveToProfileFlowSubscriptionsScreen() {
         let profileFlowSubscriptionsViewController = ProfileSubscriptionsModuleBuilder().buildModule(coordinator: self)
-//        navigationRootViewController?.pushViewController(profileFlowSubscriptionsViewController, animated: true)
         rootNavigationViewController.pushViewController(profileFlowSubscriptionsViewController, animated: true)
     }
 }

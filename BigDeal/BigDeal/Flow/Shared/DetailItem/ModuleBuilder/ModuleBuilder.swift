@@ -9,7 +9,6 @@ import UIKit
 
 class DetailItemBuilder: ModuleBuilder {
     func build() -> UIViewController {
-        
     }
     
     let coordinator: FlowCoordinatorProtocol

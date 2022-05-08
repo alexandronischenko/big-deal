@@ -26,6 +26,4 @@ class ProfileSettingsPresenterInputMock: ProfileSettingsPresenterInputProtocol {
         let textFieldData = "Carti"
         return textFieldData.count
     }
-    
-    
 }

@@ -20,7 +20,6 @@ class DetailCoordinator {
     }
     
     private func moveToDetailFlowMainScreen() {
-        
     }
 }
 

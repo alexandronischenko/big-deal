@@ -3,7 +3,6 @@ import XCTest
 
 class ProfileSettingsValidatorUnitTests: XCTestCase {
     // MARK: - Properties
-    
     private var profileSettingsViewController: ProfileSettingsPresenterInputMock!
     private var validationService: ValidationServiceProtocol!
     

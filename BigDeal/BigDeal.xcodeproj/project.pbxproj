@@ -14,6 +14,9 @@
 		A200230827F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200230727F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift */; };
 		A200230A27F6FD2C002D04AE /* FeedMainPresenterOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200230927F6FD2C002D04AE /* FeedMainPresenterOutputProtocol.swift */; };
 		A200231027F6FF86002D04AE /* FeedMainModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200230F27F6FF86002D04AE /* FeedMainModuleBuilder.swift */; };
+		A200B7B12823BFD3002D541E /* Asos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200B7B02823BFD3002D541E /* Asos.swift */; };
+		A200B7B32826AA3F002D541E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200B7B22826AA3F002D541E /* Errors.swift */; };
+		A200B7B52826F2E5002D541E /* StockX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200B7B42826F2E5002D541E /* StockX.swift */; };
 		A2113AFF27CE745F00EBA9A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113AFE27CE745F00EBA9A9 /* AppDelegate.swift */; };
 		A2113B0127CE745F00EBA9A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B0027CE745F00EBA9A9 /* SceneDelegate.swift */; };
 		A2113B0627CE745F00EBA9A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2113B0427CE745F00EBA9A9 /* Main.storyboard */; };
@@ -23,6 +26,7 @@
 		A2113B1927CE746000EBA9A9 /* BigDealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B1827CE746000EBA9A9 /* BigDealTests.swift */; };
 		A2113B2327CE746000EBA9A9 /* BigDealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B2227CE746000EBA9A9 /* BigDealUITests.swift */; };
 		A2113B2527CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B2427CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift */; };
+		A228EB882827F00A0097D3D3 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A228EB872827F00A0097D3D3 /* API.swift */; };
 		A22CF8F8281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CF8F7281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift */; };
 		A22CF8FA281F2DEC00CAEDB7 /* SearchMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CF8F9281F2DEC00CAEDB7 /* SearchMainPresenter.swift */; };
 		A22CF8FD281F2E4000CAEDB7 /* SearchMainPresenterInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CF8FC281F2E4000CAEDB7 /* SearchMainPresenterInputProtocol.swift */; };
@@ -177,6 +181,9 @@
 		A200230727F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainPresenterInputProtocol.swift; sourceTree = "<group>"; };
 		A200230927F6FD2C002D04AE /* FeedMainPresenterOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainPresenterOutputProtocol.swift; sourceTree = "<group>"; };
 		A200230F27F6FF86002D04AE /* FeedMainModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainModuleBuilder.swift; sourceTree = "<group>"; };
+		A200B7B02823BFD3002D541E /* Asos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asos.swift; sourceTree = "<group>"; };
+		A200B7B22826AA3F002D541E /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		A200B7B42826F2E5002D541E /* StockX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockX.swift; sourceTree = "<group>"; };
 		A2113AFB27CE745F00EBA9A9 /* BigDeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BigDeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2113AFE27CE745F00EBA9A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2113B0027CE745F00EBA9A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +197,7 @@
 		A2113B1E27CE746000EBA9A9 /* BigDealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BigDealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2113B2227CE746000EBA9A9 /* BigDealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigDealUITests.swift; sourceTree = "<group>"; };
 		A2113B2427CE746000EBA9A9 /* BigDealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigDealUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A228EB872827F00A0097D3D3 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A22CF8F7281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainModuleBuilder.swift; sourceTree = "<group>"; };
 		A22CF8F9281F2DEC00CAEDB7 /* SearchMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainPresenter.swift; sourceTree = "<group>"; };
 		A22CF8FC281F2E4000CAEDB7 /* SearchMainPresenterInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainPresenterInputProtocol.swift; sourceTree = "<group>"; };
@@ -867,6 +875,8 @@
 			isa = PBXGroup;
 			children = (
 				A297430427FECF6A009E5E7D /* Item.swift */,
+				A200B7B02823BFD3002D541E /* Asos.swift */,
+				A200B7B42826F2E5002D541E /* StockX.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -975,6 +985,8 @@
 			isa = PBXGroup;
 			children = (
 				A2B289AA2816C43C008D2B75 /* UserDefaultsKeys.swift */,
+				A200B7B22826AA3F002D541E /* Errors.swift */,
+				A228EB872827F00A0097D3D3 /* API.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1666,6 +1678,7 @@
 				A297430927FED25E009E5E7D /* CustomItemCollectionViewCell.swift in Sources */,
 				A2DFB80A2809643300349967 /* DetailItemView.swift in Sources */,
 				A2A3F52727FE2D7D003417D6 /* ProfileSettingsPresenter.swift in Sources */,
+				A228EB882827F00A0097D3D3 /* API.swift in Sources */,
 				A27EBC4C27F0D9C600532EDE /* SearchFilterViewController.swift in Sources */,
 				A26256BF27FF2750007FA967 /* AuthenticationRegisterViewController.swift in Sources */,
 				A2113B0927CE745F00EBA9A9 /* BigDeal.xcdatamodeld in Sources */,
@@ -1687,10 +1700,13 @@
 				A299494928089E8900285BF1 /* DetailBaseCoordinatorProtocol.swift in Sources */,
 				A2F0ED8C27FDB8730049EBAC /* ProductRepositoryProtocol.swift in Sources */,
 				A2FC10742800D0410087AA35 /* SearchResultsViewController.swift in Sources */,
+				A200B7B12823BFD3002D541E /* Asos.swift in Sources */,
 				A2FC10702800CFFD0087AA35 /* SearchResultsPresenter.swift in Sources */,
 				A26256C427FF2750007FA967 /* AuthenticationLoginView.swift in Sources */,
+				A200B7B32826AA3F002D541E /* Errors.swift in Sources */,
 				A2A3F51F27FE2CDC003417D6 /* ProfileSettingsView.swift in Sources */,
 				A23D05C3280176C700040980 /* SearchFilterPresenterOutputProtocol.swift in Sources */,
+				A200B7B52826F2E5002D541E /* StockX.swift in Sources */,
 				A22CF8F8281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift in Sources */,
 				A2DFB8072809643300349967 /* ModuleBuilder.swift in Sources */,
 				A27EBC4E27F0D9E900532EDE /* FeedMainViewController.swift in Sources */,
@@ -1964,6 +1980,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S75KQYF72G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BigDeal/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1991,6 +2008,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S75KQYF72G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BigDeal/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

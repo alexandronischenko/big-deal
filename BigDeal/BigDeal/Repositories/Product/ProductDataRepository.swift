@@ -29,4 +29,11 @@ class ProductDataRepository: ProductRepositoryProtocol {
             completion(response)
         }
     }
+    // Request from Farfetch API
+    
+    func obtainProductByNameFromFarfetch(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
+        remoteDataSource.obtainProductByNameFromFarfetch(name: name) { response in
+            completion(response)
+        }
+    }
 }

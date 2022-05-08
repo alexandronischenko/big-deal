@@ -7,4 +7,5 @@ enum ApiServices: String {
 enum ApiAccounts: String {
     case asos
     case stockX
+    case farfetch
 }

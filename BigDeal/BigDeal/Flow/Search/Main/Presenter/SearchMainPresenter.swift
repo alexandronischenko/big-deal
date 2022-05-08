@@ -43,6 +43,11 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
             completion(response)
         }
     }
+    func obtainProductByNameFromFarfetch(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
+        productRepository?.obtainProductByNameFromFarfetch(name: name) { response in
+            completion(response)
+        }
+    }
 }
 // MARK: - SearchBaseCoordinatedProtocol
 

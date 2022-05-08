@@ -162,12 +162,12 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
 
 extension SearchMainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchMainView.data = []
         guard let searchBarText = searchBar.text else {
             return
         }
         obtainProductByNameFromAsos(name: searchBarText)
 //        obtainProductByNameFromStockX(name: searchBarText )
-        print(self.searchMainView.data)
         searchBar.resignFirstResponder()
     }
     

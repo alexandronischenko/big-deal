@@ -22,7 +22,7 @@ class HotRemoteDataSource: HotRemoteDataSourceProtocol {
         let parameters = [
             "store": "US",
             "offset": "0",
-            "categoryId": "28239",
+            "categoryId": "28235",
             "limit": "100",
             "country": "US",
             "sort": "freshness",

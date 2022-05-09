@@ -34,6 +34,9 @@ class FeedMainViewController: UIViewController {
         
         title = "Feed"
 //        navigationItem.searchController = feedMainView.searchController
+        feedMainView.delegate = self
+        
+        startAnimating()
         
         obtainHotProductsFromAsos()
         
@@ -68,6 +71,7 @@ extension FeedMainViewController: FeedMainPresenterInputProtocol {
                     }
                     self?.feedMainView.data += items
                     DispatchQueue.main.async {
+                        self?.stopAnimating()
                         self?.feedMainView.collectionView.reloadData()
                     }
                 } catch {
@@ -127,5 +131,14 @@ extension FeedMainViewController: FeedMainPresenterInputProtocol {
             self.dismiss(animated: true, completion: nil)
         })
         self.present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension FeedMainViewController: ActivityIndicatorViewDelegateProtocol {
+    func stopAnimating() {
+        feedMainView.activityIndicatorView.stopAnimating()
+    }
+    func startAnimating() {
+        feedMainView.activityIndicatorView.startAnimating()
     }
 }

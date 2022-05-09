@@ -31,6 +31,7 @@ class SearchMainViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Сatalog"
         
+        searchMainView.delegate = self
         navigationItem.searchController = searchMainView.searchController
         searchMainView.searchController.searchBar.delegate = self
     }
@@ -63,6 +64,7 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
                     }
                     self?.searchMainView.data += items
                     DispatchQueue.main.async {
+                        self?.stopAnimating()
                         self?.searchMainView.collectionView.reloadData()
                     }
                 } catch {
@@ -89,6 +91,7 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
                     }
                     self?.searchMainView.data += items
                     DispatchQueue.main.async {
+                        self?.stopAnimating()
                         self?.searchMainView.collectionView.reloadData()
                     }
                 } catch {
@@ -115,6 +118,7 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
                     }
                     self?.searchMainView.data += items
                     DispatchQueue.main.async {
+                        self?.startAnimating()
                         self?.searchMainView.collectionView.reloadData()
                     }
                 } catch {
@@ -158,8 +162,9 @@ extension SearchMainViewController: UISearchBarDelegate {
         guard let searchBarText = searchBar.text else {
             return
         }
+        startAnimating()
         obtainProductByNameFromAsos(name: searchBarText)
-//        obtainProductByNameFromStockX(name: searchBarText )
+//        obtainProductByNameFromStockX(name: searchBarText)
         searchBar.resignFirstResponder()
     }
     
@@ -169,5 +174,14 @@ extension SearchMainViewController: UISearchBarDelegate {
             self.searchMainView.collectionView.reloadData()
         }
         searchBar.resignFirstResponder()
+    }
+}
+
+extension SearchMainViewController: ActivityIndicatorViewDelegateProtocol {
+    func startAnimating() {
+        searchMainView.activityIndicatorView.startAnimating()
+    }
+    func stopAnimating() {
+        searchMainView.activityIndicatorView.stopAnimating()
     }
 }

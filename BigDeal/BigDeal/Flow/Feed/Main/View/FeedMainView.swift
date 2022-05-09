@@ -1,9 +1,23 @@
 import UIKit
 
+protocol ActivityIndicatorViewDelegateProtocol: AnyObject {
+    func stopAnimating()
+    func startAnimating()
+}
+
 class FeedMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
     var data: [Item] = []
+    
+    weak var delegate: ActivityIndicatorViewDelegateProtocol?
+    
+    lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        view.color = .label
+        return view
+    }()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -44,6 +58,7 @@ class FeedMainView: UIView {
         collectionView.dataSource = self
         
         addSubview(collectionView)
+        addSubview(activityIndicatorView)
         layoutSubviews()
     }
         
@@ -54,6 +69,9 @@ class FeedMainView: UIView {
     override func layoutSubviews() {
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        activityIndicatorView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
     }
     

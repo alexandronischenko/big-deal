@@ -5,6 +5,15 @@ class SearchMainView: UIView {
     
     var data: [Item] = []
     
+    weak var delegate: ActivityIndicatorViewDelegateProtocol?
+    
+    lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        view.color = .label
+        return view
+    }()
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -48,6 +57,7 @@ class SearchMainView: UIView {
         collectionView.dataSource = self
  
         addSubview(collectionView)
+        addSubview(activityIndicatorView)
         layoutSubviews()
     }
         
@@ -59,9 +69,12 @@ class SearchMainView: UIView {
 //        scrollView.snp.makeConstraints { make in
 //            make.edges.equalToSuperview()
 //        }
-    collectionView.snp.makeConstraints { make in
-        make.edges.equalToSuperview()
-    }
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        activityIndicatorView.snp.makeConstraints { make in
+            make.centerY.centerX.equalToSuperview()
+        }
     }
     
     func updateData(data: [Item]) {

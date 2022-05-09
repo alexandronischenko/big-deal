@@ -35,14 +35,6 @@ class FeedMainViewController: UIViewController {
         title = "Feed"
 //        navigationItem.searchController = feedMainView.searchController
         
-        let accessTokenForAsosFeed = DataManager.shared.accessTokensForAsos["tokenForFeed"]
-        let accessTokenForStockXFeed = DataManager.shared.accessTokensForStockX["tokenForFeed"]
-        let accessTokenForFarfetchFeed = DataManager.shared.accessTokensForFarfetch["tokenForFeed"]
-        
-        KeychainManager.standard.save(accessTokenForAsosFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.asos.rawValue)
-        KeychainManager.standard.save(accessTokenForStockXFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.stockX.rawValue)
-        KeychainManager.standard.save(accessTokenForFarfetchFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.farfetch.rawValue)
-        
         obtainHotProductsFromAsos()
         
         feedMainView.collectionView.reloadData()

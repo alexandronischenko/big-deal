@@ -49,6 +49,13 @@ extension SearchCoordinator: SearchBaseCoordinatorProtocol {
         guard let navigationController = rootViewController as? UINavigationController else {
             return UIViewController()
         }
+        let accessTokenForAsosSearch = DataManager.shared.accessTokensForAsos["tokenForSearch"]
+        let accessTokenForStockXSearch = DataManager.shared.accessTokensForStockX["tokenForSearch"]
+        let accessTokenForFarfetchSearch = DataManager.shared.accessTokensForFarfetch["tokenForSearch"]
+        
+        KeychainManager.standard.save(accessTokenForAsosSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.asos.rawValue)
+        KeychainManager.standard.save(accessTokenForStockXSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.stockX.rawValue)
+        KeychainManager.standard.save(accessTokenForFarfetchSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.farfetch.rawValue)
         navigationController.navigationBar.prefersLargeTitles = true
         return navigationController
     }

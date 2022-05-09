@@ -33,6 +33,13 @@ extension FeedCoordinator: FeedBaseCoordinatorProtocol {
         guard let navigationController = rootViewController as? UINavigationController else {
             return UIViewController()
         }
+        let accessTokenForAsosFeed = DataManager.shared.accessTokensForAsos["tokenForFeed"]
+        let accessTokenForStockXFeed = DataManager.shared.accessTokensForStockX["tokenForFeed"]
+        let accessTokenForFarfetchFeed = DataManager.shared.accessTokensForFarfetch["tokenForFeed"]
+        
+        KeychainManager.standard.save(accessTokenForAsosFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.asos.rawValue)
+        KeychainManager.standard.save(accessTokenForStockXFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.stockX.rawValue)
+        KeychainManager.standard.save(accessTokenForFarfetchFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.farfetch.rawValue)
         navigationController.navigationBar.prefersLargeTitles = true
         return rootViewController
     }

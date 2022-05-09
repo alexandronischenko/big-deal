@@ -1,7 +1,13 @@
 import UIKit
 
+protocol SearchHeaderCollectionReusableViewDelegateProtocol: AnyObject {
+    func searchMainFilterButtonDidPressed(_ viewController: UIViewController)
+}
+
 class SearchHeaderCollectionReusableView: UICollectionReusableView {
     static let identifier = "HeaderCollectionReusableView"
+    
+    weak var delegate: SearchHeaderCollectionReusableViewDelegateProtocol?
     
     let filterButton: UIButton = {
         var button = UIButton()
@@ -10,6 +16,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         button.setTitle("Filter", for: .highlighted)
         button.layer.cornerRadius = 6
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        button.addTarget(self, action: #selector(searchMainFilterButtonDidPressed), for: .touchUpInside)
         return button
     }()
     
@@ -107,5 +114,11 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
             make.top.equalTo(upStackView.snp.bottom).offset(8)
             make.leading.trailing.equalTo(upStackView)
         }
+    }
+    // MARK: - OBJC functions
+    
+    @objc private func searchMainFilterButtonDidPressed(_ sender: UIButton) {
+        let viewController = SearchFilterViewController()
+        delegate?.searchMainFilterButtonDidPressed(viewController)
     }
 }

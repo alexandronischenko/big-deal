@@ -32,6 +32,8 @@ class SearchMainViewController: UIViewController {
         title = "Сatalog"
         
         searchMainView.delegate = self
+        searchMainView.viewDelegate = self
+        
         navigationItem.searchController = searchMainView.searchController
         searchMainView.searchController.searchBar.delegate = self
     }
@@ -183,5 +185,12 @@ extension SearchMainViewController: ActivityIndicatorViewDelegateProtocol {
     }
     func stopAnimating() {
         searchMainView.activityIndicatorView.stopAnimating()
+    }
+}
+
+extension SearchMainViewController: SearchMainViewDelegateProtocol {
+    func searchMainFilterButtonDidPressed(_ viewController: UIViewController) {
+//        self.present(viewController, animated: true, completion: nil)
+        self.output.
     }
 }

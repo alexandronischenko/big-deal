@@ -39,7 +39,8 @@ class SearchResultsViewController: UIViewController {
         guard let categoryId = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryId) as? String else {
             return
         }
-        obtainProductByCategoryIdFromAsos(categoryId)
+        searchResultsView.activityIndicatorView.startAnimating()
+//        obtainProductByCategoryIdFromAsos(categoryId)
     }
     
     // MARK: - Private functions
@@ -132,7 +133,7 @@ extension SearchResultsViewController: SearchResultsPresenterInputProtocol {
                     }
                     self?.data += items
                     DispatchQueue.main.async {
-//                        self?.stopAnimating()
+                        self?.searchResultsView.activityIndicatorView.stopAnimating()
                         self?.searchResultsView.searchResultsCollectionView.reloadData()
                     }
                 } catch {

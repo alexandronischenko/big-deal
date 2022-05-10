@@ -48,6 +48,27 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
             completion(response)
         }
     }
+    func searchMainFilterButtonDidPressed() {
+        coordinator?.moveTo(flow: .search(.filter))
+    }
+    func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
+        var pressedButtonTitle: String?
+        switch sender.currentTitle {
+        case "Outerwear":
+            pressedButtonTitle = CategoryButtonTitle.outwear.rawValue
+        case "Sweatshirts":
+            pressedButtonTitle = CategoryButtonTitle.sweatshirts.rawValue
+        case "T-shirts and tops":
+            pressedButtonTitle = CategoryButtonTitle.tShirtsAndTops.rawValue
+        case "Sneakers":
+            pressedButtonTitle = CategoryButtonTitle.sneakers.rawValue
+        case "Perfume":
+            pressedButtonTitle = CategoryButtonTitle.perfume.rawValue
+        default:
+            pressedButtonTitle = ""
+        }
+        coordinator?.moveTo(flow: .search(.results))
+    }
 }
 // MARK: - SearchBaseCoordinatedProtocol
 

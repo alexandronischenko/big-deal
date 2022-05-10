@@ -189,8 +189,10 @@ extension SearchMainViewController: ActivityIndicatorViewDelegateProtocol {
 }
 
 extension SearchMainViewController: SearchMainViewDelegateProtocol {
-    func searchMainFilterButtonDidPressed(_ viewController: UIViewController) {
-//        self.present(viewController, animated: true, completion: nil)
-        self.output.
+    func searchMainFilterButtonDidPressed() {
+        self.output?.searchMainFilterButtonDidPressed()
+    }
+    func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
+        self.output?.searchMainCategoryButtonDidPressed(sender)
     }
 }

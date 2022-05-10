@@ -49,7 +49,7 @@ class SearchResultsViewController: UIViewController {
     }
     
     private func configureView() {
-        title = "Coats and jackets"
+        title = "Categories"
     }
 }
 

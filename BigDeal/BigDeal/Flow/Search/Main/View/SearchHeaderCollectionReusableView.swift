@@ -1,7 +1,8 @@
 import UIKit
 
 protocol SearchHeaderCollectionReusableViewDelegateProtocol: AnyObject {
-    func searchMainFilterButtonDidPressed(_ viewController: UIViewController)
+    func searchMainFilterButtonDidPressed()
+    func searchMainCategoryButtonDidPressed(_ sender: UIButton)
 }
 
 class SearchHeaderCollectionReusableView: UICollectionReusableView {
@@ -27,6 +28,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         button.setTitle("Outerwear", for: .highlighted)
         button.layer.cornerRadius = 6
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        button.addTarget(self, action: #selector(searchMainCategoryButtonDidPressed), for: .touchUpInside)
         return button
     }()
     
@@ -37,6 +39,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         button.setTitle("Sweatshirts", for: .highlighted)
         button.layer.cornerRadius = 6
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        button.addTarget(self, action: #selector(searchMainCategoryButtonDidPressed), for: .touchUpInside)
         return button
     }()
     
@@ -47,6 +50,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         button.setTitle("T-shirts and tops", for: .highlighted)
         button.layer.cornerRadius = 6
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        button.addTarget(self, action: #selector(searchMainCategoryButtonDidPressed), for: .touchUpInside)
         return button
     }()
     
@@ -57,6 +61,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         button.setTitle("Sneakers", for: .highlighted)
         button.layer.cornerRadius = 6
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        button.addTarget(self, action: #selector(searchMainCategoryButtonDidPressed), for: .touchUpInside)
         return button
     }()
     
@@ -67,6 +72,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         button.setTitle("Perfume", for: .highlighted)
         button.layer.cornerRadius = 6
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        button.addTarget(self, action: #selector(searchMainCategoryButtonDidPressed), for: .touchUpInside)
         return button
     }()
     
@@ -118,7 +124,10 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
     // MARK: - OBJC functions
     
     @objc private func searchMainFilterButtonDidPressed(_ sender: UIButton) {
-        let viewController = SearchFilterViewController()
-        delegate?.searchMainFilterButtonDidPressed(viewController)
+        delegate?.searchMainFilterButtonDidPressed()
+    }
+    
+    @objc private func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
+        delegate?.searchMainCategoryButtonDidPressed(sender)
     }
 }

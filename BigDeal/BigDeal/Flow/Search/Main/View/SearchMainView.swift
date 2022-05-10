@@ -1,7 +1,8 @@
 import UIKit
 
 protocol SearchMainViewDelegateProtocol: AnyObject {
-    func searchMainFilterButtonDidPressed(_ viewController: UIViewController)
+    func searchMainFilterButtonDidPressed()
+    func searchMainCategoryButtonDidPressed(_ sender: UIButton)
 }
 
 class SearchMainView: UIView {
@@ -139,7 +140,10 @@ extension SearchMainView: UICollectionViewDataSource {
 }
 
 extension SearchMainView: SearchHeaderCollectionReusableViewDelegateProtocol {
-    func searchMainFilterButtonDidPressed(_ viewController: UIViewController) {
-        viewDelegate?.searchMainFilterButtonDidPressed(viewController)
+    func searchMainFilterButtonDidPressed() {
+        viewDelegate?.searchMainFilterButtonDidPressed()
+    }
+    func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
+        viewDelegate?.searchMainCategoryButtonDidPressed(sender)
     }
 }

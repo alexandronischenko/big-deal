@@ -1,4 +1,5 @@
 import Foundation
+import Alamofire
 
 class CategoryDataRepository: CategoryRepositoryProtocol {    
     // MARK: - Private properties
@@ -11,5 +12,11 @@ class CategoryDataRepository: CategoryRepositoryProtocol {
     public init(remoteDataSource: CategoryRemoteDataSourceProtocol, localDataSource: CategoryLocalDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
         self.localDataSource = localDataSource
+    }
+    
+    func obtainProductByCategoryIdFromAsos(_ categoryId: String, completion: @escaping (AFDataResponse<Any>) -> Void) {
+        remoteDataSource.obtainProductByCategoryIdFromAsos(categoryId) { response in
+            completion(response)
+        }
     }
 }

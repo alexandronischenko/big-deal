@@ -56,6 +56,15 @@ extension SearchCoordinator: SearchBaseCoordinatorProtocol {
         KeychainManager.standard.save(accessTokenForAsosSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.asos.rawValue)
         KeychainManager.standard.save(accessTokenForStockXSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.stockX.rawValue)
         KeychainManager.standard.save(accessTokenForFarfetchSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.farfetch.rawValue)
+        
+        let accessTokenForAsosCategories = DataManager.shared.accessTokensForAsos["tokenForCategories"]
+        let accessTokenForStockXCategories = DataManager.shared.accessTokensForStockX["tokenForCategories"]
+        let accessTokenForFarfetchCategories = DataManager.shared.accessTokensForFarfetch["tokenForCategories"]
+        
+        KeychainManager.standard.save(accessTokenForAsosCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.asos.rawValue)
+        KeychainManager.standard.save(accessTokenForStockXCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.stockX.rawValue)
+        KeychainManager.standard.save(accessTokenForFarfetchCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.farfetch.rawValue)
+        
         navigationController.navigationBar.prefersLargeTitles = true
         return navigationController
     }

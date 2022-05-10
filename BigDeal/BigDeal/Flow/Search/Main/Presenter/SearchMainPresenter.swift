@@ -53,20 +53,29 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
     }
     func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
         var pressedButtonTitle: String?
+        var categoryId: String?
         switch sender.currentTitle {
         case "Outerwear":
             pressedButtonTitle = CategoryButtonTitle.outwear.rawValue
+            categoryId = Category.outwear.rawValue
         case "Sweatshirts":
             pressedButtonTitle = CategoryButtonTitle.sweatshirts.rawValue
+            categoryId = Category.sweatshirts.rawValue
         case "T-shirts and tops":
             pressedButtonTitle = CategoryButtonTitle.tShirtsAndTops.rawValue
+            categoryId = Category.tShirtsAndTops.rawValue
         case "Sneakers":
             pressedButtonTitle = CategoryButtonTitle.sneakers.rawValue
+            categoryId = Category.sneakers.rawValue
         case "Perfume":
             pressedButtonTitle = CategoryButtonTitle.perfume.rawValue
+            categoryId = Category.perfume.rawValue
         default:
             pressedButtonTitle = ""
+            categoryId = ""
         }
+        UserDefaults.standard.set(pressedButtonTitle, forKey: UserDefaultsKeys.keyForCategoryTitle)
+        UserDefaults.standard.set(categoryId, forKey: UserDefaultsKeys.keyForCategoryId)
         coordinator?.moveTo(flow: .search(.results))
     }
 }

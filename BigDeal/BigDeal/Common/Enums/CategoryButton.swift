@@ -10,7 +10,7 @@ enum CategoryButtonTitle: String {
 
 enum Category: String {
     case outwear = "3606"
-    case sweatshirts = "5678"
+    case sweatshirts = "5668"
     case tShirtsAndTops = "7616"
     case sneakers = "5775"
     case perfume = "19517"

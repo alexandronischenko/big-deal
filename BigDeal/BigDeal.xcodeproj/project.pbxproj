@@ -1214,8 +1214,8 @@
 			isa = PBXGroup;
 			children = (
 				A2F0EDAB27FDEF990049EBAC /* Protocols */,
-				A2F0EDB027FDEFDE0049EBAC /* CategoryRemoteDataSource.swift */,
 				A2F0EDB227FDF0030049EBAC /* CategoryLocalDataSource.swift */,
+				A2F0EDB027FDEFDE0049EBAC /* CategoryRemoteDataSource.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";

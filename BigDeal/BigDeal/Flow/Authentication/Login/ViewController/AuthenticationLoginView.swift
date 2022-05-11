@@ -45,6 +45,8 @@ class AuthenticationLoginView: UIView {
     var emailTextField: UITextField = {
         var textField = UITextField()
         textField.placeholder = "Enter your email"
+        textField.autocorrectionType = .no
+        textField.textContentType = .emailAddress
         textField.borderStyle = .roundedRect
         return textField
     }()
@@ -52,6 +54,9 @@ class AuthenticationLoginView: UIView {
     var passwordTextField: UITextField = {
         var textField = UITextField()
         textField.placeholder = "Enter your password"
+        textField.autocorrectionType = .no
+        textField.textContentType = .password
+        textField.isSecureTextEntry = true
         textField.borderStyle = .roundedRect
         return textField
     }()

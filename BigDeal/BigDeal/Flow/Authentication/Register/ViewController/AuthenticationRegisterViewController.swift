@@ -43,8 +43,8 @@ extension AuthenticationRegisterViewController: AuthenticationRegisterViewProtoc
         presenter.passwordDidChange(textField: textField)
     }
     
-    func didPressedRegister(email: String, password: String) {
-        presenter.didPressedRegister(email: email, password: password)
+    func didPressedRegister(email: String, name: String, password: String) {
+        presenter.didPressedRegister(email: email, name: name, password: password)
     }
     
     func didPressedLogin() {

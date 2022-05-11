@@ -23,12 +23,13 @@ class AuthenticationLoginViewPresenter: AuthenticationLoginViewPresenterProtocol
     }
     
     func didPressedLogin(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+        Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if let error = error {
                 print("Error sign in \(error)")
                 return
             } else {
-                self.coordinator?.moveTo(flow: .authProfile(.authentication(.greeting)))
+                UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isLoggedInKey)
+                self.coordinator?.moveTo(flow: .authProfile(.profile(.main)))
             }
         }
     }

@@ -10,12 +10,17 @@ final class DatabaseManager {
 extension DatabaseManager: DatabaseManagerProtocol {
     func insertUser(with user: UserModel) {
         database.child(user.safeEmail).setValue([
-            "first_name": user.firstName,
-            "last_name": user.lastName
+            "name": user.name,
+            "profile_picture": "",
+            "favorites": ""
         ])
     }
     
     func addFavorites(_ url: String, toUser email: String) {
+        guard let email = UserDefaults.standard.string(forKey: UserDefaultsKeys.safeEmailKey) else { return }
+        database.child(email).child("favorites").setValue([
+            url: url
+        ])
     }
     
     func deleteUser(with email: String, completion: @escaping ((Bool) -> Void)) {
@@ -26,7 +31,7 @@ extension DatabaseManager: DatabaseManagerProtocol {
         database.child(email).child("favorites").child(url).removeValue()
     }
     
-    func userExists(with email: String, completion: @escaping ((Bool) -> Void)) {
+    func userExists(withEmail email: String, completion: @escaping ((Bool) -> Void)) {
         var safeEmail = email.replacingOccurrences(of: ".", with: "-")
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         

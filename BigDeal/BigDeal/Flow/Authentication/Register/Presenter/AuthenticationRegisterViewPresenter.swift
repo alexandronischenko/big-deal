@@ -12,7 +12,7 @@ import FirebaseAuth
 protocol AuthenticationRegisterViewPresenterProtocol: AnyObject {
     init(coordinator: AuthenticationCoordinator)
     func didPressedLogin()
-    func didPressedRegister(email: String, password: String)
+    func didPressedRegister(email: String, name: String, password: String)
     func emailDidChange(textField: UITextField)
     func nameDidChange(textField: UITextField)
     func passwordDidChange(textField: UITextField)
@@ -30,14 +30,35 @@ class AuthenticationRegisterViewPresenter: AuthenticationBaseCoordinatedProtocol
         coordinator?.moveTo(flow: .authProfile(.authentication(.login)))
     }
     
-    func didPressedRegister(email: String, password: String) {
-//        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-//            if let error = error {
-//                print("Error creating user: \(error)")
-//                return
-//            }
-//        self.coordinator?.moveTo(flow: .authProfile(.authentication(.login)))
-        self.coordinator?.moveTo(flow: .authProfile(.profile(.main)))
+    func didPressedRegister(email: String, name: String, password: String) {
+        if !(isValidEmail(email) && isValidName(name) && isValidPassword(password)) {
+            view?.showErrorLabel("Data is not valid")
+            return
+        }
+        
+        DatabaseManager.shared.userExists(withEmail: email) { [weak self] exists in
+            guard !exists else {
+                self?.view?.showErrorLabel("User with that email adress already exists ")
+                return
+            }
+            
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                if let error = error {
+                    print("Error creating user: \(error)")
+                    return
+                }
+                
+                print("Auth result: \(String(describing: authResult))")
+                
+                let userModel = UserModel(name: name, emailAdress: email, profilePicture: "")
+                
+                DatabaseManager.shared.insertUser(with: userModel)
+                UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isLoggedInKey)
+                UserDefaults.standard.set(userModel.safeEmail, forKey: UserDefaultsKeys.safeEmailKey)
+                
+                self?.coordinator?.moveTo(flow: .authProfile(.profile(.main)))
+            }
+        }
     }
         
     func emailDidChange(textField: UITextField) {
@@ -74,18 +95,18 @@ class AuthenticationRegisterViewPresenter: AuthenticationBaseCoordinatedProtocol
     }
     
     func isValidName(_ name: String) -> Bool {
-        let usernamePattern = #"^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$"#
+        let usernamePattern = #"^[a-zA-Z0-9]{3,18}$"#
         
         let result = name.range(
             of: usernamePattern,
             options: .regularExpression
         )
-
+        
         return (result != nil)
     }
     
     func isValidEmail(_ email: String) -> Bool {
-        let emailPattern = #"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"#
+        let emailPattern = #"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+[.][A-Za-z]{2,64}"#
         
         let result = email.range(
             of: emailPattern,

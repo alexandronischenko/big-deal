@@ -2,7 +2,7 @@ import Foundation
 
 protocol DatabaseManagerProtocol {
     // Function that returnes existing user in database
-    func userExists(with email: String, completion: @escaping ((Bool) -> Void))
+    func userExists(withEmail email: String, completion: @escaping ((Bool) -> Void))
     
     // Function that insert new user in database
     func insertUser(with user: UserModel)

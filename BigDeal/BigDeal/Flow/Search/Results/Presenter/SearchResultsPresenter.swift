@@ -1,10 +1,12 @@
 import Foundation
+import Alamofire
 
 class SearchResultsPresenter {
     // MARK: - Properties
     
     weak var input: SearchResultsPresenterInputProtocol?
     var coordinator: SearchBaseCoordinatorProtocol?
+    var categoryRepository: CategoryRepositoryProtocol?
     
     // MARK: - Initializers
 
@@ -19,6 +21,11 @@ extension SearchResultsPresenter: SearchResultsPresenterOutputProtocol {
     }
     func moveToDetailFlow(model: Item) {
         coordinator?.moveTo(flow: .detail(.main(model)))
+    }
+    func obtainProductByCategoryIdFromAsos(_ categoryId: String, completion: @escaping (AFDataResponse<Any>) -> Void) {
+        categoryRepository?.obtainProductByCategoryIdFromAsos(categoryId, completion: { response in
+            completion(response)
+        })
     }
 }
 

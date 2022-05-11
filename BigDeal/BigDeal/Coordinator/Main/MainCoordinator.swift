@@ -4,7 +4,7 @@ import UIKit
 class MainCoordinator {
     // MARK: - Protocol properties
     
-    var authProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol = AuthenticationProfileCoordinator()
+    var authProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol = AuthenticationProfileCoordinator(rootNavigationViewController: UINavigationController())
     var feedCoordinator: FeedBaseCoordinatorProtocol = FeedCoordinator()
     var searchCoordinator: SearchBaseCoordinatorProtocol = SearchCoordinator()
     var detailCoordinator: DetailBaseCoordinatorProtocol = DetailCoordinator()

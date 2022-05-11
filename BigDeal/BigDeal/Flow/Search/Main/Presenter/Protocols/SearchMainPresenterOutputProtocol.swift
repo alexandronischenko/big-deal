@@ -6,4 +6,6 @@ protocol SearchMainPresenterOutputProtocol: AnyObject {
     func obtainProductByNameFromAsos(name: String, completion: @escaping(AFDataResponse<Any>) -> Void)
     func obtainProductByNameFromStockX(name: String, completion: @escaping(AFDataResponse<Any>) -> Void)
     func obtainProductByNameFromFarfetch(name: String, completion: @escaping(AFDataResponse<Any>) -> Void)
+    func searchMainFilterButtonDidPressed()
+    func searchMainCategoryButtonDidPressed(_ sender: UIButton)
 }

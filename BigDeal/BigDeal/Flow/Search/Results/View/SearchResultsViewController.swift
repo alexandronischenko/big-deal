@@ -1,4 +1,5 @@
 import UIKit
+import Alamofire
 
 class SearchResultsViewController: UIViewController {
     // MARK: - Private properties
@@ -12,7 +13,7 @@ class SearchResultsViewController: UIViewController {
     
     // MARK: - Other data and properties
     
-    var data: [Item] = DataManager.shared.data
+    var data: [Item] = []
     
     // MARK: - Initializers
     
@@ -35,6 +36,11 @@ class SearchResultsViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         setUpSearchResultsCollectionView()
+        guard let categoryId = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryId) as? String else {
+            return
+        }
+        searchResultsView.activityIndicatorView.startAnimating()
+        obtainProductByCategoryIdFromAsos(categoryId)
     }
     
     // MARK: - Private functions
@@ -49,7 +55,7 @@ class SearchResultsViewController: UIViewController {
     }
     
     private func configureView() {
-        title = "Coats and jackets"
+        title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
     }
 }
 
@@ -110,4 +116,56 @@ extension SearchResultsViewController: SearchResultsReusableViewDelegate {
 
 // MARK: - SearchResultsPresenterInputProtocol
 
-extension SearchResultsViewController: SearchResultsPresenterInputProtocol {}
+extension SearchResultsViewController: SearchResultsPresenterInputProtocol {
+    func obtainProductByCategoryIdFromAsos(_ categoryId: String) {
+        output?.obtainProductByCategoryIdFromAsos(categoryId) { [weak self] response in
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data else {
+                        self?.dataCollectingErrorAlert()
+                        return
+                    }
+                    let result = try JSONDecoder().decode(Asos.self, from: data)
+                    guard let items = Item.getAsosArray(from: result.products) else {
+                        self?.dataCollectingErrorAlert()
+                        return
+                    }
+                    self?.data += items
+                    DispatchQueue.main.async {
+                        self?.searchResultsView.activityIndicatorView.stopAnimating()
+                        self?.searchResultsView.searchResultsCollectionView.reloadData()
+                    }
+                } catch {
+                    self?.obtainDataErrorAlert(error: error)
+                }
+            case .failure(let error):
+                self?.resposeResultFailureAlert(with: error)
+            }
+        }
+    }
+    func dataCollectingErrorAlert() {
+        guard let collectingError = String?(ErrorsDescriptions.collectingError.rawValue) else {
+            return
+        }
+        let alertController = UIAlertController(title: "Data collecting error❗️", message: collectingError, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        self.present(alertController, animated: true, completion: nil)
+    }
+    func resposeResultFailureAlert(with error: AFError) {
+        let alertController = UIAlertController(title: "Failure during request❗️", message: error.localizedDescription, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        self.present(alertController, animated: true, completion: nil)
+    }
+    func obtainDataErrorAlert(error: Error) {
+        let alertController = UIAlertController(title: "Data processing error❗️", message: error.localizedDescription, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        self.present(alertController, animated: true, completion: nil)
+    }
+}

@@ -38,7 +38,7 @@ class FeedMainViewController: UIViewController {
         
         startAnimating()
         
-        obtainHotProductsFromAsos()
+//        obtainHotProductsFromAsos()
         
         feedMainView.collectionView.reloadData()
     }

@@ -11,6 +11,13 @@ class SearchResultsView: UIView {
         return collectionView
     }()
     
+    lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        view.color = .label
+        return view
+    }()
+    
     // MARK: - Overrided
     
     override func layoutSubviews() {
@@ -33,9 +40,13 @@ class SearchResultsView: UIView {
     
     private func setUpConstraintsForViews() {
         searchResultsCollectionView.frame = self.bounds
+        activityIndicatorView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
     }
     
     private func setUpSelfView() {
         addSubview(searchResultsCollectionView)
+        addSubview(activityIndicatorView)
     }
 }

@@ -43,6 +43,7 @@
 		A23D05C72801778200040980 /* SearchFilterModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23D05C62801778200040980 /* SearchFilterModuleBuilder.swift */; };
 		A23E572927F78AB60069F74E /* ProductLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E572827F78AB60069F74E /* ProductLocalDataSource.swift */; };
 		A23E572C27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E572B27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift */; };
+		A250F1A5282AAE18006BA84F /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A250F1A4282AAE18006BA84F /* CategoryButton.swift */; };
 		A26256B927FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256A227FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift */; };
 		A26256BA27FF2750007FA967 /* AuthenticationGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256A427FF2750007FA967 /* AuthenticationGreetingView.swift */; };
 		A26256BB27FF2750007FA967 /* AuthenticationGreetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256A527FF2750007FA967 /* AuthenticationGreetingViewController.swift */; };
@@ -216,6 +217,7 @@
 		A23D05C62801778200040980 /* SearchFilterModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterModuleBuilder.swift; sourceTree = "<group>"; };
 		A23E572827F78AB60069F74E /* ProductLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLocalDataSource.swift; sourceTree = "<group>"; };
 		A23E572B27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
+		A250F1A4282AAE18006BA84F /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		A26256A227FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationGreetingViewPresenter.swift; sourceTree = "<group>"; };
 		A26256A427FF2750007FA967 /* AuthenticationGreetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationGreetingView.swift; sourceTree = "<group>"; };
 		A26256A527FF2750007FA967 /* AuthenticationGreetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationGreetingViewController.swift; sourceTree = "<group>"; };
@@ -993,6 +995,7 @@
 				A2B289AA2816C43C008D2B75 /* UserDefaultsKeys.swift */,
 				A200B7B22826AA3F002D541E /* Errors.swift */,
 				A228EB872827F00A0097D3D3 /* API.swift */,
+				A250F1A4282AAE18006BA84F /* CategoryButton.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1211,8 +1214,8 @@
 			isa = PBXGroup;
 			children = (
 				A2F0EDAB27FDEF990049EBAC /* Protocols */,
-				A2F0EDB027FDEFDE0049EBAC /* CategoryRemoteDataSource.swift */,
 				A2F0EDB227FDF0030049EBAC /* CategoryLocalDataSource.swift */,
+				A2F0EDB027FDEFDE0049EBAC /* CategoryRemoteDataSource.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1293,8 +1296,8 @@
 		A2F24F4827EEF81A000B02D6 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */,
 				A2F24F4627EEF7E5000B02D6 /* ProfileBaseCoordinatorProtocol.swift */,
+				A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */,
 				A2F24F4427EEF6A8000B02D6 /* ProfileCoordinator.swift */,
 			);
 			path = Profile;
@@ -1728,6 +1731,7 @@
 				A2F0EDA127FDEE6F0049EBAC /* HotRemoteDataSourceProtocol.swift in Sources */,
 				A2F24F4227EEEF5B000B02D6 /* MainBaseCoordinatorProtocol.swift in Sources */,
 				A2EE6D492802CC9400D2BA4E /* CustomHeaderView.swift in Sources */,
+				A250F1A5282AAE18006BA84F /* CategoryButton.swift in Sources */,
 				A26256C127FF2750007FA967 /* BuilderPrototcol.swift in Sources */,
 				A2F0EDB127FDEFDE0049EBAC /* CategoryRemoteDataSource.swift in Sources */,
 				A28A344F28183C4B00512017 /* DatabaseManagerProtocol.swift in Sources */,

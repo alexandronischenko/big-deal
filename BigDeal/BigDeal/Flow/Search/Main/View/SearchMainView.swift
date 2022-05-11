@@ -1,11 +1,17 @@
 import UIKit
 
+protocol SearchMainViewDelegateProtocol: AnyObject {
+    func searchMainFilterButtonDidPressed()
+    func searchMainCategoryButtonDidPressed(_ sender: UIButton)
+}
+
 class SearchMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
     var data: [Item] = []
     
     weak var delegate: ActivityIndicatorViewDelegateProtocol?
+    weak var viewDelegate: SearchMainViewDelegateProtocol?
     
     lazy var activityIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
@@ -128,6 +134,16 @@ extension SearchMainView: UICollectionViewDataSource {
             for: indexPath) as? SearchHeaderCollectionReusableView else {
             return UICollectionReusableView()
         }
+        header.delegate = self
         return header
+    }
+}
+
+extension SearchMainView: SearchHeaderCollectionReusableViewDelegateProtocol {
+    func searchMainFilterButtonDidPressed() {
+        viewDelegate?.searchMainFilterButtonDidPressed()
+    }
+    func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
+        viewDelegate?.searchMainCategoryButtonDidPressed(sender)
     }
 }

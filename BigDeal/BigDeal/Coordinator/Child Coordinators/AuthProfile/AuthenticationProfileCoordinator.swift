@@ -7,20 +7,24 @@ class AuthenticationProfileCoordinator {
     var profileCoordinator: ProfileBaseCoordinatorProtocol?
     var authCoordinator: AuthenticationBaseCoordinatorProtocol?
     var rootViewController = UIViewController()
-    var rootNavigationViewController = UINavigationController()
+    var rootNavigationViewController: UINavigationController
     weak var parentCoordinator: MainBaseCoordinatorProtocol?
+    
+    init(rootNavigationViewController: UINavigationController) {
+        self.rootNavigationViewController = rootNavigationViewController
+    }
     
     private func checkoutProfile(with flow: AppFlow) {
         if let profileCoordinator = profileCoordinator {
             profileCoordinator.moveTo(flow: flow)
         } else {
+            rootNavigationViewController.viewControllers = []
             profileCoordinator = ProfileCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             guard let controller = profileCoordinator?.start() else {
                 return
             }
             profileCoordinator?.parentCoordinator = self
             rootNavigationViewController.pushViewController(controller, animated: true)
-            rootNavigationViewController.viewControllers = []
             authCoordinator = nil
         }
     }
@@ -29,13 +33,13 @@ class AuthenticationProfileCoordinator {
         if let authCoordinator = authCoordinator {
             authCoordinator.moveTo(flow: flow)
         } else {
+            rootNavigationViewController.viewControllers = []
             authCoordinator = AuthenticationCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             guard let controller = authCoordinator?.start() else {
                 return
             }
             authCoordinator?.parentCoordinator = self
             rootNavigationViewController.pushViewController(controller, animated: true)
-            rootNavigationViewController.viewControllers = []
             profileCoordinator = nil
         }
     }
@@ -44,22 +48,22 @@ class AuthenticationProfileCoordinator {
 extension AuthenticationProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol {
     func start() -> UIViewController {
         let isLoggedIn = UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLoggeInKey)
-        if !isLoggedIn {
+        if isLoggedIn {
             profileCoordinator = ProfileCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             profileCoordinator?.parentCoordinator = self
             guard let profileVC = profileCoordinator?.start() else {
                 return UIViewController()
             }
-            navigationRootViewController?.pushViewController(profileVC, animated: true)
-            return profileVC
+            rootNavigationViewController.pushViewController(profileVC, animated: true)
+            return rootNavigationViewController
         } else {
             authCoordinator = AuthenticationCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             authCoordinator?.parentCoordinator = self
             guard let authVC = authCoordinator?.start() else {
                 return UIViewController()
             }
-            navigationRootViewController?.pushViewController(authVC, animated: true)
-            return authVC
+            rootNavigationViewController.pushViewController(authVC, animated: true)
+            return rootNavigationViewController
         }
     }
     

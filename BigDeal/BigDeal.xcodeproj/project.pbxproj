@@ -1296,8 +1296,8 @@
 		A2F24F4827EEF81A000B02D6 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */,
 				A2F24F4627EEF7E5000B02D6 /* ProfileBaseCoordinatorProtocol.swift */,
+				A2EFD5CA27F0BD0C001E4071 /* ProfileBaseCoordinatedProtocol.swift */,
 				A2F24F4427EEF6A8000B02D6 /* ProfileCoordinator.swift */,
 			);
 			path = Profile;

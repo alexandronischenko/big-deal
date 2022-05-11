@@ -40,7 +40,7 @@ class SearchResultsViewController: UIViewController {
             return
         }
         searchResultsView.activityIndicatorView.startAnimating()
-//        obtainProductByCategoryIdFromAsos(categoryId)
+        obtainProductByCategoryIdFromAsos(categoryId)
     }
     
     // MARK: - Private functions

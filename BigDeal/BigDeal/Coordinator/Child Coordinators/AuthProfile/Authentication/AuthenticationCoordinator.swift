@@ -50,6 +50,7 @@ extension AuthenticationCoordinator: AuthenticationBaseCoordinatorProtocol {
     func start() -> UIViewController {
         let authGreetingVC = AuthenticationGreetingBuilder(coordinator: self).build()
         rootViewController = authGreetingVC
+//        let navigationController = UINavigationController(rootViewController: rootViewController)
         return rootViewController
     }
     

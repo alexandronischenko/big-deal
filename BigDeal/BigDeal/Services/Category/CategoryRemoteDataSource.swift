@@ -31,10 +31,13 @@ class CategoryRemoteDataSource: CategoryRemoteDataSourceProtocol {
             "lang": "en-US"
         ]
         let url = "https://asos2.p.rapidapi.com/products/v2/list"
-        DispatchQueue.global(qos: .utility).async {
+//        DispatchQueue.global(qos: .utility).async {
+//        }
+        DispatchQueue.init(label: "", qos: .utility, attributes: .concurrent).async {
             AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers).responseJSON { response in
                 completion(response)
             }
+        //}
         }
     }
     // Requests from StockX API

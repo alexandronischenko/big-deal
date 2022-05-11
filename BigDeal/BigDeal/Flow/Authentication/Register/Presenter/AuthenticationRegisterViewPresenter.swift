@@ -31,14 +31,13 @@ class AuthenticationRegisterViewPresenter: AuthenticationBaseCoordinatedProtocol
     }
     
     func didPressedRegister(email: String, password: String) {
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-            if let error = error {
-                print("Error creating user: \(error)")
-                return
-            }
-            
-            self.coordinator?.moveTo(flow: .authProfile(.authentication(.login)))
-        }
+//        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+//            if let error = error {
+//                print("Error creating user: \(error)")
+//                return
+//            }
+//        self.coordinator?.moveTo(flow: .authProfile(.authentication(.login)))
+        self.coordinator?.moveTo(flow: .authProfile(.profile(.main)))
     }
         
     func emailDidChange(textField: UITextField) {

@@ -11,7 +11,7 @@ import SnapKit
 
 protocol AuthenticationRegisterViewProtocol: AnyObject {
     func didPressedLogin()
-    func didPressedRegister(email: String, password: String)
+    func didPressedRegister(email: String, name: String, password: String)
     
     func showErrorLabel(_ error: String)
     func changeTextFieldColor(_ sender: UITextField)
@@ -55,6 +55,9 @@ class AuthenticationRegisterView: UIView {
         var textField = UITextField()
         textField.placeholder = "Enter your email"
         textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.textContentType = .emailAddress
+        textField.keyboardType = .emailAddress
         textField.addTarget(self, action: #selector(AuthenticationRegisterView.emailTextFieldDidChange(_:)), for: .editingChanged)
         return textField
     }()
@@ -63,6 +66,8 @@ class AuthenticationRegisterView: UIView {
         var textField = UITextField()
         textField.placeholder = "Enter your name"
         textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.textContentType = .name
         textField.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged)
         return textField
     }()
@@ -71,6 +76,9 @@ class AuthenticationRegisterView: UIView {
         var textField = UITextField()
         textField.placeholder = "Enter your password"
         textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.textContentType = .password
+        textField.isSecureTextEntry = true
         textField.addTarget(self, action: #selector(passwordTextFieldDidChange), for: .editingChanged)
         return textField
     }()
@@ -79,6 +87,9 @@ class AuthenticationRegisterView: UIView {
         var textField = UITextField()
         textField.placeholder = "Enter your password again"
         textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.textContentType = .password
+        textField.isSecureTextEntry = true
         textField.addTarget(self, action: #selector(repeatPasswordTextFieldDidChange), for: .editingChanged)
         return textField
     }()
@@ -214,9 +225,11 @@ class AuthenticationRegisterView: UIView {
     @objc func repeatPasswordTextFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
         if passwordTextField.text != text {
+            changeTextFieldColor(textField)
             showErrorLabel(text: "Passwords do not match")
         } else {
             showErrorLabel(text: "")
+            resetTextFieldColor(textField)
         }
     }
     
@@ -225,19 +238,14 @@ class AuthenticationRegisterView: UIView {
     }
     
     @objc func didPressedRegisterButton() {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
+        guard let email = emailTextField.text, let name = nameTextField.text, let password = passwordTextField.text else {
             return
         }
-        delegate?.didPressedRegister(email: email, password: password)
+        delegate?.didPressedRegister(email: email, name: name, password: password)
     }
     
     func showErrorLabel(text: String) {
-        if text.isEmpty {
-            button.isEnabled = true
-        } else {
-            errorLabel.text = text
-            button.isEnabled = false
-        }
+        errorLabel.text = text
     }
     
     func changeTextFieldColor(_ sender: UITextField) {

@@ -1,7 +1,8 @@
 import Foundation
 
 enum UserDefaultsKeys {
-    static let isLoggeInKey = "isLoggeInKey"
+    static let isLoggedInKey = "isLoggedInKey"
     static let keyForCategoryTitle = "keyForCategoryTitle"
     static let keyForCategoryId = "keyForCategoryId"
+    static let safeEmailKey = "safeEmailKey"
 }

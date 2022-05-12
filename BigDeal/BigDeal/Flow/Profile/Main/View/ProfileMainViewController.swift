@@ -53,7 +53,14 @@ class ProfileMainViewController: UIViewController {
     }
     
     private func configureView() {
+        let button = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didTapLogout))
+        navigationController?.navigationItem.rightBarButtonItem = button
+        navigationItem.rightBarButtonItem = button
         title = "Profile"
+    }
+    
+    @objc func didTapLogout() {
+        output?.didTapLogout()
     }
 }
 

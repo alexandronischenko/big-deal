@@ -10,7 +10,7 @@ class ProfileMainView: UIView {
         collectionView.backgroundColor = .systemBackground
         return collectionView
     }()
-    
+
     // MARK: - Overrided
     
     override func layoutSubviews() {

@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class ProfileMainPresenter {
     // MARK: - Properties
@@ -22,6 +23,15 @@ extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 // MARK: - ProfileMainPresenterOutputProtocol
 
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
+    func didTapLogout() {
+        do {
+            try FirebaseAuth.Auth.auth().signOut()
+        } catch {
+            print("Failed to logout")
+        }
+        coordinator?.moveTo(flow: .authProfile(.authentication(.greeting)))
+    }
+    
     func moveToDetailFlow(model: Item) {
         let image = UIImage(systemName: "circle")
         guard let image = image else {

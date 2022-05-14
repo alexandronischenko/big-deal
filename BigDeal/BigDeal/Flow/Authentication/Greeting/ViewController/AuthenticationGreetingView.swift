@@ -1,10 +1,3 @@
-//
-//  AuthenticationGreetingView.swift
-//  BigDeal
-//
-//  Created by Alexandr Onischenko on 06.04.2022.
-//
-
 import UIKit
 import SnapKit
 
@@ -13,14 +6,16 @@ protocol AuthenticationGreetingViewProtocol: AnyObject {
 }
 
 class AuthenticationGreetingView: UIView {
+    // MARK: - Properties
+    
     weak var delegate: AuthenticationGreetingViewProtocol?
     
-    var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         var scroll = UIScrollView()
         return scroll
     }()
     
-    var emojiLabel: UILabel = {
+    lazy var emojiLabel: UILabel = {
         var label = UILabel()
         label.text = "✌️"
         label.font = label.font.withSize(30)
@@ -30,7 +25,7 @@ class AuthenticationGreetingView: UIView {
         return label
     }()
     
-    var helloLabel: UILabel = {
+    lazy var helloLabel: UILabel = {
         var label = UILabel()
         label.text = "Hello!"
         label.font = .systemFont(ofSize: 26, weight: .medium)
@@ -40,7 +35,7 @@ class AuthenticationGreetingView: UIView {
         return label
     }()
     
-    var label: UILabel = {
+    lazy var label: UILabel = {
         var label = UILabel()
         label.font = label.font.withSize(18)
         label.textColor = .label
@@ -62,6 +57,8 @@ class AuthenticationGreetingView: UIView {
         return button
     }()
     
+    // MARK: - View life cycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -79,7 +76,9 @@ class AuthenticationGreetingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
+    // MARK: - Private functions
+    
+    private func setConstraints() {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -102,6 +101,8 @@ class AuthenticationGreetingView: UIView {
             make.width.equalTo(scrollView.snp.width).multipliedBy(0.9)
         }
     }
+    
+    // MARK: - Obj-c functions
     
     @objc func didPressedLetsGetStarted() {
         delegate?.didPressedLetsGetStarted()

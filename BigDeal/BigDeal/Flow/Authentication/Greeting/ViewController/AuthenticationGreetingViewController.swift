@@ -1,16 +1,12 @@
-//
-//  AuthenticationGreetingScreenViewController.swift
-//  BigDeal
-//
-//  Created by Renat Murtazin on 27.03.2022.
-//
-
 import UIKit
 
 class AuthenticationGreetingViewController: UIViewController {
+    // MARK: - Properties
+    
     var presenter: AuthenticationGreetingViewPresenterProtocol
     var greetingView = AuthenticationGreetingView()
     
+    // MARK: - Initializers
     init(presenter: AuthenticationGreetingViewPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -24,12 +20,15 @@ class AuthenticationGreetingViewController: UIViewController {
         view = greetingView
     }
     
+    // MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         greetingView.delegate = self
     }
 }
 
+// MARK: - AuthenticationGreetingViewProtocol
 extension AuthenticationGreetingViewController: AuthenticationGreetingViewProtocol {
     func didPressedLetsGetStarted() {
         presenter.buttonPressedLetsGetStarted()

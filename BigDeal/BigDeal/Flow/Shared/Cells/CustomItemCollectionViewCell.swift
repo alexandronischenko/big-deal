@@ -4,7 +4,6 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
     // MARK: - Static properties
     
     static let customItemCollectionViewCellReuseId: String = "customItemCollectionViewCell"
-    
     // MARK: - Properties
     
     var data: Item? {
@@ -20,6 +19,7 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
             itemNewPriceLabel.text = data.newPrice
         }
     }
+    // MARK: - UI
     
     private lazy var itemImageView: UIImageView = {
         let image = UIImageView()
@@ -57,52 +57,71 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var addToFavouritesButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(.init(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular, scale: .default)), for: .normal)
+        button.setImage(.init(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular, scale: .default)), for: .selected)
+        button.sizeToFit()
+        return button
+    }()
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         self.backgroundColor = .systemBackground
+        contentView.isUserInteractionEnabled = true
+        addToFavouritesButton.addTarget(self, action: #selector(addToFavouritesButtonDidPressed), for: .touchUpInside)
         setUpSelfContentView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
     private func setUpSelfContentView() {
         contentView.addSubview(itemImageView)
         contentView.addSubview(itemTitleLabel)
         contentView.addSubview(itemOldPriceLabel)
         contentView.addSubview(itemNewPriceLabel)
+        contentView.addSubview(addToFavouritesButton)
     }
     
     private func setUpConstraintsForViews() {
         itemImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.right.equalToSuperview()
-            make.left.equalToSuperview()
+            make.top.trailing.leading.equalToSuperview()
+            make.bottom.equalToSuperview().inset(70)
         }
         itemTitleLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(20)
-            make.left.trailing.equalToSuperview()
+            make.top.equalTo(itemImageView.snp.bottom).offset(5)
+            make.leading.trailing.equalToSuperview()
         }
         itemOldPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemTitleLabel).inset(21)
-            make.left.equalToSuperview()
+            make.top.equalTo(itemTitleLabel).inset(25)
+            make.leading.equalToSuperview()
         }
         itemNewPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemOldPriceLabel).inset(17)
-            make.left.equalToSuperview()
+            make.top.equalTo(itemOldPriceLabel).inset(20)
+            make.leading.equalToSuperview()
+        }
+        addToFavouritesButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.top.equalTo(itemTitleLabel).inset(32)
+        }
+    }
+    // MARK: - OBJC functions
+    
+    @objc func addToFavouritesButtonDidPressed(_ sender: UIButton) {
+        if !sender.isSelected {
+            sender.isSelected = true
+        } else if sender.isSelected {
+            sender.isSelected = false
         }
     }
 }

@@ -189,6 +189,10 @@ extension SearchMainViewController: ActivityIndicatorViewDelegateProtocol {
 }
 
 extension SearchMainViewController: SearchMainViewDelegateProtocol {
+    func moveToDetailFlow(model: Item) {
+        self.output?.moveToDetailFlow(model: model)
+    }
+    
     func searchMainFilterButtonDidPressed() {
         self.output?.searchMainFilterButtonDidPressed()
     }

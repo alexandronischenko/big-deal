@@ -23,13 +23,9 @@ extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
     func moveToDetailFlow(model: Item) {
-        let image = UIImage(systemName: "circle")
-        guard let image = image else {
-            return
-        }
-        coordinator?.moveTo(flow: .detail(.main(Item(shopTitle: "", clothTitle: "", sizes: [], oldPrice: "", newPrice: "", clothImage: image))))
+        coordinator?.moveTo(flow: .authProfile(.profile(.detail(model))))
     }
-
+    
     func moveToSettingsScreen() {
         coordinator?.moveTo(flow: .authProfile(.profile(.settings)))
     }

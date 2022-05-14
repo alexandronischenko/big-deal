@@ -8,7 +8,7 @@ class FeedMainPresenter {
     var hotRepository: HotRepositoryProtocol?
     var coordinator: FeedBaseCoordinatorProtocol?
     
-    var data: [Item] = DataManager.shared.data
+    var data: [Item] = []
     
     // MARK: - Initializers
     
@@ -29,6 +29,10 @@ class FeedMainPresenter {
 }
 
 extension FeedMainPresenter: FeedMainPresenterOutputProtocol {
+    func moveToDetailFlow(model: Item) {
+        coordinator?.moveTo(flow: .feed(.detail(model)))
+    }
+    
     func updateData(data: [Item]) {
         input?.updateData(data: data)
     }

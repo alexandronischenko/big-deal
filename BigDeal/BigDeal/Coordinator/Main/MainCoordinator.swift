@@ -7,7 +7,6 @@ class MainCoordinator {
     var authProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol = AuthenticationProfileCoordinator(rootNavigationViewController: UINavigationController())
     var feedCoordinator: FeedBaseCoordinatorProtocol = FeedCoordinator()
     var searchCoordinator: SearchBaseCoordinatorProtocol = SearchCoordinator()
-    var detailCoordinator: DetailBaseCoordinatorProtocol = DetailCoordinator()
     var rootViewController: UIViewController = UITabBarController()
     
     // MARK: - Private funcs
@@ -26,15 +25,11 @@ class MainCoordinator {
         authProfileCoordinator.moveTo(flow: flow)
         (rootViewController as? UITabBarController)?.selectedIndex = 2
     }
-    
-    private func checkoutDetail(with flow: AppFlow) {
-        detailCoordinator.moveTo(flow: flow)
-    }
 }
 
 // MARK: - MainBaseCoordinatorProtocol
 
-extension MainCoordinator: MainBaseCoordinatorProtocol {
+extension MainCoordinator: MainBaseCoordinatorProtocol {    
     // Functions
     
     func start() -> UIViewController {
@@ -62,8 +57,6 @@ extension MainCoordinator: MainBaseCoordinatorProtocol {
             checkoutFeed(with: flow)
         case .search:
             checkoutSearch(with: flow)
-        case .detail:
-            checkoutDetail(with: flow)
         }
     }
 }

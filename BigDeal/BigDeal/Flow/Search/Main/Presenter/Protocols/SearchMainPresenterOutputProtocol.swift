@@ -8,4 +8,5 @@ protocol SearchMainPresenterOutputProtocol: AnyObject {
     func obtainProductByNameFromFarfetch(name: String, completion: @escaping(AFDataResponse<Any>) -> Void)
     func searchMainFilterButtonDidPressed()
     func searchMainCategoryButtonDidPressed(_ sender: UIButton)
+    func moveToDetailFlow(model: Item)
 }

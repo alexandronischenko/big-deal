@@ -30,6 +30,10 @@ class SearchMainPresenter {
 // MARK: - SearchMainPresenterOutputProtocol
 
 extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
+    func moveToDetailFlow(model: Item) {
+        coordinator?.moveTo(flow: .search(.detail(model)))
+    }
+    
     func updateData(data: [Item]) {
         input?.updateData(data: data)
     }

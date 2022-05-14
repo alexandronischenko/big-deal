@@ -34,7 +34,8 @@ class FeedMainViewController: UIViewController {
         
         title = "Feed"
 //        navigationItem.searchController = feedMainView.searchController
-        feedMainView.delegate = self
+        feedMainView.activityIndicatorDelegate = self
+        feedMainView.viewDelegate = self
         
         startAnimating()
         
@@ -140,5 +141,11 @@ extension FeedMainViewController: ActivityIndicatorViewDelegateProtocol {
     }
     func startAnimating() {
         feedMainView.activityIndicatorView.startAnimating()
+    }
+}
+
+extension FeedMainViewController: FeedMainViewDelegateProtocol {
+    func moveToDetailFlow(model: Item) {
+        self.output?.moveToDetailFlow(model: model)
     }
 }

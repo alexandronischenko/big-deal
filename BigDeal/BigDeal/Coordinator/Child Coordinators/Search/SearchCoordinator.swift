@@ -19,6 +19,8 @@ class SearchCoordinator {
             moveToSearchFlowFilterScreen()
         case .results:
             moveToSearchFlowResultsScreen()
+        case .detail(let model):
+            moveToDetailScreen(model: model)
         }
     }
     
@@ -36,6 +38,11 @@ class SearchCoordinator {
     private func moveToSearchFlowResultsScreen() {
         let searchFlowResultsViewController = SearchResultsModuleBuilder().buildModule(coordinator: self)
         navigationRootViewController?.pushViewController(searchFlowResultsViewController, animated: true)
+    }
+    
+    private func moveToDetailScreen(model: Item) {
+        let detailViewController = DetailItemBuilder(coordinator: self).build(model: model)
+        navigationRootViewController?.pushViewController(detailViewController, animated: true)
     }
 }
 

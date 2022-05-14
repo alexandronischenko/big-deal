@@ -19,9 +19,11 @@ extension SearchResultsPresenter: SearchResultsPresenterOutputProtocol {
     func moveToFilterScreen() {
         coordinator?.moveTo(flow: .search(.filter))
     }
+    
     func moveToDetailFlow(model: Item) {
-        coordinator?.moveTo(flow: .detail(.main(model)))
+        coordinator?.moveTo(flow: .search(.detail(model)))
     }
+    
     func obtainProductByCategoryIdFromAsos(_ categoryId: String, completion: @escaping (AFDataResponse<Any>) -> Void) {
         categoryRepository?.obtainProductByCategoryIdFromAsos(categoryId, completion: { response in
             completion(response)

@@ -24,6 +24,8 @@ class ProfileCoordinator {
             moveToProfileFlowSettingScreen()
         case .subscriptions:
             moveToProfileFlowSubscriptionsScreen()
+        case .detail(let model):
+            moveToDetailScreen(model: model)
         }
     }
     
@@ -39,6 +41,11 @@ class ProfileCoordinator {
     private func moveToProfileFlowSubscriptionsScreen() {
         let profileFlowSubscriptionsViewController = ProfileSubscriptionsModuleBuilder().buildModule(coordinator: self)
         rootNavigationViewController.pushViewController(profileFlowSubscriptionsViewController, animated: true)
+    }
+    
+    private func moveToDetailScreen(model: Item) {
+        let detailViewController = DetailItemBuilder(coordinator: self).build(model: model)
+        rootNavigationViewController.pushViewController(detailViewController, animated: true)
     }
 }
 

@@ -14,7 +14,6 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
             }
             itemImageView.image = data.clothImage
             itemTitleLabel.text = data.clothTitle
-            itemBrandTitleLabel.text = data.clothBrandTitle
             let attributeString = NSMutableAttributedString(string: "\(data.oldPrice)")
                 attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
             itemOldPriceLabel.attributedText = attributeString
@@ -22,16 +21,16 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private lazy var itemTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = nil
-        label.textColor = .label
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 14)
-        return label
+    private lazy var itemImageView: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
+        image.image = UIImage(named: "radio-off")
+        image.layer.cornerRadius = 12
+        return image
     }()
     
-    private lazy var itemBrandTitleLabel: UILabel = {
+    private lazy var itemTitleLabel: UILabel = {
         let label = UILabel()
         label.text = nil
         label.textColor = .label
@@ -67,15 +66,6 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var itemImageView: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFit
-        image.clipsToBounds = true
-        image.image = UIImage(named: "radio-off")
-        image.layer.cornerRadius = 12
-        return image
-    }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
@@ -100,7 +90,6 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
     private func setUpSelfContentView() {
         contentView.addSubview(itemImageView)
         contentView.addSubview(itemTitleLabel)
-        contentView.addSubview(itemBrandTitleLabel)
         contentView.addSubview(itemOldPriceLabel)
         contentView.addSubview(itemNewPriceLabel)
     }
@@ -116,12 +105,8 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
             make.bottom.equalToSuperview().offset(20)
             make.left.trailing.equalToSuperview()
         }
-        itemBrandTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemTitleLabel).inset(15)
-            make.left.equalToSuperview()
-        }
         itemOldPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemBrandTitleLabel).inset(19)
+            make.top.equalTo(itemTitleLabel).inset(19)
             make.left.equalToSuperview()
         }
         itemNewPriceLabel.snp.makeConstraints { make in

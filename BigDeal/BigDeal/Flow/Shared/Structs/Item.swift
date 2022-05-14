@@ -2,15 +2,13 @@ import Foundation
 import UIKit
 
 struct Item {
-    var clothBrandTitle: String
+    var clothImage: UIImage
     var clothTitle: String
     var oldPrice: String
     var newPrice: String
-    var clothImage: UIImage
     
     init?(product: AsosProduct) {
         guard
-            let clothBrandTitle = String?(product.brandName),
             let clothTitle = String?(product.name),
             let oldPrice = String?(product.price.previous.text),
             let newPrice = String?(product.price.current.text),
@@ -26,14 +24,12 @@ struct Item {
             self.oldPrice = oldPrice
         }
         self.clothImage = clothImage
-        self.clothBrandTitle = clothBrandTitle
         self.newPrice = newPrice
         self.clothTitle = clothTitle
     }
     
     init?(stockXItem: StockXItem) {
         guard
-            let clothBrandTitle = String?(stockXItem.brand),
             let oldPrice = String?("Sold"),
             let newPrice = String?("Buy"),
             let clothUrl = URL(string: stockXItem.image),
@@ -45,14 +41,12 @@ struct Item {
         }
         self.oldPrice = oldPrice
         self.clothImage = clothImage
-        self.clothBrandTitle = clothBrandTitle
         self.newPrice = newPrice
         self.clothTitle = clothTitle
     }
     
     init?(entry: Entry) {
         guard
-            let clothBrandTitle = String?(entry.brand.name),
             let oldPrice = String?(entry.price),
             let newPrice = String?(entry.price),
             let clothUrl = URL(string: entry.images[9].url),
@@ -64,13 +58,11 @@ struct Item {
         }
         self.oldPrice = oldPrice
         self.clothImage = clothImage
-        self.clothBrandTitle = clothBrandTitle
         self.newPrice = newPrice
         self.clothTitle = clothTitle
     }
     
     init(shopTitle: String, clothTitle: String, sizes: [String], oldPrice: String, newPrice: String, clothImage: UIImage) {
-        self.clothBrandTitle = clothTitle
         self.oldPrice = oldPrice
         self.newPrice = newPrice
         self.clothImage = clothImage

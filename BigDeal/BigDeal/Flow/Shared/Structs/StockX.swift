@@ -17,10 +17,14 @@ struct StockXData: Codable {
 }
 
 struct StockXItem: Codable {
+    let url: String
+    let name: String
     let brand: String
     let image: String
     
     private enum CodingKeys: String, CodingKey {
+        case url
+        case name
         case brand
         case image
     }

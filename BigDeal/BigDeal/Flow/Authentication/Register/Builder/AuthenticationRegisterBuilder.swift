@@ -1,17 +1,17 @@
-//
-//  AuthenticationRegisterBuilder.swift
-//  BigDeal
-//
-//  Created by Alexandr Onischenko on 06.04.2022.
-//
-
 import UIKit
 
 class AuthenticationRegisterBuilder: ModuleBuilder {
+    // MARK: - Properties
+    
     let coordinator: AuthenticationCoordinator
+    
+    // MARK: - Initializers
+    
     init(coordinator: AuthenticationCoordinator) {
         self.coordinator = coordinator
     }
+    
+    // MARK: - Functions
     
     func build() -> UIViewController {
         let presenter = AuthenticationRegisterViewPresenter(coordinator: coordinator)

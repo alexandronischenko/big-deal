@@ -1,13 +1,8 @@
-//
-//  AuthenticationRegisterView.swift
-//  BigDeal
-//
-//  Created by Alexandr Onischenko on 06.04.2022.
-//
-
 import Foundation
 import UIKit
 import SnapKit
+
+// MARK: - AuthenticationRegisterViewProtocol
 
 protocol AuthenticationRegisterViewProtocol: AnyObject {
     func didPressedLogin()
@@ -23,15 +18,17 @@ protocol AuthenticationRegisterViewProtocol: AnyObject {
 }
 
 class AuthenticationRegisterView: UIView {
+    // MARK: - Properties
+    
     weak var delegate: AuthenticationRegisterViewProtocol?
     
-    var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         var scroll = UIScrollView()
         scroll.clipsToBounds = true
         return scroll
     }()
     
-    var emojiLabel: UILabel = {
+    lazy var emojiLabel: UILabel = {
         var label = UILabel()
         label.text = "✍️"
         label.font = label.font.withSize(30)
@@ -41,7 +38,7 @@ class AuthenticationRegisterView: UIView {
         return label
     }()
     
-    var authLabel: UILabel = {
+    lazy var authLabel: UILabel = {
         var label = UILabel()
         label.text = "Registration"
         label.font = .systemFont(ofSize: 26, weight: .semibold)
@@ -66,7 +63,7 @@ class AuthenticationRegisterView: UIView {
         var textField = UITextField()
         textField.placeholder = "Enter your name"
         textField.borderStyle = .roundedRect
-        textField.autocorrectionType = .no
+//        textField.autocorrectionType = .no
         textField.textContentType = .name
         textField.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged)
         return textField
@@ -76,7 +73,7 @@ class AuthenticationRegisterView: UIView {
         var textField = UITextField()
         textField.placeholder = "Enter your password"
         textField.borderStyle = .roundedRect
-        textField.autocorrectionType = .no
+//        textField.autocorrectionType = .default
         textField.textContentType = .password
         textField.isSecureTextEntry = true
         textField.addTarget(self, action: #selector(passwordTextFieldDidChange), for: .editingChanged)
@@ -94,7 +91,7 @@ class AuthenticationRegisterView: UIView {
         return textField
     }()
     
-    var accountLabel: UILabel = {
+    lazy var accountLabel: UILabel = {
         var label = UILabel()
         label.text = "I'm already registered"
         label.font = label.font.withSize(15)
@@ -104,7 +101,7 @@ class AuthenticationRegisterView: UIView {
         return label
     }()
     
-    var errorLabel: UILabel = {
+    lazy var errorLabel: UILabel = {
         var label = UILabel()
         label.text = ""
         label.font = .systemFont(ofSize: 14, weight: .regular)
@@ -132,6 +129,8 @@ class AuthenticationRegisterView: UIView {
         return button
     }()
     
+    // MARK: - View lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -156,7 +155,9 @@ class AuthenticationRegisterView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
+    // MARK: - Private functions
+    
+    private func setConstraints() {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -210,6 +211,8 @@ class AuthenticationRegisterView: UIView {
         }
     }
     
+    // MARK: - Obj-c functions
+    
     @objc func emailTextFieldDidChange(_ textField: UITextField) {
         delegate?.emailTextFieldDidChange(textField: textField)
     }
@@ -223,14 +226,16 @@ class AuthenticationRegisterView: UIView {
     }
     
     @objc func repeatPasswordTextFieldDidChange(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        if passwordTextField.text != text {
-            changeTextFieldColor(textField)
-            showErrorLabel(text: "Passwords do not match")
-        } else {
-            showErrorLabel(text: "")
-            resetTextFieldColor(textField)
-        }
+//        guard let text = textField.text else { return }
+//        delegate?.passwordTextFieldDidChange(textField: textField)
+//        if passwordTextField.text != text {
+//            changeTextFieldColor(textField)
+//            showErrorLabel(text: "Passwords do not match")
+//        } else {
+            delegate?.passwordTextFieldDidChange(textField: textField)
+//            showErrorLabel(text: "")
+//            resetTextFieldColor(textField)
+//        }
     }
     
     @objc func didPressedLoginButton() {
@@ -243,6 +248,8 @@ class AuthenticationRegisterView: UIView {
         }
         delegate?.didPressedRegister(email: email, name: name, password: password)
     }
+    
+    // MARK: - Functions
     
     func showErrorLabel(text: String) {
         errorLabel.text = text

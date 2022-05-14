@@ -1,15 +1,13 @@
-//
-//  AuthenticationLoginScreenViewController.swift
-//  BigDeal
-//
-//  Created by Alexandr Onischenko on 28.03.2022.
-//
-
 import UIKit
 
 class AuthenticationLoginScreenViewController: UIViewController {
+    
+    // MARK: - Properties
+    
     var presenter: AuthenticationLoginViewPresenterProtocol
     var loginView = AuthenticationLoginView()
+    
+    // MARK: - Initializers
     
     init(presenter: AuthenticationLoginViewPresenterProtocol) {
         self.presenter = presenter
@@ -24,13 +22,22 @@ class AuthenticationLoginScreenViewController: UIViewController {
         view = loginView
     }
     
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView.delegate = self
     }
 }
 
+// MARK: - AuthenticationLoginViewProtocol
 extension AuthenticationLoginScreenViewController: AuthenticationLoginViewProtocol {
+    func presentAlert(error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     func didPressedLogin(email: String, password: String) {
         presenter.didPressedLogin(email: email, password: password)
     }

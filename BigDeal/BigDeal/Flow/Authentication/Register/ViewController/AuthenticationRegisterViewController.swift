@@ -1,15 +1,13 @@
-//
-//  AuthenticationRegisterScreenViewController.swift
-//  BigDeal
-//
-//  Created by Renat Murtazin on 27.03.2022.
-//
-
 import UIKit
 
 class AuthenticationRegisterViewController: UIViewController {
+    
+    // MARK: - Properties
+    
     var presenter: AuthenticationRegisterViewPresenterProtocol
     var registerView = AuthenticationRegisterView()
+    
+    // MARK: - Initializers
     
     init(presenter: AuthenticationRegisterViewPresenterProtocol) {
         self.presenter = presenter
@@ -24,11 +22,15 @@ class AuthenticationRegisterViewController: UIViewController {
         view = registerView
     }
     
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerView.delegate = self
     }
 }
+
+// MARK: - AuthenticationRegisterViewProtocol
 
 extension AuthenticationRegisterViewController: AuthenticationRegisterViewProtocol {
     func emailTextFieldDidChange(textField: UITextField) {

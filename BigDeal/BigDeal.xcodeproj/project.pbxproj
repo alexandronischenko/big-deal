@@ -52,7 +52,7 @@
 		A26256BE27FF2750007FA967 /* AuthenticationRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256AC27FF2750007FA967 /* AuthenticationRegisterView.swift */; };
 		A26256BF27FF2750007FA967 /* AuthenticationRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256AD27FF2750007FA967 /* AuthenticationRegisterViewController.swift */; };
 		A26256C027FF2750007FA967 /* AuthenticationRegisterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256AF27FF2750007FA967 /* AuthenticationRegisterBuilder.swift */; };
-		A26256C127FF2750007FA967 /* BuilderPrototcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256B027FF2750007FA967 /* BuilderPrototcol.swift */; };
+		A26256C127FF2750007FA967 /* BuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256B027FF2750007FA967 /* BuilderProtocol.swift */; };
 		A26256C227FF2750007FA967 /* AuthenticationLoginViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256B327FF2750007FA967 /* AuthenticationLoginViewPresenter.swift */; };
 		A26256C327FF2750007FA967 /* AuthenticationLoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256B527FF2750007FA967 /* AuthenticationLoginScreenViewController.swift */; };
 		A26256C427FF2750007FA967 /* AuthenticationLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256B627FF2750007FA967 /* AuthenticationLoginView.swift */; };
@@ -226,7 +226,7 @@
 		A26256AC27FF2750007FA967 /* AuthenticationRegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationRegisterView.swift; sourceTree = "<group>"; };
 		A26256AD27FF2750007FA967 /* AuthenticationRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationRegisterViewController.swift; sourceTree = "<group>"; };
 		A26256AF27FF2750007FA967 /* AuthenticationRegisterBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationRegisterBuilder.swift; sourceTree = "<group>"; };
-		A26256B027FF2750007FA967 /* BuilderPrototcol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderPrototcol.swift; sourceTree = "<group>"; };
+		A26256B027FF2750007FA967 /* BuilderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderProtocol.swift; sourceTree = "<group>"; };
 		A26256B327FF2750007FA967 /* AuthenticationLoginViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationLoginViewPresenter.swift; sourceTree = "<group>"; };
 		A26256B527FF2750007FA967 /* AuthenticationLoginScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationLoginScreenViewController.swift; sourceTree = "<group>"; };
 		A26256B627FF2750007FA967 /* AuthenticationLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationLoginView.swift; sourceTree = "<group>"; };
@@ -807,7 +807,7 @@
 		A27EBC3A27F0D8A500532EDE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				A26256B027FF2750007FA967 /* BuilderPrototcol.swift */,
+				A26256B027FF2750007FA967 /* BuilderProtocol.swift */,
 				A26256A027FF2750007FA967 /* Greeting */,
 				A26256A827FF2750007FA967 /* Register */,
 				A26256B127FF2750007FA967 /* Login */,
@@ -1732,7 +1732,7 @@
 				A2F24F4227EEEF5B000B02D6 /* MainBaseCoordinatorProtocol.swift in Sources */,
 				A2EE6D492802CC9400D2BA4E /* CustomHeaderView.swift in Sources */,
 				A250F1A5282AAE18006BA84F /* CategoryButton.swift in Sources */,
-				A26256C127FF2750007FA967 /* BuilderPrototcol.swift in Sources */,
+				A26256C127FF2750007FA967 /* BuilderProtocol.swift in Sources */,
 				A2F0EDB127FDEFDE0049EBAC /* CategoryRemoteDataSource.swift in Sources */,
 				A28A344F28183C4B00512017 /* DatabaseManagerProtocol.swift in Sources */,
 				A2A3F53527FE3975003417D6 /* CustomRadioButtonTableViewCell.swift in Sources */,

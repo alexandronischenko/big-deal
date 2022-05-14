@@ -1,28 +1,25 @@
-//
-//  AuthenticationLoginView.swift
-//  BigDeal
-//
-//  Created by Alexandr Onischenko on 29.03.2022.
-//
-
 import UIKit
 import SnapKit
 
+// MARK: - AuthenticationLoginViewProtocol
 protocol AuthenticationLoginViewProtocol: AnyObject {
     func didPressedLogin(email: String, password: String)
     func didPressedRegister()
+    func presentAlert(error: String)
 }
 
 class AuthenticationLoginView: UIView {
+    // MARK: - Properties
+    
     weak var delegate: AuthenticationLoginViewProtocol?
 
-    var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         var scroll = UIScrollView()
         scroll.clipsToBounds = true
         return scroll
     }()
     
-    var emojiLabel: UILabel = {
+    lazy var emojiLabel: UILabel = {
         var label = UILabel()
         label.text = "🔑"
         label.font = label.font.withSize(30)
@@ -32,7 +29,7 @@ class AuthenticationLoginView: UIView {
         return label
     }()
     
-    var authLabel: UILabel = {
+    lazy var authLabel: UILabel = {
         var label = UILabel()
         label.text = "Authorization"
         label.font = .systemFont(ofSize: 26, weight: .semibold)
@@ -42,7 +39,7 @@ class AuthenticationLoginView: UIView {
         return label
     }()
     
-    var emailTextField: UITextField = {
+    lazy var emailTextField: UITextField = {
         var textField = UITextField()
         textField.placeholder = "Enter your email"
         textField.autocorrectionType = .no
@@ -51,7 +48,7 @@ class AuthenticationLoginView: UIView {
         return textField
     }()
     
-    var passwordTextField: UITextField = {
+    lazy var passwordTextField: UITextField = {
         var textField = UITextField()
         textField.placeholder = "Enter your password"
         textField.autocorrectionType = .no
@@ -61,7 +58,7 @@ class AuthenticationLoginView: UIView {
         return textField
     }()
     
-    var accountLabel: UILabel = {
+    lazy var accountLabel: UILabel = {
         var label = UILabel()
         label.text = "I don't have an account"
         label.font = label.font.withSize(15)
@@ -87,6 +84,8 @@ class AuthenticationLoginView: UIView {
         button.addTarget(self, action: #selector(didPressedLoginButton), for: .touchUpInside)
         return button
     }()
+    
+    // MARK: - Initializers
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -108,6 +107,8 @@ class AuthenticationLoginView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private functions
     
     private func setConstraints() {
         scrollView.snp.makeConstraints { make in
@@ -147,6 +148,8 @@ class AuthenticationLoginView: UIView {
             make.trailing.equalTo(passwordTextField.snp.trailing)
         }
     }
+    
+    // MARK: - Obj-c functions
     
     @objc func didPressedLoginButton() {
         guard let email = emailTextField.text, let password = passwordTextField.text else {

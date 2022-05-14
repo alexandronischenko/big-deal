@@ -35,16 +35,7 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         label.text = nil
         label.textColor = .label
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 14)
-        return label
-    }()
-    
-    private lazy var itemAvailableSizesLabel: UILabel = {
-        let label = UILabel()
-        label.text = nil
-        label.textColor = .systemGray
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 17)
         return label
     }()
     
@@ -53,7 +44,7 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         label.text = nil
         label.textColor = .systemGray
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     
@@ -62,7 +53,7 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         label.text = nil
         label.textColor = .systemBlue
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
@@ -106,11 +97,11 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
             make.left.trailing.equalToSuperview()
         }
         itemOldPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemTitleLabel).inset(19)
+            make.top.equalTo(itemTitleLabel).inset(21)
             make.left.equalToSuperview()
         }
         itemNewPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemOldPriceLabel).inset(15)
+            make.top.equalTo(itemOldPriceLabel).inset(17)
             make.left.equalToSuperview()
         }
     }

@@ -12,7 +12,8 @@ protocol FeedMainViewDelegateProtocol: AnyObject {
 class FeedMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
-    var data: [Item] = DataManager.shared.data
+//    var data: [Item] = DataManager.shared.data
+    var data: [Item] = []
     
     weak var activityIndicatorDelegate: ActivityIndicatorViewDelegateProtocol?
     weak var viewDelegate: FeedMainViewDelegateProtocol?
@@ -96,15 +97,15 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 15, bottom: 80, right: 15)
+        return UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 80
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 2.3, height: 230)
+        return CGSize(width: frame.width / 2.3, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

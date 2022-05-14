@@ -2,23 +2,21 @@ import Foundation
 import UIKit
 
 struct Item {
-    var shopTitle: String
+    var clothImage: UIImage
     var clothTitle: String
-    var sizes: [String]
     var oldPrice: String
     var newPrice: String
-    var clothImage: UIImage
+    var url: String
     
     init?(product: AsosProduct) {
         guard
-            let shopTtile = String?("Asos"),
-            let clothTitle = String?(product.brandName),
-            let sizes = [String]?([""]),
+            let clothTitle = String?(product.name),
             let oldPrice = String?(product.price.previous.text),
             let newPrice = String?(product.price.current.text),
             let clothUrl = URL(string: "https://" + product.imageUrl),
             let clothData = try? Data(contentsOf: clothUrl),
-            let clothImage = UIImage(data: clothData)
+            let clothImage = UIImage(data: clothData),
+            let url = String?("https://www.asos.com/us" + product.url)
         else {
             return nil
         }
@@ -28,61 +26,53 @@ struct Item {
             self.oldPrice = oldPrice
         }
         self.clothImage = clothImage
-        self.shopTitle = shopTtile
-        self.clothTitle = clothTitle
-        self.sizes = sizes
         self.newPrice = newPrice
+        self.clothTitle = clothTitle
+        self.url = url
     }
     
     init?(stockXItem: StockXItem) {
         guard
-            let shopTtile = String?("StockX"),
-            let clothTitle = String?(stockXItem.brand),
-            let sizes = [String]?([""]),
             let oldPrice = String?("Sold"),
             let newPrice = String?("Buy"),
             let clothUrl = URL(string: stockXItem.image),
             let clothData = try? Data(contentsOf: clothUrl),
-            let clothImage = UIImage(data: clothData)
+            let clothImage = UIImage(data: clothData),
+            let clothTitle = String?("title")
         else {
             return nil
         }
         self.oldPrice = oldPrice
         self.clothImage = clothImage
-        self.shopTitle = shopTtile
-        self.clothTitle = clothTitle
-        self.sizes = sizes
         self.newPrice = newPrice
+        self.clothTitle = clothTitle
+        self.url = ""
     }
     
     init?(entry: Entry) {
         guard
-            let shopTtile = String?("Farfetch"),
-            let clothTitle = String?(entry.brand.name),
-            let sizes = [String]?([""]),
             let oldPrice = String?(entry.price),
             let newPrice = String?(entry.price),
             let clothUrl = URL(string: entry.images[9].url),
             let clothData = try? Data(contentsOf: clothUrl),
-            let clothImage = UIImage(data: clothData)
+            let clothImage = UIImage(data: clothData),
+            let clothTitle = String?("title")
         else {
             return nil
         }
         self.oldPrice = oldPrice
         self.clothImage = clothImage
-        self.shopTitle = shopTtile
-        self.clothTitle = clothTitle
-        self.sizes = sizes
         self.newPrice = newPrice
+        self.clothTitle = clothTitle
+        self.url = ""
     }
     
     init(shopTitle: String, clothTitle: String, sizes: [String], oldPrice: String, newPrice: String, clothImage: UIImage) {
-        self.shopTitle = shopTitle
-        self.clothTitle = clothTitle
-        self.sizes = sizes
         self.oldPrice = oldPrice
         self.newPrice = newPrice
         self.clothImage = clothImage
+        self.clothTitle = "title"
+        self.url = ""
     }
 
     static func getAsosArray(from products: [AsosProduct]) -> [Item]? {

@@ -4,7 +4,6 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
     // MARK: - Static properties
     
     static let customItemCollectionViewCellReuseId: String = "customItemCollectionViewCell"
-    
     // MARK: - Properties
     
     var data: Item? {
@@ -13,60 +12,14 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
                 return
             }
             itemImageView.image = data.clothImage
-            itemShopTitleLabel.text = data.shopTitle
             itemTitleLabel.text = data.clothTitle
-            itemAvailableSizesLabel.text = data.sizes.joined(separator: ",")
             let attributeString = NSMutableAttributedString(string: "\(data.oldPrice)")
                 attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
             itemOldPriceLabel.attributedText = attributeString
             itemNewPriceLabel.text = data.newPrice
         }
     }
-    
-    private lazy var itemShopTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = nil
-        label.textColor = .systemGray
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12)
-        return label
-    }()
-    
-    private lazy var itemTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = nil
-        label.textColor = .label
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 14)
-        return label
-    }()
-    
-    private lazy var itemAvailableSizesLabel: UILabel = {
-        let label = UILabel()
-        label.text = nil
-        label.textColor = .systemGray
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12)
-        return label
-    }()
-    
-    private lazy var itemOldPriceLabel: UILabel = {
-        let label = UILabel()
-        label.text = nil
-        label.textColor = .systemGray
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12)
-        return label
-    }()
-    
-    private lazy var itemNewPriceLabel: UILabel = {
-        let label = UILabel()
-        label.text = nil
-        label.textColor = .systemBlue
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12)
-        return label
-    }()
+    // MARK: - UI
     
     private lazy var itemImageView: UIImageView = {
         let image = UIImageView()
@@ -77,57 +30,98 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
+    private lazy var itemTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = nil
+        label.textColor = .label
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 17)
+        return label
+    }()
+    
+    private lazy var itemOldPriceLabel: UILabel = {
+        let label = UILabel()
+        label.text = nil
+        label.textColor = .systemGray
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 13)
+        return label
+    }()
+    
+    private lazy var itemNewPriceLabel: UILabel = {
+        let label = UILabel()
+        label.text = nil
+        label.textColor = .systemBlue
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    private lazy var addToFavouritesButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(.init(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular, scale: .default)), for: .normal)
+        button.setImage(.init(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular, scale: .default)), for: .selected)
+        button.sizeToFit()
+        return button
+    }()
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         self.backgroundColor = .systemBackground
+        contentView.isUserInteractionEnabled = true
+        addToFavouritesButton.addTarget(self, action: #selector(addToFavouritesButtonDidPressed), for: .touchUpInside)
         setUpSelfContentView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
     private func setUpSelfContentView() {
         contentView.addSubview(itemImageView)
-        contentView.addSubview(itemShopTitleLabel)
         contentView.addSubview(itemTitleLabel)
         contentView.addSubview(itemOldPriceLabel)
         contentView.addSubview(itemNewPriceLabel)
+        contentView.addSubview(addToFavouritesButton)
     }
     
     private func setUpConstraintsForViews() {
         itemImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.right.equalToSuperview()
-            make.left.equalToSuperview()
-        }
-        itemShopTitleLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(23)
-            make.left.equalToSuperview()
+            make.top.trailing.leading.equalToSuperview()
+            make.bottom.equalToSuperview().inset(70)
         }
         itemTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemShopTitleLabel).inset(15)
-            make.left.equalToSuperview()
+            make.top.equalTo(itemImageView.snp.bottom).offset(5)
+            make.leading.trailing.equalToSuperview()
         }
         itemOldPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemTitleLabel).inset(19)
-            make.left.equalToSuperview()
+            make.top.equalTo(itemTitleLabel).inset(25)
+            make.leading.equalToSuperview()
         }
         itemNewPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemOldPriceLabel).inset(15)
-            make.left.equalToSuperview()
+            make.top.equalTo(itemOldPriceLabel).inset(20)
+            make.leading.equalToSuperview()
+        }
+        addToFavouritesButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.top.equalTo(itemTitleLabel).inset(32)
+        }
+    }
+    // MARK: - OBJC functions
+    
+    @objc func addToFavouritesButtonDidPressed(_ sender: UIButton) {
+        if !sender.isSelected {
+            sender.isSelected = true
+        } else if sender.isSelected {
+            sender.isSelected = false
         }
     }
 }

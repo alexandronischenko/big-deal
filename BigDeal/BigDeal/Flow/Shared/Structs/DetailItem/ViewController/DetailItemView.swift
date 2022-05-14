@@ -199,7 +199,7 @@ class DetailItemView: UIView {
     }
     
     func configureModel(model: Item) {
-        sizesLabel.text = model.sizes.joined(separator: " ")
+//        sizesLabel.text = model.sizes.joined(separator: " ")
         currentPriceLabel.text = model.newPrice
         defaultPriceLabel.text = model.oldPrice
         imageView.image = model.clothImage

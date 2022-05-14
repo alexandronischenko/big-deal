@@ -13,7 +13,8 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
                 return
             }
             itemImageView.image = data.clothImage
-            itemTitleLabel.text = data.clothBrandTitle
+            itemTitleLabel.text = data.clothTitle
+            itemBrandTitleLabel.text = data.clothBrandTitle
             let attributeString = NSMutableAttributedString(string: "\(data.oldPrice)")
                 attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
             itemOldPriceLabel.attributedText = attributeString
@@ -22,6 +23,15 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
     }
     
     private lazy var itemTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = nil
+        label.textColor = .label
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+    
+    private lazy var itemBrandTitleLabel: UILabel = {
         let label = UILabel()
         label.text = nil
         label.textColor = .label
@@ -90,6 +100,7 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
     private func setUpSelfContentView() {
         contentView.addSubview(itemImageView)
         contentView.addSubview(itemTitleLabel)
+        contentView.addSubview(itemBrandTitleLabel)
         contentView.addSubview(itemOldPriceLabel)
         contentView.addSubview(itemNewPriceLabel)
     }
@@ -103,10 +114,14 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         }
         itemTitleLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(20)
+            make.left.trailing.equalToSuperview()
+        }
+        itemBrandTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(itemTitleLabel).inset(15)
             make.left.equalToSuperview()
         }
         itemOldPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemTitleLabel).inset(19)
+            make.top.equalTo(itemBrandTitleLabel).inset(19)
             make.left.equalToSuperview()
         }
         itemNewPriceLabel.snp.makeConstraints { make in

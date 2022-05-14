@@ -36,6 +36,6 @@ extension DetailItemViewController: DetailItemViewProtocol {
     
     func configureModel(model: Item) {
         detailItemView.configureModel(model: model)
-        title = model.clothTitle
+        title = model.clothBrandTitle
     }
 }

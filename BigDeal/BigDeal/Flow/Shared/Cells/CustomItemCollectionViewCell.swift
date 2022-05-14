@@ -14,7 +14,6 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
             }
             itemImageView.image = data.clothImage
             itemTitleLabel.text = data.clothBrandTitle
-            itemAvailableSizesLabel.text = data.sizes.joined(separator: ",")
             let attributeString = NSMutableAttributedString(string: "\(data.oldPrice)")
                 attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
             itemOldPriceLabel.attributedText = attributeString

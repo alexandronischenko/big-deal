@@ -8,8 +8,8 @@
 import UIKit
 
 class DetailItemBuilder {    
-    let coordinator: DetailCoordinator
-    init(coordinator: DetailCoordinator) {
+    let coordinator: FlowCoordinatorProtocol
+    init(coordinator: FlowCoordinatorProtocol) {
         self.coordinator = coordinator
     }
 
@@ -17,6 +17,7 @@ class DetailItemBuilder {
         let presenter = DetailItemPresenter(coordinator: coordinator, model: model)
         let viewContoller = DetailItemViewController(presenter: presenter)
         presenter.view = viewContoller
+        presenter.view?.configureModel(model: model)
         return viewContoller
     }
 }

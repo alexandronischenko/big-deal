@@ -5,12 +5,17 @@ protocol ActivityIndicatorViewDelegateProtocol: AnyObject {
     func startAnimating()
 }
 
+protocol FeedMainViewDelegateProtocol: AnyObject {
+    func moveToDetailFlow(model: Item)
+}
+
 class FeedMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
-    var data: [Item] = []
+    var data: [Item] = DataManager.shared.data
     
-    weak var delegate: ActivityIndicatorViewDelegateProtocol?
+    weak var activityIndicatorDelegate: ActivityIndicatorViewDelegateProtocol?
+    weak var viewDelegate: FeedMainViewDelegateProtocol?
     
     lazy var activityIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
@@ -87,7 +92,7 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = data[indexPath.row]
-        print("item pressed")
+        viewDelegate?.moveToDetailFlow(model: model)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -107,8 +112,9 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
              let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "label", for: indexPath) as! HeaderLabel
              sectionHeader.label.text = "TRENDING🔥"
              return sectionHeader
-        } else { //No footer in this case but can add option for that
-             return UICollectionReusableView()
+        } else {
+            // No footer in this case but can add option for that
+            return UICollectionReusableView()
         }
     }
 }

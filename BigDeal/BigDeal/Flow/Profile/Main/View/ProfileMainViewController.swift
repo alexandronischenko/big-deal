@@ -82,12 +82,7 @@ extension ProfileMainViewController: ProfileMainPresenterInputProtocol {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension ProfileMainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let model = data[indexPath.row]
-        output?.moveToDetailFlow(model: model)
-    }
-    
+extension ProfileMainViewController: UICollectionViewDelegateFlowLayout {    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 175.5)
     }

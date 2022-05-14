@@ -6,6 +6,7 @@ class FeedMainModuleBuilder {
         let remoteDataSource = HotRemoteDataSource()
         let localDataSource = HotLocalDataSource()
         let hotRepository = HotDataRepository(remoteDataSource: remoteDataSource, localDataSource: localDataSource)
+        
         let presenter = FeedMainPresenter(coordinator: coordinator)
         let viewController = FeedMainViewController(output: presenter)
         presenter.input = viewController

@@ -3,6 +3,7 @@ import UIKit
 protocol SearchMainViewDelegateProtocol: AnyObject {
     func searchMainFilterButtonDidPressed()
     func searchMainCategoryButtonDidPressed(_ sender: UIButton)
+    func moveToDetailFlow(model: Item)
 }
 
 class SearchMainView: UIView {
@@ -95,9 +96,8 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let model = data?[indexPath.row]
-//        delegate?.moveToDetailFlow(model: model)
-    print("item pressed")
+        let model = data[indexPath.row]
+        viewDelegate?.moveToDetailFlow(model: model)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -5,16 +5,16 @@
 import Foundation
 
 protocol DetailItemPresenterProtocol: AnyObject {
-    init(coordinator: DetailCoordinator, model: Item)
+    init(coordinator: FlowCoordinatorProtocol, model: Item)
     func buttonPressedGoToShopSite()
 }
 
-class DetailItemPresenter: DetailItemPresenterProtocol, DetailBaseCoordinatedProtocol {    
-    var coordinator: DetailBaseCoordinatorProtocol?
+class DetailItemPresenter: DetailItemPresenterProtocol {
+    var coordinator: FlowCoordinatorProtocol?
     weak var view: DetailItemViewProtocol?
     var model: Item?
 
-    required init(coordinator: DetailCoordinator, model: Item) {
+    required init(coordinator: FlowCoordinatorProtocol, model: Item) {
         self.coordinator = coordinator
         self.model = model
         view?.configureModel(model: model)

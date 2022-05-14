@@ -25,7 +25,6 @@ class DetailItemViewController: UIViewController {
         detailItemView.delegate = self
         
         // MARK: - FIX IT
-        title = "krossovrki"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
@@ -37,5 +36,6 @@ extension DetailItemViewController: DetailItemViewProtocol {
     
     func configureModel(model: Item) {
         detailItemView.configureModel(model: model)
+        title = model.clothTitle
     }
 }

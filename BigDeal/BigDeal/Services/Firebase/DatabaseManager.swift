@@ -16,7 +16,7 @@ extension DatabaseManager: DatabaseManagerProtocol {
         ])
     }
     
-    func addFavorites(_ url: String, toUser email: String) {
+    func addToFavorites(url: String) {
         guard let email = UserDefaults.standard.string(forKey: UserDefaultsKeys.safeEmailKey) else { return }
         database.child(email).child("favorites").setValue([
             url: url

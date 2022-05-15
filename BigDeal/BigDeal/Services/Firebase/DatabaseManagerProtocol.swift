@@ -11,7 +11,7 @@ protocol DatabaseManagerProtocol {
     func deleteUser(with email: String, completion: @escaping ((Bool) -> Void))
     
     // Function that add favorites to user in database
-    func addFavorites(_ url: String, toUser email: String)
+    func addToFavorites(url: String)
     
     // Function that delete favorite by url user from database
     func deleteFavoritesWith(url: String, from email: String)

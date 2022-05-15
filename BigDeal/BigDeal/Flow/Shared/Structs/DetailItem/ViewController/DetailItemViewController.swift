@@ -24,18 +24,37 @@ class DetailItemViewController: UIViewController {
         view.backgroundColor = .systemBackground
         detailItemView.delegate = self
         
-        // MARK: - FIX IT
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let menuBtn = UIButton(type: .custom)
+        var img = UIImage(systemName: "heart")
+        img = UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 100, weight: .medium), scale: .medium))
+        menuBtn.setImage(img, for: .normal)
+        
+        let menuBarItem = UIBarButtonItem(customView: menuBtn)
+        let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 26)
+        currWidth?.isActive = true
+        let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 26)
+        currHeight?.isActive = true
+        self.navigationItem.rightBarButtonItem = menuBarItem
+        
+        menuBtn.addTarget(self, action: #selector(didTapAddFavoritesButton), for: .touchUpInside)
     }
 }
 
 extension DetailItemViewController: DetailItemViewProtocol {
-    func goToShopSite() {
-        presenter.buttonPressedGoToShopSite()
+    func goToShopSite(url: String) {
+        guard let url = URL(string: url) else { return }
+        UIApplication.shared.open(url)
     }
     
     func configureModel(model: Item) {
         detailItemView.configureModel(model: model)
         title = model.clothTitle
+    }
+    
+    @objc func didTapAddFavoritesButton() {
+        guard let url = detailItemView.item?.url else { return }
+        presenter.didTapAddToFavorites(url: url)
     }
 }

@@ -48,7 +48,7 @@ class AuthenticationProfileCoordinator {
 extension AuthenticationProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol {
     func start() -> UIViewController {
         let isLoggedIn = UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLoggedInKey)
-        if !isLoggedIn {
+        if isLoggedIn {
             profileCoordinator = ProfileCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             profileCoordinator?.parentCoordinator = self
             guard let profileVC = profileCoordinator?.start() else {

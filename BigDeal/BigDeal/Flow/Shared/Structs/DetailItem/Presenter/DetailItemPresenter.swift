@@ -6,7 +6,8 @@ import Foundation
 
 protocol DetailItemPresenterProtocol: AnyObject {
     init(coordinator: FlowCoordinatorProtocol, model: Item)
-    func buttonPressedGoToShopSite()
+    func buttonPressedGoToShopSite(url: String)
+    func didTapAddToFavorites(url: String)
 }
 
 class DetailItemPresenter: DetailItemPresenterProtocol {
@@ -20,7 +21,12 @@ class DetailItemPresenter: DetailItemPresenterProtocol {
         view?.configureModel(model: model)
     }
 
-    func buttonPressedGoToShopSite() {
-        coordinator?.moveTo(flow: .authProfile(.authentication(.login)))
+    func buttonPressedGoToShopSite(url: String) {
+//        called in vc cause cant use this
+//        UIApplication.shared.open(url)
+    }
+    
+    func didTapAddToFavorites(url: String) {
+        DatabaseManager.shared.addToFavorites(url: url)
     }
 }

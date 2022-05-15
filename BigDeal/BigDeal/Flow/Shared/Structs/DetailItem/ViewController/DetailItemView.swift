@@ -1,19 +1,14 @@
-//
-//  DetailItemView.swift
-//  BigDeal
-//
-//  Created by Alexandr Onischenko on 09.04.2022.
-//
-
 import UIKit
 
 protocol DetailItemViewProtocol: AnyObject {
-    func goToShopSite()
+    func goToShopSite(url: String)
     func configureModel(model: Item)
 }
 
 class DetailItemView: UIView {
     weak var delegate: DetailItemViewProtocol?
+    
+    var item: Item?
     
     var scrollView: UIScrollView = {
         var scroll = UIScrollView()
@@ -21,28 +16,28 @@ class DetailItemView: UIView {
         return scroll
     }()
     
-    let shop: UILabel = {
+    var shop: UILabel = {
         var label = UILabel()
         label.text = "Shop:"
         label.textColor = .tertiaryLabel
         return label
     }()
 
-    let sizes: UILabel = {
+    var sizes: UILabel = {
         var label = UILabel()
         label.text = "Sizes:"
         label.textColor = .tertiaryLabel
         return label
     }()
 
-    let defaultPrice: UILabel = {
+    var defaultPrice: UILabel = {
         var label = UILabel()
         label.text = "Default price:"
         label.textColor = .tertiaryLabel
         return label
     }()
 
-    let currentPrice: UILabel = {
+    var currentPrice: UILabel = {
         var label = UILabel()
         label.text = "Discount price:"
         label.textColor = .tertiaryLabel
@@ -194,14 +189,16 @@ class DetailItemView: UIView {
         }
     }
     
-    func goToShopSite() {
-        delegate?.goToShopSite()
+    @objc func goToShopSite() {
+        guard let url = item?.url else { return }
+        delegate?.goToShopSite(url: url)
     }
-    
+        
     func configureModel(model: Item) {
-//        sizesLabel.text = model.sizes.joined(separator: " ")
+        self.item = model
         currentPriceLabel.text = model.newPrice
         defaultPriceLabel.text = model.oldPrice
         imageView.image = model.clothImage
+        button.addTarget(self, action: #selector(goToShopSite), for: .touchUpInside)
     }
 }

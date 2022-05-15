@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 class AuthenticationProfileCoordinator {
-    // MARK: - Properties
+    // MARK: - Protocol Properties
     
     var profileCoordinator: ProfileBaseCoordinatorProtocol?
     var authCoordinator: AuthenticationBaseCoordinatorProtocol?
@@ -10,22 +10,27 @@ class AuthenticationProfileCoordinator {
     var rootNavigationViewController: UINavigationController
     weak var parentCoordinator: MainBaseCoordinatorProtocol?
     
+    // the bottom link is weak so that there is no cycle of strong links
+    
+    // MARK: - Initializers
+    
     init(rootNavigationViewController: UINavigationController) {
         self.rootNavigationViewController = rootNavigationViewController
     }
+    // MARK: - Private functions
     
     private func checkoutProfile(with flow: AppFlow) {
         if let profileCoordinator = profileCoordinator {
             profileCoordinator.moveTo(flow: flow)
         } else {
             rootNavigationViewController.viewControllers = []
-            rootNavigationViewController.tabBarItem.title = "Profile"
             profileCoordinator = ProfileCoordinator(rootNavigationViewController: self.rootNavigationViewController)
-            guard let controller = profileCoordinator?.start() else {
+            guard let profileVC = profileCoordinator?.start() else {
                 return
             }
             profileCoordinator?.parentCoordinator = self
-            rootNavigationViewController.pushViewController(controller, animated: true)
+            rootNavigationViewController.pushViewController(profileVC, animated: true)
+            rootNavigationViewController.navigationBar.prefersLargeTitles = true
             authCoordinator = nil
         }
     }
@@ -35,18 +40,17 @@ class AuthenticationProfileCoordinator {
             authCoordinator.moveTo(flow: flow)
         } else {
             rootNavigationViewController.viewControllers = []
-            rootNavigationViewController.tabBarItem.title = "Auth"
-            rootNavigationViewController.tabBarItem.badgeColor = .black
             authCoordinator = AuthenticationCoordinator(rootNavigationViewController: self.rootNavigationViewController)
-            guard let controller = authCoordinator?.start() else {
+            guard let authVC = authCoordinator?.start() else {
                 return
             }
             authCoordinator?.parentCoordinator = self
-            rootNavigationViewController.pushViewController(controller, animated: true)
+            rootNavigationViewController.pushViewController(authVC, animated: true)
             profileCoordinator = nil
         }
     }
 }
+// MARK: - AuthenticationProfileBaseCoordinatorProtocol
 
 extension AuthenticationProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol {
     func start() -> UIViewController {
@@ -58,6 +62,7 @@ extension AuthenticationProfileCoordinator: AuthenticationProfileBaseCoordinator
                 return UIViewController()
             }
             rootNavigationViewController.pushViewController(profileVC, animated: true)
+            rootNavigationViewController.navigationBar.prefersLargeTitles = true
             return rootNavigationViewController
         } else {
             authCoordinator = AuthenticationCoordinator(rootNavigationViewController: self.rootNavigationViewController)

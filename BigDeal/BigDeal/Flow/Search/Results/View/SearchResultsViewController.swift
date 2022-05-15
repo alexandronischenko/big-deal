@@ -56,6 +56,7 @@ class SearchResultsViewController: UIViewController {
     
     private func configureView() {
         title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
+        navigationController?.tabBarItem.title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
     }
 }
 

@@ -5,8 +5,7 @@ protocol FlowCoordinatorProtocol: AnyObject {
     // MARK: - Properties
     
     var rootViewController: UIViewController { get set }
-    
-    // MARK: - Major funcs
+    // MARK: - Major functions
     
     func start() -> UIViewController
     

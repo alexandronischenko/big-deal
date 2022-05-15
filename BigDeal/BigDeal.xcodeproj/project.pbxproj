@@ -985,6 +985,7 @@
 				A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */,
 				A2B289A52816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift */,
 				A2B289A32816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift */,
+				A299494528089E6600285BF1 /* Detail */,
 			);
 			path = AuthProfile;
 			sourceTree = "<group>";
@@ -1288,7 +1289,6 @@
 				A2F24F5427EEFBE9000B02D6 /* Search */,
 				A2F24F5327EEFBDB000B02D6 /* Feed */,
 				A2B289A22816C0BA008D2B75 /* AuthProfile */,
-				A299494528089E6600285BF1 /* Detail */,
 			);
 			path = "Child Coordinators";
 			sourceTree = "<group>";

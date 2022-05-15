@@ -28,6 +28,11 @@ class AuthenticationLoginScreenViewController: UIViewController {
         super.viewDidLoad()
         loginView.delegate = self
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.tabBarItem.title = "Login"
+    }
 }
 
 // MARK: - AuthenticationLoginViewProtocol

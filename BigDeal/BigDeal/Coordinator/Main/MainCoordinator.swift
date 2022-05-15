@@ -5,11 +5,10 @@ class MainCoordinator {
     // MARK: - Protocol properties
     
     var authProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol = AuthenticationProfileCoordinator(rootNavigationViewController: UINavigationController())
-    var feedCoordinator: FeedBaseCoordinatorProtocol = FeedCoordinator()
-    var searchCoordinator: SearchBaseCoordinatorProtocol = SearchCoordinator()
+    var feedCoordinator: FeedBaseCoordinatorProtocol = FeedCoordinator(rootNavigationViewController: UINavigationController())
+    var searchCoordinator: SearchBaseCoordinatorProtocol = SearchCoordinator(rootNavigationViewController: UINavigationController())
     var rootViewController: UIViewController = UITabBarController()
-    
-    // MARK: - Private funcs
+    // MARK: - Private functions
 
     private func checkoutFeed(with flow: AppFlow) {
         feedCoordinator.moveTo(flow: flow)
@@ -26,7 +25,6 @@ class MainCoordinator {
         (rootViewController as? UITabBarController)?.selectedIndex = 2
     }
 }
-
 // MARK: - MainBaseCoordinatorProtocol
 
 extension MainCoordinator: MainBaseCoordinatorProtocol {    

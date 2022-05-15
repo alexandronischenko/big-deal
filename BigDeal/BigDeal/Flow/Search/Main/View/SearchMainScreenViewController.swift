@@ -29,13 +29,18 @@ class SearchMainViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
-        title = "Сatalog"
+        title = "Catalog"
         
         searchMainView.delegate = self
         searchMainView.viewDelegate = self
         
         navigationItem.searchController = searchMainView.searchController
         searchMainView.searchController.searchBar.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.tabBarItem.title = "Catalog"
     }
 }
 

@@ -34,6 +34,11 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
         setUpProfileSettingsTableView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.tabBarItem.title = "Settings"
+    }
+    
     // MARK: - Private functions
     
     private func setUpSexCategoryCells(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {

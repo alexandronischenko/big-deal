@@ -38,10 +38,15 @@ class FeedMainViewController: UIViewController {
         feedMainView.viewDelegate = self
         
         startAnimating()
-        
+
         obtainHotProductsFromAsos()
         
         feedMainView.collectionView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.tabBarItem.title = "Main"
     }
 }
 

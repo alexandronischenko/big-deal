@@ -9,9 +9,18 @@ class SearchResultsPresenter {
     var categoryRepository: CategoryRepositoryProtocol?
     
     // MARK: - Initializers
+    
+    init(coordinator: SearchBaseCoordinatorProtocol, categoryRepository: CategoryRepositoryProtocol) {
+        self.coordinator = coordinator
+        self.categoryRepository = categoryRepository
+    }
 
     init(coordinator: SearchBaseCoordinatorProtocol) {
         self.coordinator = coordinator
+    }
+    
+    init(categoryRepository: CategoryRepositoryProtocol) {
+        self.categoryRepository = categoryRepository
     }
 }
 

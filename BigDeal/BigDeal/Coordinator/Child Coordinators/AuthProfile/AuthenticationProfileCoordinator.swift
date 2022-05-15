@@ -19,6 +19,7 @@ class AuthenticationProfileCoordinator {
             profileCoordinator.moveTo(flow: flow)
         } else {
             rootNavigationViewController.viewControllers = []
+            rootNavigationViewController.tabBarItem.title = "Profile"
             profileCoordinator = ProfileCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             guard let controller = profileCoordinator?.start() else {
                 return
@@ -34,6 +35,8 @@ class AuthenticationProfileCoordinator {
             authCoordinator.moveTo(flow: flow)
         } else {
             rootNavigationViewController.viewControllers = []
+            rootNavigationViewController.tabBarItem.title = "Auth"
+            rootNavigationViewController.tabBarItem.badgeColor = .black
             authCoordinator = AuthenticationCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             guard let controller = authCoordinator?.start() else {
                 return
@@ -48,7 +51,7 @@ class AuthenticationProfileCoordinator {
 extension AuthenticationProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol {
     func start() -> UIViewController {
         let isLoggedIn = UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLoggedInKey)
-        if !isLoggedIn {
+        if isLoggedIn {
             profileCoordinator = ProfileCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             profileCoordinator?.parentCoordinator = self
             guard let profileVC = profileCoordinator?.start() else {

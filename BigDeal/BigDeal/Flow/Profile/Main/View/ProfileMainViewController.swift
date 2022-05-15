@@ -78,6 +78,9 @@ extension ProfileMainViewController: HeaderCollectionReusableViewDelegate {
 // MARK: - ProfileMainPresenterInputProtocol
 
 extension ProfileMainViewController: ProfileMainPresenterInputProtocol {
+    func present(alert: UIAlertController) {
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

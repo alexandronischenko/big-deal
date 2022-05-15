@@ -5,7 +5,7 @@ class MainCoordinator {
     // MARK: - Protocol properties
     
     var authProfileCoordinator: AuthenticationProfileBaseCoordinatorProtocol = AuthenticationProfileCoordinator(rootNavigationViewController: UINavigationController())
-    var feedCoordinator: FeedBaseCoordinatorProtocol = FeedCoordinator()
+    var feedCoordinator: FeedBaseCoordinatorProtocol = FeedCoordinator(rootNavigationViewController: UINavigationController())
     var searchCoordinator: SearchBaseCoordinatorProtocol = SearchCoordinator(rootNavigationViewController: UINavigationController())
     var rootViewController: UIViewController = UITabBarController()
     // MARK: - Private functions

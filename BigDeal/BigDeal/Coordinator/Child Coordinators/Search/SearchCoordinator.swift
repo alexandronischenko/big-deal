@@ -15,7 +15,6 @@ class SearchCoordinator {
     init(rootNavigationViewController: UINavigationController) {
         self.rootNavigationViewController = rootNavigationViewController
     }
-    
     // MARK: - Private functions
     
     private func moveToSearchFlow(with screen: SearchScreen) {

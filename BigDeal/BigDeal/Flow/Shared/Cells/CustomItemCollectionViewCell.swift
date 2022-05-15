@@ -1,5 +1,5 @@
 import UIKit
-
+ 
 class CustomItemCollectionViewCell: UICollectionViewCell {
     // MARK: - Static properties
     
@@ -57,10 +57,8 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var addToFavouritesButton: UIButton = {
+    lazy var addToFavouritesButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(.init(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular, scale: .default)), for: .normal)
-        button.setImage(.init(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular, scale: .default)), for: .selected)
         button.sizeToFit()
         return button
     }()
@@ -76,7 +74,6 @@ class CustomItemCollectionViewCell: UICollectionViewCell {
         super.init(frame: .zero)
         self.backgroundColor = .systemBackground
         contentView.isUserInteractionEnabled = true
-        addToFavouritesButton.addTarget(self, action: #selector(addToFavouritesButtonDidPressed), for: .touchUpInside)
         setUpSelfContentView()
     }
     

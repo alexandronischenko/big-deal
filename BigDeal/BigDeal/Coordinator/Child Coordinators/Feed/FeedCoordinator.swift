@@ -49,7 +49,7 @@ extension FeedCoordinator: FeedBaseCoordinatorProtocol {
         KeychainManager.standard.save(accessTokenForStockXFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.stockX.rawValue)
         KeychainManager.standard.save(accessTokenForFarfetchFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.farfetch.rawValue)
         
-        let feedMainViewController = FeedMainModuleBuilder().buildModule(coordinator: self)
+        let feedMainViewController = FeedMainModuleBuilder(coordinator: self).buildModule()
         rootViewController = feedMainViewController
         rootNavigationViewController.pushViewController(rootViewController, animated: true)
         rootNavigationViewController.navigationBar.prefersLargeTitles = true

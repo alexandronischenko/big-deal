@@ -35,12 +35,12 @@ class ProfileCoordinator {
     }
     
     private func moveToProfileFlowSettingScreen() {
-        let profileFlowSettingsViewController = ProfileSettingsModuleBuilder().buildModule(coordinator: self)
+        let profileFlowSettingsViewController = ProfileSettingsModuleBuilder(coordinator: self).buildModule()
         rootNavigationViewController.pushViewController(profileFlowSettingsViewController, animated: true)
     }
     
     private func moveToProfileFlowSubscriptionsScreen() {
-        let profileFlowSubscriptionsViewController = ProfileSubscriptionsModuleBuilder().buildModule(coordinator: self)
+        let profileFlowSubscriptionsViewController = ProfileSubscriptionsModuleBuilder(coordinator: self).buildModule()
         rootNavigationViewController.pushViewController(profileFlowSubscriptionsViewController, animated: true)
     }
     
@@ -55,7 +55,7 @@ extension ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        let profileMainVC = ProfileMainModuleBuilder().buildModule(coordinator: self)
+        let profileMainVC = ProfileMainModuleBuilder(coordinator: self).buildModule()
         rootViewController = profileMainVC
         return rootViewController
     }

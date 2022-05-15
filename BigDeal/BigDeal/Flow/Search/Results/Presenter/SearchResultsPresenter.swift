@@ -38,6 +38,12 @@ extension SearchResultsPresenter: SearchResultsPresenterOutputProtocol {
             completion(response)
         })
     }
+    
+    func obtainProductByCategoryFromStockX(_ category: String, completion: @escaping (AFDataResponse<Any>) -> Void) {
+        categoryRepository?.obtainProductByCategoryFromStockX(category) { response in
+            completion(response)
+        }
+    }
 }
 
 extension SearchResultsPresenter: SearchBaseCoordinatedProtocol {}

@@ -39,8 +39,10 @@ class SearchResultsViewController: UIViewController {
         guard let categoryId = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryId) as? String else {
             return
         }
+        let category = "sneakers"
         searchResultsView.activityIndicatorView.startAnimating()
-        obtainProductByCategoryIdFromAsos(categoryId)
+//        obtainProductByCategoryIdFromAsos(categoryId)
+        obtainProductByCategoryFromStockX(category)
     }
     
     // MARK: - Private functions
@@ -129,6 +131,33 @@ extension SearchResultsViewController: SearchResultsPresenterInputProtocol {
                     }
                     let result = try JSONDecoder().decode(Asos.self, from: data)
                     guard let items = Item.getAsosArray(from: result.products) else {
+                        self?.dataCollectingErrorAlert()
+                        return
+                    }
+                    self?.data += items
+                    DispatchQueue.main.async {
+                        self?.searchResultsView.activityIndicatorView.stopAnimating()
+                        self?.searchResultsView.searchResultsCollectionView.reloadData()
+                    }
+                } catch {
+                    self?.obtainDataErrorAlert(error: error)
+                }
+            case .failure(let error):
+                self?.resposeResultFailureAlert(with: error)
+            }
+        }
+    }
+    func obtainProductByCategoryFromStockX(_ category: String) {
+        output?.obtainProductByCategoryFromStockX(category) { [weak self] response in
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data else {
+                        self?.dataCollectingErrorAlert()
+                        return
+                    }
+                    let result = try JSONDecoder().decode(StockX.self, from: data)
+                    guard let items = Item.getStockXArray(from: result.stockXData.stockXItems) else {
                         self?.dataCollectingErrorAlert()
                         return
                     }

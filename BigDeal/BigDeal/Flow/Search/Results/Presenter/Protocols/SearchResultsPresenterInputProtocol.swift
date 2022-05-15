@@ -6,4 +6,5 @@ protocol SearchResultsPresenterInputProtocol: AnyObject {
     func dataCollectingErrorAlert()
     func resposeResultFailureAlert(with error: AFError)
     func obtainDataErrorAlert(error: Error)
+    func obtainProductByCategoryFromStockX(_ category: String)
 }

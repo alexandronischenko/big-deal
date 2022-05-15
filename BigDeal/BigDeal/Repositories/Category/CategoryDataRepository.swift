@@ -19,4 +19,10 @@ class CategoryDataRepository: CategoryRepositoryProtocol {
             completion(response)
         }
     }
+    
+    func obtainProductByCategoryFromStockX(_ category: String, completion: @escaping (AFDataResponse<Any>) -> Void) {
+        remoteDataSource.obtainProductByCategoryFromStockX(category) { response in
+            completion(response)
+        }
+    }
 }

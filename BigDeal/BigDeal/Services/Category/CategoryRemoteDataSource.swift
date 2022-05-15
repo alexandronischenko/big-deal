@@ -42,7 +42,7 @@ class CategoryRemoteDataSource: CategoryRemoteDataSourceProtocol {
     }
     // Requests from StockX API
     
-    func obtainProductByCategoryIdFromStockX(_ categoryId: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
+    func obtainProductByCategoryFromStockX(_ category: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
         guard let accessTokenForStockX = accessTokenForStockX else {
             return
         }
@@ -51,11 +51,10 @@ class CategoryRemoteDataSource: CategoryRemoteDataSourceProtocol {
             "X-RapidAPI-Key": accessTokenForStockX
         ]
         let parameters = [
-            "categoryId": categoryId,
-            "limit": "10",
-            "page": "1"
+            "q": category,
+            "currency": "EUR"
         ]
-        let url = "https://stockx1.p.rapidapi.com/api/v1/stockx/search"
+        let url = "https://stockx1.p.rapidapi.com/api/v1/stockx/trends"
         DispatchQueue.global(qos: .utility).async {
             AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers).responseJSON { response in
                 completion(response)

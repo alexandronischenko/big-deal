@@ -21,11 +21,15 @@ struct StockXItem: Codable {
     let name: String
     let brand: String
     let image: String
+    let price: Int
+    let id: String
     
     private enum CodingKeys: String, CodingKey {
         case url
         case name
         case brand
         case image
+        case price
+        case id
     }
 }

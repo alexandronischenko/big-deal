@@ -37,11 +37,11 @@ class FeedMainViewController: UIViewController {
         feedMainView.activityIndicatorDelegate = self
         feedMainView.viewDelegate = self
         
-        startAnimating()
-
-        obtainHotProductsFromAsos()
-        
-        feedMainView.collectionView.reloadData()
+//        startAnimating()
+//
+//        obtainHotProductsFromAsos()
+//
+//        feedMainView.collectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {

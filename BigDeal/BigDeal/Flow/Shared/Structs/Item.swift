@@ -7,7 +7,7 @@ struct Item {
     var oldPrice: String
     var newPrice: String
     var url: String
-    var id: Int
+    var id: String
     
     init?(product: AsosProduct) {
         guard
@@ -18,7 +18,7 @@ struct Item {
             let clothData = try? Data(contentsOf: clothUrl),
             let clothImage = UIImage(data: clothData),
             let url = String?("https://www.asos.com/us" + product.url),
-            let id = Int?(product.id)
+            let id = String?("\(product.id)")
         else {
             return nil
         }
@@ -36,12 +36,14 @@ struct Item {
     
     init?(stockXItem: StockXItem) {
         guard
-            let oldPrice = String?("Sold"),
-            let newPrice = String?("Buy"),
+            let oldPrice = String?("$" + "\(stockXItem.price)" + ".00"),
+            let newPrice = String?("$" + "\(stockXItem.price)" + ".00"),
             let clothUrl = URL(string: stockXItem.image),
             let clothData = try? Data(contentsOf: clothUrl),
             let clothImage = UIImage(data: clothData),
-            let clothTitle = String?("title")
+            let clothTitle = String?("\(stockXItem.name)"),
+            let clothUrl = String?("https://stockx.com" + "\(stockXItem.url)"),
+            let id = String?("\(stockXItem.id)")
         else {
             return nil
         }
@@ -49,8 +51,8 @@ struct Item {
         self.clothImage = clothImage
         self.newPrice = newPrice
         self.clothTitle = clothTitle
-        self.url = ""
-        self.id = 0
+        self.url = clothUrl
+        self.id = id
     }
     
     init?(entry: Entry) {
@@ -69,7 +71,7 @@ struct Item {
         self.newPrice = newPrice
         self.clothTitle = clothTitle
         self.url = ""
-        self.id = 0
+        self.id = ""
     }
     
     init(shopTitle: String, clothTitle: String, sizes: [String], oldPrice: String, newPrice: String, clothImage: UIImage) {
@@ -78,7 +80,7 @@ struct Item {
         self.clothImage = clothImage
         self.clothTitle = "title"
         self.url = ""
-        self.id = 0
+        self.id = ""
     }
 
     static func getAsosArray(from products: [AsosProduct]) -> [Item]? {

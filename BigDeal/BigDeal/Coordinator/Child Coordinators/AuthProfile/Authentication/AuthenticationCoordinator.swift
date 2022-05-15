@@ -6,15 +6,16 @@ class AuthenticationCoordinator {
     
     var rootNavigationViewController: UINavigationController
     var rootViewController = UIViewController()
-    var parentCoordinator: AuthenticationProfileBaseCoordinatorProtocol?
+    weak var parentCoordinator: AuthenticationProfileBaseCoordinatorProtocol?
 
     // the bottom link is weak so that there is no cycle of strong links
+    
+    // MARK: - Initializers
     
     init(rootNavigationViewController: UINavigationController) {
         self.rootNavigationViewController = rootNavigationViewController
     }
-    
-    // MARK: - Private properties
+    // MARK: - Private functions
     
     private func moveToAuthenticationFlow(with screen: AuthenticationScreen) {
         switch screen {
@@ -41,7 +42,6 @@ class AuthenticationCoordinator {
         rootNavigationViewController.pushViewController(authenticationFlowRegisterViewController, animated: true)
     }
 }
-
 // MARK: - AuthenticationBaseCoordinatorProtocol
 
 extension AuthenticationCoordinator: AuthenticationBaseCoordinatorProtocol {    
@@ -50,7 +50,6 @@ extension AuthenticationCoordinator: AuthenticationBaseCoordinatorProtocol {
     func start() -> UIViewController {
         let authGreetingVC = AuthenticationGreetingBuilder(coordinator: self).build()
         rootViewController = authGreetingVC
-//        let navigationController = UINavigationController(rootViewController: rootViewController)
         return rootViewController
     }
     

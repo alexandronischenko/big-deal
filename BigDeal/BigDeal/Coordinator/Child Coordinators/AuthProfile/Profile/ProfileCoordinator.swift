@@ -10,11 +10,12 @@ class ProfileCoordinator {
     
     // the bottom link is weak so that there is no cycle of strong links
     
+    // MARK: - Initializers
+    
     init(rootNavigationViewController: UINavigationController) {
         self.rootNavigationViewController = rootNavigationViewController
     }
-    
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
     private func moveToProfileFlow(with screen: ProfileScreen) {
         switch screen {
@@ -48,7 +49,6 @@ class ProfileCoordinator {
         rootNavigationViewController.pushViewController(detailViewController, animated: true)
     }
 }
-
 // MARK: - ProfileBaseCoordinatorProtocol
 
 extension ProfileCoordinator: ProfileBaseCoordinatorProtocol {

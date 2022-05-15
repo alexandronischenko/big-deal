@@ -35,14 +35,14 @@ class SearchCoordinator {
     }
     
     private func moveToSearchFlowFilterScreen() {
-        let searchFlowFilterViewController = UINavigationController(rootViewController: SearchFilterModuleBuilder().buildModule(coordinator: self))
+        let searchFlowFilterViewController = UINavigationController(rootViewController: SearchFilterModuleBuilder(coordinator: self).buildModule())
         searchFlowFilterViewController.modalPresentationStyle = .automatic
         searchFlowFilterViewController.navigationBar.prefersLargeTitles = true
         rootNavigationViewController.present(searchFlowFilterViewController, animated: true)
     }
     
     private func moveToSearchFlowResultsScreen() {
-        let searchFlowResultsViewController = SearchResultsModuleBuilder().buildModule(coordinator: self)
+        let searchFlowResultsViewController = SearchResultsModuleBuilder(coordinator: self).buildModule()
         rootNavigationViewController.pushViewController(searchFlowResultsViewController, animated: true)
     }
     
@@ -74,7 +74,7 @@ extension SearchCoordinator: SearchBaseCoordinatorProtocol {
         KeychainManager.standard.save(accessTokenForStockXCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.stockX.rawValue)
         KeychainManager.standard.save(accessTokenForFarfetchCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.farfetch.rawValue)
         
-        let searchMainViewController = SearchMainModuleBuilder().buildModule(coordinator: self)
+        let searchMainViewController = SearchMainModuleBuilder(coordinator: self).buildModule()
         rootViewController = searchMainViewController
         rootNavigationViewController.pushViewController(rootViewController, animated: true)
         rootNavigationViewController.navigationBar.prefersLargeTitles = true

@@ -24,12 +24,17 @@ extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
     func didTapLogout() {
-        do {
-            try FirebaseAuth.Auth.auth().signOut()
-        } catch {
-            print("Failed to logout")
-        }
-        coordinator?.moveTo(flow: .authProfile(.authentication(.greeting)))
+        let alert = UIAlertController(title: "Are you sure you want to log out of your account?", message: "We will miss you(", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+            do {
+                try FirebaseAuth.Auth.auth().signOut()
+            } catch {
+                print("Failed to logout")
+            }
+            self.coordinator?.moveTo(flow: .authProfile(.authentication(.greeting)))
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        input?.present(alert: alert)
     }
     
     func moveToDetailFlow(model: Item) {

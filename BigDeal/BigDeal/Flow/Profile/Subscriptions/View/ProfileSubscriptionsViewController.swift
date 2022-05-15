@@ -36,6 +36,11 @@ class ProfileSubscriptionsViewController: UIViewController {
         setUpProfileSubscriptionsTableView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.tabBarItem.title = "Subscriptions"
+    }
+    
     // MARK: - Private funcs
     
     private func setUpBrandsCell(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {

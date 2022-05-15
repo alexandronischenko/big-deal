@@ -27,6 +27,11 @@ class DetailItemViewController: UIViewController {
         // MARK: - FIX IT
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.tabBarItem.title = "Detail"
+    }
 }
 
 extension DetailItemViewController: DetailItemViewProtocol {

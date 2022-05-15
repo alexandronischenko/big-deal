@@ -24,13 +24,13 @@ class AuthenticationProfileCoordinator {
             profileCoordinator.moveTo(flow: flow)
         } else {
             rootNavigationViewController.viewControllers = []
-//            rootNavigationViewController.tabBarItem.title = "Profile"
             profileCoordinator = ProfileCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             guard let profileVC = profileCoordinator?.start() else {
                 return
             }
             profileCoordinator?.parentCoordinator = self
             rootNavigationViewController.pushViewController(profileVC, animated: true)
+            rootNavigationViewController.navigationBar.prefersLargeTitles = true
             authCoordinator = nil
         }
     }
@@ -40,8 +40,6 @@ class AuthenticationProfileCoordinator {
             authCoordinator.moveTo(flow: flow)
         } else {
             rootNavigationViewController.viewControllers = []
-//            rootNavigationViewController.tabBarItem.title = "Auth"
-//            rootNavigationViewController.tabBarItem.badgeColor = .black
             authCoordinator = AuthenticationCoordinator(rootNavigationViewController: self.rootNavigationViewController)
             guard let authVC = authCoordinator?.start() else {
                 return
@@ -64,6 +62,7 @@ extension AuthenticationProfileCoordinator: AuthenticationProfileBaseCoordinator
                 return UIViewController()
             }
             rootNavigationViewController.pushViewController(profileVC, animated: true)
+            rootNavigationViewController.navigationBar.prefersLargeTitles = true
             return rootNavigationViewController
         } else {
             authCoordinator = AuthenticationCoordinator(rootNavigationViewController: self.rootNavigationViewController)

@@ -28,6 +28,11 @@ class AuthenticationRegisterViewController: UIViewController {
         super.viewDidLoad()
         registerView.delegate = self
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.tabBarItem.title = "Register"
+    }
 }
 
 // MARK: - AuthenticationRegisterViewProtocol

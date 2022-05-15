@@ -25,7 +25,11 @@ class AuthenticationGreetingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         greetingView.delegate = self
-        navigationController?.tabBarItem.title = "Profile"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.tabBarItem.title = "Greeting"
     }
 }
 

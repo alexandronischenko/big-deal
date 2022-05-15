@@ -28,6 +28,7 @@ extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
             do {
                 try FirebaseAuth.Auth.auth().signOut()
+                UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isLoggedInKey)
             } catch {
                 print("Failed to logout")
             }

@@ -41,6 +41,11 @@ class ProfileMainViewController: UIViewController {
         setUpProfileMainCollectionView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.tabBarItem.title = "Main"
+    }
+    
     // MARK: - Private properties
     
     private func setUpProfileMainCollectionView() {

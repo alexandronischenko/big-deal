@@ -21,11 +21,3 @@ protocol FlowCoordinatorProtocol: AnyObject {
     In child coordinators swithces between screen of selected flow.
     */
 }
-
-extension FlowCoordinatorProtocol {
-    // MARK: - Properties
-    
-    var navigationRootViewController: UINavigationController? {
-        (rootViewController as? UINavigationController)
-    }
-}

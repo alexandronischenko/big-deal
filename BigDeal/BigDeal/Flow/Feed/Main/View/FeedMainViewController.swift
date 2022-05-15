@@ -37,9 +37,9 @@ class FeedMainViewController: UIViewController {
         feedMainView.activityIndicatorDelegate = self
         feedMainView.viewDelegate = self
         
-        startAnimating()
+//        startAnimating()
         
-        obtainHotProductsFromAsos()
+//        obtainHotProductsFromAsos()
         
         feedMainView.collectionView.reloadData()
     }

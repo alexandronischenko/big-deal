@@ -5,11 +5,18 @@ class SearchCoordinator {
     // MARK: - Protocol properties
     
     var rootViewController = UIViewController()
+    var rootNavigationViewController: UINavigationController
     weak var parentCoordinator: MainBaseCoordinatorProtocol?
     
     // the bottom link is weak so that there is no cycle of strong links
     
-    // MARK: - Private funcs
+    // MARK: - Initializers
+    
+    init(rootNavigationViewController: UINavigationController) {
+        self.rootNavigationViewController = rootNavigationViewController
+    }
+    
+    // MARK: - Private functions
     
     private func moveToSearchFlow(with screen: SearchScreen) {
         switch screen {
@@ -25,24 +32,27 @@ class SearchCoordinator {
     }
     
     private func moveToSearchFlowMainScreen() {
-        navigationRootViewController?.popToRootViewController(animated: true)
+//        navigationRootViewController?.popToRootViewController(animated: true)
+        rootNavigationViewController.popToRootViewController(animated: true)
     }
     
     private func moveToSearchFlowFilterScreen() {
         let searchFlowFilterViewController = UINavigationController(rootViewController: SearchFilterModuleBuilder().buildModule(coordinator: self))
         searchFlowFilterViewController.modalPresentationStyle = .automatic
         searchFlowFilterViewController.navigationBar.prefersLargeTitles = false
-        self.navigationRootViewController?.present(searchFlowFilterViewController, animated: true)
+//        self.navigationRootViewController?.present(searchFlowFilterViewController, animated: true)
+        self.rootNavigationViewController.present(searchFlowFilterViewController, animated: true)
     }
     
     private func moveToSearchFlowResultsScreen() {
         let searchFlowResultsViewController = SearchResultsModuleBuilder().buildModule(coordinator: self)
-        navigationRootViewController?.pushViewController(searchFlowResultsViewController, animated: true)
+//        navigationRootViewController?.pushViewController(searchFlowResultsViewController, animated: true)
+        rootNavigationViewController.pushViewController(searchFlowResultsViewController, animated: true)
     }
     
     private func moveToDetailScreen(model: Item) {
         let detailViewController = DetailItemBuilder(coordinator: self).build(model: model)
-        navigationRootViewController?.pushViewController(detailViewController, animated: true)
+        rootNavigationViewController.pushViewController(detailViewController, animated: true)
     }
 }
 
@@ -52,28 +62,27 @@ extension SearchCoordinator: SearchBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: SearchMainModuleBuilder().buildModule(coordinator: self))
-        guard let navigationController = rootViewController as? UINavigationController else {
-            return UIViewController()
-        }
         let accessTokenForAsosSearch = DataManager.shared.accessTokensForAsos["tokenForSearch"]
         let accessTokenForStockXSearch = DataManager.shared.accessTokensForStockX["tokenForSearch"]
         let accessTokenForFarfetchSearch = DataManager.shared.accessTokensForFarfetch["tokenForSearch"]
-        
-        KeychainManager.standard.save(accessTokenForAsosSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.asos.rawValue)
-        KeychainManager.standard.save(accessTokenForStockXSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.stockX.rawValue)
-        KeychainManager.standard.save(accessTokenForFarfetchSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.farfetch.rawValue)
         
         let accessTokenForAsosCategories = DataManager.shared.accessTokensForAsos["tokenForCategories"]
         let accessTokenForStockXCategories = DataManager.shared.accessTokensForStockX["tokenForCategories"]
         let accessTokenForFarfetchCategories = DataManager.shared.accessTokensForFarfetch["tokenForCategories"]
         
+        KeychainManager.standard.save(accessTokenForAsosSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.asos.rawValue)
+        KeychainManager.standard.save(accessTokenForStockXSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.stockX.rawValue)
+        KeychainManager.standard.save(accessTokenForFarfetchSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.farfetch.rawValue)
+        
         KeychainManager.standard.save(accessTokenForAsosCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.asos.rawValue)
         KeychainManager.standard.save(accessTokenForStockXCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.stockX.rawValue)
         KeychainManager.standard.save(accessTokenForFarfetchCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.farfetch.rawValue)
         
-        navigationController.navigationBar.prefersLargeTitles = true
-        return navigationController
+        let searchMainViewController = SearchMainModuleBuilder().buildModule(coordinator: self)
+        rootViewController = searchMainViewController
+        rootNavigationViewController.pushViewController(rootViewController, animated: true)
+        rootNavigationViewController.navigationBar.prefersLargeTitles = true
+        return rootNavigationViewController
     }
     
     func moveTo(flow: AppFlow) {

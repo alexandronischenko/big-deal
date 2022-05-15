@@ -7,7 +7,7 @@ struct Item {
     var oldPrice: String
     var newPrice: String
     var url: String
-    var id: String
+    var id: Int
     
     init?(product: AsosProduct) {
         guard
@@ -18,7 +18,7 @@ struct Item {
             let clothData = try? Data(contentsOf: clothUrl),
             let clothImage = UIImage(data: clothData),
             let url = String?("https://www.asos.com/us" + product.url),
-            let id = String?(product.id)
+            let id = Int?(product.id)
         else {
             return nil
         }
@@ -50,7 +50,7 @@ struct Item {
         self.newPrice = newPrice
         self.clothTitle = clothTitle
         self.url = ""
-        self.id = ""
+        self.id = 0
     }
     
     init?(entry: Entry) {
@@ -69,7 +69,7 @@ struct Item {
         self.newPrice = newPrice
         self.clothTitle = clothTitle
         self.url = ""
-        self.id = ""
+        self.id = 0
     }
     
     init(shopTitle: String, clothTitle: String, sizes: [String], oldPrice: String, newPrice: String, clothImage: UIImage) {
@@ -78,7 +78,7 @@ struct Item {
         self.clothImage = clothImage
         self.clothTitle = "title"
         self.url = ""
-        self.id = ""
+        self.id = 0
     }
 
     static func getAsosArray(from products: [AsosProduct]) -> [Item]? {

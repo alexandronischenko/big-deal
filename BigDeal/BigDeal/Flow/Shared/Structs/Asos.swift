@@ -5,7 +5,7 @@ struct Asos: Codable {
 }
 
 struct AsosProduct: Codable {
-    let id: String
+    let id: Int
     let name: String
     let price: Price
     let url: String

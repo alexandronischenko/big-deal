@@ -11,6 +11,7 @@ protocol SearchMainViewDelegateProtocol: AnyObject {
 class SearchMainView: UIView {
     // MARK: - Private properties
     
+    let footerView = UIActivityIndicatorView(style: .medium)
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
     // MARK: - Other properties
@@ -32,6 +33,7 @@ class SearchMainView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
         return collectionView
     }()
     
@@ -98,6 +100,10 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: frame.size.width, height: 80)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: frame.size.width, height: 50)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = data[indexPath.row]
         delegate?.moveToDetailFlow(model: model)
@@ -141,6 +147,7 @@ extension SearchMainView: UICollectionViewDataSource {
                 DataManager.shared.asosHostHeader,
                 accessTokenHeader
             ]
+            footerView.startAnimating()
             delegate?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
             DataManager.shared.offset += DataManager.shared.limit
         }
@@ -148,14 +155,21 @@ extension SearchMainView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(
-            ofKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: SearchHeaderCollectionReusableView.identifier,
-            for: indexPath) as? SearchHeaderCollectionReusableView else {
-            return UICollectionReusableView()
+        if kind == UICollectionView.elementKindSectionFooter {
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
+            footer.addSubview(footerView)
+            footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
+            return footer
+        } else {
+            guard let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: SearchHeaderCollectionReusableView.identifier,
+                for: indexPath) as? SearchHeaderCollectionReusableView else {
+                return UICollectionReusableView()
+            }
+            header.delegate = self
+            return header
         }
-        header.delegate = self
-        return header
     }
 }
 // MARK: - SearchHeaderCollectionReusableViewDelegateProtocol

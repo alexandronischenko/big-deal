@@ -96,6 +96,8 @@ extension SearchMainViewController: UISearchBarDelegate {
             DataManager.shared.asosHostHeader,
             accessTokenHeader
         ]
+        let activityIndicatorView = searchMainView.activityIndicatorView
+        startAnimating(view: activityIndicatorView)
         obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
         DataManager.shared.offset += DataManager.shared.limit
         DataManager.shared.currentSearchingItemText = searchBarText
@@ -106,6 +108,7 @@ extension SearchMainViewController: UISearchBarDelegate {
         searchMainView.data = []
         DispatchQueue.main.async {
             self.searchMainView.collectionView.reloadData()
+            self.searchMainView.footerView.stopAnimating()
         }
         searchBar.resignFirstResponder()
     }
@@ -129,7 +132,6 @@ extension SearchMainViewController: SearchMainViewDelegateProtocol {
     
     func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible) {
         let activityIndicatorView = searchMainView.activityIndicatorView
-        startAnimating(view: activityIndicatorView)
         output?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { [weak self] response in
             switch response.result {
             case .success:

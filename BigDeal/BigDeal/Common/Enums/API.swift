@@ -12,4 +12,3 @@ enum ApiAccounts: String {
     case stockX
     case farfetch
 }
-

@@ -1,9 +1,16 @@
 import Foundation
+import Alamofire
 
 class DataManager {
-    // MARK: - Properties
+    // MARK: - Singleton
     
     static let shared = DataManager()
+    // MARK: - Properties
+    
+    var currentSearchingItemText: String = ""
+    var offset: Int = 0
+    var limit: Int = 10
+    // MARK: - Data
     
     var data: [Item] = [
         Item(shopTitle: "ASOS", clothTitle: "Sneakers", sizes: ["42", "43", "44"], oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1")),
@@ -17,6 +24,7 @@ class DataManager {
         Item(shopTitle: "ASOS", clothTitle: "Sneakers", sizes: ["42", "43", "44"], oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1")),
         Item(shopTitle: "ASOS", clothTitle: "Sneakers", sizes: ["42", "43", "44"], oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img2"))
     ]
+    // Access tokens
     
     var accessTokensForAsos: [String: String] = [
         "tokenForSearch": "1279077585mshb23d041886d9bb3p1b1539jsnfe59a7f5a95c",
@@ -38,11 +46,35 @@ class DataManager {
         "tokenForFilter": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
         "tokenForCategories": "895743ac99msh9c876e80d25b3d8p1c7c54jsnfcc7f96fe3ae"
     ]
+    // Bool
     
     var isExpandedArray: [Bool] = [
         false, false, false, false, false, false, false
     ]
+    // Asos API
     
-    var isDoneArray: [Bool] = [
-    ]
+    var asosHostHeader = HTTPHeader(name: "X-RapidAPI-Host", value: "asos2.p.rapidapi.com")
+    var asosProductsListUrl: URLConvertible = "https://asos2.p.rapidapi.com/products/v2/list"
+    var asosAccessTokenHeaderName = "X-RapidAPI-Key"
+    // MARK: - Functions
+    
+    func obtainParametersForAsos(_ searchingProduct: String?, categoryId: String?) -> Parameters? {
+        if let searchingProduct = searchingProduct {
+            return [
+                "store": "US",
+                "offset": "\(offset)",
+                "limit": "\(limit)",
+                "q": searchingProduct
+            ]
+        } else if let categoryId = categoryId {
+            return [
+                "store": "US",
+                "offset": "\(offset)",
+                "limit": "\(limit)",
+                "categoryId": categoryId
+            ]
+        } else {
+            return nil
+        }
+    }
 }

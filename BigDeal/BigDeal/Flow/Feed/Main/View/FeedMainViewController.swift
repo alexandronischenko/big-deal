@@ -34,14 +34,13 @@ class FeedMainViewController: UIViewController {
         
         title = "Feed"
 //        navigationItem.searchController = feedMainView.searchController
-        feedMainView.activityIndicatorDelegate = self
         feedMainView.viewDelegate = self
         
-        startAnimating()
+//        startAnimating()
 
-        obtainHotProductsFromAsos()
-        
-        feedMainView.collectionView.reloadData()
+//        obtainHotProductsFromAsos()
+
+//        feedMainView.collectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,6 +61,7 @@ extension FeedMainViewController: FeedMainPresenterInputProtocol {
         feedMainView.updateData(data: data)
     }
     func obtainHotProductsFromAsos() {
+        let activityIndicator = feedMainView.activityIndicatorView
         output?.obtainHotProductsFromAsos { [weak self] response in
             switch response.result {
             case .success:
@@ -77,7 +77,7 @@ extension FeedMainViewController: FeedMainPresenterInputProtocol {
                     }
                     self?.feedMainView.data += items
                     DispatchQueue.main.async {
-                        self?.stopAnimating()
+                        self?.stopAnimating(view: activityIndicator)
                         self?.feedMainView.collectionView.reloadData()
                     }
                 } catch {
@@ -98,7 +98,7 @@ extension FeedMainViewController: FeedMainPresenterInputProtocol {
                         return
                     }
                     let result = try JSONDecoder().decode(StockX.self, from: data)
-                    guard let items = Item.getStockXArray(from: result.stockXData.stockXItems) else {
+                    guard let items = Item.getStockXArray(from: result.stockXProducts) else {
                         self?.dataCollectingErrorAlert()
                         return
                     }
@@ -113,39 +113,6 @@ extension FeedMainViewController: FeedMainPresenterInputProtocol {
                 self?.resposeResultFailureAlert(with: error)
             }
         }
-    }
-    func dataCollectingErrorAlert() {
-        guard let collectingError = String?(ErrorsDescriptions.collectingError.rawValue) else {
-            return
-        }
-        let alertController = UIAlertController(title: "Data collecting error❗️", message: collectingError, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            self.dismiss(animated: true, completion: nil)
-        })
-        self.present(alertController, animated: true, completion: nil)
-    }
-    func resposeResultFailureAlert(with error: AFError) {
-        let alertController = UIAlertController(title: "Failure during request❗️", message: error.localizedDescription, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            self.dismiss(animated: true, completion: nil)
-        })
-        self.present(alertController, animated: true, completion: nil)
-    }
-    func obtainDataErrorAlert(error: Error) {
-        let alertController = UIAlertController(title: "Data processing error❗️", message: error.localizedDescription, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            self.dismiss(animated: true, completion: nil)
-        })
-        self.present(alertController, animated: true, completion: nil)
-    }
-}
-
-extension FeedMainViewController: ActivityIndicatorViewDelegateProtocol {
-    func stopAnimating() {
-        feedMainView.activityIndicatorView.stopAnimating()
-    }
-    func startAnimating() {
-        feedMainView.activityIndicatorView.startAnimating()
     }
 }
 

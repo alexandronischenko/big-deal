@@ -27,15 +27,11 @@ class SearchMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .systemBackground
         title = "Catalog"
-        
         searchMainView.delegate = self
-        searchMainView.viewDelegate = self
-        
-        navigationItem.searchController = searchMainView.searchController
         searchMainView.searchController.searchBar.delegate = self
+        navigationItem.searchController = searchMainView.searchController
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,46 +39,19 @@ class SearchMainViewController: UIViewController {
         navigationController?.tabBarItem.title = "Catalog"
     }
 }
-
 // MARK: - SearchBaseCoordinatedProtocol
 
 extension SearchMainViewController: SearchBaseCoordinatedProtocol {
 }
-
 // MARK: - SearchMainPresenterInputProtocol
 
 extension SearchMainViewController: SearchMainPresenterInputProtocol {
     func updateData(data: [Item]) {
         searchMainView.updateData(data: data)
     }
-    func obtainProductByNameFromAsos(name: String) {
-        output?.obtainProductByNameFromAsos(name: name) { [weak self] response in
-            switch response.result {
-            case .success:
-                do {
-                    guard let data = response.data else {
-                        self?.dataCollectingErrorAlert() 
-                        return
-                    }
-                    let result = try JSONDecoder().decode(Asos.self, from: data)
-                    guard let items = Item.getAsosArray(from: result.products) else {
-                        self?.dataCollectingErrorAlert()
-                        return
-                    }
-                    self?.searchMainView.data += items
-                    DispatchQueue.main.async {
-                        self?.stopAnimating()
-                        self?.searchMainView.collectionView.reloadData()
-                    }
-                } catch {
-                    self?.obtainDataErrorAlert(error: error)
-                }
-            case .failure(let error):
-                self?.resposeResultFailureAlert(with: error)
-            }
-        }
-    }
+    
     func obtainProductByNameFromStockX(name: String) {
+        let activityIndicator = searchMainView.activityIndicatorView
         output?.obtainProductByNameFromStockX(name: name) { [weak self] response in
             switch response.result {
             case .success:
@@ -92,13 +61,13 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
                         return
                     }
                     let result = try JSONDecoder().decode(StockX.self, from: data)
-                    guard let items = Item.getStockXArray(from: result.stockXData.stockXItems) else {
+                    guard let items = Item.getStockXArray(from: result.stockXProducts) else {
                         self?.dataCollectingErrorAlert()
                         return
                     }
                     self?.searchMainView.data += items
                     DispatchQueue.main.async {
-                        self?.stopAnimating()
+                        self?.stopAnimating(view: activityIndicator)
                         self?.searchMainView.collectionView.reloadData()
                     }
                 } catch {
@@ -108,57 +77,6 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
                 self?.resposeResultFailureAlert(with: error)
             }
         }
-    }
-    func obtainProductByNameFromFarfetch(name: String) {
-        output?.obtainProductByNameFromFarfetch(name: name) { [weak self] response in
-            switch response.result {
-            case .success:
-                do {
-                    guard let data = response.data else {
-                        self?.dataCollectingErrorAlert()
-                        return
-                    }
-                    let result = try JSONDecoder().decode(Farfetch.self, from: data)
-                    guard let items = Item.getFarfetchArray(from: result.products.entries) else {
-                        self?.dataCollectingErrorAlert()
-                        return
-                    }
-                    self?.searchMainView.data += items
-                    DispatchQueue.main.async {
-                        self?.startAnimating()
-                        self?.searchMainView.collectionView.reloadData()
-                    }
-                } catch {
-                    self?.obtainDataErrorAlert(error: error)
-                }
-            case .failure(let error):
-                self?.resposeResultFailureAlert(with: error)
-            }
-        }
-    }
-    func dataCollectingErrorAlert() {
-        guard let collectingError = String?(ErrorsDescriptions.collectingError.rawValue) else {
-            return
-        }
-        let alertController = UIAlertController(title: "Data collecting error❗️", message: collectingError, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            self.dismiss(animated: true, completion: nil)
-        })
-        self.present(alertController, animated: true, completion: nil)
-    }
-    func resposeResultFailureAlert(with error: AFError) {
-        let alertController = UIAlertController(title: "Failure during request❗️", message: error.localizedDescription, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            self.dismiss(animated: true, completion: nil)
-        })
-        self.present(alertController, animated: true, completion: nil)
-    }
-    func obtainDataErrorAlert(error: Error) {
-        let alertController = UIAlertController(title: "Data processing error❗️", message: error.localizedDescription, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            self.dismiss(animated: true, completion: nil)
-        })
-        self.present(alertController, animated: true, completion: nil)
     }
 }
 // MARK: - UISearchBarDelegate
@@ -166,12 +84,21 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
 extension SearchMainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchMainView.data = []
-        guard let searchBarText = searchBar.text else {
+        let service = ApiServices.accessTokenForSearch.rawValue
+        let account = ApiAccounts.asos.rawValue
+        guard let searchBarText = searchBar.text, let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
             return
         }
-        startAnimating()
-        obtainProductByNameFromAsos(name: searchBarText)
-//        obtainProductByNameFromStockX(name: searchBarText)
+        let url = DataManager.shared.asosProductsListUrl
+        let parameters: Parameters? = DataManager.shared.obtainParametersForAsos(searchBarText, categoryId: nil)
+        let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
+        let headers: HTTPHeaders = [
+            DataManager.shared.asosHostHeader,
+            accessTokenHeader
+        ]
+        obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
+        DataManager.shared.offset += DataManager.shared.limit
+        DataManager.shared.currentSearchingItemText = searchBarText
         searchBar.resignFirstResponder()
     }
     
@@ -183,17 +110,11 @@ extension SearchMainViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
-
-extension SearchMainViewController: ActivityIndicatorViewDelegateProtocol {
-    func startAnimating() {
-        searchMainView.activityIndicatorView.startAnimating()
-    }
-    func stopAnimating() {
-        searchMainView.activityIndicatorView.stopAnimating()
-    }
-}
+// MARK: - SearchMainViewDelegateProtocol
 
 extension SearchMainViewController: SearchMainViewDelegateProtocol {
+    // Functions
+    
     func moveToDetailFlow(model: Item) {
         self.output?.moveToDetailFlow(model: model)
     }
@@ -201,7 +122,50 @@ extension SearchMainViewController: SearchMainViewDelegateProtocol {
     func searchMainFilterButtonDidPressed() {
         self.output?.searchMainFilterButtonDidPressed()
     }
+        
     func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
         self.output?.searchMainCategoryButtonDidPressed(sender)
+    }
+    
+    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible) {
+        let activityIndicatorView = searchMainView.activityIndicatorView
+        startAnimating(view: activityIndicatorView)
+        output?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { [weak self] response in
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data else {
+                        DispatchQueue.main.async {
+                            self?.stopAnimating(view: activityIndicatorView)
+                            self?.dataCollectingErrorAlert()
+                        }
+                        return
+                    }
+                    let result = try JSONDecoder().decode(Asos.self, from: data)
+                    guard let items = Item.getAsosArray(from: result.products) else {
+                        DispatchQueue.main.async {
+                            self?.stopAnimating(view: activityIndicatorView)
+                            self?.obtainArrayOfItemsAlert()
+                        }
+                        return
+                    }
+                    self?.searchMainView.data += items
+                    DispatchQueue.main.async {
+                        self?.stopAnimating(view: activityIndicatorView)
+                        self?.searchMainView.collectionView.reloadData()
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self?.stopAnimating(view: activityIndicatorView)
+                        self?.obtainDataErrorAlert(error: error)
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.stopAnimating(view: activityIndicatorView)
+                    self?.resposeResultFailureAlert(with: error)
+                }
+            }
+        }
     }
 }

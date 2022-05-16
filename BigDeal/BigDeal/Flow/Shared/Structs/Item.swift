@@ -2,12 +2,15 @@ import Foundation
 import UIKit
 
 struct Item {
+    // MARK: - Properties
+    
     var clothImage: UIImage
     var clothTitle: String
     var oldPrice: String
     var newPrice: String
     var url: String
-    var id: Int
+    var id: String
+    // MARK: - Initializers
     
     init?(product: AsosProduct) {
         guard
@@ -18,7 +21,7 @@ struct Item {
             let clothData = try? Data(contentsOf: clothUrl),
             let clothImage = UIImage(data: clothData),
             let url = String?("https://www.asos.com/us" + product.url),
-            let id = Int?(product.id)
+            let id = String?("\(product.id)")
         else {
             return nil
         }
@@ -34,14 +37,16 @@ struct Item {
         self.id = id
     }
     
-    init?(stockXItem: StockXItem) {
+    init?(stockXProduct: StockXProduct) {
         guard
             let oldPrice = String?("Sold"),
             let newPrice = String?("Buy"),
-            let clothUrl = URL(string: stockXItem.image),
+            let clothUrl = URL(string: stockXProduct.media.thumbUrl),
             let clothData = try? Data(contentsOf: clothUrl),
             let clothImage = UIImage(data: clothData),
-            let clothTitle = String?("title")
+            let clothTitle = String?("\(stockXProduct.title)"),
+            let clothUrl = String?("https://stockx.com" + "\(stockXProduct.urlKey)"),
+            let id = String?("\(stockXProduct.objectID)")
         else {
             return nil
         }
@@ -49,8 +54,8 @@ struct Item {
         self.clothImage = clothImage
         self.newPrice = newPrice
         self.clothTitle = clothTitle
-        self.url = ""
-        self.id = 0
+        self.url = clothUrl
+        self.id = id
     }
     
     init?(entry: Entry) {
@@ -69,7 +74,7 @@ struct Item {
         self.newPrice = newPrice
         self.clothTitle = clothTitle
         self.url = ""
-        self.id = 0
+        self.id = ""
     }
     
     init(shopTitle: String, clothTitle: String, sizes: [String], oldPrice: String, newPrice: String, clothImage: UIImage) {
@@ -78,8 +83,9 @@ struct Item {
         self.clothImage = clothImage
         self.clothTitle = "title"
         self.url = ""
-        self.id = 0
+        self.id = ""
     }
+    // MARK: - Static functions
 
     static func getAsosArray(from products: [AsosProduct]) -> [Item]? {
         var items: [Item] = []
@@ -91,10 +97,10 @@ struct Item {
         return items
     }
     
-    static func getStockXArray(from stockXItems: [StockXItem]) -> [Item]? {
+    static func getStockXArray(from stockXProducts: [StockXProduct]) -> [Item]? {
         var items: [Item] = []
-        for stockXItem in stockXItems {
-            if let item = Item(stockXItem: stockXItem) {
+        for stockXProduct in stockXProducts {
+            if let item = Item(stockXProduct: stockXProduct) {
                 items.append(item)
             }
         }

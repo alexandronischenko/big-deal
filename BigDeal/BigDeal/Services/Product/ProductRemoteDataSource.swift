@@ -44,7 +44,7 @@ class ProductRemoteDataSource: ProductRemoteDataSourceProtocol {
             return
         }
         let headers: HTTPHeaders = [
-            "X-RapidAPI-Host": "stockx1.p.rapidapi.com",
+            "X-RapidAPI-Host": "stockx5.p.rapidapi.com",
             "X-RapidAPI-Key": accessTokenForStockX
         ]
         let parameters = [
@@ -52,7 +52,7 @@ class ProductRemoteDataSource: ProductRemoteDataSourceProtocol {
             "limit": "10",
             "page": "1"
         ]
-        let url = "https://stockx1.p.rapidapi.com/api/v1/stockx/search"
+        let url = "https://stockx5.p.rapidapi.com/search"
         DispatchQueue.global(qos: .utility).async {
             AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers).responseJSON { response in
                 completion(response)

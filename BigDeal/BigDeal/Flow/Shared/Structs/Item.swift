@@ -2,12 +2,15 @@ import Foundation
 import UIKit
 
 struct Item {
+    // MARK: - Properties
+    
     var clothImage: UIImage
     var clothTitle: String
     var oldPrice: String
     var newPrice: String
     var url: String
     var id: String
+    // MARK: - Initializers
     
     init?(product: AsosProduct) {
         guard
@@ -34,16 +37,16 @@ struct Item {
         self.id = id
     }
     
-    init?(stockXItem: StockXItem) {
+    init?(stockXProduct: StockXProduct) {
         guard
-            let oldPrice = String?("$" + "\(stockXItem.price)" + ".00"),
-            let newPrice = String?("$" + "\(stockXItem.price)" + ".00"),
-            let clothUrl = URL(string: stockXItem.image),
+            let oldPrice = String?("Sold"),
+            let newPrice = String?("Buy"),
+            let clothUrl = URL(string: stockXProduct.media.thumbUrl),
             let clothData = try? Data(contentsOf: clothUrl),
             let clothImage = UIImage(data: clothData),
-            let clothTitle = String?("\(stockXItem.name)"),
-            let clothUrl = String?("https://stockx.com" + "\(stockXItem.url)"),
-            let id = String?("\(stockXItem.id)")
+            let clothTitle = String?("\(stockXProduct.title)"),
+            let clothUrl = String?("https://stockx.com" + "\(stockXProduct.urlKey)"),
+            let id = String?("\(stockXProduct.objectID)")
         else {
             return nil
         }
@@ -82,6 +85,7 @@ struct Item {
         self.url = ""
         self.id = ""
     }
+    // MARK: - Static functions
 
     static func getAsosArray(from products: [AsosProduct]) -> [Item]? {
         var items: [Item] = []
@@ -93,10 +97,10 @@ struct Item {
         return items
     }
     
-    static func getStockXArray(from stockXItems: [StockXItem]) -> [Item]? {
+    static func getStockXArray(from stockXProducts: [StockXProduct]) -> [Item]? {
         var items: [Item] = []
-        for stockXItem in stockXItems {
-            if let item = Item(stockXItem: stockXItem) {
+        for stockXProduct in stockXProducts {
+            if let item = Item(stockXProduct: stockXProduct) {
                 items.append(item)
             }
         }

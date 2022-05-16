@@ -37,11 +37,11 @@ class FeedMainViewController: UIViewController {
         feedMainView.activityIndicatorDelegate = self
         feedMainView.viewDelegate = self
         
-//        startAnimating()
-//
-//        obtainHotProductsFromAsos()
-//
-//        feedMainView.collectionView.reloadData()
+        startAnimating()
+
+        obtainHotProductsFromAsos()
+
+        feedMainView.collectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -98,7 +98,7 @@ extension FeedMainViewController: FeedMainPresenterInputProtocol {
                         return
                     }
                     let result = try JSONDecoder().decode(StockX.self, from: data)
-                    guard let items = Item.getStockXArray(from: result.stockXData.stockXItems) else {
+                    guard let items = Item.getStockXArray(from: result.stockXProducts) else {
                         self?.dataCollectingErrorAlert()
                         return
                     }

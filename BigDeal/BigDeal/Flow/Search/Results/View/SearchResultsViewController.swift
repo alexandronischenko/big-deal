@@ -39,10 +39,8 @@ class SearchResultsViewController: UIViewController {
         guard let categoryId = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryId) as? String else {
             return
         }
-        let category = "sneakers"
         searchResultsView.activityIndicatorView.startAnimating()
-//        obtainProductByCategoryIdFromAsos(categoryId)
-        obtainProductByCategoryFromStockX(category)
+        obtainProductByCategoryIdFromAsos(categoryId)
     }
     
     // MARK: - Private functions
@@ -157,7 +155,7 @@ extension SearchResultsViewController: SearchResultsPresenterInputProtocol {
                         return
                     }
                     let result = try JSONDecoder().decode(StockX.self, from: data)
-                    guard let items = Item.getStockXArray(from: result.stockXData.stockXItems) else {
+                    guard let items = Item.getStockXArray(from: result.stockXProducts) else {
                         self?.dataCollectingErrorAlert()
                         return
                     }

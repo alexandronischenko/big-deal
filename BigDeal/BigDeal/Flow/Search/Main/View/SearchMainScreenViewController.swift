@@ -92,7 +92,7 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
                         return
                     }
                     let result = try JSONDecoder().decode(StockX.self, from: data)
-                    guard let items = Item.getStockXArray(from: result.stockXData.stockXItems) else {
+                    guard let items = Item.getStockXArray(from: result.stockXProducts) else {
                         self?.dataCollectingErrorAlert()
                         return
                     }
@@ -171,7 +171,6 @@ extension SearchMainViewController: UISearchBarDelegate {
         }
         startAnimating()
         obtainProductByNameFromAsos(name: searchBarText)
-//        obtainProductByNameFromStockX(name: searchBarText)
         searchBar.resignFirstResponder()
     }
     

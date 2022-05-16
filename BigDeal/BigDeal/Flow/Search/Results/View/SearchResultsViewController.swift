@@ -119,6 +119,8 @@ extension SearchResultsViewController: SearchResultsReusableViewDelegate {
 
 extension SearchResultsViewController: SearchResultsPresenterInputProtocol {
     func obtainProductByCategoryIdFromAsos(_ categoryId: String) {
+        let group = DispatchGroup()
+        group.enter()
         output?.obtainProductByCategoryIdFromAsos(categoryId) { [weak self] response in
             switch response.result {
             case .success:
@@ -133,16 +135,20 @@ extension SearchResultsViewController: SearchResultsPresenterInputProtocol {
                         return
                     }
                     self?.data += items
-                    DispatchQueue.main.async {
-                        self?.searchResultsView.activityIndicatorView.stopAnimating()
-                        self?.searchResultsView.searchResultsCollectionView.reloadData()
-                    }
+                    group.leave()
+//                    DispatchQueue.main.async {
+//
+//                    }
                 } catch {
                     self?.obtainDataErrorAlert(error: error)
                 }
             case .failure(let error):
                 self?.resposeResultFailureAlert(with: error)
             }
+        }
+        group.notify(queue: .main) {
+            self.searchResultsView.activityIndicatorView.stopAnimating()
+            self.searchResultsView.searchResultsCollectionView.reloadData()
         }
     }
     func obtainProductByCategoryFromStockX(_ category: String) {

@@ -9,12 +9,16 @@ protocol SearchMainViewDelegateProtocol: AnyObject {
 }
 
 class SearchMainView: UIView {
-    var offset: Int = 0
+    // MARK: - Private properties
     
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
+    // MARK: - Other properties
+    
     var data: [Item] = []
     weak var delegate: SearchMainViewDelegateProtocol?
+    
+    // MARK: - UI
     
     lazy var activityIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
@@ -50,21 +54,20 @@ class SearchMainView: UIView {
         button.layer.cornerRadius = 6
         return button
     }()
+    // MARK: - Overrided
+    
+    // Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         backgroundColor = .systemBackground
-        
         collectionView.register(
             SearchHeaderCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SearchHeaderCollectionReusableView.identifier)
         collectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
-
         collectionView.delegate = self
         collectionView.dataSource = self
- 
         addSubview(collectionView)
         addSubview(activityIndicatorView)
         layoutSubviews()
@@ -75,9 +78,6 @@ class SearchMainView: UIView {
     }
     
     override func layoutSubviews() {
-//        scrollView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -85,6 +85,7 @@ class SearchMainView: UIView {
             make.centerY.centerX.equalToSuperview()
         }
     }
+    // MARK: - Functions
     
     func updateData(data: [Item]) {
         self.data = data
@@ -157,6 +158,7 @@ extension SearchMainView: UICollectionViewDataSource {
         return header
     }
 }
+// MARK: - SearchHeaderCollectionReusableViewDelegateProtocol
 
 extension SearchMainView: SearchHeaderCollectionReusableViewDelegateProtocol {
     func searchMainFilterButtonDidPressed() {

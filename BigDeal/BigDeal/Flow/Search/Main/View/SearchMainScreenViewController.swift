@@ -2,7 +2,6 @@ import UIKit
 import Alamofire
 
 class SearchMainViewController: UIViewController {
-    var offset: Int = 0
     // MARK: - Private properties
     
     private let searchMainView = SearchMainView()
@@ -28,14 +27,11 @@ class SearchMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .systemBackground
         title = "Catalog"
-        
         searchMainView.delegate = self
-        
-        navigationItem.searchController = searchMainView.searchController
         searchMainView.searchController.searchBar.delegate = self
+        navigationItem.searchController = searchMainView.searchController
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,7 +39,6 @@ class SearchMainViewController: UIViewController {
         navigationController?.tabBarItem.title = "Catalog"
     }
 }
-
 // MARK: - SearchBaseCoordinatedProtocol
 
 extension SearchMainViewController: SearchBaseCoordinatedProtocol {

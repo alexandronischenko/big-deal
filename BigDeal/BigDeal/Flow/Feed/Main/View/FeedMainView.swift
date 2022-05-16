@@ -1,10 +1,5 @@
 import UIKit
 
-protocol ActivityIndicatorViewDelegateProtocol: AnyObject {
-    func stopAnimating()
-    func startAnimating()
-}
-
 protocol FeedMainViewDelegateProtocol: AnyObject {
     func moveToDetailFlow(model: Item)
 }
@@ -14,8 +9,6 @@ class FeedMainView: UIView {
     
 //    var data: [Item] = DataManager.shared.data
     var data: [Item] = []
-    
-    weak var activityIndicatorDelegate: ActivityIndicatorViewDelegateProtocol?
     weak var viewDelegate: FeedMainViewDelegateProtocol?
     
     lazy var activityIndicatorView: UIActivityIndicatorView = {

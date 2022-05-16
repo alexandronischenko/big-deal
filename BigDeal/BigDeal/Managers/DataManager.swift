@@ -7,8 +7,9 @@ class DataManager {
     static let shared = DataManager()
     // MARK: - Properties
     
-    var currentSearchingItemText: String?
-    var offset: Int?
+    var currentSearchingItemText: String = ""
+    var offset: Int = 0
+    var limit: Int = 10
     // MARK: - Data
     
     var data: [Item] = [
@@ -61,15 +62,15 @@ class DataManager {
         if let searchingProduct = searchingProduct {
             return [
                 "store": "US",
-                "offset": "0",
-                "limit": "10",
+                "offset": "\(offset)",
+                "limit": "\(limit)",
                 "q": searchingProduct
             ]
         } else if let categoryId = categoryId {
             return [
                 "store": "US",
-                "offset": "0",
-                "limit": "10",
+                "offset": "\(offset)",
+                "limit": "\(limit)",
                 "categoryId": categoryId
             ]
         } else {

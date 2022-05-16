@@ -18,8 +18,7 @@ class RadioButtonController: NSObject {
             buttonArrayUpdated(buttonSelected: self.defaultButton)
         }
     }
-    
-    // MARK: - Private funcs
+    // MARK: - Private funtions
     
     private func buttonArrayUpdated(buttonSelected: UIButton) {
         for button in buttonsArray {
@@ -34,8 +33,7 @@ class RadioButtonController: NSObject {
             }
         }
     }
-    
-    // MARK: - Other funcs
+    // MARK: - Other functions
     
     func addButtonForRadioController(_ button: UIButton) {
         button.addTarget(self, action: #selector(categoryButtonDidPressed), for: .touchUpInside)
@@ -43,8 +41,7 @@ class RadioButtonController: NSObject {
             buttonsArray.append(button)
         }
     }
-    
-    // MARK: - OBJC funcs
+    // MARK: - OBJC functions
     
     @objc private func categoryButtonDidPressed(_ sender: UIButton) {
         buttonArrayUpdated(buttonSelected: sender)

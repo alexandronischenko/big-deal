@@ -12,25 +12,6 @@ class ProductRemoteDataSource: ProductRemoteDataSourceProtocol {
     // Requests to ASOS API
     
     func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping(AFDataResponse<Any>) -> Void) {
-//        guard let accessTokenForAsos = accessTokenForAsos else {
-//            return
-//        }
-//        let headers: HTTPHeaders = [
-//            "X-RapidAPI-Host": "asos2.p.rapidapi.com",
-//            "X-RapidAPI-Key": accessTokenForAsos
-//        ]
-//        let parameters = [
-//            "store": "US",
-//            "offset": String(offset),
-//            "limit": String(limit),
-//            "country": "US",
-//            "sort": "freshness",
-//            "q": name,
-//            "currency": "USD",
-//            "sizeSchema": "US",
-//            "lang": "en-US"
-//        ]
-//        let url = "https://asos2.p.rapidapi.com/products/v2/list"
         DispatchQueue.global(qos: .utility).async {
             AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers).responseJSON { response in
                 completion(response)

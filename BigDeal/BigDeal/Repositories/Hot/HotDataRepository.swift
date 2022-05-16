@@ -15,14 +15,14 @@ class HotDataRepository: HotRepositoryProtocol {
     }
     // MARK: - Functions
     
-    // Request from ASOS API
+    // Request to ASOS API
     
     func obtainHotProductsFromAsos(completion: @escaping(AFDataResponse<Any>) -> Void) {
         remoteDataSource.obtainHotProductsFromAsos { response in
             completion(response)
         }
     }
-    // Request from StockX API
+    // Request to StockX API
     
     func obtainHotProductsFromStockX(completion: @escaping(AFDataResponse<Any>) -> Void) {
         remoteDataSource.obtainHotProductsFromStockX { response in

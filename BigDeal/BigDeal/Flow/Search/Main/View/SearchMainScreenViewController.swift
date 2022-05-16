@@ -33,7 +33,6 @@ class SearchMainViewController: UIViewController {
         title = "Catalog"
         
         searchMainView.delegate = self
-        searchMainView.viewDelegate = self
         
         navigationItem.searchController = searchMainView.searchController
         searchMainView.searchController.searchBar.delegate = self
@@ -49,14 +48,15 @@ class SearchMainViewController: UIViewController {
 
 extension SearchMainViewController: SearchBaseCoordinatedProtocol {
 }
-
 // MARK: - SearchMainPresenterInputProtocol
 
 extension SearchMainViewController: SearchMainPresenterInputProtocol {
     func updateData(data: [Item]) {
         searchMainView.updateData(data: data)
     }
+    
     func obtainProductByNameFromStockX(name: String) {
+        let activityIndicator = searchMainView.activityIndicatorView
         output?.obtainProductByNameFromStockX(name: name) { [weak self] response in
             switch response.result {
             case .success:
@@ -72,7 +72,7 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
                     }
                     self?.searchMainView.data += items
                     DispatchQueue.main.async {
-                        self?.stopAnimating()
+                        self?.stopAnimating(view: activityIndicator)
                         self?.searchMainView.collectionView.reloadData()
                     }
                 } catch {
@@ -89,10 +89,9 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
 extension SearchMainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchMainView.data = []
-        guard let searchBarText = searchBar.text else {
-            return
-        }
-        guard  let accessTokenForAsos = KeychainManager.standard.read(service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.asos.rawValue, type: String.self) else {
+        let service = ApiServices.accessTokenForSearch.rawValue
+        let account = ApiAccounts.asos.rawValue
+        guard let searchBarText = searchBar.text, let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
             return
         }
         let url = DataManager.shared.asosProductsListUrl
@@ -102,10 +101,9 @@ extension SearchMainViewController: UISearchBarDelegate {
             DataManager.shared.asosHostHeader,
             accessTokenHeader
         ]
-//        startAnimating()
         obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
-        offset += 10
-        UserDefaults.standard.set(offset, forKey: "offset")
+        DataManager.shared.offset += DataManager.shared.limit
+        DataManager.shared.currentSearchingItemText = searchBarText
         searchBar.resignFirstResponder()
     }
     
@@ -117,17 +115,11 @@ extension SearchMainViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
-
-extension SearchMainViewController: ActivityIndicatorViewDelegateProtocol {
-    func startAnimating() {
-        searchMainView.activityIndicatorView.startAnimating()
-    }
-    func stopAnimating() {
-        searchMainView.activityIndicatorView.stopAnimating()
-    }
-}
+// MARK: - SearchMainViewDelegateProtocol
 
 extension SearchMainViewController: SearchMainViewDelegateProtocol {
+    // Functions
+    
     func moveToDetailFlow(model: Item) {
         self.output?.moveToDetailFlow(model: model)
     }
@@ -141,14 +133,15 @@ extension SearchMainViewController: SearchMainViewDelegateProtocol {
     }
     
     func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible) {
-        startAnimating()
+        let activityIndicatorView = searchMainView.activityIndicatorView
+        startAnimating(view: activityIndicatorView)
         output?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { [weak self] response in
             switch response.result {
             case .success:
                 do {
                     guard let data = response.data else {
                         DispatchQueue.main.async {
-                            self?.stopAnimating()
+                            self?.stopAnimating(view: activityIndicatorView)
                             self?.dataCollectingErrorAlert()
                         }
                         return
@@ -156,25 +149,25 @@ extension SearchMainViewController: SearchMainViewDelegateProtocol {
                     let result = try JSONDecoder().decode(Asos.self, from: data)
                     guard let items = Item.getAsosArray(from: result.products) else {
                         DispatchQueue.main.async {
-                            self?.stopAnimating()
+                            self?.stopAnimating(view: activityIndicatorView)
                             self?.obtainArrayOfItemsAlert()
                         }
                         return
                     }
                     self?.searchMainView.data += items
                     DispatchQueue.main.async {
-                        self?.stopAnimating()
+                        self?.stopAnimating(view: activityIndicatorView)
                         self?.searchMainView.collectionView.reloadData()
                     }
                 } catch {
                     DispatchQueue.main.async {
-                        self?.stopAnimating()
+                        self?.stopAnimating(view: activityIndicatorView)
                         self?.obtainDataErrorAlert(error: error)
                     }
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.stopAnimating()
+                    self?.stopAnimating(view: activityIndicatorView)
                     self?.resposeResultFailureAlert(with: error)
                 }
             }

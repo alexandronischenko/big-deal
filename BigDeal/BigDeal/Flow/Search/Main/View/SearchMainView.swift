@@ -14,9 +14,7 @@ class SearchMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
     var data: [Item] = []
-    
-    weak var delegate: ActivityIndicatorViewDelegateProtocol?
-    weak var viewDelegate: SearchMainViewDelegateProtocol?
+    weak var delegate: SearchMainViewDelegateProtocol?
     
     lazy var activityIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
@@ -101,7 +99,7 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = data[indexPath.row]
-        viewDelegate?.moveToDetailFlow(model: model)
+        delegate?.moveToDetailFlow(model: model)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -129,11 +127,21 @@ extension SearchMainView: UICollectionViewDataSource {
         }
         cell.data = self.data[indexPath.row]
         if indexPath.item == data.count - 1 {
-            let offset = UserDefaults.standard.integer(forKey: "offset")
-//            activityIndicatorView.startAnimating()
-//            viewDelegate?.obtainProductByNameFromAsos(name: "Polo ralph", offset: offset, limit: 10)
-//            activityIndicatorView.stopAnimating()
-            UserDefaults.standard.set(offset + 10, forKey: "offset")
+            let service = ApiServices.accessTokenForSearch.rawValue
+            let account = ApiAccounts.asos.rawValue
+            guard let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
+                return UICollectionViewCell()
+            }
+            let url = DataManager.shared.asosProductsListUrl
+            let searchingProduct = DataManager.shared.currentSearchingItemText
+            let parameters: Parameters? = DataManager.shared.obtainParametersForAsos(searchingProduct, categoryId: nil)
+            let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
+            let headers: HTTPHeaders = [
+                DataManager.shared.asosHostHeader,
+                accessTokenHeader
+            ]
+            delegate?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
+            DataManager.shared.offset += DataManager.shared.limit
         }
         return cell
     }
@@ -152,9 +160,9 @@ extension SearchMainView: UICollectionViewDataSource {
 
 extension SearchMainView: SearchHeaderCollectionReusableViewDelegateProtocol {
     func searchMainFilterButtonDidPressed() {
-        viewDelegate?.searchMainFilterButtonDidPressed()
+        delegate?.searchMainFilterButtonDidPressed()
     }
     func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
-        viewDelegate?.searchMainCategoryButtonDidPressed(sender)
+        delegate?.searchMainCategoryButtonDidPressed(sender)
     }
 }

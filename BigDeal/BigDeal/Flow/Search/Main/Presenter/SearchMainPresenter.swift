@@ -37,8 +37,8 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
     func updateData(data: [Item]) {
         input?.updateData(data: data)
     }
-    func obtainProductByNameFromAsos(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        productRepository?.obtainProductByNameFromAsos(name: name) { response in
+    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping(AFDataResponse<Any>) -> Void) {
+        productRepository?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { response in
             completion(response)
         }
     }

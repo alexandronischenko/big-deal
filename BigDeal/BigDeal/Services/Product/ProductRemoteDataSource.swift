@@ -9,35 +9,35 @@ class ProductRemoteDataSource: ProductRemoteDataSourceProtocol {
     private let accessTokenForFarfetch = KeychainManager.standard.read(service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.farfetch.rawValue, type: String.self)
     // MARK: - Functions
     
-    // Requests from ASOS API
+    // Requests to ASOS API
     
-    func obtainProductByNameFromAsos(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        guard let accessTokenForAsos = accessTokenForAsos else {
-            return
-        }
-        let headers: HTTPHeaders = [
-            "X-RapidAPI-Host": "asos2.p.rapidapi.com",
-            "X-RapidAPI-Key": accessTokenForAsos
-        ]
-        let parameters = [
-            "store": "US",
-            "offset": "0",
-            "limit": "30",
-            "country": "US",
-            "sort": "freshness",
-            "q": name,
-            "currency": "USD",
-            "sizeSchema": "US",
-            "lang": "en-US"
-        ]
-        let url = "https://asos2.p.rapidapi.com/products/v2/list"
+    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping(AFDataResponse<Any>) -> Void) {
+//        guard let accessTokenForAsos = accessTokenForAsos else {
+//            return
+//        }
+//        let headers: HTTPHeaders = [
+//            "X-RapidAPI-Host": "asos2.p.rapidapi.com",
+//            "X-RapidAPI-Key": accessTokenForAsos
+//        ]
+//        let parameters = [
+//            "store": "US",
+//            "offset": String(offset),
+//            "limit": String(limit),
+//            "country": "US",
+//            "sort": "freshness",
+//            "q": name,
+//            "currency": "USD",
+//            "sizeSchema": "US",
+//            "lang": "en-US"
+//        ]
+//        let url = "https://asos2.p.rapidapi.com/products/v2/list"
         DispatchQueue.global(qos: .utility).async {
             AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers).responseJSON { response in
                 completion(response)
             }
         }
     }
-    // Requests from StockX API
+    // Requests to StockX API
     
     func obtainProductByNameFromStockX(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
         guard let accessTokenForStockX = accessTokenForStockX else {
@@ -59,7 +59,7 @@ class ProductRemoteDataSource: ProductRemoteDataSourceProtocol {
             }
         }
     }
-    // Requests from Farfetch API
+    // Requests to Farfetch API
     
     func obtainProductByNameFromFarfetch(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
         guard let accessTokenForFarfetch = accessTokenForFarfetch else {

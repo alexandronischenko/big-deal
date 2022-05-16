@@ -4,11 +4,9 @@ class KeychainManager {
     // MARK: - Properties
     
     static let standard = KeychainManager()
-    
     // MARK: - Initializers
     
     private init() {}
-    
     // MARK: - Functions
     
     func save(_ data: Data, service: String, account: String) {
@@ -46,7 +44,8 @@ class KeychainManager {
         let query = [
             kSecAttrService: service,
             kSecAttrAccount: account,
-            kSecClass: kSecClassGenericPassword] as CFDictionary
+            kSecClass: kSecClassGenericPassword]
+        as CFDictionary
         SecItemDelete(query)
     }
 }

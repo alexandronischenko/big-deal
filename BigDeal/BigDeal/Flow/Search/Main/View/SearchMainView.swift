@@ -1,12 +1,16 @@
 import UIKit
+import Alamofire
 
 protocol SearchMainViewDelegateProtocol: AnyObject {
     func searchMainFilterButtonDidPressed()
     func searchMainCategoryButtonDidPressed(_ sender: UIButton)
     func moveToDetailFlow(model: Item)
+    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible)
 }
 
 class SearchMainView: UIView {
+    var offset: Int = 0
+    
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
     var data: [Item] = []
@@ -124,6 +128,13 @@ extension SearchMainView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.data = self.data[indexPath.row]
+        if indexPath.item == data.count - 1 {
+            let offset = UserDefaults.standard.integer(forKey: "offset")
+//            activityIndicatorView.startAnimating()
+//            viewDelegate?.obtainProductByNameFromAsos(name: "Polo ralph", offset: offset, limit: 10)
+//            activityIndicatorView.stopAnimating()
+            UserDefaults.standard.set(offset + 10, forKey: "offset")
+        }
         return cell
     }
     

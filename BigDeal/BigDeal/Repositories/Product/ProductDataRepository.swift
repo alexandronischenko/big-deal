@@ -15,21 +15,21 @@ class ProductDataRepository: ProductRepositoryProtocol {
     }
     // MARK: - Functions
     
-    // Request from ASOS API
+    // Request to ASOS API
     
-    func obtainProductByNameFromAsos(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        remoteDataSource.obtainProductByNameFromAsos(name: name) { response in
+    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping(AFDataResponse<Any>) -> Void) {
+        remoteDataSource.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { response in
             completion(response)
         }
     }
-    // Request from StockX API
+    // Request to StockX API
     
     func obtainProductByNameFromStockX(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
         remoteDataSource.obtainProductByNameFromStockX(name: name) { response in
             completion(response)
         }
     }
-    // Request from Farfetch API
+    // Request to Farfetch API
     
     func obtainProductByNameFromFarfetch(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
         remoteDataSource.obtainProductByNameFromFarfetch(name: name) { response in

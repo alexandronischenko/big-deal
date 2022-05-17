@@ -38,7 +38,7 @@ class DetailItemViewController: UIViewController {
         currHeight?.isActive = true
         self.navigationItem.rightBarButtonItem = menuBarItem
         
-        menuBtn.addTarget(self, action: #selector(didTapAddFavoritesButton), for: .touchUpInside)
+        menuBtn.addTarget(self, action: #selector(didTapAddFavoritesButton(_:)), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,8 +58,34 @@ extension DetailItemViewController: DetailItemViewProtocol {
         title = model.clothTitle
     }
     
-    @objc func didTapAddFavoritesButton() {
-        guard let url = detailItemView.item?.url else { return }
-        presenter.didTapAddToFavorites(url: url)
+    @objc func didTapAddFavoritesButton(_ sender: UIButton) {
+        guard let id = detailItemView.item?.id else { return }
+        presenter.didTapAddToFavorites(id: String(id), completion: { isFavorite in
+            if isFavorite {
+                let menuBtn = UIButton(type: .custom)
+                let img = UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 100, weight: .medium), scale: .medium))
+                menuBtn.setImage(img, for: .normal)
+                
+                let menuBarItem = UIBarButtonItem(customView: menuBtn)
+                let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 26)
+                currWidth?.isActive = true
+                let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 26)
+                currHeight?.isActive = true
+                self.navigationItem.rightBarButtonItem = menuBarItem
+                menuBtn.addTarget(self, action: #selector(didTapAddFavoritesButton(_:)), for: .touchUpInside)
+            } else {
+                let menuBtn = UIButton(type: .custom)
+                let img = UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 100, weight: .medium), scale: .medium))
+                menuBtn.setImage(img, for: .normal)
+                
+                let menuBarItem = UIBarButtonItem(customView: menuBtn)
+                let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 26)
+                currWidth?.isActive = true
+                let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 26)
+                currHeight?.isActive = true
+                self.navigationItem.rightBarButtonItem = menuBarItem
+                menuBtn.addTarget(self, action: #selector(didTapAddFavoritesButton(_:)), for: .touchUpInside)
+            }
+        })
     }
 }

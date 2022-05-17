@@ -130,6 +130,7 @@ extension FeedMainView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.data = self.data[indexPath.row]
+        
         return cell
     }
 }

@@ -83,7 +83,7 @@ struct Item {
         self.oldPrice = oldPrice
         self.newPrice = newPrice
         self.clothImage = clothImage
-        self.clothTitle = "title"
+        self.clothTitle = clothTitle
         self.url = ""
         self.id = ""
     }

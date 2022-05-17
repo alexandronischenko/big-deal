@@ -13,30 +13,40 @@ class DetailItemView: UIView {
     var scrollView: UIScrollView = {
         var scroll = UIScrollView()
         scroll.showsVerticalScrollIndicator = false
+        scroll.showsHorizontalScrollIndicator = false
         return scroll
+    }()
+    
+    var largeLabel: UILabel = {
+        var label = UILabel()
+        label.text = "Name Name Name Name Name Name Name Name"
+        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        return label
     }()
     
     var shop: UILabel = {
         var label = UILabel()
-        label.text = "Shop:"
+        label.text = "Category:"
         label.textColor = .tertiaryLabel
         return label
     }()
-
-    var sizes: UILabel = {
+    
+    var name: UILabel = {
         var label = UILabel()
-        label.text = "Sizes:"
+        label.text = "Name:"
         label.textColor = .tertiaryLabel
         return label
     }()
-
+    
     var defaultPrice: UILabel = {
         var label = UILabel()
         label.text = "Default price:"
         label.textColor = .tertiaryLabel
         return label
     }()
-
+    
     var currentPrice: UILabel = {
         var label = UILabel()
         label.text = "Discount price:"
@@ -45,7 +55,6 @@ class DetailItemView: UIView {
     }()
     
     var imageView: UIImageView = {
-        // MARK: - FIX IT
         var image = UIImage(systemName: "bag")
         var imageView = UIImageView(image: image)
         imageView.tintColor = .label
@@ -55,26 +64,23 @@ class DetailItemView: UIView {
     
     var shopNameLabel: UILabel = {
         var label = UILabel()
-        // MARK: - FIX IT
-        label.text = "Adidas"
+        label.text = "none"
         label.textColor = .label
         label.textAlignment = .right
         return label
     }()
     
-    var sizesLabel: UILabel = {
+    var nameLabel: UILabel = {
         var label = UILabel()
-        // MARK: - FIX IT
         label.textColor = .label
         label.textAlignment = .right
-        label.text = "41 42 43"
+        label.text = "none"
         return label
     }()
     
     var defaultPriceLabel: UILabel = {
         var label = UILabel()
-        // MARK: - FIX IT
-        label.text = "2000$"
+        label.text = "none"
         label.textAlignment = .right
         label.textColor = .secondaryLabel
         return label
@@ -84,8 +90,7 @@ class DetailItemView: UIView {
         var label = UILabel()
         label.textColor = .label
         label.textAlignment = .right
-        // MARK: - FIX IT
-        label.text = "1000$"
+        label.text = "none"
         return label
     }()
     
@@ -103,27 +108,23 @@ class DetailItemView: UIView {
         
         backgroundColor = .systemBackground
         
-        backgroundColor = .systemBackground
-
         addSubview(scrollView)
+        scrollView.addSubview(largeLabel)
         scrollView.addSubview(imageView)
         
         scrollView.addSubview(shopNameLabel)
-        scrollView.addSubview(sizesLabel)
+        scrollView.addSubview(nameLabel)
         scrollView.addSubview(defaultPriceLabel)
         scrollView.addSubview(currentPriceLabel)
         
         scrollView.addSubview(shop)
-        scrollView.addSubview(sizes)
+        scrollView.addSubview(name)
         scrollView.addSubview(defaultPrice)
         scrollView.addSubview(currentPrice)
         
-        scrollView.addSubview(button)
+        addSubview(button)
         
         setConstraints()
-        // MARK: - FIX IT
-//        title = "krossovrki"
-//        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     required init?(coder: NSCoder) {
@@ -134,58 +135,66 @@ class DetailItemView: UIView {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        imageView.snp.makeConstraints { make in
+        
+        largeLabel.snp.makeConstraints { make in
             make.top.equalTo(scrollView.snp.top).offset(16)
             make.centerX.equalTo(scrollView.snp.centerX)
-            make.height.width.equalTo(scrollView.snp.width).multipliedBy(0.9)
+            make.width.equalTo(scrollView.snp.width).multipliedBy(0.9)
         }
         
-        shop.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(16)
-            make.leading.equalTo(imageView.snp.leading)
-            make.trailing.equalTo(imageView.snp.centerX)
+        imageView.snp.makeConstraints { make in
+            make.top.equalTo(largeLabel.snp.bottom).offset(8)
+            make.centerX.equalTo(scrollView.snp.centerX)
+            make.width.equalTo(scrollView.snp.width).multipliedBy(0.9)
         }
-        sizes.snp.makeConstraints { make in
-            make.top.equalTo(shop.snp.bottom).offset(16)
-            make.leading.equalTo(imageView.snp.leading)
-            make.trailing.equalTo(imageView.snp.centerX)
+        
+        name.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(8)
+            make.leading.equalTo(largeLabel.snp.leading)
+            make.trailing.equalTo(largeLabel.snp.centerX)
+        }
+        shop.snp.makeConstraints { make in
+            make.top.equalTo(name.snp.bottom).offset(16)
+            make.leading.equalTo(largeLabel.snp.leading)
+            make.trailing.equalTo(largeLabel.snp.centerX)
         }
         defaultPrice.snp.makeConstraints { make in
-            make.top.equalTo(sizes.snp.bottom).offset(16)
-            make.leading.equalTo(imageView.snp.leading)
-            make.trailing.equalTo(imageView.snp.centerX)
+            make.top.equalTo(shop.snp.bottom).offset(16)
+            make.leading.equalTo(largeLabel.snp.leading)
+            make.trailing.equalTo(largeLabel.snp.centerX)
         }
         currentPrice.snp.makeConstraints { make in
             make.top.equalTo(defaultPrice.snp.bottom).offset(16)
-            make.leading.equalTo(imageView.snp.leading)
-            make.trailing.equalTo(imageView.snp.centerX)
+            make.leading.equalTo(largeLabel.snp.leading)
+            make.trailing.equalTo(largeLabel.snp.centerX)
+            make.bottom.equalTo(scrollView.snp.bottom).offset(-64)
         }
         
-        shopNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(16)
-            make.leading.equalTo(imageView.snp.centerX)
-            make.trailing.equalTo(imageView.snp.trailing)
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(8)
+            make.leading.equalTo(largeLabel.snp.centerX)
+            make.trailing.equalTo(largeLabel.snp.trailing)
         }
-        sizesLabel.snp.makeConstraints { make in
-            make.top.equalTo(shopNameLabel.snp.bottom).offset(16)
-            make.leading.equalTo(imageView.snp.centerX)
-            make.trailing.equalTo(imageView.snp.trailing)
+        shopNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(16)
+            make.leading.equalTo(largeLabel.snp.centerX)
+            make.trailing.equalTo(largeLabel.snp.trailing)
         }
         defaultPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(sizesLabel.snp.bottom).offset(16)
-            make.leading.equalTo(imageView.snp.centerX)
-            make.trailing.equalTo(imageView.snp.trailing)
+            make.top.equalTo(shopNameLabel.snp.bottom).offset(16)
+            make.leading.equalTo(largeLabel.snp.centerX)
+            make.trailing.equalTo(largeLabel.snp.trailing)
         }
         currentPriceLabel.snp.makeConstraints { make in
             make.top.equalTo(defaultPriceLabel.snp.bottom).offset(16)
-            make.leading.equalTo(imageView.snp.centerX)
-            make.trailing.equalTo(imageView.snp.trailing)
+            make.leading.equalTo(largeLabel.snp.centerX)
+            make.trailing.equalTo(largeLabel.snp.trailing)
+            make.bottom.equalTo(scrollView.snp.bottom).offset(-64)
         }
         button.snp.makeConstraints { make in
-            make.top.equalTo(currentPrice.snp.bottom).offset(16)
-            make.bottom.equalTo(scrollView.snp.bottom).offset(-16)
-            make.leading.equalTo(imageView.snp.leading)
-            make.trailing.equalTo(imageView.snp.trailing)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(16)
+            make.leading.equalTo(largeLabel.snp.leading)
+            make.trailing.equalTo(largeLabel.snp.trailing)
         }
     }
     
@@ -193,12 +202,25 @@ class DetailItemView: UIView {
         guard let url = item?.url else { return }
         delegate?.goToShopSite(url: url)
     }
-        
+    
     func configureModel(model: Item) {
         self.item = model
         currentPriceLabel.text = model.newPrice
         defaultPriceLabel.text = model.oldPrice
-        imageView.image = model.clothImage
+        nameLabel.text = model.clothTitle
+        largeLabel.text = model.clothTitle
         button.addTarget(self, action: #selector(goToShopSite), for: .touchUpInside)
+        
+        imageView.image = model.clothImage
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: imageView.frame.width, height: imageView.frame.width))
+        
+        let ratio = model.clothImage.size.width / model.clothImage.size.height
+        if containerView.frame.width < containerView.frame.height {
+            let newHeight = containerView.frame.width / ratio
+            imageView.frame.size = CGSize(width: containerView.frame.width, height: newHeight)
+        } else {
+            let newWidth = containerView.frame.height * ratio
+            imageView.frame.size = CGSize(width: newWidth, height: containerView.frame.height)
+        }
     }
 }

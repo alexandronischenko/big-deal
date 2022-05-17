@@ -24,7 +24,7 @@ class DetailItemViewController: UIViewController {
         view.backgroundColor = .systemBackground
         detailItemView.delegate = self
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         let menuBtn = UIButton(type: .custom)
         var img = UIImage(systemName: "heart")
@@ -55,7 +55,6 @@ extension DetailItemViewController: DetailItemViewProtocol {
     
     func configureModel(model: Item) {
         detailItemView.configureModel(model: model)
-        title = model.clothTitle
     }
     
     @objc func didTapAddFavoritesButton(_ sender: UIButton) {

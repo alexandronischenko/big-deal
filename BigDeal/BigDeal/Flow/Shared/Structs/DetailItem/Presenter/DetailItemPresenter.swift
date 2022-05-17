@@ -1,7 +1,3 @@
-//
-// Created by Alexandr Onischenko on 11.04.2022.
-//
-
 import Foundation
 
 protocol DetailItemPresenterProtocol: AnyObject {

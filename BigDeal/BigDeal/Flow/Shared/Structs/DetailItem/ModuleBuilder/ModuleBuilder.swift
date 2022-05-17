@@ -1,10 +1,3 @@
-//
-//  ModuleBuilder.swift
-//  BigDeal
-//
-//  Created by Alexandr Onischenko on 09.04.2022.
-//
-
 import UIKit
 
 class DetailItemBuilder {    

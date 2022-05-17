@@ -58,7 +58,7 @@ class FeedMainView: UIView {
         
         backgroundColor = .systemBackground
         collectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
-        collectionView.register(HeaderLabel.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "label")
+//        collectionView.register(HeaderLabel.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "label")
         let footerView = UICollectionView.elementKindSectionFooter
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: footerView, withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter)
 
@@ -91,9 +91,9 @@ class FeedMainView: UIView {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension FeedMainView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: frame.size.width, height: 20)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: frame.size.width, height: 20)
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: frame.size.width, height: 50)
@@ -123,7 +123,9 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
             footer.addSubview(footerView)
             footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
             return footer
-         }
+        } else {
+            return UICollectionReusableView()
+        }
     }
 }
 // MARK: - UICollectionViewDataSource

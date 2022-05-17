@@ -29,9 +29,9 @@ class FeedMainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = "Feed"
-//        UserDefaults.standard.set(Category.thirtyPosessionSale, forKey: UserDefaultsKeys.keyForHot)
         feedMainView.delegate = self
-//        obtainHotProductsFromAsos(with: IndexPath(item: 0, section: 0))
+        UserDefaults.standard.set(Category.thirtyPosessionSale.rawValue, forKey: UserDefaultsKeys.keyForHot)
+        obtainHotProductsFromAsos(with: IndexPath(item: 0, section: 0))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,8 +99,10 @@ extension FeedMainViewController: FeedMainViewDelegateProtocol {
             DataManager.shared.asosHostHeader,
             accessTokenHeader
         ]
-        if indexPath.item == feedMainView.data.count - 1 {
+        if indexPath.item == DataManager.shared.itemsForHot.count - 1 {
             feedMainView.footerView.startAnimating()
+        } else {
+            startAnimating()
         }
         output?.obtainHotProductsFromAsos(with: parameters, headers: headers, url: url)
         DataManager.shared.hotRepositoryOffset += DataManager.shared.limit

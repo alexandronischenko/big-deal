@@ -11,7 +11,7 @@ class FeedMainView: UIView {
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     // MARK: - Other properties
     
-    var data: [Item] = DataManager.shared.itemsForHot
+    var data: [Item] = []
     weak var delegate: FeedMainViewDelegateProtocol?
     // MARK: - UI
     
@@ -59,6 +59,8 @@ class FeedMainView: UIView {
         backgroundColor = .systemBackground
         collectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
         collectionView.register(HeaderLabel.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "label")
+        let footerView = UICollectionView.elementKindSectionFooter
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: footerView, withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter)
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -93,7 +95,12 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: frame.size.width, height: 20)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: frame.size.width, height: 50)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        data = DataManager.shared.itemsForHot
         let model = data[indexPath.row]
         delegate?.moveToDetailFlow(model: model)
     }
@@ -129,10 +136,12 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
 
 extension FeedMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        data = DataManager.shared.itemsForHot
         return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        data = DataManager.shared.itemsForHot
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }

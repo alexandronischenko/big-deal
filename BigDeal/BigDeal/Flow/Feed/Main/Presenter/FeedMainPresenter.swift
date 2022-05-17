@@ -57,7 +57,7 @@ extension FeedMainPresenter: FeedMainPresenterOutputProtocol {
                         }
                         return
                     }
-                    DataManager.shared.itemsForCategory += items
+                    DataManager.shared.itemsForHot += items
                     DispatchQueue.main.async {
                         self?.input?.stopAnimating()
                         self?.input?.reloadCollectionViewData()

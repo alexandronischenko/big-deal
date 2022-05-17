@@ -43,6 +43,12 @@
 		A23E572927F78AB60069F74E /* ProductLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E572827F78AB60069F74E /* ProductLocalDataSource.swift */; };
 		A23E572C27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E572B27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift */; };
 		A250F1A5282AAE18006BA84F /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A250F1A4282AAE18006BA84F /* CategoryButton.swift */; };
+		A25664EE28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664ED28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift */; };
+		A25664F028336E840082691E /* FavoritesRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664EF28336E840082691E /* FavoritesRemoteDataSourceProtocol.swift */; };
+		A25664F228336EA60082691E /* FavoritesLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664F128336EA60082691E /* FavoritesLocalDataSource.swift */; };
+		A25664F428336ECC0082691E /* FavoritesRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664F328336ECC0082691E /* FavoritesRemoteDataSource.swift */; };
+		A25664F628336FB40082691E /* FavoritesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664F528336FB40082691E /* FavoritesRepositoryProtocol.swift */; };
+		A25664F828336FFB0082691E /* FavoritesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664F728336FFB0082691E /* FavoritesRepository.swift */; };
 		A25334BA28329C7600FBFE45 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25334B928329C7500FBFE45 /* ViewControllerExtension.swift */; };
 		A26256B927FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256A227FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift */; };
 		A26256BA27FF2750007FA967 /* AuthenticationGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256A427FF2750007FA967 /* AuthenticationGreetingView.swift */; };
@@ -217,6 +223,12 @@
 		A23E572827F78AB60069F74E /* ProductLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLocalDataSource.swift; sourceTree = "<group>"; };
 		A23E572B27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
 		A250F1A4282AAE18006BA84F /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
+		A25664ED28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesLocalDataSourceProtocol.swift; sourceTree = "<group>"; };
+		A25664EF28336E840082691E /* FavoritesRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
+		A25664F128336EA60082691E /* FavoritesLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesLocalDataSource.swift; sourceTree = "<group>"; };
+		A25664F328336ECC0082691E /* FavoritesRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRemoteDataSource.swift; sourceTree = "<group>"; };
+		A25664F528336FB40082691E /* FavoritesRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRepositoryProtocol.swift; sourceTree = "<group>"; };
+		A25664F728336FFB0082691E /* FavoritesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRepository.swift; sourceTree = "<group>"; };
 		A25334B928329C7500FBFE45 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		A26256A227FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationGreetingViewPresenter.swift; sourceTree = "<group>"; };
 		A26256A427FF2750007FA967 /* AuthenticationGreetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationGreetingView.swift; sourceTree = "<group>"; };
@@ -542,6 +554,7 @@
 		A23E572427F78A090069F74E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A25664EB28336E350082691E /* Favorites */,
 				A28A344B2818375700512017 /* Firebase */,
 				A2B6815E27FF577E00518A90 /* Helpers */,
 				A2F0EDAA27FDEF910049EBAC /* Category */,
@@ -632,6 +645,34 @@
 				A22CF8F6281F2D7100CAEDB7 /* ModuleBuilder */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		A25664EA28336E210082691E /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				A25664F528336FB40082691E /* FavoritesRepositoryProtocol.swift */,
+				A25664F728336FFB0082691E /* FavoritesRepository.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		A25664EB28336E350082691E /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				A25664EC28336E3B0082691E /* Protocols */,
+				A25664F128336EA60082691E /* FavoritesLocalDataSource.swift */,
+				A25664F328336ECC0082691E /* FavoritesRemoteDataSource.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		A25664EC28336E3B0082691E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A25664ED28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift */,
+				A25664EF28336E840082691E /* FavoritesRemoteDataSourceProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A26256A027FF2750007FA967 /* Greeting */ = {
@@ -1148,6 +1189,7 @@
 		A2F0ED8727FDA88E0049EBAC /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				A25664EA28336E210082691E /* Favorites */,
 				A2F0ED8827FDA8FC0049EBAC /* Category */,
 				A2F0ED8A27FDB63F0049EBAC /* Hot */,
 				A2F0ED8927FDB6390049EBAC /* Product */,
@@ -1717,6 +1759,7 @@
 				A2A3F51F27FE2CDC003417D6 /* ProfileSettingsView.swift in Sources */,
 				A23D05C3280176C700040980 /* SearchFilterPresenterOutputProtocol.swift in Sources */,
 				A200B7B52826F2E5002D541E /* StockX.swift in Sources */,
+				A25664EE28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift in Sources */,
 				A22CF8F8281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift in Sources */,
 				A2DFB8072809643300349967 /* ModuleBuilder.swift in Sources */,
 				A27EBC4E27F0D9E900532EDE /* FeedMainViewController.swift in Sources */,
@@ -1726,6 +1769,7 @@
 				A200230A27F6FD2C002D04AE /* FeedMainPresenterOutputProtocol.swift in Sources */,
 				A2F24F5A27EEFC8E000B02D6 /* FeedBaseCoordinatorProtocol.swift in Sources */,
 				A2F0EDBE27FE07890049EBAC /* ProfileSubscriptionsPresenterOutputProtocol.swift in Sources */,
+				A25664F828336FFB0082691E /* FavoritesRepository.swift in Sources */,
 				A27EBC3927F0D88D00532EDE /* ProfileSubscriptionsViewController.swift in Sources */,
 				A23D05C1280176AB00040980 /* SearchFilterPresenterInputProtocol.swift in Sources */,
 				A2F0EDA127FDEE6F0049EBAC /* HotRemoteDataSourceProtocol.swift in Sources */,
@@ -1755,6 +1799,7 @@
 				A23E572C27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift in Sources */,
 				A2F24F4527EEF6A8000B02D6 /* ProfileCoordinator.swift in Sources */,
 				A2F0EDAF27FDEFC70049EBAC /* CategoryRemoteDataSourceProtocol.swift in Sources */,
+				A25664F028336E840082691E /* FavoritesRemoteDataSourceProtocol.swift in Sources */,
 				A297430727FED162009E5E7D /* ProfileMainCollectionReusableView.swift in Sources */,
 				A200230827F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift in Sources */,
 				A299494B28089E9A00285BF1 /* DetailCoordinator.swift in Sources */,
@@ -1774,11 +1819,14 @@
 				A2F0ED8E27FDB8C50049EBAC /* ProductDataRepository.swift in Sources */,
 				A2FC107C280166C00087AA35 /* SearchResultsCollectionReusableView.swift in Sources */,
 				A2B6816027FF57D100518A90 /* ValidationService.swift in Sources */,
+				A25664F228336EA60082691E /* FavoritesLocalDataSource.swift in Sources */,
 				A2F24F5627EEFBFA000B02D6 /* SearchBaseCoordinatorProtocol.swift in Sources */,
 				A26256C527FF2750007FA967 /* AuthenticationLoginBuilder.swift in Sources */,
 				A20022FF27F6FBFA002D04AE /* FeedMainView.swift in Sources */,
 				A2F24F5C27EEFCB4000B02D6 /* FeedCoordinator.swift in Sources */,
+				A25664F428336ECC0082691E /* FavoritesRemoteDataSource.swift in Sources */,
 				A2B6816827FF5DDA00518A90 /* ValidationServiceProtocol.swift in Sources */,
+				A25664F628336FB40082691E /* FavoritesRepositoryProtocol.swift in Sources */,
 				A2F24F5027EEF8CF000B02D6 /* MainCoordinator.swift in Sources */,
 				A2B289A62816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift in Sources */,
 				A2DFB8092809643300349967 /* DetailItemViewController.swift in Sources */,

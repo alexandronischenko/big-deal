@@ -11,8 +11,14 @@ protocol DatabaseManagerProtocol {
     func deleteUser(with email: String, completion: @escaping ((Bool) -> Void))
     
     // Function that add favorites to user in database
-    func addToFavorites(url: String)
+    func addToFavorites(id: String)
     
     // Function that delete favorite by url user from database
-    func deleteFavoritesWith(url: String, from email: String)
+    func deleteFavoritesWith(id: String)
+    
+    // Function that get user favorites from database
+    func getAllFavorites() -> [String]
+    
+    // Function that checking on containing in firebase favorites
+    func isFavorite(id: String) -> Bool
 }

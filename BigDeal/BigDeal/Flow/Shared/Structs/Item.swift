@@ -9,7 +9,9 @@ struct Item {
     var oldPrice: String
     var newPrice: String
     var url: String
-    var id: String
+    var id: Int
+    var isFavorite: Bool = false
+
     // MARK: - Initializers
     
     init?(product: AsosProduct) {
@@ -99,6 +101,14 @@ struct Item {
     
     static func getStockXArray(from stockXProducts: [StockXProduct]) -> [Item]? {
         var items: [Item] = []
+
+        var favorites = DatabaseManager.shared.getAllFavorites()
+        for stockXItem in stockXItems {
+            if var item = Item(stockXItem: stockXItem) {
+                if favorites.contains(String(item.id)) {
+                    item.isFavorite = true
+                }
+
         for stockXProduct in stockXProducts {
             if let item = Item(stockXProduct: stockXProduct) {
                 items.append(item)

@@ -5,7 +5,7 @@ protocol SearchMainViewDelegateProtocol: AnyObject {
     func searchMainFilterButtonDidPressed()
     func searchMainCategoryButtonDidPressed(_ sender: UIButton)
     func moveToDetailFlow(model: Item)
-    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible)
+    func obtainProductByNameFromAsos()
 }
 
 class SearchMainView: UIView {
@@ -17,13 +17,13 @@ class SearchMainView: UIView {
     
     var data: [Item] = []
     weak var delegate: SearchMainViewDelegateProtocol?
-    
     // MARK: - UI
     
+    let footerView = UIActivityIndicatorView(style: .medium)
+    
     lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView()
+        let view = UIActivityIndicatorView(style: .medium)
         view.hidesWhenStopped = true
-        view.color = .label
         return view
     }()
     
@@ -32,28 +32,16 @@ class SearchMainView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
+        let reuseFooterId = SearchHeaderCollectionReusableView.reuseIdentifierForFooter
+        let reuseHeaderId = SearchHeaderCollectionReusableView.reuseIdentifierForHeader
         return collectionView
     }()
     
-    var scrollView: UIScrollView = {
-        var scroll = UIScrollView()
-        scroll.clipsToBounds = true
-        return scroll
-    }()
-    
-    var searchController: UISearchController = {
+    lazy var searchController: UISearchController = {
         var controller = UISearchController()
         return controller
     }()
 
-    var button: UIButton = {
-        var button = UIButton(type: .system)
-        button.setTitle("Зарегистрироваться", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 6
-        return button
-    }()
     // MARK: - Overrided
     
     // Initializers
@@ -64,8 +52,10 @@ class SearchMainView: UIView {
         collectionView.register(
             SearchHeaderCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: SearchHeaderCollectionReusableView.identifier)
+            withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForHeader)
         collectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
+        let footerReuseId = SearchHeaderCollectionReusableView.reuseIdentifierForFooter
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerReuseId)
         collectionView.delegate = self
         collectionView.dataSource = self
         addSubview(collectionView)
@@ -85,6 +75,7 @@ class SearchMainView: UIView {
             make.centerY.centerX.equalToSuperview()
         }
     }
+    
     // MARK: - Functions
     
     func updateData(data: [Item]) {
@@ -98,7 +89,12 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: frame.size.width, height: 80)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: frame.size.width, height: 50)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        data = DataManager.shared.itemsForSearch
         let model = data[indexPath.row]
         delegate?.moveToDetailFlow(model: model)
     }
@@ -119,43 +115,38 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
 
 extension SearchMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        data = DataManager.shared.itemsForSearch
         return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        data = DataManager.shared.itemsForSearch
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.data = self.data[indexPath.row]
+        cell.data = data[indexPath.row]
         if indexPath.item == data.count - 1 {
-            let service = ApiServices.accessTokenForSearch.rawValue
-            let account = ApiAccounts.asos.rawValue
-            guard let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
-                return UICollectionViewCell()
-            }
-            let url = DataManager.shared.asosProductsListUrl
-            let searchingProduct = DataManager.shared.currentSearchingItemText
-            let parameters: Parameters? = DataManager.shared.obtainParametersForAsos(searchingProduct, categoryId: nil)
-            let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
-            let headers: HTTPHeaders = [
-                DataManager.shared.asosHostHeader,
-                accessTokenHeader
-            ]
-            delegate?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
-            DataManager.shared.offset += DataManager.shared.limit
+            delegate?.obtainProductByNameFromAsos()
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(
-            ofKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: SearchHeaderCollectionReusableView.identifier,
-            for: indexPath) as? SearchHeaderCollectionReusableView else {
-            return UICollectionReusableView()
+        if kind == UICollectionView.elementKindSectionFooter {
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter, for: indexPath)
+            footer.addSubview(footerView)
+            footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
+            return footer
+        } else {
+            guard let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForHeader,
+                for: indexPath) as? SearchHeaderCollectionReusableView else {
+                return UICollectionReusableView()
+            }
+            header.delegate = self
+            return header
         }
-        header.delegate = self
-        return header
     }
 }
 // MARK: - SearchHeaderCollectionReusableViewDelegateProtocol

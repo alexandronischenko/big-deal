@@ -7,11 +7,12 @@ protocol SearchResultsReusableViewDelegate: AnyObject {
 class SearchResultsCollectionReusableView: UICollectionReusableView {
     // MARK: - Static properties
     
-    static let searchResultsCollectionReusableViewId = "searchResultsCollectionReusableView"
-    
+    static let headerReuseId = "searchResultsHeaderCollectionReusableView"
+    static let footerReuseId = "searchResultsFooterCollectionReusableView"
     // MARK: - Properties
     
     weak var delegate: SearchResultsReusableViewDelegate?
+    // MARK: - UI
     
     private lazy var searchResultsFilterButton: UIButton = {
         let button = UIButton()
@@ -22,14 +23,12 @@ class SearchResultsCollectionReusableView: UICollectionReusableView {
         button.addTarget(self, action: #selector(searchResultsFilterButtonDidPressed(_:)), for: .touchUpInside)
         return button
     }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(frame: CGRect) {
@@ -40,7 +39,6 @@ class SearchResultsCollectionReusableView: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Private functions
     
     private func setUpConstraintsForViews() {
@@ -53,7 +51,6 @@ class SearchResultsCollectionReusableView: UICollectionReusableView {
     private func setUpSelfView() {
         addSubview(searchResultsFilterButton)
     }
-    
     // MARK: - OBJC functions
     
     @objc private func searchResultsFilterButtonDidPressed(_ sender: UIButton) {

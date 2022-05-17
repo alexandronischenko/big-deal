@@ -11,10 +11,10 @@ class CustomHeaderView: UITableViewHeaderFooterView {
     static let customBrandsHeaderViewReuseId: String = "customBrandsHeaderViewReuseId"
     static let customSizesHeaderViewReuseId: String = "customSizesHeaderViewReuseId"
     static let customShopsHeaderViewReuseId: String = "customShopsHeaderViewReuseId"
-    
     // MARK: - Properies
     
     weak var delegate: CustomHeaderViewDelegate?
+    // MARK: - UI
     
     lazy var customHeaderViewButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -29,16 +29,14 @@ class CustomHeaderView: UITableViewHeaderFooterView {
         button.addTarget(self, action: #selector(customHeaderViewButtonDidPressed), for: .touchUpInside)
         return button
     }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.addSubview(customHeaderViewButton)
         contentView.isUserInteractionEnabled = true
-        setUpConstrainst()
+        setUpConstraints()
     }
-    
     // Initializers
     
     override init(reuseIdentifier: String?) {
@@ -48,10 +46,9 @@ class CustomHeaderView: UITableViewHeaderFooterView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Functions
     
-    func setUpConstrainst() {
+    func setUpConstraints() {
         customHeaderViewButton.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.height.equalTo(30)
@@ -65,6 +62,7 @@ class CustomHeaderView: UITableViewHeaderFooterView {
         customHeaderViewButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: self.frame.width - 32 - customHeaderViewButton.intrinsicContentSize.width, bottom: 0, right: 0)
         customHeaderViewButton.tag = section
     }
+    // MARK: - OBJC functions
     
     @objc private func customHeaderViewButtonDidPressed(_ sender: UIButton) {
         delegate?.expandedSection(button: sender)

@@ -8,9 +8,15 @@ class DataManager {
     // MARK: - Properties
     
     var currentSearchingItemText: String = ""
-    var offset: Int = 0
+    var productRepositoryOffset: Int = 0
+    var categoryRepositoryOffset: Int = 0
+    var hotRepositoryOffset: Int = 0
     var limit: Int = 10
     // MARK: - Data
+    
+    var itemsForSearch: [Item] = []
+    var itemsForCategory: [Item] = []
+    var itemsForHot: [Item] = []
     
     var data: [Item] = [
         Item(shopTitle: "ASOS", clothTitle: "Sneakers", sizes: ["42", "43", "44"], oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1")),
@@ -58,23 +64,21 @@ class DataManager {
     var asosAccessTokenHeaderName = "X-RapidAPI-Key"
     // MARK: - Functions
     
-    func obtainParametersForAsos(_ searchingProduct: String?, categoryId: String?) -> Parameters? {
-        if let searchingProduct = searchingProduct {
+    func obtainParametersForAsosSearch(_ searchingProduct: String) -> Parameters? {
             return [
                 "store": "US",
-                "offset": "\(offset)",
+                "offset": "\(productRepositoryOffset)",
                 "limit": "\(limit)",
                 "q": searchingProduct
             ]
-        } else if let categoryId = categoryId {
+    }
+    
+    func obtainParametersForAsosCategory(_ categoryId: String) -> Parameters? {
             return [
                 "store": "US",
-                "offset": "\(offset)",
+                "offset": "\(categoryRepositoryOffset)",
                 "limit": "\(limit)",
                 "categoryId": categoryId
             ]
-        } else {
-            return nil
-        }
     }
 }

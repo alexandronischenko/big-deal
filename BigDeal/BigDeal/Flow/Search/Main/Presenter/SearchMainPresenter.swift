@@ -8,14 +8,12 @@ class SearchMainPresenter {
     var productRepository: ProductRepositoryProtocol?
     var coordinator: SearchBaseCoordinatorProtocol?
     
-    var data: [Item] = DataManager.shared.data
-    
+    var data: [Item] = DataManager.shared.itemsForSearch
     // MARK: - Initializers
     
     init(coordinator: SearchBaseCoordinatorProtocol, productRepository: ProductRepositoryProtocol) {
         self.coordinator = coordinator
         self.productRepository = productRepository
-        
         updateData(data: data)
     }
     
@@ -37,24 +35,51 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
     func updateData(data: [Item]) {
         input?.updateData(data: data)
     }
-    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        productRepository?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { response in
-            completion(response)
+    
+    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible) {
+        productRepository?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { [weak self] response in
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data else {
+                        DispatchQueue.main.async {
+                            self?.input?.stopAnimating()
+                            self?.input?.dataCollectingErrorAlert()
+                        }
+                        return
+                    }
+                    let result = try JSONDecoder().decode(Asos.self, from: data)
+                    guard let items = Item.getAsosArray(from: result.products) else {
+                        DispatchQueue.main.async {
+                            self?.input?.stopAnimating()
+                            self?.input?.obtainArrayOfItemsAlert()
+                        }
+                        return
+                    }
+                    DataManager.shared.itemsForSearch += items
+                    DispatchQueue.main.async {
+                        self?.input?.stopAnimating()
+                        self?.input?.reloadCollectionViewData()
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self?.input?.stopAnimating()
+                        self?.input?.obtainDataErrorAlert(error: error)
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.input?.stopAnimating()
+                    self?.input?.resposeResultFailureAlert(with: error)
+                }
+            }
         }
     }
-    func obtainProductByNameFromStockX(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        productRepository?.obtainProductByNameFromStockX(name: name) { response in
-            completion(response)
-        }
-    }
-    func obtainProductByNameFromFarfetch(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        productRepository?.obtainProductByNameFromFarfetch(name: name) { response in
-            completion(response)
-        }
-    }
+    
     func searchMainFilterButtonDidPressed() {
         coordinator?.moveTo(flow: .search(.filter))
     }
+    
     func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
         var pressedButtonTitle: String?
         var categoryId: String?

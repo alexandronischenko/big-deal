@@ -2,14 +2,20 @@ import UIKit
 
 protocol FeedMainViewDelegateProtocol: AnyObject {
     func moveToDetailFlow(model: Item)
+    func obtainHotProductsFromAsos(with indexPath: IndexPath)
 }
 
 class FeedMainView: UIView {
-    private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
+    // MARK: - Private properties
     
-//    var data: [Item] = DataManager.shared.data
+    private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
+    // MARK: - Other properties
+    
     var data: [Item] = []
-    weak var viewDelegate: FeedMainViewDelegateProtocol?
+    weak var delegate: FeedMainViewDelegateProtocol?
+    // MARK: - UI
+    
+    let footerView = UIActivityIndicatorView(style: .medium)
     
     lazy var activityIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
@@ -45,6 +51,7 @@ class FeedMainView: UIView {
         button.layer.cornerRadius = 6
         return button
     }()
+    // MARK: - Overrided
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +59,8 @@ class FeedMainView: UIView {
         backgroundColor = .systemBackground
         collectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
         collectionView.register(HeaderLabel.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "label")
+        let footerView = UICollectionView.elementKindSectionFooter
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: footerView, withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter)
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -73,20 +82,27 @@ class FeedMainView: UIView {
             make.centerX.centerY.equalToSuperview()
         }
     }
+    // MARK: - Functions
     
     func updateData(data: [Item]) {
         self.data = data
     }
 }
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension FeedMainView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: frame.size.width, height: 20)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: frame.size.width, height: 50)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        data = DataManager.shared.itemsForHot
         let model = data[indexPath.row]
-        viewDelegate?.moveToDetailFlow(model: model)
+        delegate?.moveToDetailFlow(model: model)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -101,30 +117,32 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: frame.width / 2.3, height: 300)
     }
     
-    // MARK: - Looks weird FIX
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        if kind == UICollectionView.elementKindSectionHeader {
-//             let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "label", for: indexPath) as! HeaderLabel
-//             sectionHeader.label.text = "TRENDING🔥"
-//             return sectionHeader
-//        } else {
-//            // No footer in this case but can add option for that
-//            return UICollectionReusableView()
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter, for: indexPath)
+            footer.addSubview(footerView)
+            footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
+            return footer
+         }
+    }
 }
+// MARK: - UICollectionViewDataSource
 
 extension FeedMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        data = DataManager.shared.itemsForHot
         return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        data = DataManager.shared.itemsForHot
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.data = self.data[indexPath.row]
-        
+        if indexPath.item == data.count - 1 {
+            delegate?.obtainHotProductsFromAsos(with: indexPath)
+        }
         return cell
     }
 }

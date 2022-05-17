@@ -22,18 +22,4 @@ class ProductDataRepository: ProductRepositoryProtocol {
             completion(response)
         }
     }
-    // Request to StockX API
-    
-    func obtainProductByNameFromStockX(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        remoteDataSource.obtainProductByNameFromStockX(name: name) { response in
-            completion(response)
-        }
-    }
-    // Request to Farfetch API
-    
-    func obtainProductByNameFromFarfetch(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        remoteDataSource.obtainProductByNameFromFarfetch(name: name) { response in
-            completion(response)
-        }
-    }
 }

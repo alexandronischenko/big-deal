@@ -17,15 +17,8 @@ class HotDataRepository: HotRepositoryProtocol {
     
     // Request to ASOS API
     
-    func obtainHotProductsFromAsos(completion: @escaping(AFDataResponse<Any>) -> Void) {
-        remoteDataSource.obtainHotProductsFromAsos { response in
-            completion(response)
-        }
-    }
-    // Request to StockX API
-    
-    func obtainHotProductsFromStockX(completion: @escaping(AFDataResponse<Any>) -> Void) {
-        remoteDataSource.obtainHotProductsFromStockX { response in
+    func obtainHotProductsFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping (AFDataResponse<Any>) -> Void) {
+        remoteDataSource.obtainHotProductsFromAsos(with: parameters, headers: headers, url: url) { response in
             completion(response)
         }
     }

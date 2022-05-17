@@ -5,7 +5,6 @@ class FeedMainModuleBuilder {
     // MARK: - Properties
     
     var coordinator: FeedBaseCoordinatorProtocol
-    
     // MARK: - Initializers
     
     init(coordinator: FeedBaseCoordinatorProtocol) {

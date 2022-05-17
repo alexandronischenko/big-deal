@@ -1,7 +1,7 @@
 import UIKit
 
 class SearchResultsView: UIView {
-    // MARK: - Properties
+    // MARK: - UI
     
     lazy var searchResultsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -12,19 +12,18 @@ class SearchResultsView: UIView {
     }()
     
     lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView()
+        let view = UIActivityIndicatorView(style: .medium)
         view.hidesWhenStopped = true
-        view.color = .label
         return view
     }()
     
+    let footerView = UIActivityIndicatorView(style: .medium)
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(frame: CGRect) {
@@ -35,7 +34,6 @@ class SearchResultsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Private functions
     
     private func setUpConstraintsForViews() {

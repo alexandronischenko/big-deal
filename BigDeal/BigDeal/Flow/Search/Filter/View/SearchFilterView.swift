@@ -8,6 +8,7 @@ class SearchFilterView: UIView {
     // MARK: - Properties
     
     weak var delegate: SearchFilterViewDelegate?
+    // MARK: - UI
     
     lazy var searchFilterTableView: UITableView = {
         let tableView = UITableView()
@@ -24,14 +25,12 @@ class SearchFilterView: UIView {
         button.sizeToFit()
         return button
     }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(frame: CGRect) {
@@ -43,7 +42,6 @@ class SearchFilterView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Private functions
     
     private func setUpSelfView() {
@@ -62,6 +60,7 @@ class SearchFilterView: UIView {
             make.bottom.equalTo(searchFilterApplyButton).inset(45)
         }
     }
+    // MARK: - OBJC functions
     
     @objc func searchFilterApplyButtonDidPressed() {
         delegate?.dismissFilterView()

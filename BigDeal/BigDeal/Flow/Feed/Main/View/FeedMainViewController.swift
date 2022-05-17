@@ -6,11 +6,9 @@ class FeedMainViewController: UIViewController {
     
     private let feedMainView = FeedMainView()
     private var output: FeedMainPresenterOutputProtocol?
-    
     // MARK: - Protocol properties
     
     var coordinator: FeedBaseCoordinatorProtocol?
-    
     // MARK: - Initializers
     
     init(output: FeedMainPresenterOutputProtocol) {
@@ -21,7 +19,6 @@ class FeedMainViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - View life cycle
     
     override func loadView() {
@@ -31,16 +28,10 @@ class FeedMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
         title = "Feed"
-//        navigationItem.searchController = feedMainView.searchController
-        feedMainView.viewDelegate = self
-        
-//        startAnimating()
-
-//        obtainHotProductsFromAsos()
-
-//        feedMainView.collectionView.reloadData()
+        feedMainView.delegate = self
+        UserDefaults.standard.set(Category.thirtyPosessionSale.rawValue, forKey: UserDefaultsKeys.keyForHot)
+        obtainHotProductsFromAsos(with: IndexPath(item: 0, section: 0))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,76 +39,72 @@ class FeedMainViewController: UIViewController {
         navigationController?.tabBarItem.title = "Main"
     }
 }
-
 // MARK: - FeedBaseCoordinatedProtocol
 
 extension FeedMainViewController: FeedBaseCoordinatedProtocol {
 }
-
 // MARK: - FeedMainPresenterInputProtocol
 
 extension FeedMainViewController: FeedMainPresenterInputProtocol {
     func updateData(data: [Item]) {
         feedMainView.updateData(data: data)
     }
-    func obtainHotProductsFromAsos() {
-        let activityIndicator = feedMainView.activityIndicatorView
-        output?.obtainHotProductsFromAsos { [weak self] response in
-            switch response.result {
-            case .success:
-                do {
-                    guard let data = response.data else {
-                        self?.dataCollectingErrorAlert()
-                        return
-                    }
-                    let result = try JSONDecoder().decode(Asos.self, from: data)
-                    guard let items = Item.getAsosArray(from: result.products) else {
-                        self?.dataCollectingErrorAlert()
-                        return
-                    }
-                    self?.feedMainView.data += items
-                    DispatchQueue.main.async {
-                        self?.stopAnimating(view: activityIndicator)
-                        self?.feedMainView.collectionView.reloadData()
-                    }
-                } catch {
-                    self?.obtainDataErrorAlert(error: error)
-                }
-            case .failure(let error):
-                self?.resposeResultFailureAlert(with: error)
-            }
-        }
+    
+    func stopAnimating() {
+        feedMainView.activityIndicatorView.stopAnimating()
     }
-    func obtainHotProductsFromStockX() {
-        output?.obtainHotProductsFromStockX { [weak self] response in
-            switch response.result {
-            case .success:
-                do {
-                    guard let data = response.data else {
-                        self?.dataCollectingErrorAlert()
-                        return
-                    }
-                    let result = try JSONDecoder().decode(StockX.self, from: data)
-                    guard let items = Item.getStockXArray(from: result.stockXProducts) else {
-                        self?.dataCollectingErrorAlert()
-                        return
-                    }
-                    self?.feedMainView.data += items
-                    DispatchQueue.main.async {
-                        self?.feedMainView.collectionView.reloadData()
-                    }
-                } catch {
-                    self?.obtainDataErrorAlert(error: error)
-                }
-            case .failure(let error):
-                self?.resposeResultFailureAlert(with: error)
-            }
-        }
+    
+    func startAnimating() {
+        feedMainView.activityIndicatorView.startAnimating()
+    }
+    
+    func reloadCollectionViewData() {
+        feedMainView.collectionView.reloadData()
+    }
+    
+    func dataCollectingErrorAlert() {
+        AlertManager.standard.dataCollectingErrorAlert(view: self)
+    }
+    
+    func obtainArrayOfItemsAlert() {
+        AlertManager.standard.obtainArrayOfItemsAlert(view: self)
+    }
+    
+    func resposeResultFailureAlert(with error: AFError) {
+        AlertManager.standard.resposeResultFailureAlert(with: error, view: self)
+    }
+    
+    func obtainDataErrorAlert(error: Error) {
+        AlertManager.standard.obtainDataErrorAlert(error: error, view: self)
     }
 }
+// MARK: - FeedMainViewDelegateProtocol
 
 extension FeedMainViewController: FeedMainViewDelegateProtocol {
     func moveToDetailFlow(model: Item) {
         self.output?.moveToDetailFlow(model: model)
+    }
+    
+    func obtainHotProductsFromAsos(with indexPath: IndexPath) {
+        let service = ApiServices.accessTokenForFeed.rawValue
+        let account = ApiAccounts.asos.rawValue
+        let object = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForHot)
+        guard let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self), let categoryId = object as? String else {
+            return
+        }
+        let url = DataManager.shared.asosProductsListUrl
+        let parameters: Parameters? = DataManager.shared.obtainParametersForAsosCategory(categoryId)
+        let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
+        let headers: HTTPHeaders = [
+            DataManager.shared.asosHostHeader,
+            accessTokenHeader
+        ]
+        if indexPath.item == DataManager.shared.itemsForHot.count - 1 {
+            feedMainView.footerView.startAnimating()
+        } else {
+            startAnimating()
+        }
+        output?.obtainHotProductsFromAsos(with: parameters, headers: headers, url: url)
+        DataManager.shared.hotRepositoryOffset += DataManager.shared.limit
     }
 }

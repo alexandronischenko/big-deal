@@ -3,7 +3,6 @@ import Alamofire
 
 protocol FeedMainPresenterOutputProtocol: AnyObject {
     func updateData(data: [Item])
-    func obtainHotProductsFromAsos(completion: @escaping(AFDataResponse<Any>) -> Void)
-    func obtainHotProductsFromStockX(completion: @escaping(AFDataResponse<Any>) -> Void)
+    func obtainHotProductsFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible)
     func moveToDetailFlow(model: Item)
 }

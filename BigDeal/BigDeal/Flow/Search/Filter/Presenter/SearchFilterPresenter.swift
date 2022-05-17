@@ -6,14 +6,12 @@ class SearchFilterPresenter {
     
     weak var input: SearchFilterPresenterInputProtocol?
     var coordinator: SearchBaseCoordinatorProtocol?
-    
     // MARK: - Initializers
     
     init(coordinator: SearchBaseCoordinatorProtocol) {
         self.coordinator = coordinator
     }
 }
-
 // MARK: - SearchFilterPresenterOutputProtocol
 
 extension SearchFilterPresenter: SearchFilterPresenterOutputProtocol {
@@ -60,7 +58,7 @@ extension SearchFilterPresenter: SearchFilterPresenterOutputProtocol {
         return defaultButtonForShops
     }
 }
-
 // MARK: - SearchBaseCoordinatedProtocol
 
-extension SearchFilterPresenter: SearchBaseCoordinatedProtocol {}
+extension SearchFilterPresenter: SearchBaseCoordinatedProtocol {
+}

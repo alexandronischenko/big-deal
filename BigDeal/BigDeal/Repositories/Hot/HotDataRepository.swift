@@ -22,11 +22,4 @@ class HotDataRepository: HotRepositoryProtocol {
             completion(response)
         }
     }
-    // Request to StockX API
-    
-    func obtainHotProductsFromStockX(completion: @escaping(AFDataResponse<Any>) -> Void) {
-        remoteDataSource.obtainHotProductsFromStockX { response in
-            completion(response)
-        }
-    }
 }

@@ -37,25 +37,4 @@ class HotRemoteDataSource: HotRemoteDataSourceProtocol {
             }
         }
     }
-    // Requests from StockX API
-    
-    func obtainHotProductsFromStockX(completion: @escaping(AFDataResponse<Any>) -> Void) {
-        guard let accessTokenForStockX = accessTokenForStockX else {
-            return
-        }
-        let headers: HTTPHeaders = [
-            "X-RapidAPI-Host": "stockx1.p.rapidapi.com",
-            "X-RapidAPI-Key": accessTokenForStockX
-        ]
-        let parameters = [
-            "limit": "10",
-            "page": "1"
-        ]
-        let url = "https://stockx1.p.rapidapi.com/api/v1/stockx/search"
-        DispatchQueue.global(qos: .utility).async {
-            AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers).responseJSON { response in
-                completion(response)
-            }
-        }
-    }
 }

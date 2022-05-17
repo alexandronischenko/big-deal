@@ -37,59 +37,51 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
     func updateData(data: [Item]) {
         input?.updateData(data: data)
     }
-    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping(AFDataResponse<Any>) -> Void) {
+    
+    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible) {
         productRepository?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { [weak self]   response in
             switch response.result {
             case .success:
                 do {
                     guard let data = response.data else {
                         DispatchQueue.main.async {
-//                            self?.stopAnimating(view: activityIndicatorView)
-//                            self?.dataCollectingErrorAlert()
+                            self?.input?.stopAnimating()
+                            self?.input?.dataCollectingErrorAlert()
                         }
                         return
                     }
                     let result = try JSONDecoder().decode(Asos.self, from: data)
                     guard let items = Item.getAsosArray(from: result.products) else {
                         DispatchQueue.main.async {
-                            self?.stopAnimating(view: activityIndicatorView)
-                            self?.obtainArrayOfItemsAlert()
+                            self?.input?.stopAnimating()
+                            self?.input?.obtainArrayOfItemsAlert()
                         }
                         return
                     }
-                    self?.searchMainView.data += items
+                    DataManager.shared.items += items
                     DispatchQueue.main.async {
-                        self?.stopAnimating(view: activityIndicatorView)
-                        self?.searchMainView.collectionView.reloadData()
+                        self?.input?.stopAnimating()
+                        self?.input?.reloadCollectionViewData()
                     }
                 } catch {
                     DispatchQueue.main.async {
-                        self?.stopAnimating(view: activityIndicatorView)
-                        self?.obtainDataErrorAlert(error: error)
+                        self?.input?.stopAnimating()
+                        self?.input?.obtainDataErrorAlert(error: error)
                     }
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.stopAnimating(view: activityIndicatorView)
-                    self?.resposeResultFailureAlert(with: error)
+                    self?.input?.stopAnimating()
+                    self?.input?.resposeResultFailureAlert(with: error)
                 }
             }
         }
     }
     
-    func obtainProductByNameFromStockX(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        productRepository?.obtainProductByNameFromStockX(name: name) { response in
-            completion(response)
-        }
-    }
-    func obtainProductByNameFromFarfetch(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        productRepository?.obtainProductByNameFromFarfetch(name: name) { response in
-            completion(response)
-        }
-    }
     func searchMainFilterButtonDidPressed() {
         coordinator?.moveTo(flow: .search(.filter))
     }
+    
     func searchMainCategoryButtonDidPressed(_ sender: UIButton) {
         var pressedButtonTitle: String?
         var categoryId: String?

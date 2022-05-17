@@ -21,11 +21,4 @@ class CategoryDataRepository: CategoryRepositoryProtocol {
             completion(response)
         }
     }
-    // Request to StockX API
-    
-    func obtainProductByCategoryFromStockX(_ category: String, completion: @escaping (AFDataResponse<Any>) -> Void) {
-        remoteDataSource.obtainProductByCategoryFromStockX(category) { response in
-            completion(response)
-        }
-    }
 }

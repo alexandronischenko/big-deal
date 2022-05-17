@@ -12,6 +12,8 @@ class DataManager {
     var limit: Int = 10
     // MARK: - Data
     
+    var items: [Item] = []
+    
     var data: [Item] = [
         Item(shopTitle: "ASOS", clothTitle: "Sneakers", sizes: ["42", "43", "44"], oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1")),
         Item(shopTitle: "Stockx", clothTitle: "Sneakers", sizes: ["37", "38", "39"], oldPrice: "12900", newPrice: "3434", clothImage: #imageLiteral(resourceName: "img2")),

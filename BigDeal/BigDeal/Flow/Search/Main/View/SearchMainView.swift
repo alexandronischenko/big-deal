@@ -5,26 +5,25 @@ protocol SearchMainViewDelegateProtocol: AnyObject {
     func searchMainFilterButtonDidPressed()
     func searchMainCategoryButtonDidPressed(_ sender: UIButton)
     func moveToDetailFlow(model: Item)
-    func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible)
+    func obtainProductByNameFromAsos()
 }
 
 class SearchMainView: UIView {
     // MARK: - Private properties
     
-    let footerView = UIActivityIndicatorView(style: .medium)
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     
     // MARK: - Other properties
     
-    var data: [Item] = []
+    var data: [Item] = DataManager.shared.items
     weak var delegate: SearchMainViewDelegateProtocol?
-    
     // MARK: - UI
     
+    let footerView = UIActivityIndicatorView(style: .medium)
+    
     lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView()
+        let view = UIActivityIndicatorView(style: .medium)
         view.hidesWhenStopped = true
-        view.color = .label
         return view
     }()
     
@@ -33,29 +32,15 @@ class SearchMainView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
-        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter)
         return collectionView
     }()
     
-    var scrollView: UIScrollView = {
-        var scroll = UIScrollView()
-        scroll.clipsToBounds = true
-        return scroll
-    }()
-    
-    var searchController: UISearchController = {
+    lazy var searchController: UISearchController = {
         var controller = UISearchController()
         return controller
     }()
 
-    var button: UIButton = {
-        var button = UIButton(type: .system)
-        button.setTitle("Зарегистрироваться", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 6
-        return button
-    }()
     // MARK: - Overrided
     
     // Initializers
@@ -66,7 +51,7 @@ class SearchMainView: UIView {
         collectionView.register(
             SearchHeaderCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: SearchHeaderCollectionReusableView.identifier)
+            withReuseIdentifier: SearchHeaderCollectionReusableView.identifierForHeader)
         collectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -86,11 +71,6 @@ class SearchMainView: UIView {
         activityIndicatorView.snp.makeConstraints { make in
             make.centerY.centerX.equalToSuperview()
         }
-    }
-    // MARK: - Functions
-    
-    func updateData(data: [Item]) {
-        self.data = data
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -134,21 +114,7 @@ extension SearchMainView: UICollectionViewDataSource {
         }
         cell.data = self.data[indexPath.row]
         if indexPath.item == data.count - 1 {
-            let service = ApiServices.accessTokenForSearch.rawValue
-            let account = ApiAccounts.asos.rawValue
-            guard let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
-                return UICollectionViewCell()
-            }
-            let url = DataManager.shared.asosProductsListUrl
-            let searchingProduct = DataManager.shared.currentSearchingItemText
-            let parameters: Parameters? = DataManager.shared.obtainParametersForAsos(searchingProduct, categoryId: nil)
-            let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
-            let headers: HTTPHeaders = [
-                DataManager.shared.asosHostHeader,
-                accessTokenHeader
-            ]
-            footerView.startAnimating()
-            delegate?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
+            delegate?.obtainProductByNameFromAsos()
             DataManager.shared.offset += DataManager.shared.limit
         }
         return cell
@@ -156,14 +122,14 @@ extension SearchMainView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionFooter {
-            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter, for: indexPath)
             footer.addSubview(footerView)
             footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
             return footer
         } else {
             guard let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: SearchHeaderCollectionReusableView.identifier,
+                withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForHeader,
                 for: indexPath) as? SearchHeaderCollectionReusableView else {
                 return UICollectionReusableView()
             }

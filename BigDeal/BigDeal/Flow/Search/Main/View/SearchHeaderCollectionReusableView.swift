@@ -6,11 +6,15 @@ protocol SearchHeaderCollectionReusableViewDelegateProtocol: AnyObject {
 }
 
 class SearchHeaderCollectionReusableView: UICollectionReusableView {
-    static let identifier = "HeaderCollectionReusableView"
+    // MARK: - Static properties
+    
+    static let reuseIdentifierForHeader = "HeaderCollectionReusableView"
+    static let reuseIdentifierForFooter = "FooterCollectionReusableView"
+    // MARK: - Other properties
     
     weak var delegate: SearchHeaderCollectionReusableViewDelegateProtocol?
     
-    let filterButton: UIButton = {
+    lazy var filterButton: UIButton = {
         var button = UIButton()
         button.backgroundColor = .systemBlue
         button.setTitle("Filter", for: .normal)
@@ -21,7 +25,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         return button
     }()
     
-    let outerwearButton: UIButton = {
+    lazy var outerwearButton: UIButton = {
         var button = UIButton()
         button.backgroundColor = .systemGray2
         button.setTitle("Outerwear", for: .normal)
@@ -32,7 +36,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         return button
     }()
     
-    let sweatshirtsButton: UIButton = {
+    lazy var sweatshirtsButton: UIButton = {
         var button = UIButton()
         button.backgroundColor = .systemGray2
         button.setTitle("Sweatshirts", for: .normal)
@@ -43,7 +47,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         return button
     }()
     
-    let shirtsButton: UIButton = {
+    lazy var shirtsButton: UIButton = {
         var button = UIButton()
         button.backgroundColor = .systemGray2
         button.setTitle("T-shirts and tops", for: .normal)
@@ -54,7 +58,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         return button
     }()
     
-    let sneakersButton: UIButton = {
+    lazy var sneakersButton: UIButton = {
         var button = UIButton()
         button.backgroundColor = .systemGray2
         button.setTitle("Sneakers", for: .normal)
@@ -65,7 +69,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         return button
     }()
     
-    let perfumeButton: UIButton = {
+    lazy var perfumeButton: UIButton = {
         var button = UIButton()
         button.backgroundColor = .systemGray2
         button.setTitle("Perfume", for: .normal)

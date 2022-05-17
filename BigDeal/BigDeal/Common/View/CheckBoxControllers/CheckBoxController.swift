@@ -18,8 +18,7 @@ class CheckBoxController: NSObject {
             buttonsArrayUpdated(buttonSelected: self.defaultButton)
         }
     }
-    
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
     private func buttonsArrayUpdated(buttonSelected: UIButton) {
         for button in buttonsArray {
@@ -34,8 +33,7 @@ class CheckBoxController: NSObject {
             }
         }
     }
-    
-    // MARK: - Other funcs
+    // MARK: - Other functions
     
     func addButtonToCheckBoxController(_ button: UIButton) {
         button.addTarget(self, action: #selector(categoryButtonDidPressed), for: .touchUpInside)
@@ -43,8 +41,7 @@ class CheckBoxController: NSObject {
             buttonsArray.append(button)
         }
     }
-    
-    // MARK: - OBJC funcs
+    // MARK: - OBJC functions
     
     @objc private func categoryButtonDidPressed(_ sender: UIButton) {
         buttonsArrayUpdated(buttonSelected: sender)

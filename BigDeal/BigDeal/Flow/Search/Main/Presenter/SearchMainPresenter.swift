@@ -38,10 +38,45 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
         input?.updateData(data: data)
     }
     func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping(AFDataResponse<Any>) -> Void) {
-        productRepository?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { response in
-            completion(response)
+        productRepository?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { [weak self]   response in
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data else {
+                        DispatchQueue.main.async {
+//                            self?.stopAnimating(view: activityIndicatorView)
+//                            self?.dataCollectingErrorAlert()
+                        }
+                        return
+                    }
+                    let result = try JSONDecoder().decode(Asos.self, from: data)
+                    guard let items = Item.getAsosArray(from: result.products) else {
+                        DispatchQueue.main.async {
+                            self?.stopAnimating(view: activityIndicatorView)
+                            self?.obtainArrayOfItemsAlert()
+                        }
+                        return
+                    }
+                    self?.searchMainView.data += items
+                    DispatchQueue.main.async {
+                        self?.stopAnimating(view: activityIndicatorView)
+                        self?.searchMainView.collectionView.reloadData()
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self?.stopAnimating(view: activityIndicatorView)
+                        self?.obtainDataErrorAlert(error: error)
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.stopAnimating(view: activityIndicatorView)
+                    self?.resposeResultFailureAlert(with: error)
+                }
+            }
         }
     }
+    
     func obtainProductByNameFromStockX(name: String, completion: @escaping(AFDataResponse<Any>) -> Void) {
         productRepository?.obtainProductByNameFromStockX(name: name) { response in
             completion(response)

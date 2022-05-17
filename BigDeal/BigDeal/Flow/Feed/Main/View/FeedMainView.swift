@@ -101,16 +101,17 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: frame.width / 2.3, height: 300)
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-             let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "label", for: indexPath) as! HeaderLabel
-             sectionHeader.label.text = "TRENDING🔥"
-             return sectionHeader
-        } else {
-            // No footer in this case but can add option for that
-            return UICollectionReusableView()
-        }
-    }
+    // MARK: - Looks weird FIX
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        if kind == UICollectionView.elementKindSectionHeader {
+//             let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "label", for: indexPath) as! HeaderLabel
+//             sectionHeader.label.text = "TRENDING🔥"
+//             return sectionHeader
+//        } else {
+//            // No footer in this case but can add option for that
+//            return UICollectionReusableView()
+//        }
+//    }
 }
 
 extension FeedMainView: UICollectionViewDataSource {

@@ -1,6 +1,7 @@
 import UIKit
 
 class HeaderLabel: UICollectionReusableView {
+    // MARK: - UI
     
      var label: UILabel = {
          let label = UILabel()
@@ -8,12 +9,11 @@ class HeaderLabel: UICollectionReusableView {
          label.sizeToFit()
          return label
      }()
+    // MARK: - Overrided
 
      override init(frame: CGRect) {
          super.init(frame: frame)
-
          addSubview(label)
-
          label.snp.makeConstraints { make in
              make.centerX.equalToSuperview()
          }

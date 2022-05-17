@@ -90,7 +90,6 @@ extension SearchResultsViewController: UICollectionViewDataSource {
         cell.data = self.data[indexPath.row]
         if indexPath.item == data.count - 1 {
             obtainProductByCategoryIdFromAsos()
-            DataManager.shared.categoryRepositoryOffset += DataManager.shared.limit
         }
         return cell
     }

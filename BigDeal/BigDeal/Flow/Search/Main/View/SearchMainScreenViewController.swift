@@ -144,5 +144,6 @@ extension SearchMainViewController: SearchMainViewDelegateProtocol {
         ]
         searchMainView.footerView.startAnimating()
         output?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
+        DataManager.shared.productRepositoryOffset += DataManager.shared.limit
     }
 }

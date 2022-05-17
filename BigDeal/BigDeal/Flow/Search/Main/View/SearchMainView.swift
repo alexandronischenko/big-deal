@@ -32,7 +32,8 @@ class SearchMainView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
-        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter)
+        let reuseFooterId = SearchHeaderCollectionReusableView.reuseIdentifierForFooter
+        let reuseHeaderId = SearchHeaderCollectionReusableView.reuseIdentifierForHeader
         return collectionView
     }()
     
@@ -51,8 +52,10 @@ class SearchMainView: UIView {
         collectionView.register(
             SearchHeaderCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter)
+            withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForHeader)
         collectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
+        let footerReuseId = SearchHeaderCollectionReusableView.reuseIdentifierForFooter
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerReuseId)
         collectionView.delegate = self
         collectionView.dataSource = self
         addSubview(collectionView)
@@ -111,17 +114,18 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
 
 extension SearchMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let data = DataManager.shared.itemsForSearch
         return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let data = DataManager.shared.itemsForSearch
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.data = self.data[indexPath.row]
+        cell.data = data[indexPath.row]
         if indexPath.item == data.count - 1 {
             delegate?.obtainProductByNameFromAsos()
-            DataManager.shared.productRepositoryOffset += DataManager.shared.limit
         }
         return cell
     }

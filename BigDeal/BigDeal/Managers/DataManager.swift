@@ -8,9 +8,9 @@ class DataManager {
     // MARK: - Properties
     
     var currentSearchingItemText: String = ""
-    var currentSearchingCategoryId: String = ""
     var productRepositoryOffset: Int = 0
     var categoryRepositoryOffset: Int = 0
+    var hotRepositoryOffset: Int = 0
     var limit: Int = 10
     // MARK: - Data
     

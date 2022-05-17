@@ -37,7 +37,7 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
     }
     
     func obtainProductByNameFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible) {
-        productRepository?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { [weak self]   response in
+        productRepository?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url) { [weak self] response in
             switch response.result {
             case .success:
                 do {

@@ -14,4 +14,9 @@ enum Category: String {
     case tShirtsAndTops = "7616"
     case sneakers = "5775"
     case perfume = "19517"
+    case twentyPosessionSale = "28026"
+    case thirtyPosessionSale = "28239"
+    case eightyPosessionSale = "28235"
+    case finalSale = "28048"
+    case mensSale = "25781"
 }

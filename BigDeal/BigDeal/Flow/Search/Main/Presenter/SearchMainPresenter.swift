@@ -8,14 +8,12 @@ class SearchMainPresenter {
     var productRepository: ProductRepositoryProtocol?
     var coordinator: SearchBaseCoordinatorProtocol?
     
-    var data: [Item] = DataManager.shared.data
-    
+    var data: [Item] = DataManager.shared.itemsForSearch
     // MARK: - Initializers
     
     init(coordinator: SearchBaseCoordinatorProtocol, productRepository: ProductRepositoryProtocol) {
         self.coordinator = coordinator
         self.productRepository = productRepository
-        
         updateData(data: data)
     }
     
@@ -58,7 +56,7 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
                         }
                         return
                     }
-                    DataManager.shared.items += items
+                    DataManager.shared.itemsForSearch += items
                     DispatchQueue.main.async {
                         self?.input?.stopAnimating()
                         self?.input?.reloadCollectionViewData()

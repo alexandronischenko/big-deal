@@ -73,19 +73,23 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
     func obtainDataErrorAlert(error: Error) {
         AlertManager.standard.obtainDataErrorAlert(error: error, view: self)
     }
+    
+    func updateData(data: [Item]) {
+        searchMainView.updateData(data: data)
+    }
 }
 // MARK: - UISearchBarDelegate
 
 extension SearchMainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        DataManager.shared.items = []
+        DataManager.shared.itemsForSearch = []
         let service = ApiServices.accessTokenForSearch.rawValue
         let account = ApiAccounts.asos.rawValue
         guard let searchBarText = searchBar.text, let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
             return
         }
         let url = DataManager.shared.asosProductsListUrl
-        let parameters: Parameters? = DataManager.shared.obtainParametersForAsos(searchBarText, categoryId: nil)
+        let parameters: Parameters? = DataManager.shared.obtainParametersForAsosSearch(searchBarText)
         let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
         let headers: HTTPHeaders = [
             DataManager.shared.asosHostHeader,
@@ -93,13 +97,13 @@ extension SearchMainViewController: UISearchBarDelegate {
         ]
         startAnimating()
         output?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
-        DataManager.shared.offset += DataManager.shared.limit
+        DataManager.shared.productRepositoryOffset += DataManager.shared.limit
         DataManager.shared.currentSearchingItemText = searchBarText
         searchBar.resignFirstResponder()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        DataManager.shared.items = []
+        DataManager.shared.itemsForSearch = []
         DispatchQueue.main.async {
             self.reloadCollectionViewData()
             self.searchMainView.footerView.stopAnimating()
@@ -132,7 +136,7 @@ extension SearchMainViewController: SearchMainViewDelegateProtocol {
         }
         let url = DataManager.shared.asosProductsListUrl
         let searchingProduct = DataManager.shared.currentSearchingItemText
-        let parameters: Parameters? = DataManager.shared.obtainParametersForAsos(searchingProduct, categoryId: nil)
+        let parameters: Parameters? = DataManager.shared.obtainParametersForAsosSearch(searchingProduct)
         let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
         let headers: HTTPHeaders = [
             DataManager.shared.asosHostHeader,

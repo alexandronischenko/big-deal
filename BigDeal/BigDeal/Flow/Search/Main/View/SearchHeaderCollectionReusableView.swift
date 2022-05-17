@@ -13,6 +13,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
     // MARK: - Other properties
     
     weak var delegate: SearchHeaderCollectionReusableViewDelegateProtocol?
+    // MARK: - UI
     
     lazy var filterButton: UIButton = {
         var button = UIButton()
@@ -89,6 +90,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         var view = UIStackView()
         return view
     }()
+    // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()

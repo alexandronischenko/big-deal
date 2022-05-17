@@ -7,7 +7,6 @@ class SearchFilterViewController: UIViewController {
     
     private var output: SearchFilterPresenterOutputProtocol?
     private let searchFilterView = SearchFilterView()
-    
     // Common
     
     private let sexRadioButtonController = RadioButtonController()
@@ -18,7 +17,6 @@ class SearchFilterViewController: UIViewController {
     private let brandsCheckBoxController = CheckBoxController()
     private let sizesCheckBoxController = CheckBoxController()
     private let shopsCheckBoxController = CheckBoxController()
-    
     // Reuse Identifiers
     
     private let reuseIdForSexRadioButtonCell = CustomRadioButtonTableViewCell.customReuseIdForSexCategory
@@ -34,11 +32,9 @@ class SearchFilterViewController: UIViewController {
     private let reuseIdForBrandsHeaderView = CustomHeaderView.customBrandsHeaderViewReuseId
     private let reuseIdForSizesHeaderView = CustomHeaderView.customSizesHeaderViewReuseId
     private let reuseIdForShopsHeaderView = CustomHeaderView.customShopsHeaderViewReuseId
-    
     // Data
     
     private var isExpandedArray: [Bool] = DataManager.shared.isExpandedArray
-    
     // MARK: - Initializers
     
     init(output: SearchFilterPresenterOutputProtocol) {
@@ -53,7 +49,6 @@ class SearchFilterViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - View life cycle
     
     override func loadView() {
@@ -66,12 +61,12 @@ class SearchFilterViewController: UIViewController {
         configureView()
         setUpSearchFilterTableView()
     }
-    
     // MARK: - Private functions
     
     private func configureView() {
         title = "Filter"
     }
+    
     private func setUpSearchFilterTableView() {
         let radioButtonTableViewCellClass = CustomRadioButtonTableViewCell.self
         let headerFooterViewClass = CustomHeaderView.self
@@ -94,6 +89,7 @@ class SearchFilterViewController: UIViewController {
         searchFilterView.searchFilterTableView.register(headerFooterViewClass, forHeaderFooterViewReuseIdentifier: reuseIdForSizesHeaderView)
         searchFilterView.searchFilterTableView.register(headerFooterViewClass, forHeaderFooterViewReuseIdentifier: reuseIdForShopsHeaderView)
     }
+    
     private func obtainNumberOfRowsInSection(section: Int) -> Int {
         if !isExpandedArray[section] {
             switch section {
@@ -117,6 +113,7 @@ class SearchFilterViewController: UIViewController {
             }
         }
     }
+    
     private func setUpTitleForRadioButtonByIndexPath(_ indexPath: IndexPath, cell: CustomRadioButtonTableViewCell) {
         switch indexPath.section {
         case 0:
@@ -129,6 +126,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func setUpTitleForRadioButtonsInSexCategory(indexPath: IndexPath, cell: CustomRadioButtonTableViewCell) {
         switch indexPath.row {
         case 0:
@@ -141,6 +139,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func setUpTitleForRadioButtonsInSortByCategory(indexPath: IndexPath, cell: CustomRadioButtonTableViewCell) {
         switch indexPath.row {
         case 0:
@@ -153,6 +152,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func setUpTitleForRadioButtonsInPriceRangeCategory(indexPath: IndexPath, cell: CustomRadioButtonTableViewCell) {
         switch indexPath.row {
         case 0:
@@ -167,6 +167,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func setUpTitleForCheckBoxByIndexPath(_ indexPath: IndexPath, cell: CustomCheckBoxTableViewCell) {
         switch indexPath.section {
         case 3:
@@ -181,6 +182,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func setUpTitleForCheckBoxesInCategories(indexPath: IndexPath, cell: CustomCheckBoxTableViewCell) {
         switch indexPath.row {
         case 0:
@@ -197,6 +199,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func setUpTitleForCheckBoxesInBrands(indexPath: IndexPath, cell: CustomCheckBoxTableViewCell) {
         switch indexPath.row {
         case 0:
@@ -211,6 +214,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func setUpTitleForCheckBoxesInSizes(indexPath: IndexPath, cell: CustomCheckBoxTableViewCell) {
         switch indexPath.row {
         case 0:
@@ -223,6 +227,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func setUpTitleForCheckBoxesInShops(indexPath: IndexPath, cell: CustomCheckBoxTableViewCell) {
         switch indexPath.row {
         case 0:
@@ -237,6 +242,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func configureHeaderViewBySection(headerView: CustomHeaderView, section: Int) {
         switch section {
         case 3:
@@ -251,6 +257,7 @@ class SearchFilterViewController: UIViewController {
             break
         }
     }
+    
     private func obtainTextForHeaderViewLabelBySection(section: Int, label: UILabel) {
         switch section {
         case 0:
@@ -263,6 +270,7 @@ class SearchFilterViewController: UIViewController {
             label.text = nil
         }
     }
+    
     private func setUpSexCategoryCells(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         guard let radioButtonCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForSexRadioButtonCell, for: indexPath) as? CustomRadioButtonTableViewCell else {
             return UITableViewCell()
@@ -275,6 +283,7 @@ class SearchFilterViewController: UIViewController {
         sexRadioButtonController.defaultButton = defaultButton
         return radioButtonCell
     }
+    
     private func setUpSortByCategoryCells(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         guard let radioButtonCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForSortByRadioButtonCell, for: indexPath) as? CustomRadioButtonTableViewCell else {
             return UITableViewCell()
@@ -287,6 +296,7 @@ class SearchFilterViewController: UIViewController {
         sortByRadioButtonController.defaultButton = defaultButton
         return radioButtonCell
     }
+    
     private func setUpPriceRangeCategoryCells(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         guard let radioButtonCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForPriceRangeRadioButtonCell, for: indexPath) as? CustomRadioButtonTableViewCell else {
             return UITableViewCell()
@@ -299,6 +309,7 @@ class SearchFilterViewController: UIViewController {
         priceRangeRadioButtonController.defaultButton = defaultButton
         return radioButtonCell
     }
+    
     private func setUpCategoriesCell(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         guard let checkBoxCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForCategoriesCheckBoxCell, for: indexPath) as? CustomCheckBoxTableViewCell else {
             return UITableViewCell()
@@ -312,6 +323,7 @@ class SearchFilterViewController: UIViewController {
         categoriesCheckBoxController.defaultButton.isSelected = true
         return checkBoxCell
     }
+    
     private func setUpBrandsCell(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         guard let checkBoxCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForBrandsCheckBoxCell, for: indexPath) as? CustomCheckBoxTableViewCell else {
             return UITableViewCell()
@@ -325,6 +337,7 @@ class SearchFilterViewController: UIViewController {
         brandsCheckBoxController.defaultButton.isSelected = true
         return checkBoxCell
     }
+    
     private func setUpSizesCell(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         guard let checkBoxCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForSizesCheckBoxCell, for: indexPath) as? CustomCheckBoxTableViewCell else {
             return UITableViewCell()
@@ -338,6 +351,7 @@ class SearchFilterViewController: UIViewController {
         sizesCheckBoxController.defaultButton.isSelected = true
         return checkBoxCell
     }
+    
     private func setUpShopsCell(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         guard let checkBoxCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForShopsCheckBoxCell, for: indexPath) as? CustomCheckBoxTableViewCell else {
             return UITableViewCell()
@@ -352,11 +366,10 @@ class SearchFilterViewController: UIViewController {
         return checkBoxCell
     }
 }
-
 // MARK: - SearchFilterPresenterInputProtocol
 
-extension SearchFilterViewController: SearchFilterPresenterInputProtocol {}
-
+extension SearchFilterViewController: SearchFilterPresenterInputProtocol {
+}
 // MARK: - UITableViewDelegate
 
 extension SearchFilterViewController: UITableViewDelegate {
@@ -429,7 +442,6 @@ extension SearchFilterViewController: UITableViewDelegate {
         }
     }
 }
-
 // MARK: - UITableViewDataSource
 
 extension SearchFilterViewController: UITableViewDataSource {
@@ -460,7 +472,6 @@ extension SearchFilterViewController: UITableViewDataSource {
         }
     }
 }
-
 // MARK: - SearchFilterViewDelegate
 
 extension SearchFilterViewController: SearchFilterViewDelegate {
@@ -468,7 +479,6 @@ extension SearchFilterViewController: SearchFilterViewDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
-
 // MARK: - CustomHeaderViewDelegate
 
 extension SearchFilterViewController: CustomHeaderViewDelegate {

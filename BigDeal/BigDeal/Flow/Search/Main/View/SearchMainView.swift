@@ -15,7 +15,7 @@ class SearchMainView: UIView {
     
     // MARK: - Other properties
     
-    var data: [Item] = DataManager.shared.items
+    var data: [Item] = DataManager.shared.itemsForSearch
     weak var delegate: SearchMainViewDelegateProtocol?
     // MARK: - UI
     
@@ -51,7 +51,7 @@ class SearchMainView: UIView {
         collectionView.register(
             SearchHeaderCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: SearchHeaderCollectionReusableView.identifierForHeader)
+            withReuseIdentifier: SearchHeaderCollectionReusableView.reuseIdentifierForFooter)
         collectionView.register(CustomItemCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdForItemCell)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -71,6 +71,12 @@ class SearchMainView: UIView {
         activityIndicatorView.snp.makeConstraints { make in
             make.centerY.centerX.equalToSuperview()
         }
+    }
+    
+    // MARK: - Functions
+    
+    func updateData(data: [Item]) {
+        self.data = data
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -115,7 +121,7 @@ extension SearchMainView: UICollectionViewDataSource {
         cell.data = self.data[indexPath.row]
         if indexPath.item == data.count - 1 {
             delegate?.obtainProductByNameFromAsos()
-            DataManager.shared.offset += DataManager.shared.limit
+            DataManager.shared.productRepositoryOffset += DataManager.shared.limit
         }
         return cell
     }

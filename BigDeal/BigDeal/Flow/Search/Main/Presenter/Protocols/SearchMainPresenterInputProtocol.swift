@@ -3,6 +3,7 @@ import Alamofire
 import UIKit
 
 protocol SearchMainPresenterInputProtocol: AnyObject {
+    func updateData(data: [Item])
     func stopAnimating()
     func startAnimating()
     func dataCollectingErrorAlert()

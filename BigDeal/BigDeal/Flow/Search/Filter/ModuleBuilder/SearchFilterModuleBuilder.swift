@@ -5,7 +5,6 @@ class SearchFilterModuleBuilder {
     // MARK: - Properties
     
     var coordinator: SearchBaseCoordinatorProtocol
-    
     // MARK: - Initializers
     
     init(coordinator: SearchBaseCoordinatorProtocol) {

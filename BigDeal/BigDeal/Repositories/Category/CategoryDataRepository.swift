@@ -16,8 +16,8 @@ class CategoryDataRepository: CategoryRepositoryProtocol {
     
     // Request to ASOS API
     
-    func obtainProductByCategoryIdFromAsos(_ categoryId: String, completion: @escaping (AFDataResponse<Any>) -> Void) {
-        remoteDataSource.obtainProductByCategoryIdFromAsos(categoryId) { response in
+    func obtainProductByCategoryFromAsos(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping (AFDataResponse<Any>) -> Void) {
+        remoteDataSource.obtainProductByCategoryFromAsos(with: parameters, headers: headers, url: url) { response in
             completion(response)
         }
     }

@@ -7,12 +7,14 @@ class SearchResultsViewController: UIViewController {
     private var output: SearchResultsPresenterOutputProtocol?
     private let searchResultsView = SearchResultsView()
     
-    private let reuseIdForHeaderView = SearchResultsCollectionReusableView.searchResultsCollectionReusableViewId
+    private let reuseIdForHeaderView = SearchResultsCollectionReusableView.headerReuseId
+    private let reuseIdForFooterView = SearchResultsCollectionReusableView.footerReuseId
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     private let sectionHeader = UICollectionView.elementKindSectionHeader
+    private let sectionFooter = UICollectionView.elementKindSectionFooter
     // MARK: - Other data and properties
     
-    var data: [Item] = DataManager.shared.itemsForCategory
+    var data: [Item] = []
     // MARK: - Initializers
     
     init(output: SearchResultsPresenterOutputProtocol) {
@@ -33,7 +35,8 @@ class SearchResultsViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         setUpSearchResultsCollectionView()
-        obtainProductByCategoryIdFromAsos()
+        DataManager.shared.itemsForCategory = []
+        obtainProductByCategoryIdFromAsos(with: IndexPath(item: 0, section: 0))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,13 +52,14 @@ class SearchResultsViewController: UIViewController {
         let viewClass = SearchResultsCollectionReusableView.self
         searchResultsView.searchResultsCollectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdForItemCell)
         searchResultsView.searchResultsCollectionView.register(viewClass, forSupplementaryViewOfKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView)
+        searchResultsView.searchResultsCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: sectionFooter, withReuseIdentifier: reuseIdForFooterView)
     }
     
     private func configureView() {
         title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
     }
     
-    private func obtainProductByCategoryIdFromAsos() {
+    private func obtainProductByCategoryIdFromAsos(with indexPath: IndexPath) {
         guard let categoryId = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryId) as? String else {
             return
         }
@@ -71,7 +75,11 @@ class SearchResultsViewController: UIViewController {
             DataManager.shared.asosHostHeader,
             accessTokenHeader
         ]
-        searchResultsView.activityIndicatorView.startAnimating()
+        if indexPath.item == data.count - 1 {
+            searchResultsView.footerView.startAnimating()
+        } else {
+            startAnimating()
+        }
         output?.obtainProductByCategoryFromAsos(with: parameters, headers: headers, url: url)
         DataManager.shared.categoryRepositoryOffset += DataManager.shared.limit
     }
@@ -80,39 +88,52 @@ class SearchResultsViewController: UIViewController {
 
 extension SearchResultsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        data = DataManager.shared.itemsForCategory
         return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        data = DataManager.shared.itemsForCategory
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.data = self.data[indexPath.row]
         if indexPath.item == data.count - 1 {
-            obtainProductByCategoryIdFromAsos()
+            obtainProductByCategoryIdFromAsos(with: indexPath)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView, for: indexPath)
-        guard let header = header as? SearchResultsCollectionReusableView else {
-            return UICollectionReusableView()
+        if kind == UICollectionView.elementKindSectionFooter {
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdForFooterView, for: indexPath)
+            footer.addSubview(searchResultsView.footerView)
+            searchResultsView.footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
+            return footer
+        } else {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView, for: indexPath)
+            guard let header = header as? SearchResultsCollectionReusableView else {
+                return UICollectionReusableView()
+            }
+            header.delegate = self
+            return header
         }
-        header.delegate = self
-        return header
     }
 }
-
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension SearchResultsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        data = DataManager.shared.itemsForCategory
         let model = data[indexPath.row]
         output?.moveToDetailFlow(model: model)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 40)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: self.view.frame.size.width, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

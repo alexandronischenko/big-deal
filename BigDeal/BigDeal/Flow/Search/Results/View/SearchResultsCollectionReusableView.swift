@@ -7,7 +7,8 @@ protocol SearchResultsReusableViewDelegate: AnyObject {
 class SearchResultsCollectionReusableView: UICollectionReusableView {
     // MARK: - Static properties
     
-    static let searchResultsCollectionReusableViewId = "searchResultsCollectionReusableView"
+    static let headerReuseId = "searchResultsHeaderCollectionReusableView"
+    static let footerReuseId = "searchResultsFooterCollectionReusableView"
     // MARK: - Properties
     
     weak var delegate: SearchResultsReusableViewDelegate?
@@ -50,7 +51,6 @@ class SearchResultsCollectionReusableView: UICollectionReusableView {
     private func setUpSelfView() {
         addSubview(searchResultsFilterButton)
     }
-    
     // MARK: - OBJC functions
     
     @objc private func searchResultsFilterButtonDidPressed(_ sender: UIButton) {

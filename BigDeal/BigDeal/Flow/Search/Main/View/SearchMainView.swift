@@ -15,7 +15,7 @@ class SearchMainView: UIView {
     
     // MARK: - Other properties
     
-    var data: [Item] = DataManager.shared.itemsForSearch
+    var data: [Item] = []
     weak var delegate: SearchMainViewDelegateProtocol?
     // MARK: - UI
     
@@ -94,6 +94,7 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        data = DataManager.shared.itemsForSearch
         let model = data[indexPath.row]
         delegate?.moveToDetailFlow(model: model)
     }
@@ -114,12 +115,12 @@ extension SearchMainView: UICollectionViewDelegateFlowLayout {
 
 extension SearchMainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let data = DataManager.shared.itemsForSearch
+        data = DataManager.shared.itemsForSearch
         return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let data = DataManager.shared.itemsForSearch
+        data = DataManager.shared.itemsForSearch
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }

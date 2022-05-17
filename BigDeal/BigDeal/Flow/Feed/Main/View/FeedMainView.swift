@@ -123,13 +123,7 @@ extension FeedMainView: UICollectionViewDelegateFlowLayout {
             footer.addSubview(footerView)
             footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
             return footer
-        } else {
-            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "label", for: indexPath) as? HeaderLabel else {
-                return UICollectionReusableView()
-            }
-            sectionHeader.label.text = "TRENDING🔥"
-            return sectionHeader
-        }
+         }
     }
 }
 // MARK: - UICollectionViewDataSource

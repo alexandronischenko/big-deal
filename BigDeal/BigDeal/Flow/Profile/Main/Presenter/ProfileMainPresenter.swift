@@ -29,6 +29,7 @@ extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
             do {
                 try FirebaseAuth.Auth.auth().signOut()
                 UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isLoggedInKey)
+                UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.safeEmailKey)
             } catch {
                 print("Failed to logout")
             }

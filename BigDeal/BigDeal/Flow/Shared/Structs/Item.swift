@@ -10,6 +10,8 @@ struct Item {
     var newPrice: String
     var url: String
     var id: String
+    var isFavorite: Bool = false
+
     // MARK: - Initializers
     
     init?(product: AsosProduct) {

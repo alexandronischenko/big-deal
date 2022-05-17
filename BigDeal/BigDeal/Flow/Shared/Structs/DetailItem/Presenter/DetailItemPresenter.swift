@@ -7,7 +7,7 @@ import Foundation
 protocol DetailItemPresenterProtocol: AnyObject {
     init(coordinator: FlowCoordinatorProtocol, model: Item)
     func buttonPressedGoToShopSite(url: String)
-    func didTapAddToFavorites(url: String)
+    func didTapAddToFavorites(id: String, completion: (Bool) -> Void)
 }
 
 class DetailItemPresenter: DetailItemPresenterProtocol {
@@ -22,11 +22,18 @@ class DetailItemPresenter: DetailItemPresenterProtocol {
     }
 
     func buttonPressedGoToShopSite(url: String) {
-//        called in vc cause cant use this
+//        called in vc cause cant use this here
 //        UIApplication.shared.open(url)
     }
     
-    func didTapAddToFavorites(url: String) {
-        DatabaseManager.shared.addToFavorites(url: url)
+    func didTapAddToFavorites(id: String, completion: (Bool) -> Void) {
+        let array = DatabaseManager.shared.getAllFavorites()
+        if array.contains(id) {
+            DatabaseManager.shared.deleteFavoritesWith(id: id)
+            completion(false)
+        } else {
+            DatabaseManager.shared.addToFavorites(id: id)
+            completion(true)
+        }
     }
 }

@@ -3,7 +3,7 @@ import Foundation
 protocol DetailItemPresenterProtocol: AnyObject {
     init(coordinator: FlowCoordinatorProtocol, model: Item)
     func buttonPressedGoToShopSite(url: String)
-    func didTapAddToFavorites(id: String, completion: (Bool) -> Void)
+    func didTapAddToFavorites(model: Item, completion: (Bool) -> Void)
 }
 
 class DetailItemPresenter: DetailItemPresenterProtocol {
@@ -22,14 +22,30 @@ class DetailItemPresenter: DetailItemPresenterProtocol {
 //        UIApplication.shared.open(url)
     }
     
-    func didTapAddToFavorites(id: String, completion: (Bool) -> Void) {
-        let array = DatabaseManager.shared.getAllFavorites()
-        if array.contains(id) {
-            DatabaseManager.shared.deleteFavoritesWith(id: id)
-            completion(false)
-        } else {
-            DatabaseManager.shared.addToFavorites(id: id)
-            completion(true)
+    func didTapAddToFavorites(model: Item, completion: (Bool) -> Void) {
+//        let array = DatabaseManager.shared.getAllFavorites()
+//        if array.contains(id) {
+//            DatabaseManager.shared.deleteFavoritesWith(id: id)
+//            completion(false)
+//        } else {
+//            DatabaseManager.shared.addToFavorites(id: id)
+//            completion(true)
+//        }
+        DatabaseManager.shared.getAllFavorites { result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let favorites):
+                print(favorites)
+            }
+        }
+        DatabaseManager.shared.addToFavorites(model: model) { result in
+            switch result {
+            case.failure(let error):
+                print(error.localizedDescription)
+            case .success(_):
+                break
+            }
         }
     }
 }

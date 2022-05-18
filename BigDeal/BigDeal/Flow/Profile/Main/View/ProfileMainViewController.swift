@@ -59,6 +59,7 @@ class ProfileMainViewController: UIViewController {
     
     private func configureView() {
         let button = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didTapLogout))
+        button.image = UIImage(systemName: "rectangle.portrait.and.arrow.right")
         navigationController?.navigationItem.rightBarButtonItem = button
         navigationItem.rightBarButtonItem = button
         title = "Profile"

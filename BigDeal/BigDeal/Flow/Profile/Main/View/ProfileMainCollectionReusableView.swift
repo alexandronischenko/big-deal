@@ -24,7 +24,7 @@ class ProfileMainCollectionReusableView: UICollectionReusableView {
     private lazy var profileHeaderFullNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24)
-        label.text = "Murtazin Renat"
+        label.text = ""
         label.textColor = .label
         label.textAlignment = .center
         return label
@@ -99,6 +99,14 @@ class ProfileMainCollectionReusableView: UICollectionReusableView {
         addSubview(profileHeaderSettingsButton)
         addSubview(profileHeaderSubscriptionsSettingsButton)
         addSubview(profileHeaderMyClothesLabel)
+    }
+    
+    func configure(with model: UserModel) {
+        profileHeaderFullNameLabel.text = model.name
+//        guard let image = model.profilePicture else {
+//            return
+//        }
+//        profileHeaderImageView.image = image
     }
     
     private func setUpConstraintsForViews() {

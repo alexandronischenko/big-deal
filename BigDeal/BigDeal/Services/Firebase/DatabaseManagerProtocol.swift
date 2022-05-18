@@ -21,4 +21,7 @@ protocol DatabaseManagerProtocol {
     
     // Function that checking on containing in firebase favorites
     func isFavorite(id: String) -> Bool
+    
+    // Function that return user model from firebase
+    func getCurrentUserModel(completion: @escaping (Result<UserModel, Error>) -> Void)
 }

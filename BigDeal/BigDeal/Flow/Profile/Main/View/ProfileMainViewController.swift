@@ -129,6 +129,17 @@ extension ProfileMainViewController: UICollectionViewDataSource {
         guard let header = header as? ProfileMainCollectionReusableView else {
             return UICollectionReusableView()
         }
+        
+        DatabaseManager.shared.getCurrentUserModel { result in
+            switch result {
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+            case .success(let model):
+                DispatchQueue.main.async {
+                    header.configure(with: model)
+                }
+            }
+        }
         header.delegate = self
         return header
     }

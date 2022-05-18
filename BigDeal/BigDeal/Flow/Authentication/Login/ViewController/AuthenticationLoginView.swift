@@ -44,6 +44,7 @@ class AuthenticationLoginView: UIView {
         textField.placeholder = "Enter your email"
         textField.autocorrectionType = .no
         textField.textContentType = .emailAddress
+        textField.keyboardType = .emailAddress
         textField.borderStyle = .roundedRect
         return textField
     }()

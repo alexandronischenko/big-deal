@@ -58,8 +58,7 @@ extension DetailItemViewController: DetailItemViewProtocol {
     }
     
     @objc func didTapAddFavoritesButton(_ sender: UIButton) {
-        guard let id = detailItemView.item?.id else { return }
-        presenter.didTapAddToFavorites(id: String(id), completion: { isFavorite in
+        presenter.didTapAddToFavorites(model: detailItemView.item!, completion: { isFavorite in
             if isFavorite {
                 let menuBtn = UIButton(type: .custom)
                 let img = UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 100, weight: .medium), scale: .medium))

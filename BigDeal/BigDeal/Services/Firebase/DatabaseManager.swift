@@ -1,6 +1,11 @@
 import Foundation
 import FirebaseDatabase
 
+enum DatabaseManagerError: Error {
+    case gettingUserEmail
+    case gettingUserData
+    case invalidData
+}
 final class DatabaseManager {
     static let shared = DatabaseManager()
     
@@ -74,5 +79,24 @@ extension DatabaseManager: DatabaseManagerProtocol {
     func isFavorite(id: String) -> Bool {
         let ids = getAllFavorites()
         return ids.contains(id)
+    }
+    
+    func getCurrentUserModel(completion: @escaping (Result<UserModel, Error>) -> Void) {
+        guard let email = UserDefaults.standard.string(forKey: UserDefaultsKeys.safeEmailKey) else { completion(.failure(DatabaseManagerError.gettingUserEmail))
+            return
+        }
+        database.child(email).observeSingleEvent(of: .value) { snapshot in
+            print(snapshot)
+            guard let value = snapshot.value as? [String: String] else {
+                completion(.failure(DatabaseManagerError.invalidData))
+                return
+            }
+            guard let userName = value["name"] else {
+                completion(.failure(DatabaseManagerError.invalidData))
+                return
+            }
+            let model = UserModel(name: userName, emailAdress: email, profilePicture: nil)
+            completion(.success(model))
+        }
     }
 }

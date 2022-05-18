@@ -31,7 +31,9 @@ extension AuthenticationLoginViewPresenter: AuthenticationLoginViewPresenterProt
                 self.view?.presentAlert(error: error.localizedDescription)
                 return
             } else {
+                let model = UserModel(name: "", emailAdress: email, profilePicture: nil)
                 UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isLoggedInKey)
+                UserDefaults.standard.set(model.safeEmail, forKey: UserDefaultsKeys.safeEmailKey)
                 self.coordinator?.moveTo(flow: .authProfile(.profile(.main)))
             }
         }

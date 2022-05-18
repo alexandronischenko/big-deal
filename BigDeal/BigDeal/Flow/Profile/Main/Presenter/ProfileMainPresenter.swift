@@ -25,7 +25,7 @@ extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
     func didTapLogout() {
         let alert = UIAlertController(title: "Are you sure you want to log out of your account?", message: "We will miss you(", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive) { _ in
             do {
                 try FirebaseAuth.Auth.auth().signOut()
                 UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isLoggedInKey)
@@ -34,7 +34,7 @@ extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
                 print("Failed to logout")
             }
             self.coordinator?.moveTo(flow: .authProfile(.authentication(.greeting)))
-        }))
+        })
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         input?.present(alert: alert)
     }

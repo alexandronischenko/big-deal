@@ -20,6 +20,8 @@
 		A20228F32836326300018365 /* ItemEntity+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20228F12836326300018365 /* ItemEntity+CoreData.swift */; };
 		A20228F82836341A00018365 /* CoreDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20228F72836341A00018365 /* CoreDataManagerProtocol.swift */; };
 		A20228FA2836348D00018365 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20228F92836348D00018365 /* CoreDataManager.swift */; };
+		A20228FE28368DC700018365 /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20228FD28368DC700018365 /* FileManagerService.swift */; };
+		A202290128368F2300018365 /* FileManagerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202290028368F2300018365 /* FileManagerServiceProtocol.swift */; };
 		A2113AFF27CE745F00EBA9A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113AFE27CE745F00EBA9A9 /* AppDelegate.swift */; };
 		A2113B0127CE745F00EBA9A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2113B0027CE745F00EBA9A9 /* SceneDelegate.swift */; };
 		A2113B0627CE745F00EBA9A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2113B0427CE745F00EBA9A9 /* Main.storyboard */; };
@@ -199,6 +201,8 @@
 		A20228F12836326300018365 /* ItemEntity+CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ItemEntity+CoreData.swift"; sourceTree = "<group>"; };
 		A20228F72836341A00018365 /* CoreDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerProtocol.swift; sourceTree = "<group>"; };
 		A20228F92836348D00018365 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A20228FD28368DC700018365 /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
+		A202290028368F2300018365 /* FileManagerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerServiceProtocol.swift; sourceTree = "<group>"; };
 		A2113AFB27CE745F00EBA9A9 /* BigDeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BigDeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2113AFE27CE745F00EBA9A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2113B0027CE745F00EBA9A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -470,6 +474,32 @@
 				A20228F12836326300018365 /* ItemEntity+CoreData.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A20228FB28368DAD00018365 /* FileManagerService */ = {
+			isa = PBXGroup;
+			children = (
+				A20228FF28368F1200018365 /* Protocols */,
+				A20228FD28368DC700018365 /* FileManagerService.swift */,
+			);
+			path = FileManagerService;
+			sourceTree = "<group>";
+		};
+		A20228FC28368DB500018365 /* ValidationService */ = {
+			isa = PBXGroup;
+			children = (
+				A2B6816627FF5DCC00518A90 /* Protocols */,
+				A2B6815F27FF57D100518A90 /* ValidationService.swift */,
+			);
+			path = ValidationService;
+			sourceTree = "<group>";
+		};
+		A20228FF28368F1200018365 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A202290028368F2300018365 /* FileManagerServiceProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A2113AF227CE745F00EBA9A9 = {
@@ -1096,8 +1126,8 @@
 		A2B6815E27FF577E00518A90 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A2B6816627FF5DCC00518A90 /* Protocols */,
-				A2B6815F27FF57D100518A90 /* ValidationService.swift */,
+				A20228FC28368DB500018365 /* ValidationService */,
+				A20228FB28368DAD00018365 /* FileManagerService */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1812,6 +1842,7 @@
 				A22CF8FF281F2E6400CAEDB7 /* SearchMainPresenterOutputProtocol.swift in Sources */,
 				A26256BD27FF2750007FA967 /* AuthenticationRegisterViewPresenter.swift in Sources */,
 				A2F0ED9627FDEDAD0049EBAC /* HotDataRepository.swift in Sources */,
+				A20228FE28368DC700018365 /* FileManagerService.swift in Sources */,
 				A2113AFF27CE745F00EBA9A9 /* AppDelegate.swift in Sources */,
 				A2CF987627DA299F001A6C39 /* ProfileMainScreenViewOutputProtocol.swift in Sources */,
 				A2F0EDA327FDEE8C0049EBAC /* HotRemoteDataSource.swift in Sources */,
@@ -1884,6 +1915,7 @@
 				A27EBC3727F0D87800532EDE /* ProfileSettingsViewController.swift in Sources */,
 				A20228FA2836348D00018365 /* CoreDataManager.swift in Sources */,
 				A2F0EDA927FDEF740049EBAC /* CategoryDataRepository.swift in Sources */,
+				A202290128368F2300018365 /* FileManagerServiceProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

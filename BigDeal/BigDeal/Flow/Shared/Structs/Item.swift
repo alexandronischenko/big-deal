@@ -79,13 +79,13 @@ struct Item {
         self.id = ""
     }
     
-    init(shopTitle: String, clothTitle: String, sizes: [String], oldPrice: String, newPrice: String, clothImage: UIImage) {
+    init(shopTitle: String, clothTitle: String, id: String, oldPrice: String, newPrice: String, clothImage: UIImage, url: String) {
         self.oldPrice = oldPrice
         self.newPrice = newPrice
         self.clothImage = clothImage
         self.clothTitle = clothTitle
-        self.url = ""
-        self.id = ""
+        self.url = url
+        self.id = id
     }
     // MARK: - Static functions
 

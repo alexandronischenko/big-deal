@@ -578,7 +578,7 @@
 		A23E572427F78A090069F74E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A25664EB28336E350082691E /* Favorites */,
+				A25664EB28336E350082691E /* FavoritesRepository */,
 				A2B6815E27FF577E00518A90 /* Helpers */,
 				A2F0EDAA27FDEF910049EBAC /* Category */,
 				A2F0ED9C27FDEE2D0049EBAC /* Hot */,
@@ -679,7 +679,7 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
-		A25664EB28336E350082691E /* Favorites */ = {
+		A25664EB28336E350082691E /* FavoritesRepository */ = {
 			isa = PBXGroup;
 			children = (
 				A28A344B2818375700512017 /* Firebase */,
@@ -688,7 +688,7 @@
 				A25664F128336EA60082691E /* FavoritesLocalDataSource.swift */,
 				A25664F328336ECC0082691E /* FavoritesRemoteDataSource.swift */,
 			);
-			path = Favorites;
+			path = FavoritesRepository;
 			sourceTree = "<group>";
 		};
 		A25664EC28336E3B0082691E /* Protocols */ = {

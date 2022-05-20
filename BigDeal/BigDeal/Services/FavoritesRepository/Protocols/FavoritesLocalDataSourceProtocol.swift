@@ -1,4 +1,5 @@
 import Foundation
 
-protocol FavoritesLocalDataSourceProtocol: AnyObject {
+protocol FavoritesDataSourceProtocol: AnyObject {
+    func addToFavorites(item: Item, completion: @escaping  (Result<Bool, Error>) -> Void)
 }

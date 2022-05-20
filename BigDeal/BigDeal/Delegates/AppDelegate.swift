@@ -23,14 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Enable persistent container Core data
         lazy var persistentContainer: NSPersistentContainer = {
-                let container = NSPersistentContainer(name: "BigDeal")
-                container.loadPersistentStores { description, error in
-                    if let error = error {
-                        fatalError("Unable to load persistent stores: \(error)")
-                    }
+            let container = NSPersistentContainer(name: "BigDeal")
+            container.loadPersistentStores { _, error in
+                if let error = error {
+                    fatalError("Unable to load persistent stores: \(error)")
                 }
-                return container
-            }()
+            }
+            return container
+        }()
         
         return true
     }

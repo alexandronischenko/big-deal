@@ -1,20 +1,35 @@
 import Foundation
 
 class FavoritesRepository: FavoritesRepositoryProtocol {
-    
     // MARK: - Properties
     
-    internal let remoteDataSource: FavoritesRemoteDataSourceProtocol
-    internal let localDataSource: FavoritesLocalDataSourceProtocol
+    private let remoteDataSource: FavoritesDataSourceProtocol
+    private let localDataSource: FavoritesDataSourceProtocol
     
     // MARK: - Initializers
     
-    public init(remoteDataSource: FavoritesRemoteDataSourceProtocol, localDataSource: FavoritesLocalDataSourceProtocol) {
+    public init(remoteDataSource: FavoritesDataSourceProtocol, localDataSource: FavoritesDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
         self.localDataSource = localDataSource
     }
     
-    func saveItem(item: Item, completion: (Bool) -> Void) {
-        
+    func save(item: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
+        remoteDataSource.addToFavorites(item: item) { result in
+            switch result {
+            case .success(let bool):
+                if bool {
+                    self.localDataSource.addToFavorites(item: item) { result in
+                        switch result {
+                        case .success(let bool):
+                            completion(.success(bool))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

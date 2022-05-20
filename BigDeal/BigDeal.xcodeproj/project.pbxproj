@@ -49,7 +49,6 @@
 		A23E572C27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E572B27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift */; };
 		A250F1A5282AAE18006BA84F /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A250F1A4282AAE18006BA84F /* CategoryButton.swift */; };
 		A25664EE28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664ED28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift */; };
-		A25664F028336E840082691E /* FavoritesRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664EF28336E840082691E /* FavoritesRemoteDataSourceProtocol.swift */; };
 		A25664F228336EA60082691E /* FavoritesLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664F128336EA60082691E /* FavoritesLocalDataSource.swift */; };
 		A25664F428336ECC0082691E /* FavoritesRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664F328336ECC0082691E /* FavoritesRemoteDataSource.swift */; };
 		A25664F628336FB40082691E /* FavoritesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25664F528336FB40082691E /* FavoritesRepositoryProtocol.swift */; };
@@ -234,7 +233,6 @@
 		A23E572B27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
 		A250F1A4282AAE18006BA84F /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		A25664ED28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesLocalDataSourceProtocol.swift; sourceTree = "<group>"; };
-		A25664EF28336E840082691E /* FavoritesRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
 		A25664F128336EA60082691E /* FavoritesLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesLocalDataSource.swift; sourceTree = "<group>"; };
 		A25664F328336ECC0082691E /* FavoritesRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRemoteDataSource.swift; sourceTree = "<group>"; };
 		A25664F528336FB40082691E /* FavoritesRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -502,6 +500,13 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		A202290228377FA900018365 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		A2113AF227CE745F00EBA9A9 = {
 			isa = PBXGroup;
 			children = (
@@ -703,6 +708,7 @@
 		A25664EA28336E210082691E /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				A202290228377FA900018365 /* Protocols */,
 				A25664F528336FB40082691E /* FavoritesRepositoryProtocol.swift */,
 				A25664F728336FFB0082691E /* FavoritesRepository.swift */,
 			);
@@ -725,7 +731,6 @@
 			isa = PBXGroup;
 			children = (
 				A25664ED28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift */,
-				A25664EF28336E840082691E /* FavoritesRemoteDataSourceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1857,7 +1862,6 @@
 				A23E572C27F78ACF0069F74E /* ProductRemoteDataSourceProtocol.swift in Sources */,
 				A2F24F4527EEF6A8000B02D6 /* ProfileCoordinator.swift in Sources */,
 				A2F0EDAF27FDEFC70049EBAC /* CategoryRemoteDataSourceProtocol.swift in Sources */,
-				A25664F028336E840082691E /* FavoritesRemoteDataSourceProtocol.swift in Sources */,
 				A297430727FED162009E5E7D /* ProfileMainCollectionReusableView.swift in Sources */,
 				A200230827F6FCE7002D04AE /* FeedMainPresenterInputProtocol.swift in Sources */,
 				A20228F32836326300018365 /* ItemEntity+CoreData.swift in Sources */,

@@ -58,7 +58,7 @@ extension DetailItemViewController: DetailItemViewProtocol {
     }
     
     @objc func didTapAddFavoritesButton(_ sender: UIButton) {
-        presenter.didTapAddToFavorites(model: detailItemView.item!, completion: { isFavorite in
+        presenter.didTapAddToFavorites(model: detailItemView.item!) { isFavorite in
             if isFavorite {
                 let menuBtn = UIButton(type: .custom)
                 let img = UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 100, weight: .medium), scale: .medium))
@@ -70,7 +70,7 @@ extension DetailItemViewController: DetailItemViewProtocol {
                 let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 26)
                 currHeight?.isActive = true
                 self.navigationItem.rightBarButtonItem = menuBarItem
-                menuBtn.addTarget(self, action: #selector(didTapAddFavoritesButton(_:)), for: .touchUpInside)
+                menuBtn.addTarget(self, action: #selector(self.didTapAddFavoritesButton(_:)), for: .touchUpInside)
             } else {
                 let menuBtn = UIButton(type: .custom)
                 let img = UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 100, weight: .medium), scale: .medium))
@@ -82,8 +82,8 @@ extension DetailItemViewController: DetailItemViewProtocol {
                 let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 26)
                 currHeight?.isActive = true
                 self.navigationItem.rightBarButtonItem = menuBarItem
-                menuBtn.addTarget(self, action: #selector(didTapAddFavoritesButton(_:)), for: .touchUpInside)
+                menuBtn.addTarget(self, action: #selector(self.didTapAddFavoritesButton(_:)), for: .touchUpInside)
             }
-        })
+        }
     }
 }

@@ -6,6 +6,7 @@ private enum DatabaseManagerError: Error {
     case gettingUserData
     case invalidData
     case failedToWriteData
+    case failedToReadData
 }
 
 final class DatabaseManager {
@@ -83,9 +84,18 @@ extension DatabaseManager: DatabaseManagerProtocol {
     }
     
     func isFavorite(model: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
-//        let ids = getAllFavorites()
-//        return ids.contains(id)
-        // MARK: TODO
+        var favorites: [String] = []
+        getAllFavorites { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let arrayOfFavorites):
+                favorites = arrayOfFavorites
+                let isFav = favorites.contains(model.id)
+                completion(.success(isFav))
+        }
+            completion(.failure(DatabaseManagerError.failedToReadData))
+        }
     }
     
     func getCurrentUserModel(completion: @escaping (Result<UserModel, Error>) -> Void) {

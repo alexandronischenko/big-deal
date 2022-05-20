@@ -22,4 +22,11 @@ class ProductDataRepository: ProductRepositoryProtocol {
             completion(response)
         }
     }
+    // Request to StockX API
+    
+    func obtainProductByNameFromStockX(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping (AFDataResponse<Any>) -> Void) {
+        remoteDataSource.obtainProductByNameFromStockX(with: parameters, headers: headers, url: url) { response in
+            completion(response)
+        }
+    }
 }

@@ -39,26 +39,26 @@ struct Item {
         self.id = id
     }
     
-    init?(stockXProduct: StockXProduct) {
-        guard
-            let oldPrice = String?("Sold"),
-            let newPrice = String?("Buy"),
-            let clothUrl = URL(string: stockXProduct.media.thumbUrl),
-            let clothData = try? Data(contentsOf: clothUrl),
-            let clothImage = UIImage(data: clothData),
-            let clothTitle = String?("\(stockXProduct.title)"),
-            let clothUrl = String?("https://stockx.com" + "\(stockXProduct.urlKey)"),
-            let id = String?("\(stockXProduct.objectID)")
-        else {
-            return nil
-        }
-        self.oldPrice = oldPrice
-        self.clothImage = clothImage
-        self.newPrice = newPrice
-        self.clothTitle = clothTitle
-        self.url = clothUrl
-        self.id = id
-    }
+//    init?(stockXProduct: StockXProduct) {
+//        guard
+//            let oldPrice = String?("Sold"),
+//            let newPrice = String?("Buy"),
+//            let clothUrl = URL(string: stockXProduct.media.thumbUrl),
+//            let clothData = try? Data(contentsOf: clothUrl),
+//            let clothImage = UIImage(data: clothData),
+//            let clothTitle = String?("\(stockXProduct.title)"),
+//            let clothUrl = String?("https://stockx.com" + "\(stockXProduct.urlKey)"),
+//            let id = String?("\(stockXProduct.objectID)")
+//        else {
+//            return nil
+//        }
+//        self.oldPrice = oldPrice
+//        self.clothImage = clothImage
+//        self.newPrice = newPrice
+//        self.clothTitle = clothTitle
+//        self.url = clothUrl
+//        self.id = id
+//    }
     
     init?(entry: Entry) {
         guard
@@ -79,13 +79,13 @@ struct Item {
         self.id = ""
     }
     
-    init(shopTitle: String, clothTitle: String, sizes: [String], oldPrice: String, newPrice: String, clothImage: UIImage) {
+    init(shopTitle: String, clothTitle: String, id: String, oldPrice: String, newPrice: String, clothImage: UIImage, url: String) {
         self.oldPrice = oldPrice
         self.newPrice = newPrice
         self.clothImage = clothImage
         self.clothTitle = clothTitle
-        self.url = ""
-        self.id = ""
+        self.url = url
+        self.id = id
     }
     // MARK: - Static functions
 
@@ -99,15 +99,15 @@ struct Item {
         return items
     }
     
-    static func getStockXArray(from stockXProducts: [StockXProduct]) -> [Item]? {
-        var items: [Item] = []
-        for stockXProduct in stockXProducts {
-            if let item = Item(stockXProduct: stockXProduct) {
-                items.append(item)
-            }
-        }
-        return items
-    }
+//    static func getStockXArray(from stockXProducts: [StockXProduct]) -> [Item]? {
+//        var items: [Item] = []
+//        for stockXProduct in stockXProducts {
+//            if let item = Item(stockXProduct: stockXProduct) {
+//                items.append(item)
+//            }
+//        }
+//        return items
+//    }
     
     static func getFarfetchArray(from entries: [Entry]) -> [Item]? {
         var items: [Item] = []

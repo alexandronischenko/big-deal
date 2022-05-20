@@ -6,6 +6,8 @@ class SearchMainViewController: UIViewController {
     
     private let searchMainView = SearchMainView()
     private var output: SearchMainPresenterOutputProtocol?
+    
+    var url: String = ""
     // MARK: - Protocol properties
     
     var coordinator: SearchBaseCoordinatorProtocol?
@@ -109,6 +111,13 @@ extension SearchMainViewController: UISearchBarDelegate {
             self.searchMainView.footerView.stopAnimating()
         }
         searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else {
+            return
+        }
+        url = text.replacingOccurrences(of: " ", with: "%20")
     }
 }
 // MARK: - SearchMainViewDelegateProtocol

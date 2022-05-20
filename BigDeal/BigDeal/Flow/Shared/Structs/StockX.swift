@@ -1,29 +1,25 @@
 import Foundation
 
 struct StockX: Codable {
-    let stockXPagination: StockXPagination
-    let stockXProducts: [StockXProduct]
+    let stockXData: StockXData
     
     private enum CodingKeys: String, CodingKey {
-        case stockXPagination = "Pagination"
-        case stockXProducts = "Products"
+        case stockXData = "data"
     }
 }
 
-struct StockXPagination: Codable {
-    let query: String
-    let limit: String
-    let page: Int
-    let total: Int
+struct StockXData: Codable {
+    let stockXItems: [StockXItem]
+    
+    private enum CodingKeys: String, CodingKey {
+        case stockXItems = "items"
+    }
 }
 
-struct StockXProduct: Codable {
-    let media: StockXMedia
-    let title: String
-    let urlKey: String
-    let objectID: String
-}
-
-struct StockXMedia: Codable {
-    let thumbUrl: String
+struct StockXItem: Codable {
+    let id: String
+    let url: String
+    let name: String
+    let brand: String
+    let image: String
 }

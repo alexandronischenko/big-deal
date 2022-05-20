@@ -59,6 +59,7 @@ class ProfileMainViewController: UIViewController {
     
     private func configureView() {
         let button = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didTapLogout))
+        button.image = UIImage(systemName: "rectangle.portrait.and.arrow.right")
         navigationController?.navigationItem.rightBarButtonItem = button
         navigationItem.rightBarButtonItem = button
         title = "Profile"
@@ -127,6 +128,17 @@ extension ProfileMainViewController: UICollectionViewDataSource {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView, for: indexPath)
         guard let header = header as? ProfileMainCollectionReusableView else {
             return UICollectionReusableView()
+        }
+        
+        DatabaseManager.shared.getCurrentUserModel { result in
+            switch result {
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+            case .success(let model):
+                DispatchQueue.main.async {
+                    header.configure(with: model)
+                }
+            }
         }
         header.delegate = self
         return header

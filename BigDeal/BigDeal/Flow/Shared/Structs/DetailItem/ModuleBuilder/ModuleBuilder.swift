@@ -7,7 +7,9 @@ class DetailItemBuilder {
     }
 
     func build(model: Item) -> UIViewController {
-        let presenter = DetailItemPresenter(coordinator: coordinator, model: model)
+        let repository = FavoritesRepository(remoteDataSource: FavoritesRemoteDataSource(), localDataSource: FavoritesLocalDataSource())
+        
+        let presenter = DetailItemPresenter(coordinator: coordinator, model: model, repository: repository)
         let viewContoller = DetailItemViewController(presenter: presenter)
         presenter.view = viewContoller
         presenter.view?.configureModel(model: model)

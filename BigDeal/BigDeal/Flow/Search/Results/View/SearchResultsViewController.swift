@@ -15,6 +15,7 @@ class SearchResultsViewController: UIViewController {
     // MARK: - Other data and properties
     
     var data: [Item] = []
+    var dataForSearchByFilters: [Item] = []
     // MARK: - Initializers
     
     init(output: SearchResultsPresenterOutputProtocol) {
@@ -36,12 +37,16 @@ class SearchResultsViewController: UIViewController {
         configureView()
         setUpSearchResultsCollectionView()
         DataManager.shared.itemsForCategory = []
-        obtainProductByCategoryIdFromAsos(with: IndexPath(item: 0, section: 0))
+        DataManager.shared.itemsForFilters = []
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.tabBarItem.title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if !isSearchByFilters {
+            obtainProductByCategoryIdFromAsos(with: IndexPath(item: 0, section: 0))
+        }
     }
     // MARK: - Private functions
     
@@ -56,7 +61,12 @@ class SearchResultsViewController: UIViewController {
     }
     
     private func configureView() {
-        title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if isSearchByFilters {
+            title = UserDefaults.standard.object(forKey: "titleForFiltersSearch") as? String
+        } else {
+            title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
+        }
     }
     
     private func obtainProductByCategoryIdFromAsos(with indexPath: IndexPath) {
@@ -88,20 +98,36 @@ class SearchResultsViewController: UIViewController {
 
 extension SearchResultsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data = DataManager.shared.itemsForCategory
-        return data.count
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if isSearchByFilters {
+            dataForSearchByFilters = DataManager.shared.itemsForFilters
+            return dataForSearchByFilters.count
+        } else {
+            data = DataManager.shared.itemsForCategory
+            return data.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         data = DataManager.shared.itemsForCategory
+        dataForSearchByFilters = DataManager.shared.itemsForFilters
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.data = self.data[indexPath.row]
-        if indexPath.item == data.count - 1 {
-            obtainProductByCategoryIdFromAsos(with: indexPath)
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if isSearchByFilters {
+            cell.data = self.dataForSearchByFilters[indexPath.item]
+            if indexPath.item == dataForSearchByFilters.count - 1 {
+                output?.loadNewData(by: indexPath)
+            }
+            return cell
+        } else {
+            cell.data = self.data[indexPath.item]
+            if indexPath.item == data.count - 1 {
+                obtainProductByCategoryIdFromAsos(with: indexPath)
+            }
+            return cell
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -124,9 +150,16 @@ extension SearchResultsViewController: UICollectionViewDataSource {
 
 extension SearchResultsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        data = DataManager.shared.itemsForCategory
-        let model = data[indexPath.row]
-        output?.moveToDetailFlow(model: model)
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if isSearchByFilters {
+            dataForSearchByFilters = DataManager.shared.itemsForFilters
+            let model = dataForSearchByFilters[indexPath.row]
+            output?.moveToDetailFlow(model: model)
+        } else {
+            data = DataManager.shared.itemsForCategory
+            let model = data[indexPath.row]
+            output?.moveToDetailFlow(model: model)
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 40)
@@ -158,6 +191,10 @@ extension SearchResultsViewController: SearchResultsReusableViewDelegate {
 // MARK: - SearchResultsPresenterInputProtocol
 
 extension SearchResultsViewController: SearchResultsPresenterInputProtocol {
+    func animateSearchResultsView() {
+        searchResultsView.footerView.startAnimating()
+    }
+    
     func stopAnimating() {
         searchResultsView.activityIndicatorView.stopAnimating()
     }

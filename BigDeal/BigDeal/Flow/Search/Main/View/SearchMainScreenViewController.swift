@@ -39,6 +39,7 @@ class SearchMainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.tabBarItem.title = "Catalog"
+        UserDefaults.standard.set(false, forKey: "isSearchByFilters")
     }
 }
 // MARK: - SearchBaseCoordinatedProtocol
@@ -118,6 +119,7 @@ extension SearchMainViewController: UISearchBarDelegate {
             return
         }
         url = text.replacingOccurrences(of: " ", with: "%20")
+        DataManager.shared.stockXSearchUrl += url
     }
 }
 // MARK: - SearchMainViewDelegateProtocol

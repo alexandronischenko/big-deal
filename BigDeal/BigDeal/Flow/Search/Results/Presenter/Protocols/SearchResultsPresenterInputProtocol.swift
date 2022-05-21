@@ -9,4 +9,5 @@ protocol SearchResultsPresenterInputProtocol: AnyObject {
     func resposeResultFailureAlert(with error: AFError)
     func obtainDataErrorAlert(error: Error)
     func reloadCollectionViewData()
+    func animateSearchResultsView()
 }

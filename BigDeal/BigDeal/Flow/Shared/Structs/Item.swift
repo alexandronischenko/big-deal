@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct Item {
+struct Item: Equatable {
     // MARK: - Properties
     
     var clothImage: UIImage
@@ -117,5 +117,9 @@ struct Item {
             }
         }
         return items
+    }
+    
+    static func == (lhs: Item, rhs: Item) -> Bool {
+        return lhs.id == rhs.id
     }
 }

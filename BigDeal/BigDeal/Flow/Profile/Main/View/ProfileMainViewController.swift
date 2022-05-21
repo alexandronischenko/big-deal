@@ -12,7 +12,7 @@ class ProfileMainViewController: UIViewController {
     
     // MARK: - Other data and properties
     
-    var data: [Item] = DataManager.shared.data
+    var data: [Item] = []
     
     // MARK: - Initializers
     

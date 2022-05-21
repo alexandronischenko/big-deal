@@ -37,7 +37,7 @@ class DataManager {
     ]
     
     var accessTokensForStockX: [String: String] = [
-        "tokenForSearch": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
+        "tokenForSearch": "1279077585mshb23d041886d9bb3p1b1539jsnfe59a7f5a95c",
         "tokenForFeed": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
         "tokenForFilter": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
         "tokenForCategories": "895743ac99msh9c876e80d25b3d8p1c7c54jsnfcc7f96fe3ae"
@@ -65,6 +65,10 @@ class DataManager {
     var stockXSearchUrl: String = "https://stockx5.p.rapidapi.com/search/"
     var stockXAccessTokenHeaderName = "X-RapidAPI-Key"
     // MARK: - Functions
+    
+    func obtainUrlForStockXSearch(searching: String) -> String {
+        return "https://stockx5.p.rapidapi.com/search/" + searching
+    }
     
     func obtainParametersForAsosFilters(priceMin: String, priceMax: String, sortBy: String, category: String) -> Parameters? {
         return [

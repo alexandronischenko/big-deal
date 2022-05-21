@@ -9,5 +9,4 @@ protocol SearchFilterPresenterOutputProtocol: AnyObject {
     func obtainDefaultButtonForBrandsCheckBoxController(_ brandsController: CheckBoxController) -> UIButton
     func obtainDefaultButtonForSizesCheckBoxController(_ sizesController: CheckBoxController) -> UIButton
     func obtainDefaultButtonForShopsCheckBoxController(_ shopsController: CheckBoxController) -> UIButton
-    func closeFilterAndLoadData()
 }

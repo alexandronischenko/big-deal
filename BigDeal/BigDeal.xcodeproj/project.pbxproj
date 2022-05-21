@@ -504,8 +504,7 @@
 			isa = PBXGroup;
 			children = (
 			);
-      feature/working_with_stockx_api
-			name = Protocols;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A2113AF227CE745F00EBA9A9 = {

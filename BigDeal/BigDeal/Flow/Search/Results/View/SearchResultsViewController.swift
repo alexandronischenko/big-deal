@@ -7,10 +7,8 @@ class SearchResultsViewController: UIViewController {
     private var output: SearchResultsPresenterOutputProtocol?
     private let searchResultsView = SearchResultsView()
     
-    private let reuseIdForHeaderView = SearchResultsCollectionReusableView.headerReuseId
     private let reuseIdForFooterView = SearchResultsCollectionReusableView.footerReuseId
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
-    private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
     // MARK: - Other data and properties
     
@@ -42,10 +40,12 @@ class SearchResultsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.tabBarItem.title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
         let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
         if !isSearchByFilters {
+            navigationController?.tabBarItem.title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
             obtainProductByCategoryIdFromAsos(with: IndexPath(item: 0, section: 0))
+        } else {
+            navigationController?.tabBarItem.title = "Men's sale"
         }
     }
     // MARK: - Private functions
@@ -56,7 +56,6 @@ class SearchResultsViewController: UIViewController {
         let cellClass = CustomItemCollectionViewCell.self
         let viewClass = SearchResultsCollectionReusableView.self
         searchResultsView.searchResultsCollectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdForItemCell)
-        searchResultsView.searchResultsCollectionView.register(viewClass, forSupplementaryViewOfKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView)
         searchResultsView.searchResultsCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: sectionFooter, withReuseIdentifier: reuseIdForFooterView)
     }
     
@@ -131,19 +130,10 @@ extension SearchResultsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionFooter {
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdForFooterView, for: indexPath)
             footer.addSubview(searchResultsView.footerView)
             searchResultsView.footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
             return footer
-        } else {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView, for: indexPath)
-            guard let header = header as? SearchResultsCollectionReusableView else {
-                return UICollectionReusableView()
-            }
-            header.delegate = self
-            return header
-        }
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -160,9 +150,6 @@ extension SearchResultsViewController: UICollectionViewDelegateFlowLayout {
             let model = data[indexPath.row]
             output?.moveToDetailFlow(model: model)
         }
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 40)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {

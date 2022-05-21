@@ -7,14 +7,13 @@ class SearchResultsViewController: UIViewController {
     private var output: SearchResultsPresenterOutputProtocol?
     private let searchResultsView = SearchResultsView()
     
-    private let reuseIdForHeaderView = SearchResultsCollectionReusableView.headerReuseId
     private let reuseIdForFooterView = SearchResultsCollectionReusableView.footerReuseId
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
-    private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
     // MARK: - Other data and properties
     
     var data: [Item] = []
+    var dataForSearchByFilters: [Item] = []
     // MARK: - Initializers
     
     init(output: SearchResultsPresenterOutputProtocol) {
@@ -36,12 +35,25 @@ class SearchResultsViewController: UIViewController {
         configureView()
         setUpSearchResultsCollectionView()
         DataManager.shared.itemsForCategory = []
-        obtainProductByCategoryIdFromAsos(with: IndexPath(item: 0, section: 0))
+        DataManager.shared.itemsForFilters = []
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.tabBarItem.title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if !isSearchByFilters {
+            navigationController?.tabBarItem.title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
+            guard let category = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryId) as? String else {
+                return
+            }
+            if category == "5775" {
+                obtainSneakersCategoryFromStockX(by: IndexPath(item: 0, section: 0))
+            } else {
+                obtainProductByCategoryIdFromAsos(with: IndexPath(item: 0, section: 0))
+            }
+        } else {
+            navigationController?.tabBarItem.title = "Men's sale"
+        }
     }
     // MARK: - Private functions
     
@@ -51,12 +63,16 @@ class SearchResultsViewController: UIViewController {
         let cellClass = CustomItemCollectionViewCell.self
         let viewClass = SearchResultsCollectionReusableView.self
         searchResultsView.searchResultsCollectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdForItemCell)
-        searchResultsView.searchResultsCollectionView.register(viewClass, forSupplementaryViewOfKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView)
         searchResultsView.searchResultsCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: sectionFooter, withReuseIdentifier: reuseIdForFooterView)
     }
     
     private func configureView() {
-        title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if isSearchByFilters {
+            title = UserDefaults.standard.object(forKey: "titleForFiltersSearch") as? String
+        } else {
+            title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
+        }
     }
     
     private func obtainProductByCategoryIdFromAsos(with indexPath: IndexPath) {
@@ -83,53 +99,85 @@ class SearchResultsViewController: UIViewController {
         output?.obtainProductByCategoryFromAsos(with: parameters, headers: headers, url: url)
         DataManager.shared.categoryRepositoryOffset += DataManager.shared.limit
     }
+    
+    private func obtainSneakersCategoryFromStockX(by indexPath: IndexPath) {
+        let service = ApiServices.accessTokenForCategories.rawValue
+        let account = ApiAccounts.stockX.rawValue
+        guard let accessTokenForStockX = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
+            return
+        }
+        let url = DataManager.shared.obtainUrlForStockXSneakers()
+        let parameters: Parameters? = DataManager.shared.obtainParametersForStockXSneakers()
+        let accessTokenHeader = HTTPHeader(name: DataManager.shared.stockXAccessTokenHeaderName, value: accessTokenForStockX)
+        let headers: HTTPHeaders = [
+            DataManager.shared.stockXHostHeader,
+            accessTokenHeader
+        ]
+        if indexPath.item == data.count - 1 {
+            searchResultsView.footerView.startAnimating()
+        } else {
+            startAnimating()
+        }
+        output?.obtainProductByCategoryFromStockX(with: parameters, headers: headers, url: url)
+    }
 }
 // MARK: - UICollectionViewDataSource
 
 extension SearchResultsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data = DataManager.shared.itemsForCategory
-        return data.count
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if isSearchByFilters {
+            dataForSearchByFilters = DataManager.shared.itemsForFilters
+            return dataForSearchByFilters.count
+        } else {
+            data = DataManager.shared.itemsForCategory
+            return data.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         data = DataManager.shared.itemsForCategory
+        dataForSearchByFilters = DataManager.shared.itemsForFilters
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdForItemCell, for: indexPath) as? CustomItemCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.data = self.data[indexPath.row]
-        if indexPath.item == data.count - 1 {
-            obtainProductByCategoryIdFromAsos(with: indexPath)
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if isSearchByFilters {
+            cell.data = self.dataForSearchByFilters[indexPath.item]
+            if indexPath.item == dataForSearchByFilters.count - 1 {
+                output?.loadNewData(by: indexPath)
+            }
+            return cell
+        } else {
+            cell.data = self.data[indexPath.item]
+            if indexPath.item == data.count - 1 {
+                obtainProductByCategoryIdFromAsos(with: indexPath)
+            }
+            return cell
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionFooter {
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdForFooterView, for: indexPath)
             footer.addSubview(searchResultsView.footerView)
             searchResultsView.footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
             return footer
-        } else {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: sectionHeader, withReuseIdentifier: reuseIdForHeaderView, for: indexPath)
-            guard let header = header as? SearchResultsCollectionReusableView else {
-                return UICollectionReusableView()
-            }
-            header.delegate = self
-            return header
-        }
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension SearchResultsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        data = DataManager.shared.itemsForCategory
-        let model = data[indexPath.row]
-        output?.moveToDetailFlow(model: model)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 40)
+        let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+        if isSearchByFilters {
+            dataForSearchByFilters = DataManager.shared.itemsForFilters
+            let model = dataForSearchByFilters[indexPath.row]
+            output?.moveToDetailFlow(model: model)
+        } else {
+            data = DataManager.shared.itemsForCategory
+            let model = data[indexPath.row]
+            output?.moveToDetailFlow(model: model)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -158,6 +206,10 @@ extension SearchResultsViewController: SearchResultsReusableViewDelegate {
 // MARK: - SearchResultsPresenterInputProtocol
 
 extension SearchResultsViewController: SearchResultsPresenterInputProtocol {
+    func animateSearchResultsView() {
+        searchResultsView.footerView.startAnimating()
+    }
+    
     func stopAnimating() {
         searchResultsView.activityIndicatorView.stopAnimating()
     }

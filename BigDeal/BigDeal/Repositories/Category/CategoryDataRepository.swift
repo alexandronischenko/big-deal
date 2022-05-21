@@ -21,4 +21,11 @@ class CategoryDataRepository: CategoryRepositoryProtocol {
             completion(response)
         }
     }
+    // Request to StockX API
+    
+    func obtainProductByCategoryFromStockX(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible, completion: @escaping (AFDataResponse<Any>) -> Void) {
+        remoteDataSource.obtainProductByCategoryFromAsos(with: parameters, headers: headers, url: url) { response in
+            completion(response)
+        }
+    }
 }

@@ -476,7 +476,31 @@ extension SearchFilterViewController: UITableViewDataSource {
 
 extension SearchFilterViewController: SearchFilterViewDelegate {
     func dismissFilterView() {
-        dismiss(animated: true, completion: nil)
+        let ud = UserDefaults.standard
+        switch sortByRadioButtonController.selectedButtons.first?.currentTitle {
+        case "Ascending":
+            ud.set("priceasc", forKey: "sortBy")
+        case "Descending":
+            ud.set("pricedesc", forKey: "sortBy")
+        default:
+            ud.set("freshness", forKey: "sortBy")
+        }
+        switch priceRangeRadioButtonController.selectedButtons.first?.currentTitle {
+        case "Up to 3000₽":
+            ud.set("0", forKey: "priceMin")
+            ud.set("50", forKey: "priceMax")
+        case "3000 - 7000₽":
+            ud.set("50", forKey: "priceMin")
+            ud.set("100", forKey: "priceMax")
+        case "7000 - 15000₽":
+            ud.set("100", forKey: "priceMin")
+            ud.set("200", forKey: "priceMax")
+        default:
+            ud.set("200", forKey: "priceMin")
+            ud.set("", forKey: "priceMax")
+        }
+        ud.set(true, forKey: "isSearchByFilters")
+        output?.closeFilterAndLoadData()
     }
 }
 // MARK: - CustomHeaderViewDelegate

@@ -6,8 +6,6 @@ class SearchMainViewController: UIViewController {
     
     private let searchMainView = SearchMainView()
     private var output: SearchMainPresenterOutputProtocol?
-    
-    var url: String = ""
     // MARK: - Protocol properties
     
     var coordinator: SearchBaseCoordinatorProtocol?
@@ -39,36 +37,6 @@ class SearchMainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.tabBarItem.title = "Catalog"
-        UserDefaults.standard.set(false, forKey: "isSearchByFilters")
-    }
-    // MARK: - Private functions
-    
-    private func obtainHeadersForAsosSearchRequest() -> HTTPHeaders {
-        let service = ApiServices.accessTokenForSearch.rawValue
-        let account = ApiAccounts.asos.rawValue
-        guard let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
-            return []
-        }
-        let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
-        let headers: HTTPHeaders = [
-            DataManager.shared.asosHostHeader,
-            accessTokenHeader
-        ]
-        return headers
-    }
-    
-    private func obtainHeadersForStockXSearchRequest() -> HTTPHeaders {
-        let service = ApiServices.accessTokenForSearch.rawValue
-        let account = ApiAccounts.stockX.rawValue
-        guard let accessTokenForStockX = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
-            return []
-        }
-        let accessTokenHeader = HTTPHeader(name: DataManager.shared.stockXAccessTokenHeaderName, value: accessTokenForStockX)
-        let headers: HTTPHeaders = [
-            DataManager.shared.stockXHostHeader,
-            accessTokenHeader
-        ]
-        return headers
     }
 }
 // MARK: - SearchBaseCoordinatedProtocol
@@ -115,15 +83,21 @@ extension SearchMainViewController: SearchMainPresenterInputProtocol {
 extension SearchMainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         DataManager.shared.itemsForSearch = []
-        guard let searchBarText = searchBar.text else {
+        let service = ApiServices.accessTokenForSearch.rawValue
+        let account = ApiAccounts.asos.rawValue
+        guard let searchBarText = searchBar.text, let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
             return
         }
-        url = searchBarText.replacingOccurrences(of: " ", with: "%20")
-        let urlForStockX = DataManager.shared.obtainUrlForStockXSearch(searching: url)
-        let parametersForStockX: Parameters? = DataManager.shared.obtainParametersForStockXSearch()
-        let headersForStockX = obtainHeadersForStockXSearchRequest()
+        let url = DataManager.shared.asosProductsListUrl
+        let parameters: Parameters? = DataManager.shared.obtainParametersForAsosSearch(searchBarText)
+        let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
+        let headers: HTTPHeaders = [
+            DataManager.shared.asosHostHeader,
+            accessTokenHeader
+        ]
         startAnimating()
-        output?.obtainProductByNameFromStockX(with: parametersForStockX, headers: headersForStockX, url: urlForStockX)
+        output?.obtainProductByNameFromAsos(with: parameters, headers: headers, url: url)
+        DataManager.shared.productRepositoryOffset += DataManager.shared.limit
         DataManager.shared.currentSearchingItemText = searchBarText
         searchBar.resignFirstResponder()
     }

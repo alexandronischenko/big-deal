@@ -18,7 +18,7 @@ class FeedMainView: UIView {
     let footerView = UIActivityIndicatorView(style: .medium)
     
     lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .medium)
+        let view = UIActivityIndicatorView()
         view.hidesWhenStopped = true
         view.color = .label
         return view

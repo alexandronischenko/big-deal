@@ -7,5 +7,4 @@ protocol SearchMainPresenterOutputProtocol: AnyObject {
     func searchMainFilterButtonDidPressed()
     func searchMainCategoryButtonDidPressed(_ sender: UIButton)
     func moveToDetailFlow(model: Item)
-    func obtainProductByNameFromStockX(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible)
 }

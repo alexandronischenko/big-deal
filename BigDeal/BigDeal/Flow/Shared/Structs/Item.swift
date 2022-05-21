@@ -60,6 +60,25 @@ struct Item {
         self.id = id
     }
     
+    init?(entry: Entry) {
+        guard
+            let oldPrice = String?(entry.price),
+            let newPrice = String?(entry.price),
+            let clothUrl = URL(string: entry.images[9].url),
+            let clothData = try? Data(contentsOf: clothUrl),
+            let clothImage = UIImage(data: clothData),
+            let clothTitle = String?("title")
+        else {
+            return nil
+        }
+        self.oldPrice = oldPrice
+        self.clothImage = clothImage
+        self.newPrice = newPrice
+        self.clothTitle = clothTitle
+        self.url = ""
+        self.id = ""
+    }
+    
     init(shopTitle: String, clothTitle: String, id: String, oldPrice: String, newPrice: String, clothImage: UIImage, url: String) {
         self.oldPrice = oldPrice
         self.newPrice = newPrice
@@ -84,6 +103,16 @@ struct Item {
         var items: [Item] = []
         for stockXProduct in stockXProducts {
             if let item = Item(stockXProduct: stockXProduct) {
+                items.append(item)
+            }
+        }
+        return items
+    }
+    
+    static func getFarfetchArray(from entries: [Entry]) -> [Item]? {
+        var items: [Item] = []
+        for entry in entries {
+            if let item = Item(entry: entry) {
                 items.append(item)
             }
         }

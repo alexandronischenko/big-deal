@@ -1,18 +1,12 @@
 import Foundation
 import UIKit
 
-protocol SearchResultsFilterDelegateProtocol: AnyObject {
-    func loadNewData(by indexPath: IndexPath)
-}
-
 class SearchCoordinator {
     // MARK: - Protocol properties
     
     var rootViewController = UIViewController()
     var rootNavigationViewController: UINavigationController
-    weak var searchFlowFilterViewController: UINavigationController?
     weak var parentCoordinator: MainBaseCoordinatorProtocol?
-    weak var delegate: SearchResultsFilterDelegateProtocol?
     
     // the bottom link is weak so that there is no cycle of strong links
     
@@ -45,7 +39,6 @@ class SearchCoordinator {
         searchFlowFilterViewController.modalPresentationStyle = .automatic
         searchFlowFilterViewController.navigationBar.prefersLargeTitles = true
         rootNavigationViewController.present(searchFlowFilterViewController, animated: true)
-        self.searchFlowFilterViewController = searchFlowFilterViewController
     }
     
     private func moveToSearchFlowResultsScreen() {
@@ -94,14 +87,6 @@ extension SearchCoordinator: SearchBaseCoordinatorProtocol {
             moveToSearchFlow(with: searchScreen)
         default:
             parentCoordinator?.moveTo(flow: flow)
-        }
-    }
-    
-    func closeFilterAndLoadNewData() {
-        searchFlowFilterViewController?.dismiss(animated: true) {
-            self.moveTo(flow: .search(.results))
-            self.delegate?.loadNewData(by: IndexPath(item: 0, section: 0))
-            UserDefaults.standard.set("Men's sale", forKey: "titleForFiltersSearch")
         }
     }
 }

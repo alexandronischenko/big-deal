@@ -43,7 +43,14 @@ class SearchResultsViewController: UIViewController {
         let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
         if !isSearchByFilters {
             navigationController?.tabBarItem.title = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryTitle) as? String
-            obtainProductByCategoryIdFromAsos(with: IndexPath(item: 0, section: 0))
+            guard let category = UserDefaults.standard.object(forKey: UserDefaultsKeys.keyForCategoryId) as? String else {
+                return
+            }
+            if category == "5775" {
+                obtainSneakersCategoryFromStockX(by: IndexPath(item: 0, section: 0))
+            } else {
+                obtainProductByCategoryIdFromAsos(with: IndexPath(item: 0, section: 0))
+            }
         } else {
             navigationController?.tabBarItem.title = "Men's sale"
         }
@@ -91,6 +98,27 @@ class SearchResultsViewController: UIViewController {
         }
         output?.obtainProductByCategoryFromAsos(with: parameters, headers: headers, url: url)
         DataManager.shared.categoryRepositoryOffset += DataManager.shared.limit
+    }
+    
+    private func obtainSneakersCategoryFromStockX(by indexPath: IndexPath) {
+        let service = ApiServices.accessTokenForCategories.rawValue
+        let account = ApiAccounts.stockX.rawValue
+        guard let accessTokenForStockX = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
+            return
+        }
+        let url = DataManager.shared.obtainUrlForStockXSneakers()
+        let parameters: Parameters? = DataManager.shared.obtainParametersForStockXSneakers()
+        let accessTokenHeader = HTTPHeader(name: DataManager.shared.stockXAccessTokenHeaderName, value: accessTokenForStockX)
+        let headers: HTTPHeaders = [
+            DataManager.shared.stockXHostHeader,
+            accessTokenHeader
+        ]
+        if indexPath.item == data.count - 1 {
+            searchResultsView.footerView.startAnimating()
+        } else {
+            startAnimating()
+        }
+        output?.obtainProductByCategoryFromStockX(with: parameters, headers: headers, url: url)
     }
 }
 // MARK: - UICollectionViewDataSource

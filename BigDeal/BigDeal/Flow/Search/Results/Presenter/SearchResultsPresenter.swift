@@ -79,6 +79,51 @@ extension SearchResultsPresenter: SearchResultsPresenterOutputProtocol {
             }
         }
     }
+    
+    func obtainProductByCategoryFromStockX(with parameters: Parameters?, headers: HTTPHeaders?, url: URLConvertible) {
+        categoryRepository?.obtainProductByCategoryFromStockX(with: parameters, headers: headers, url: url) { [weak self] response in
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data else {
+                        DispatchQueue.main.async {
+                            self?.input?.stopAnimating()
+                            self?.input?.dataCollectingErrorAlert()
+                        }
+                        return
+                    }
+                    let result = try JSONDecoder().decode(StockX.self, from: data)
+                    guard let items = Item.getStockXArray(from: result.products) else {
+                        DispatchQueue.main.async {
+                            self?.input?.stopAnimating()
+                            self?.input?.obtainArrayOfItemsAlert()
+                        }
+                        return
+                    }
+                    let isSearchByFilters = UserDefaults.standard.bool(forKey: "isSearchByFilters")
+                    if isSearchByFilters {
+                        DataManager.shared.itemsForFilters += items
+                    } else {
+                        DataManager.shared.itemsForCategory += items
+                    }
+                    DispatchQueue.main.async {
+                        self?.input?.stopAnimating()
+                        self?.input?.reloadCollectionViewData()
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self?.input?.stopAnimating()
+                        self?.input?.obtainDataErrorAlert(error: error)
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.input?.stopAnimating()
+                    self?.input?.resposeResultFailureAlert(with: error)
+                }
+            }
+        }
+    }
 }
 // MARK: - SearchBaseCoordinatedProtocol
 

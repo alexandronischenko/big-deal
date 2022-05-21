@@ -70,6 +70,10 @@ class DataManager {
         return "https://stockx5.p.rapidapi.com/search/" + searching
     }
     
+    func obtainUrlForStockXSneakers() -> String {
+        return "https://stockx5.p.rapidapi.com/search/sneaker"
+    }
+    
     func obtainParametersForAsosFilters(priceMin: String, priceMax: String, sortBy: String, category: String) -> Parameters? {
         return [
             "store": "US",
@@ -97,6 +101,13 @@ class DataManager {
             "offset": "\(categoryRepositoryOffset)",
             "limit": "\(limit)",
             "categoryId": categoryId
+        ]
+    }
+    
+    func obtainParametersForStockXSneakers() -> Parameters? {
+        return [
+            "page": "1",
+            "limit": "10"
         ]
     }
     

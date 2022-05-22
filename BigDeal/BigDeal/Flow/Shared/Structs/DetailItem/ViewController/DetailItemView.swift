@@ -139,14 +139,12 @@ class DetailItemView: UIView {
         largeLabel.snp.makeConstraints { make in
             make.top.equalTo(scrollView.snp.top).offset(16)
             make.centerX.equalTo(scrollView.snp.centerX)
-//            make.width.equalTo(scrollView.snp.width).multipliedBy(0.9)
             make.leading.trailing.equalToSuperview().inset(16)
         }
         
         imageView.snp.makeConstraints { make in
             make.top.equalTo(largeLabel.snp.bottom).offset(8)
             make.centerX.equalTo(scrollView.snp.centerX)
-//            make.width.height.equalTo(scrollView.snp.width).multipliedBy(0.9)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(scrollView.snp.width).multipliedBy(1.2)
         }
@@ -171,7 +169,6 @@ class DetailItemView: UIView {
             make.leading.equalTo(largeLabel.snp.leading)
             make.trailing.equalTo(largeLabel.snp.centerX)
             make.bottom.equalTo(scrollView.snp.bottom).offset(-64).priority(.high)
-//            make.bottom.greaterThanOrEqualTo(scrollView.snp.bottom).offset(-64)
         }
         
         nameLabel.snp.makeConstraints { make in
@@ -194,7 +191,6 @@ class DetailItemView: UIView {
             make.leading.equalTo(largeLabel.snp.centerX)
             make.trailing.equalTo(largeLabel.snp.trailing)
             make.bottom.equalTo(scrollView.snp.bottom).offset(-64).priority(.high)
-//            make.bottom.greaterThanOrEqualTo(scrollView.snp.bottom).offset(-64)
         }
         button.snp.makeConstraints { make in
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(16)
@@ -214,18 +210,7 @@ class DetailItemView: UIView {
         defaultPriceLabel.text = model.oldPrice
         nameLabel.text = model.clothTitle
         largeLabel.text = model.clothTitle
-        button.addTarget(self, action: #selector(goToShopSite), for: .touchUpInside)
-        
         imageView.image = model.clothImage
-//        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: imageView.frame.width, height: imageView.frame.width))
-//
-//        let ratio = model.clothImage.size.width / model.clothImage.size.height
-//        if containerView.frame.width < containerView.frame.height {
-//            let newHeight = containerView.frame.width / ratio
-//            imageView.frame.size = CGSize(width: containerView.frame.width, height: newHeight)
-//        } else {
-//            let newWidth = containerView.frame.height * ratio
-//            imageView.frame.size = CGSize(width: newWidth, height: containerView.frame.height)
-//        }
+        button.addTarget(self, action: #selector(goToShopSite), for: .touchUpInside)
     }
 }

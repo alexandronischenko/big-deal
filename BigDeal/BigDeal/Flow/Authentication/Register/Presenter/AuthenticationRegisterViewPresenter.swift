@@ -83,7 +83,7 @@ extension AuthenticationRegisterViewPresenter: AuthenticationRegisterViewPresent
             
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let error = error {
-                    print("Error creating user: \(error)")
+                    print("Error creating user: \(error) in \(#function)")
                     return
                 }
                 

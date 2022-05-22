@@ -133,7 +133,7 @@ extension ProfileMainViewController: UICollectionViewDataSource {
         DatabaseManager.shared.getCurrentUserModel { result in
             switch result {
             case .failure(let error):
-                print("Error: \(error.localizedDescription)")
+                print("Error: \(error.localizedDescription) in \(#function)")
             case .success(let model):
                 DispatchQueue.main.async {
                     header.configure(with: model)

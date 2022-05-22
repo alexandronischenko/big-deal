@@ -505,6 +505,7 @@
 			children = (
 			);
 			path = Protocols;
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		A2113AF227CE745F00EBA9A9 = {

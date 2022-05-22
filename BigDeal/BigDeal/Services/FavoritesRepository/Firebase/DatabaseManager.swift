@@ -16,6 +16,7 @@ final class DatabaseManager {
 }
 
 extension DatabaseManager: DatabaseManagerProtocol {
+
     func getAllFavorites(completion: @escaping (Result<[Item], Error>) -> Void) {
         guard let email = UserDefaults.standard.string(forKey: UserDefaultsKeys.safeEmailKey) else {
             completion(.failure(DatabaseManagerError.invalidData))
@@ -88,6 +89,7 @@ extension DatabaseManager: DatabaseManagerProtocol {
     
     func isFavorite(model: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
         var favorites: [Item] = []
+      
         getAllFavorites { result in
             switch result {
             case .failure(let error):

@@ -14,7 +14,7 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
     }
     
     // MARK: - Functions
-    
+
     func save(item: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
         remoteDataSource.addToFavorites(item: item) { result in
             switch result {

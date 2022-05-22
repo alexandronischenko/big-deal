@@ -31,7 +31,7 @@ class FeedMainViewController: UIViewController {
         title = "Feed"
         feedMainView.delegate = self
         UserDefaults.standard.set(Category.thirtyPosessionSale.rawValue, forKey: UserDefaultsKeys.keyForHot)
-        obtainHotProductsFromAsos(with: IndexPath(item: 0, section: 0))
+//        obtainHotProductsFromAsos(with: IndexPath(item: 0, section: 0))
     }
     
     override func viewDidAppear(_ animated: Bool) {

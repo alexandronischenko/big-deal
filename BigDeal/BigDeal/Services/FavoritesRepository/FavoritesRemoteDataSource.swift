@@ -11,7 +11,7 @@ class FavoritesRemoteDataSource: FavoritesDataSourceProtocol {
             }
         }
     }
-    
+  
     func addToFavorites(item: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
         DatabaseManager.shared.addToFavorites(model: item) { result in
             switch result {

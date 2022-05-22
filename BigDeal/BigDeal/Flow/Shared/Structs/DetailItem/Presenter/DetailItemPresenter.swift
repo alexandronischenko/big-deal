@@ -6,6 +6,7 @@ protocol DetailItemPresenterProtocol: AnyObject {
 }
 
 class DetailItemPresenter: DetailItemPresenterProtocol {
+    
     var coordinator: FlowCoordinatorProtocol?
     weak var view: DetailItemViewProtocol?
     var repository: FavoritesRepositoryProtocol?

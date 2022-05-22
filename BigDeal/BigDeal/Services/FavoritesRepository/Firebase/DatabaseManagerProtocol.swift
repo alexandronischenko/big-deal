@@ -14,7 +14,7 @@ protocol DatabaseManagerProtocol {
     func deleteFromFavorites(model: Item, completion: @escaping (Result<Bool, Error>) -> Void)
     
     // Function that get user favorites from database
-    func getAllFavorites(completion: @escaping (Result<[String], Error>) -> Void)
+    func getAllFavorites(completion: @escaping (Result<[Item], Error>) -> Void)
     
     // Function that checking on containing in firebase favorites
     func isFavorite(model: Item, completion: @escaping (Result<Bool, Error>) -> Void)

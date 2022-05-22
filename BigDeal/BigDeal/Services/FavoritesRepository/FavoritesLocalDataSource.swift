@@ -11,4 +11,15 @@ class FavoritesLocalDataSource: FavoritesDataSourceProtocol {
             }
         }
     }
+    
+    func obtainFavorites(completion: @escaping (Result<[Item], Error>) -> Void) {
+        CoreDataManager.shared.getAllFavorites { result in
+            switch result {
+            case .success(let items):
+                completion(.success(items))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

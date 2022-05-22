@@ -504,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 			);
+			path = Protocols;
 			name = Protocols;
 			sourceTree = "<group>";
 		};

@@ -16,7 +16,8 @@ final class DatabaseManager {
 }
 
 extension DatabaseManager: DatabaseManagerProtocol {
-    func getAllFavorites(completion: @escaping (Result<[String], Error>) -> Void) {
+
+    func getAllFavorites(completion: @escaping (Result<[Item], Error>) -> Void) {
         guard let email = UserDefaults.standard.string(forKey: UserDefaultsKeys.safeEmailKey) else {
             completion(.failure(DatabaseManagerError.invalidData))
             return
@@ -31,7 +32,10 @@ extension DatabaseManager: DatabaseManagerProtocol {
                     idArray.append(id.key)
                 }
             }
-            completion(.success(idArray))
+            
+            var items: [Item] = []
+            // Необходимо сделать запрос по каждому элементу и добавить в массив
+            completion(.success(items))
         }
     }
     
@@ -84,14 +88,17 @@ extension DatabaseManager: DatabaseManagerProtocol {
     }
     
     func isFavorite(model: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
-        var favorites: [String] = []
+        var favorites: [Item] = []
+      
         getAllFavorites { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let arrayOfFavorites):
                 favorites = arrayOfFavorites
-                let isFav = favorites.contains(model.id)
+                let isFav = favorites.contains { element in
+                    return model.id == element.id ? true : false
+                }
                 completion(.success(isFav))
         }
             completion(.failure(DatabaseManagerError.failedToReadData))

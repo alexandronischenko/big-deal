@@ -9,6 +9,10 @@ import UIKit
 @testable import BigDeal
 
 class MockAuthRegisterView: AuthenticationRegisterViewProtocol {
+    func didPressedRegister(email: String, name: String, password: String) {
+        <#code#>
+    }
+    
     func showErrorLabel(_ error: String) {
     }
     

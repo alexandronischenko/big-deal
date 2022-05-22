@@ -27,7 +27,7 @@ extension AuthenticationLoginViewPresenter: AuthenticationLoginViewPresenterProt
     func didPressedLogin(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if let error = error {
-                print("Error sign in \(error)")
+                print("Error sign in \(error) \(#function)")
                 self.view?.presentAlert(error: error.localizedDescription)
                 return
             } else {

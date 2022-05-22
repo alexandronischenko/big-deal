@@ -1,7 +1,6 @@
 import UIKit
 
 class AuthenticationRegisterViewController: UIViewController {
-    
     // MARK: - Properties
     
     var presenter: AuthenticationRegisterViewPresenterProtocol

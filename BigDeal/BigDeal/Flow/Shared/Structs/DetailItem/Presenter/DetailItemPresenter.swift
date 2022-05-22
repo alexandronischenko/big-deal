@@ -6,7 +6,6 @@ protocol DetailItemPresenterProtocol: AnyObject {
 }
 
 class DetailItemPresenter: DetailItemPresenterProtocol {
-    
     var coordinator: FlowCoordinatorProtocol?
     weak var view: DetailItemViewProtocol?
     var repository: FavoritesRepositoryProtocol?
@@ -27,9 +26,10 @@ class DetailItemPresenter: DetailItemPresenterProtocol {
     func didTapAddToFavorites(model: Item, completion: @escaping (Bool) -> Void) {
         repository?.save(item: model) { result in
             switch result {
-            case .success(_):
+            case .success:
                 completion(true)
             case .failure(let error):
+                print("Error: \(error.localizedDescription) in \(#function)")
                 completion(false)
             }
         }

@@ -10,6 +10,7 @@ struct Item: Equatable {
     var newPrice: String
     var url: String
     var id: String
+    var imageURL: String
     var isFavorite: Bool = false
 
     // MARK: - Initializers
@@ -37,6 +38,7 @@ struct Item: Equatable {
         self.clothTitle = clothTitle
         self.url = url
         self.id = id
+        self.imageURL = ""
     }
     
     init?(stockXProduct: StockXProduct) {
@@ -58,6 +60,7 @@ struct Item: Equatable {
         self.clothTitle = clothTitle
         self.url = clothUrl
         self.id = id
+        self.imageURL = ""
     }
     
     init?(entry: Entry) {
@@ -77,15 +80,17 @@ struct Item: Equatable {
         self.clothTitle = clothTitle
         self.url = ""
         self.id = ""
+        self.imageURL = ""
     }
     
-    init(shopTitle: String, clothTitle: String, id: String, oldPrice: String, newPrice: String, clothImage: UIImage, url: String) {
+    init(shopTitle: String, clothTitle: String, id: String, oldPrice: String, newPrice: String, clothImage: UIImage, url: String, imageURL: String) {
         self.oldPrice = oldPrice
         self.newPrice = newPrice
         self.clothImage = clothImage
         self.clothTitle = clothTitle
         self.url = url
         self.id = id
+        self.imageURL = imageURL
     }
     // MARK: - Static functions
 

@@ -12,11 +12,11 @@ private enum DatabaseManagerError: Error {
 final class DatabaseManager {
     static let shared = DatabaseManager()
     
-    private let database = Database.database(url: "https://big-deal-31648-default-rtdb.firebaseio.com/").reference()
+//    private let database = Database.database(url: "https://big-deal-31648-default-rtdb.firebaseio.com/").reference()
+    private let database = Database.database().reference()
 }
 
 extension DatabaseManager: DatabaseManagerProtocol {
-
     func getAllFavorites(completion: @escaping (Result<[Item], Error>) -> Void) {
         guard let email = UserDefaults.standard.string(forKey: UserDefaultsKeys.safeEmailKey) else {
             completion(.failure(DatabaseManagerError.invalidData))
@@ -25,7 +25,6 @@ extension DatabaseManager: DatabaseManagerProtocol {
         
         let ref = database.child(email).child("favorites")
         ref.observeSingleEvent(of: .value) { snapshot in
-            print(snapshot)
             var idArray: [String] = []
             if let values = snapshot.value as? [String: String] {
                 for id in values {
@@ -34,6 +33,9 @@ extension DatabaseManager: DatabaseManagerProtocol {
             }
             
             var items: [Item] = []
+            for i in 0..<idArray.count {
+                items.append(Item(shopTitle: "", clothTitle: "", id: idArray[i], oldPrice: "", newPrice: "", clothImage: UIImage(), url: "", imageURL: ""))
+            }
             // Необходимо сделать запрос по каждому элементу и добавить в массив
             completion(.success(items))
         }
@@ -53,12 +55,12 @@ extension DatabaseManager: DatabaseManagerProtocol {
             return
         }
         let reference = database.child(email).child("favorites")
-        reference.updateChildValues([ model.id: model.clothTitle ]) { error, _ in
+        reference.updateChildValues([ model.id: model.clothTitle ]) { [weak self] error, _ in
             guard error != nil else {
-                completion(.failure(DatabaseManagerError.failedToWriteData))
+                completion(.success(true))
                 return
             }
-            completion(.success(true))
+            completion(.failure(error as! Error))
         }
     }
     
@@ -109,16 +111,15 @@ extension DatabaseManager: DatabaseManagerProtocol {
         guard let email = UserDefaults.standard.string(forKey: UserDefaultsKeys.safeEmailKey) else { completion(.failure(DatabaseManagerError.gettingUserEmail))
             return
         }
-        database.child(email).observeSingleEvent(of: .value) { snapshot in
-            guard let value = snapshot.value as? [String: String] else {
+        database.child(email).child("name").observeSingleEvent(of: .value) { snapshot in
+            print(snapshot)
+            guard let value = snapshot.value as? String else {
                 completion(.failure(DatabaseManagerError.invalidData))
+                print("Error: cannot get dictionary from snapshot.value in \(#function) \r\n \(snapshot)")
+                
                 return
             }
-            guard let userName = value["name"] else {
-                completion(.failure(DatabaseManagerError.invalidData))
-                return
-            }
-            let model = UserModel(name: userName, emailAdress: email, profilePicture: nil)
+            let model = UserModel(name: value, emailAdress: email, profilePicture: nil)
             completion(.success(model))
         }
     }

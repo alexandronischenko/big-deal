@@ -26,7 +26,15 @@ extension CoreDataManager: CoreDataManagerProtocol {
     func addToFavorites(model: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
         let item = ItemEntity(context: context)
         // MARK: - DATAMANAGER download image
-        item.imageUrl = "model.clothImage"
+        
+        FileManagerService.shared.saveImage(image: model.clothImage, with: model.id) { result in
+            switch result {
+            case .success(let url):
+                item.imageUrl = url
+            case .failure:
+                break
+            }
+        }
         
         item.newPrice = model.newPrice
         item.oldPrice = model.oldPrice
@@ -53,7 +61,7 @@ extension CoreDataManager: CoreDataManagerProtocol {
             if let result = items?.reduce(into: [Item](), { partialResult, i in
                 // MARK: - DATAMANAGER download image
                 
-                let image = UIImage()
+                var downloadedImage = UIImage()
                 
                 guard let name = i.name,
                       let id = i.id,
@@ -62,8 +70,17 @@ extension CoreDataManager: CoreDataManagerProtocol {
                       let imageURL = i.imageUrl,
                       let url = i.url else { return }
                 
-                let item = Item(shopTitle: name, clothTitle: name, id: id, oldPrice: oldPrice, newPrice: newPrice, clothImage: image, url: url)
+                FileManagerService.shared.getImage(byID: id) { result in
+                    switch result {
+                    case .success(let image):
+                        downloadedImage = image
+                    case .failure:
+                        break
+                    }
+                }
                 
+                let item = Item(shopTitle: name, clothTitle: name, id: id, oldPrice: oldPrice, newPrice: newPrice, clothImage: downloadedImage, url: url, imageURL: imageURL)
+                print(item)
                 partialResult.append(item)
             }) {
                 completion(.success(result))

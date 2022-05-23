@@ -20,12 +20,12 @@ class DataManager {
     var itemsForFilters: [Item] = []
     
     var data: [Item] = [
-        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1"), url: "url"),
-        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "5000", newPrice: "2000", clothImage: #imageLiteral(resourceName: "img2"), url: "url"),
-        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1"), url: "url"),
-        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "5000", newPrice: "2000", clothImage: #imageLiteral(resourceName: "img2"), url: "url"),
-        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1"), url: "url"),
-        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "5000", newPrice: "2000", clothImage: #imageLiteral(resourceName: "img2"), url: "url")
+        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1"), url: "url", imageURL: ""),
+        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "5000", newPrice: "2000", clothImage: #imageLiteral(resourceName: "img2"), url: "url", imageURL: ""),
+        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1"), url: "url", imageURL: ""),
+        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "5000", newPrice: "2000", clothImage: #imageLiteral(resourceName: "img2"), url: "url", imageURL: ""),
+        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "3000", newPrice: "1700", clothImage: #imageLiteral(resourceName: "img1"), url: "url", imageURL: ""),
+        Item(shopTitle: "ASOS", clothTitle: "Sneakers", id: "23423414", oldPrice: "5000", newPrice: "2000", clothImage: #imageLiteral(resourceName: "img2"), url: "url", imageURL: "")
     ]
     // Access tokens
     

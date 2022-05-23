@@ -44,6 +44,10 @@ class ProfileMainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.tabBarItem.title = "Main"
+        output?.getData()
+        DispatchQueue.main.async {
+            self.profileMainView.profileMainCollectionView.reloadData()
+        }
     }
     
     // MARK: - Private properties
@@ -63,6 +67,7 @@ class ProfileMainViewController: UIViewController {
         navigationController?.navigationItem.rightBarButtonItem = button
         navigationItem.rightBarButtonItem = button
         title = "Profile"
+        profileMainView.profileMainCollectionView.reloadData()
     }
     
     @objc func didTapLogout() {
@@ -84,6 +89,10 @@ extension ProfileMainViewController: HeaderCollectionReusableViewDelegate {
 // MARK: - ProfileMainPresenterInputProtocol
 
 extension ProfileMainViewController: ProfileMainPresenterInputProtocol {
+    func getData(data: [Item]) {
+        self.data = data
+    }
+    
     func present(alert: UIAlertController) {
         present(alert, animated: true, completion: nil)
     }
@@ -129,15 +138,17 @@ extension ProfileMainViewController: UICollectionViewDataSource {
         guard let header = header as? ProfileMainCollectionReusableView else {
             return UICollectionReusableView()
         }
-        
+        // MARK: - Переместить в presenter!!!
         DatabaseManager.shared.getCurrentUserModel { result in
             switch result {
-            case .failure(let error):
-                print("Error: \(error.localizedDescription) in \(#function)")
             case .success(let model):
+                print("Success in getting user model: \(model.name)")
                 DispatchQueue.main.async {
                     header.configure(with: model)
+                    header.reloadInputViews()
                 }
+            case .failure:
+                break
             }
         }
         header.delegate = self

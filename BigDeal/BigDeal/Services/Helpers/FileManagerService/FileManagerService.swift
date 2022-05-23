@@ -35,6 +35,7 @@ extension FileManagerService: FileManagerServiceProtocol {
         
         do {
             try data.write(to: fileURL)
+            completion(.success(identifier))
         } catch {
             completion(.failure(FileManagerErrors.errorWithSavingFile))
         }

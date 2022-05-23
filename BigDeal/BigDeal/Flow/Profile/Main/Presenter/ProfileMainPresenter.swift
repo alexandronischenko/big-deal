@@ -7,6 +7,7 @@ class ProfileMainPresenter {
     
     weak var input: ProfileMainPresenterInputProtocol?
     var coordinator: ProfileBaseCoordinatorProtocol?
+    var repository: FavoritesRepositoryProtocol?
     
     // MARK: - Initializers
 
@@ -23,6 +24,17 @@ extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 // MARK: - ProfileMainPresenterOutputProtocol
 
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
+    func getData() {
+        repository?.obtainAll { result in
+            switch result {
+            case .success(let items):
+                self.input?.getData(data: items)
+            case .failure:
+                break
+            }
+        }
+    }
+    
     func didTapLogout() {
         let alert = UIAlertController(title: "Are you sure you want to log out of your account?", message: "We will miss you(", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive) { _ in

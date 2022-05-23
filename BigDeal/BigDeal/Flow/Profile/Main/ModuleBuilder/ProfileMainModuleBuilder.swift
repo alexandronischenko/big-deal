@@ -17,6 +17,7 @@ class ProfileMainModuleBuilder {
         let presenter = ProfileMainPresenter(coordinator: self.coordinator)
         let viewController = ProfileMainViewController(output: presenter)
         presenter.input = viewController
+        presenter.repository = FavoritesRepository(remoteDataSource: FavoritesRemoteDataSource(), localDataSource: FavoritesLocalDataSource())
         return viewController
     }
 }

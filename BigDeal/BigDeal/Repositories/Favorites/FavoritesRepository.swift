@@ -14,7 +14,7 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
     }
     
     // MARK: - Functions
-
+    
     func save(item: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
         remoteDataSource.addToFavorites(item: item) { result in
             switch result {
@@ -36,22 +36,41 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
     }
     
     func obtainAll(completion: @escaping (Result<[Item], Error>) -> Void) {
-        remoteDataSource.obtainFavorites { result in
+        //        remoteDataSource.obtainFavorites { result in
+        //            switch result {
+        //            case .success(let remoteItems):
+        //                self.localDataSource.obtainFavorites { result in
+        //                    switch result {
+        //                    case .success(let localItems):
+        //                        if localItems == remoteItems {
+        //                            completion(.success(localItems))
+        //                        } else {
+        //                            // Необходимо добавить недостающие элементы в другую базу
+        //                            completion(.success(remoteItems))
+        //                        }
+        //                    case .failure(let error):
+        //                        completion(.failure(error))
+        //                    }
+        //                }
+        //            case .failure(let error):
+        //                completion(.failure(error))
+        //            }
+        //        }
+        
+        self.localDataSource.obtainFavorites { result in
             switch result {
-            case .success(let remoteItems):
-                self.localDataSource.obtainFavorites { result in
-                    switch result {
-                    case .success(let localItems):
-                        if localItems == remoteItems {
-                            completion(.success(localItems))
-                        } else {
-                            // Необходимо добавить недостающие элементы в другую базу
-                            completion(.success(remoteItems))
+            case .success(var localItems):
+                for i in 0..<localItems.count {
+                    FileManagerService.shared.getImage(byID: localItems[i].imageURL, completion: { result in
+                        switch result {
+                        case .success(let image):
+                            localItems[i].clothImage = image
+                        case .failure:
+                            break
                         }
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
+                    })
                 }
+                completion(.success(localItems))
             case .failure(let error):
                 completion(.failure(error))
             }

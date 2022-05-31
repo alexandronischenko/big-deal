@@ -69,6 +69,7 @@
 		A26256CC27FF282D007FA967 /* MockCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256C927FF282D007FA967 /* MockCoordinator.swift */; };
 		A26256CD27FF282D007FA967 /* MockAuthRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256CA27FF282D007FA967 /* MockAuthRegisterView.swift */; };
 		A26256CE27FF282D007FA967 /* AuthRegisterPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26256CB27FF282D007FA967 /* AuthRegisterPresenterTest.swift */; };
+		A27E2685284619C40041DF1A /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27E2684284619C40041DF1A /* Log.swift */; };
 		A27EBC3727F0D87800532EDE /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC3627F0D87800532EDE /* ProfileSettingsViewController.swift */; };
 		A27EBC3927F0D88D00532EDE /* ProfileSubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC3827F0D88D00532EDE /* ProfileSubscriptionsViewController.swift */; };
 		A27EBC4A27F0D9AA00532EDE /* SearchMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EBC4927F0D9AA00532EDE /* SearchMainScreenViewController.swift */; };
@@ -253,6 +254,7 @@
 		A26256C927FF282D007FA967 /* MockCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCoordinator.swift; sourceTree = "<group>"; };
 		A26256CA27FF282D007FA967 /* MockAuthRegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthRegisterView.swift; sourceTree = "<group>"; };
 		A26256CB27FF282D007FA967 /* AuthRegisterPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRegisterPresenterTest.swift; sourceTree = "<group>"; };
+		A27E2684284619C40041DF1A /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		A27EBC3627F0D87800532EDE /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		A27EBC3827F0D88D00532EDE /* ProfileSubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubscriptionsViewController.swift; sourceTree = "<group>"; };
 		A27EBC4927F0D9AA00532EDE /* SearchMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainScreenViewController.swift; sourceTree = "<group>"; };
@@ -504,7 +506,6 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Protocols;
 			path = Protocols;
 			sourceTree = "<group>";
 		};
@@ -976,6 +977,7 @@
 				A297430127FECEB8009E5E7D /* DataManager.swift */,
 				A2B289AC28170855008D2B75 /* KeychainManager.swift */,
 				A2A54D4C2833A47A005EE999 /* AlertManager.swift */,
+				A27E2684284619C40041DF1A /* Log.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1800,6 +1802,7 @@
 				A23E572927F78AB60069F74E /* ProductLocalDataSource.swift in Sources */,
 				A26256BA27FF2750007FA967 /* AuthenticationGreetingView.swift in Sources */,
 				A2F24F5827EEFC50000B02D6 /* SearchCoordinator.swift in Sources */,
+				A27E2685284619C40041DF1A /* Log.swift in Sources */,
 				A2F0EDBC27FE07700049EBAC /* ProfileSubscriptionsPresenterInputProtocol.swift in Sources */,
 				A2EFD5D127F0D451001E4071 /* SearchBaseCoordinatedProtocol.swift in Sources */,
 				A26256B927FF2750007FA967 /* AuthenticationGreetingViewPresenter.swift in Sources */,

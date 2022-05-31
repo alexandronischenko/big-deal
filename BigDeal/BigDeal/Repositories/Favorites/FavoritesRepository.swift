@@ -31,8 +31,6 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
                 completion(.failure(error))
             }
         }
-        
-        
     }
     
     func obtainAll(completion: @escaping (Result<[Item], Error>) -> Void) {
@@ -65,8 +63,8 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
                         switch result {
                         case .success(let image):
                             localItems[i].clothImage = image
-                        case .failure:
-                            break
+                        case .failure(let error):
+                            completion(.failure(error))
                         }
                     })
                 }

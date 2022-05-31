@@ -29,7 +29,6 @@ class DetailItemPresenter: DetailItemPresenterProtocol {
             case .success(let model):
                 completion(.success(model))
             case .failure(let error):
-                print("Error: \(error.localizedDescription) in \(#function)")
                 completion(.failure(error))
             }
         }

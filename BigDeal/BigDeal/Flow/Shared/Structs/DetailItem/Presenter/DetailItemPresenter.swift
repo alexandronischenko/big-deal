@@ -2,7 +2,7 @@ import Foundation
 
 protocol DetailItemPresenterProtocol: AnyObject {
     func buttonPressedGoToShopSite(url: String)
-    func didTapAddToFavorites(model: Item, completion: @escaping (Bool) -> Void)
+    func didTapAddToFavorites(model: Item, completion: @escaping (Result<Item, Error>) -> Void)
 }
 
 class DetailItemPresenter: DetailItemPresenterProtocol {
@@ -23,14 +23,14 @@ class DetailItemPresenter: DetailItemPresenterProtocol {
 //        UIApplication.shared.open(url)
     }
     
-    func didTapAddToFavorites(model: Item, completion: @escaping (Bool) -> Void) {
+    func didTapAddToFavorites(model: Item, completion: @escaping (Result<Item, Error>) -> Void) {
         repository?.save(item: model) { result in
             switch result {
-            case .success:
-                completion(true)
+            case .success(let model):
+                completion(.success(model))
             case .failure(let error):
                 print("Error: \(error.localizedDescription) in \(#function)")
-                completion(false)
+                completion(.failure(error))
             }
         }
     }

@@ -504,8 +504,8 @@
 			isa = PBXGroup;
 			children = (
 			);
-			path = Protocols;
 			name = Protocols;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A2113AF227CE745F00EBA9A9 = {
@@ -1590,8 +1590,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					A2113AFA27CE745F00EBA9A9 = {
 						CreatedOnToolsVersion = 13.1;

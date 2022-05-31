@@ -8,7 +8,7 @@ protocol DatabaseManagerProtocol {
     func insertUser(with user: UserModel)
     
     // Function that add favorites to user in database
-    func addToFavorites(model: Item, completion: @escaping (Result<Bool, Error>) -> Void)
+    func addToFavorites(model: Item, completion: @escaping (Result<Item, Error>) -> Void)
     
     // Function that delete favorite by url user from database
     func deleteFromFavorites(model: Item, completion: @escaping (Result<Bool, Error>) -> Void)

@@ -49,18 +49,18 @@ extension DatabaseManager: DatabaseManagerProtocol {
         ])
     }
     
-    func addToFavorites(model: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func addToFavorites(model: Item, completion: @escaping (Result<Item, Error>) -> Void) {
         guard let email = UserDefaults.standard.string(forKey: UserDefaultsKeys.safeEmailKey) else {
             completion(.failure(DatabaseManagerError.gettingUserEmail))
             return
         }
         let reference = database.child(email).child("favorites")
-        reference.updateChildValues([ model.id: model.clothTitle ]) { [weak self] error, _ in
+        reference.updateChildValues([ model.id: model.clothTitle ]) { error, _ in
             guard error != nil else {
-                completion(.success(true))
+                completion(.success(model))
                 return
             }
-            completion(.failure(error as! Error))
+            completion(.failure(error?.localizedDescription as! Error))
         }
     }
     

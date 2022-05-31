@@ -15,24 +15,24 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
     
     // MARK: - Functions
     
-    func save(item: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
-        remoteDataSource.addToFavorites(item: item) { result in
+    func save(item: Item, completion: @escaping (Result<Item, Error>) -> Void) {
+        self.localDataSource.addToFavorites(item: item) { result in
             switch result {
-            case .success(let bool):
-                if bool {
-                    self.localDataSource.addToFavorites(item: item) { result in
-                        switch result {
-                        case .success(let bool):
-                            completion(.success(bool))
-                        case .failure(let error):
-                            completion(.failure(error))
-                        }
+            case .success(let item):
+                self.remoteDataSource.addToFavorites(item: item) { result in
+                    switch result {
+                    case .success(let item):
+                        completion(.success(item))
+                    case .failure(let error):
+                        completion(.failure(error))
                     }
                 }
             case .failure(let error):
                 completion(.failure(error))
             }
         }
+        
+        
     }
     
     func obtainAll(completion: @escaping (Result<[Item], Error>) -> Void) {
@@ -59,7 +59,7 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
         
         self.localDataSource.obtainFavorites { result in
             switch result {
-            case .success(var localItems):
+            case .success(let localItems):
                 for i in 0..<localItems.count {
                     FileManagerService.shared.getImage(byID: localItems[i].imageURL, completion: { result in
                         switch result {

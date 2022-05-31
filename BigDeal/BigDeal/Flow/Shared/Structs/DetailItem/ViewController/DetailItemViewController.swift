@@ -50,21 +50,30 @@ extension DetailItemViewController: DetailItemViewProtocol {
     }
     
     @objc func didTapAddFavoritesButton(_ sender: UIButton) {
-        presenter.didTapAddToFavorites(model: detailItemView.item!) { isFavorite in
-            if isFavorite {
-                let menuBtn = UIButton(type: .custom)
-                let img = UIImage(systemName: "heart.fill")
-                menuBtn.setImage(img, for: .normal)
-                let menuBarItem = UIBarButtonItem(customView: menuBtn)
-                self.navigationItem.rightBarButtonItem = menuBarItem
-                menuBtn.addTarget(self, action: #selector(self.didTapAddFavoritesButton(_:)), for: .touchUpInside)
-            } else {
-                let menuBtn = UIButton(type: .custom)
-                let img = UIImage(systemName: "heart")
-                menuBtn.setImage(img, for: .normal)
-                let menuBarItem = UIBarButtonItem(customView: menuBtn)
-                self.navigationItem.rightBarButtonItem = menuBarItem
-                menuBtn.addTarget(self, action: #selector(self.didTapAddFavoritesButton(_:)), for: .touchUpInside)
+        guard let item = detailItemView.item else { return }
+        presenter.didTapAddToFavorites(model: item) { result in
+            switch result {
+            case .success(let model):
+                if model.isFavorite {
+                    let menuBtn = UIButton(type: .custom)
+                    let img = UIImage(systemName: "heart.fill")
+                    menuBtn.setImage(img, for: .normal)
+                    let menuBarItem = UIBarButtonItem(customView: menuBtn)
+                    self.navigationItem.rightBarButtonItem = menuBarItem
+                    menuBtn.addTarget(self, action: #selector(self.didTapAddFavoritesButton(_:)), for: .touchUpInside)
+                } else {
+                    let menuBtn = UIButton(type: .custom)
+                    let img = UIImage(systemName: "heart")
+                    menuBtn.setImage(img, for: .normal)
+                    let menuBarItem = UIBarButtonItem(customView: menuBtn)
+                    self.navigationItem.rightBarButtonItem = menuBarItem
+                    menuBtn.addTarget(self, action: #selector(self.didTapAddFavoritesButton(_:)), for: .touchUpInside)
+                }
+                
+            case .failure(let error):
+                let alertController = UIAlertController(title: "Something went wrong", message: "\(error.localizedDescription)\r\n Please try again", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                self.present(alertController, animated: true)
             }
         }
     }

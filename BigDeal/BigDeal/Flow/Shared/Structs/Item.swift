@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct Item: Equatable {
+class Item: Equatable {
     // MARK: - Properties
     
     var clothImage: UIImage

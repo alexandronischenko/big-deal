@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum Log {
+enum Logger {
     enum LogLevel {
         case info
         case warning
         case error
         
-        fileprivate var prefix: String {
+        var prefix: String {
             switch self {
             case .info:
                 return "INFO"
@@ -25,8 +25,15 @@ enum Log {
         }
     }
     
-    static func log(level: LogLevel, str: String, shouldLogContext: Bool, file: String = #file, function: String = #function, line: Int = #line) {
-        let logComponents = ["[\(level.prefix)]", str]
+    static func log(
+        level: LogLevel = .info,
+        str: String,
+        shouldLogContext: Bool = true,
+        file: String = #file,
+        function: String = #function,
+        line: Int = #line
+    ) {
+        let logComponents = [Date().description, "[\(level.prefix)]", str]
         
         var description: String {
             return "\((file as NSString).lastPathComponent):\(line) \(function)"

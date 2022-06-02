@@ -91,7 +91,8 @@ extension DetailItemViewController: DetailItemViewProtocol {
                 }
                 
             case .failure(let error):
-                let alertController = UIAlertController(title: "Something went wrong", message: "\(error.localizedDescription)\r\n Please try again", preferredStyle: .alert)
+                
+                let alertController = UIAlertController(title: "Something went wrong", message: "\(error.localizedDescription)", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Ok", style: .cancel))
                 self.present(alertController, animated: true)
             }

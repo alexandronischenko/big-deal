@@ -47,6 +47,21 @@ extension DetailItemViewController: DetailItemViewProtocol {
     
     func configureModel(model: Item) {
         detailItemView.configureModel(model: model)
+        if model.isFavorite {
+            let menuBtn = UIButton(type: .custom)
+            let img = UIImage(systemName: "heart.fill")
+            menuBtn.setImage(img, for: .normal)
+            let menuBarItem = UIBarButtonItem(customView: menuBtn)
+            self.navigationItem.rightBarButtonItem = menuBarItem
+            menuBtn.addTarget(self, action: #selector(self.didTapAddFavoritesButton(_:)), for: .touchUpInside)
+        } else {
+            let menuBtn = UIButton(type: .custom)
+            let img = UIImage(systemName: "heart")
+            menuBtn.setImage(img, for: .normal)
+            let menuBarItem = UIBarButtonItem(customView: menuBtn)
+            self.navigationItem.rightBarButtonItem = menuBarItem
+            menuBtn.addTarget(self, action: #selector(self.didTapAddFavoritesButton(_:)), for: .touchUpInside)
+        }
     }
     
     @objc func didTapAddFavoritesButton(_ sender: UIButton) {

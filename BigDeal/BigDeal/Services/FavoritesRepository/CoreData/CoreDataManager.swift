@@ -29,6 +29,19 @@ extension CoreDataManager: CoreDataManagerProtocol {
             switch result {
             case .success(let isFavorite):
                 if isFavorite {
+                    model.isFavorite = false
+                    
+                    self.deleteFromFavorites(model: model) { result in
+                        switch result {
+                        case .success(let isDeleted):
+                            if isDeleted {
+                                completion(.success(model))
+                            }
+                        case .failure:
+                            break
+                        }
+                    }
+                    
                     break
                 } else {
                     model.isFavorite = true
@@ -65,7 +78,21 @@ extension CoreDataManager: CoreDataManagerProtocol {
     }
 
     func deleteFromFavorites(model: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
-
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemEntity")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", model.id)
+        
+        do {
+            let items = try context.fetch(fetchRequest) as? [ItemEntity]
+            if let item = items?.first {
+                context.delete(item)
+                completion(.success(true))
+            } else {
+                completion(.success(false))
+            }
+        } catch {
+            print("Error: \(error.localizedDescription) in \(#function)")
+            completion(.failure(error))
+        }
     }
 
     func getAllFavorites(completion: @escaping (Result<[Item], Error>) -> Void) {

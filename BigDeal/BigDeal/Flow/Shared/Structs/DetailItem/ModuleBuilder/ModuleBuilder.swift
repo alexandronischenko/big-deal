@@ -12,7 +12,7 @@ class DetailItemBuilder {
         let presenter = DetailItemPresenter(coordinator: coordinator, model: model, repository: repository)
         let viewContoller = DetailItemViewController(presenter: presenter)
         presenter.view = viewContoller
-        presenter.view?.configureModel(model: model)
+        presenter.configureModel(model: model)
         return viewContoller
     }
 }

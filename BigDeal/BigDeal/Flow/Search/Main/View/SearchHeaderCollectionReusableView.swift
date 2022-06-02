@@ -26,11 +26,11 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         return button
     }()
     
-    lazy var outerwearButton: UIButton = {
+    lazy var outwearButton: UIButton = {
         var button = UIButton()
         button.backgroundColor = .systemGray2
-        button.setTitle("Outerwear", for: .normal)
-        button.setTitle("Outerwear", for: .highlighted)
+        button.setTitle("Outwear", for: .normal)
+        button.setTitle("Outwear", for: .highlighted)
         button.layer.cornerRadius = 6
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
         button.addTarget(self, action: #selector(searchMainCategoryButtonDidPressed), for: .touchUpInside)
@@ -96,7 +96,7 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
         super.layoutSubviews()
         
         upStackView.addArrangedSubview(filterButton)
-        upStackView.addArrangedSubview(outerwearButton)
+        upStackView.addArrangedSubview(outwearButton)
         upStackView.addArrangedSubview(sweatshirtsButton)
         
         downStackView.addArrangedSubview(shirtsButton)

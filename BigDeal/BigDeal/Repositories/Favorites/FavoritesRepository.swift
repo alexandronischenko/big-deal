@@ -16,20 +16,25 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
     // MARK: - Functions
     
     func save(item: Item, completion: @escaping (Result<Item, Error>) -> Void) {
-        self.localDataSource.addToFavorites(item: item) { result in
-            switch result {
-            case .success(let item):
-                self.remoteDataSource.addToFavorites(item: item) { result in
-                    switch result {
-                    case .success(let item):
-                        completion(.success(item))
-                    case .failure(let error):
-                        completion(.failure(error))
+        let isLoggedIn = UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLoggedInKey)
+        if isLoggedIn {
+            self.localDataSource.addToFavorites(item: item) { result in
+                switch result {
+                case .success(let item):
+                    self.remoteDataSource.addToFavorites(item: item) { result in
+                        switch result {
+                        case .success(let item):
+                            completion(.success(item))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
                     }
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            case .failure(let error):
-                completion(.failure(error))
             }
+        } else {
+            completion(.failure(Errors.isNotLoggedIn))
         }
     }
     

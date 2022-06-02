@@ -61,7 +61,6 @@ class SearchResultsViewController: UIViewController {
         searchResultsView.searchResultsCollectionView.delegate = self
         searchResultsView.searchResultsCollectionView.dataSource = self
         let cellClass = CustomItemCollectionViewCell.self
-        let viewClass = SearchResultsCollectionReusableView.self
         searchResultsView.searchResultsCollectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdForItemCell)
         searchResultsView.searchResultsCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: sectionFooter, withReuseIdentifier: reuseIdForFooterView)
     }
@@ -158,10 +157,10 @@ extension SearchResultsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdForFooterView, for: indexPath)
-            footer.addSubview(searchResultsView.footerView)
-            searchResultsView.footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
-            return footer
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdForFooterView, for: indexPath)
+        footer.addSubview(searchResultsView.footerView)
+        searchResultsView.footerView.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
+        return footer
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout

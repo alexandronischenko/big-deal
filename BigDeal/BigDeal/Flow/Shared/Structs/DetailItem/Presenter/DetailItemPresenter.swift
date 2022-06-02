@@ -37,7 +37,7 @@ class DetailItemPresenter: DetailItemPresenterProtocol {
     func configureModel(model: Item) {
         CoreDataManager.shared.isFavorite(model: model) { result in
             switch result {
-            case .failure(let error):
+            case .failure:
                 break
             case .success(let isFavorite):
                 model.isFavorite = isFavorite

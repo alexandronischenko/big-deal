@@ -63,7 +63,6 @@ class AuthenticationRegisterView: UIView {
         var textField = UITextField()
         textField.placeholder = "Enter your name"
         textField.borderStyle = .roundedRect
-//        textField.autocorrectionType = .no
         textField.textContentType = .name
         textField.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged)
         return textField
@@ -73,7 +72,6 @@ class AuthenticationRegisterView: UIView {
         var textField = UITextField()
         textField.placeholder = "Enter your password"
         textField.borderStyle = .roundedRect
-//        textField.autocorrectionType = .default
         textField.textContentType = .password
         textField.isSecureTextEntry = true
         textField.addTarget(self, action: #selector(passwordTextFieldDidChange), for: .editingChanged)
@@ -226,16 +224,7 @@ class AuthenticationRegisterView: UIView {
     }
     
     @objc func repeatPasswordTextFieldDidChange(_ textField: UITextField) {
-//        guard let text = textField.text else { return }
-//        delegate?.passwordTextFieldDidChange(textField: textField)
-//        if passwordTextField.text != text {
-//            changeTextFieldColor(textField)
-//            showErrorLabel(text: "Passwords do not match")
-//        } else {
-            delegate?.passwordTextFieldDidChange(textField: textField)
-//            showErrorLabel(text: "")
-//            resetTextFieldColor(textField)
-//        }
+        delegate?.passwordTextFieldDidChange(textField: textField)
     }
     
     @objc func didPressedLoginButton() {

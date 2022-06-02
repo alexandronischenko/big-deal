@@ -3,8 +3,9 @@ import XCTest
 
 class ProfileSettingsValidatorUnitTests: XCTestCase {
     // MARK: - Properties
-    private var profileSettingsViewController: ProfileSettingsPresenterInputMock!
-    private var validationService: ValidationServiceProtocol!
+    
+    private var profileSettingsViewController: ProfileSettingsPresenterInputMock?
+    private var validationService: ValidationServiceProtocol?
     
     // MARK: - Overrided functions
 
@@ -22,8 +23,8 @@ class ProfileSettingsValidatorUnitTests: XCTestCase {
     
     func testValidationResultFalseToShortName() {
         // Arrange
-        profileSettingsViewController.obtainTextFieldDataStubbed = "Ян"
-        let name = profileSettingsViewController.obtainTextFieldData()
+        profileSettingsViewController?.obtainTextFieldDataStubbed = "Ян"
+        guard let name = profileSettingsViewController?.obtainTextFieldData() else { return }
         // Act
         guard let isValidName = validationService?.isValidName(name) else { return }
         let isValid = isValidName

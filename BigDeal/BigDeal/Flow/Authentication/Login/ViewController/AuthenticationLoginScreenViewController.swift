@@ -1,7 +1,6 @@
 import UIKit
 
 class AuthenticationLoginScreenViewController: UIViewController {
-    
     // MARK: - Properties
     
     var presenter: AuthenticationLoginViewPresenterProtocol

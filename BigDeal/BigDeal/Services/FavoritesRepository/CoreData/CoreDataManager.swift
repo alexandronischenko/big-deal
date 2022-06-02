@@ -105,14 +105,15 @@ extension CoreDataManager: CoreDataManagerProtocol {
 
                 var downloadedImage = UIImage()
 
-                guard let name = i.name,
-                      let id = i.id,
-                      let oldPrice = i.oldPrice,
-                      let newPrice = i.newPrice,
-                      let imageURL = i.imageUrl,
-                      let url = i.url else {
-                    return
-                }
+                guard
+                    let name = i.name,
+                    let id = i.id,
+                    let oldPrice = i.oldPrice,
+                    let newPrice = i.newPrice,
+                    let imageURL = i.imageUrl,
+                    let url = i.url else {
+                        return
+                    }
 
                 FileManagerService.shared.getImage(byID: id) { result in
                     switch result {

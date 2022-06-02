@@ -81,4 +81,3 @@ extension FeedMainPresenter: FeedMainPresenterOutputProtocol {
 
 extension FeedMainPresenter: FeedBaseCoordinatedProtocol {
 }
-

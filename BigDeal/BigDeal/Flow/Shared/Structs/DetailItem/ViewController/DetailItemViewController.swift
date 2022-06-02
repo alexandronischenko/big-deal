@@ -27,7 +27,7 @@ class DetailItemViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         
         let menuBtn = UIButton(type: .custom)
-        var img = UIImage(systemName: "heart")
+        let img = UIImage(systemName: "heart")
         menuBtn.setImage(img, for: .normal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuBtn)
         menuBtn.addTarget(self, action: #selector(didTapAddFavoritesButton(_:)), for: .touchUpInside)

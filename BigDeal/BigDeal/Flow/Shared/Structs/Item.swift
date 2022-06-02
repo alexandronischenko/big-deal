@@ -11,7 +11,7 @@ class Item: Equatable {
     var url: String
     var id: String
     var imageURL: String
-    var isFavorite: Bool = false
+    var isFavorite = false
 
     // MARK: - Initializers
     

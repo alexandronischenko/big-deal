@@ -56,11 +56,11 @@ extension DatabaseManager: DatabaseManagerProtocol {
         }
         let reference = database.child(email).child("favorites")
         reference.updateChildValues([ model.id: model.clothTitle ]) { error, _ in
-            guard error != nil else {
+            guard let error = error else {
                 completion(.success(model))
                 return
             }
-            completion(.failure(error?.localizedDescription as! Error))
+            completion(.failure(error))
         }
     }
     

@@ -30,8 +30,8 @@ class FeedMainViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Feed"
         feedMainView.delegate = self
-        UserDefaults.standard.set(Category.thirtyPosessionSale.rawValue, forKey: UserDefaultsKeys.keyForHot)
-//        obtainHotProductsFromAsos(with: IndexPath(item: 0, section: 0))
+        UserDefaults.standard.set(Category.outwear.rawValue, forKey: UserDefaultsKeys.keyForHot)
+        obtainHotProductsFromAsos(with: IndexPath(item: 0, section: 0))
     }
     
     override func viewDidAppear(_ animated: Bool) {

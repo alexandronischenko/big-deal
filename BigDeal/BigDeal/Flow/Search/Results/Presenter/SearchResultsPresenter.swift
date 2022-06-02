@@ -133,10 +133,12 @@ extension SearchResultsPresenter: SearchBaseCoordinatedProtocol {
 
 extension SearchResultsPresenter: SearchResultsFilterDelegateProtocol {
     func loadNewData(by indexPath: IndexPath) {
-        let ud = UserDefaults.standard
-        guard let priceMin = ud.object(forKey: "priceMin") as? String, let priceMax = ud.object(forKey: "priceMax") as? String, let sortBy = ud.object(forKey: "sortBy") as? String else {
-            return
-        }
+        let userDefaults = UserDefaults.standard
+        guard
+            let priceMin = userDefaults.object(forKey: "priceMin") as? String, let priceMax = userDefaults.object(forKey: "priceMax") as? String,
+            let sortBy = userDefaults.object(forKey: "sortBy") as? String else {
+                return
+            }
         let parameters = DataManager.shared.obtainParametersForAsosFilters(priceMin: priceMin, priceMax: priceMax, sortBy: sortBy, category: "25781")
         let service = ApiServices.accessTokenForCategories.rawValue
         let account = ApiAccounts.asos.rawValue

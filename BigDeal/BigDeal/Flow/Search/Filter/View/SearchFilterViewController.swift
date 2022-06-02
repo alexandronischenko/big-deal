@@ -476,30 +476,30 @@ extension SearchFilterViewController: UITableViewDataSource {
 
 extension SearchFilterViewController: SearchFilterViewDelegate {
     func dismissFilterView() {
-        let ud = UserDefaults.standard
+        let userDefaults = UserDefaults.standard
         switch sortByRadioButtonController.selectedButtons.first?.currentTitle {
         case "Ascending":
-            ud.set("priceasc", forKey: "sortBy")
+            userDefaults.set("priceasc", forKey: "sortBy")
         case "Descending":
-            ud.set("pricedesc", forKey: "sortBy")
+            userDefaults.set("pricedesc", forKey: "sortBy")
         default:
-            ud.set("freshness", forKey: "sortBy")
+            userDefaults.set("freshness", forKey: "sortBy")
         }
         switch priceRangeRadioButtonController.selectedButtons.first?.currentTitle {
         case "Up to 3000₽":
-            ud.set("0", forKey: "priceMin")
-            ud.set("50", forKey: "priceMax")
+            userDefaults.set("0", forKey: "priceMin")
+            userDefaults.set("50", forKey: "priceMax")
         case "3000 - 7000₽":
-            ud.set("50", forKey: "priceMin")
-            ud.set("100", forKey: "priceMax")
+            userDefaults.set("50", forKey: "priceMin")
+            userDefaults.set("100", forKey: "priceMax")
         case "7000 - 15000₽":
-            ud.set("100", forKey: "priceMin")
-            ud.set("200", forKey: "priceMax")
+            userDefaults.set("100", forKey: "priceMin")
+            userDefaults.set("200", forKey: "priceMax")
         default:
-            ud.set("200", forKey: "priceMin")
-            ud.set("", forKey: "priceMax")
+            userDefaults.set("200", forKey: "priceMin")
+            userDefaults.set("", forKey: "priceMax")
         }
-        ud.set(true, forKey: "isSearchByFilters")
+        userDefaults.set(true, forKey: "isSearchByFilters")
         output?.closeFilterAndLoadData()
     }
 }

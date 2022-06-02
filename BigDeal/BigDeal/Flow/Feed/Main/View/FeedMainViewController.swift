@@ -93,7 +93,7 @@ extension FeedMainViewController: FeedMainViewDelegateProtocol {
             return
         }
         let url = DataManager.shared.asosProductsListUrl
-        let parameters: Parameters? = DataManager.shared.obtainParametersForAsosCategory(categoryId)
+        let parameters: Parameters? = DataManager.shared.obtainParametersForAsosHot(categoryId)
         let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
         let headers: HTTPHeaders = [
             DataManager.shared.asosHostHeader,

@@ -138,6 +138,7 @@ extension FeedMainView: UICollectionViewDataSource {
         cell.data = self.data[indexPath.row]
         if indexPath.item == data.count - 1 {
             delegate?.obtainHotProductsFromAsos(with: indexPath)
+
         }
         return cell
     }

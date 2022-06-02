@@ -23,7 +23,7 @@ class Item: Equatable {
             let clothUrl = URL(string: "https://" + product.imageUrl),
             let clothData = try? Data(contentsOf: clothUrl),
             let clothImage = UIImage(data: clothData),
-            let url = String?("https://www.asos.com/us" + product.url),
+            let url = String?("https://www.asos.com/" + product.url),
             let id = String?("\(product.id)")
         else {
             return nil
@@ -49,7 +49,7 @@ class Item: Equatable {
             let clothData = try? Data(contentsOf: clothUrl),
             let clothImage = UIImage(data: clothData),
             let clothTitle = String?("\(stockXProduct.title)"),
-            let clothUrl = String?("https://stockx.com" + "\(stockXProduct.urlKey)"),
+            let clothUrl = String?("https://stockx.com/" + "\(stockXProduct.urlKey)"),
             let id = String?("\(stockXProduct.objectID)")
         else {
             return nil

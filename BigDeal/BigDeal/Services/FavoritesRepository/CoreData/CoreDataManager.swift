@@ -6,7 +6,7 @@ import UIKit
 
 final class CoreDataManager {
     static let shared = CoreDataManager()
-
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "BigDeal")
         container.loadPersistentStores { _, error in
@@ -16,7 +16,7 @@ final class CoreDataManager {
         }
         return container
     }()
-
+    
     lazy var context = persistentContainer.viewContext
 }
 
@@ -47,7 +47,7 @@ extension CoreDataManager: CoreDataManagerProtocol {
                     model.isFavorite = true
                     
                     let item = ItemEntity(context: self.context)
-
+                    
                     FileManagerService.shared.saveImage(image: model.clothImage, with: model.id) { result in
                         switch result {
                         case .success(let url):
@@ -56,13 +56,13 @@ extension CoreDataManager: CoreDataManagerProtocol {
                             break
                         }
                     }
-
+                    
                     item.newPrice = model.newPrice
                     item.oldPrice = model.oldPrice
                     item.id = model.id
                     item.url = model.url
                     item.name = model.clothTitle
-
+                    
                     do {
                         try self.context.save()
                         completion(.success(model))
@@ -76,7 +76,7 @@ extension CoreDataManager: CoreDataManagerProtocol {
             }
         }
     }
-
+    
     func deleteFromFavorites(model: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemEntity")
         fetchRequest.predicate = NSPredicate(format: "id == %@", model.id)
@@ -94,17 +94,17 @@ extension CoreDataManager: CoreDataManagerProtocol {
             completion(.failure(error))
         }
     }
-
+    
     func getAllFavorites(completion: @escaping (Result<[Item], Error>) -> Void) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemEntity")
-
+        
         do {
             let items = try context.fetch(fetchRequest) as? [ItemEntity]
             if let result = items?.reduce(into: [Item](), { partialResult, i in
                 // MARK: - DATAMANAGER download image
-
+                
                 var downloadedImage = UIImage()
-
+                
                 guard
                     let name = i.name,
                     let id = i.id,
@@ -112,9 +112,9 @@ extension CoreDataManager: CoreDataManagerProtocol {
                     let newPrice = i.newPrice,
                     let imageURL = i.imageUrl,
                     let url = i.url else {
-                        return
-                    }
-
+                    return
+                }
+                
                 FileManagerService.shared.getImage(byID: id) { result in
                     switch result {
                     case .success(let image):
@@ -123,7 +123,7 @@ extension CoreDataManager: CoreDataManagerProtocol {
                         break
                     }
                 }
-
+                
                 let item = Item(shopTitle: name, clothTitle: name, id: id, oldPrice: oldPrice, newPrice: newPrice, clothImage: downloadedImage, url: url, imageURL: imageURL)
                 print(item)
                 partialResult.append(item)
@@ -134,11 +134,11 @@ extension CoreDataManager: CoreDataManagerProtocol {
             completion(.failure(error))
         }
     }
-
+    
     func isFavorite(model: Item, completion: @escaping (Result<Bool, Error>) -> Void) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemEntity")
         fetchRequest.predicate = NSPredicate(format: "id == %@", model.id)
-
+        
         do {
             let items = try context.fetch(fetchRequest) as? [ItemEntity]
             if (items?.first) != nil {
@@ -151,7 +151,20 @@ extension CoreDataManager: CoreDataManagerProtocol {
             completion(.failure(error))
         }
     }
-
+    
+    func delete(completion: @escaping (Result<Bool, Error>) -> Void) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            completion(.success(true))
+        } catch let error {
+            print("Error: \(error.localizedDescription) in \(#function)")
+            completion(.failure(error))
+        }
+    }
+    
     func saveContext() {
         if context.hasChanges {
             do {

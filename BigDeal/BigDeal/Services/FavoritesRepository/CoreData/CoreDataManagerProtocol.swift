@@ -12,4 +12,7 @@ protocol CoreDataManagerProtocol: AnyObject {
     
     // Function that checking on containing in favorites
     func isFavorite(model: Item, completion: @escaping (Result<Bool, Error>) -> Void)
+    
+    // Function that delete all favorites data
+    func delete(completion: @escaping (Result<Bool, Error>) -> Void)
 }

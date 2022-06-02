@@ -39,6 +39,14 @@ extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
                 try FirebaseAuth.Auth.auth().signOut()
                 UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isLoggedInKey)
                 UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.safeEmailKey)
+                CoreDataManager.shared.delete { result in
+                    switch result {
+                    case .success:
+                        break
+                    case .failure(let error):
+                        print("Failed to logout. \(error.localizedDescription)")
+                    }
+                }
             } catch {
                 print("Failed to logout")
             }

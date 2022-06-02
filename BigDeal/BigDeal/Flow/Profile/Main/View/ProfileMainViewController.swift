@@ -28,7 +28,7 @@ class ProfileMainViewController: UIViewController {
     override func loadView() {
         view = profileMainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -111,6 +111,11 @@ extension ProfileMainViewController: UICollectionViewDelegateFlowLayout {
 
 extension ProfileMainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if data.isEmpty {
+            self.profileMainView.profileMainCollectionView.setEmptyMessage("Your favorites will be displayed here")
+        } else {
+            self.profileMainView.profileMainCollectionView.restore()
+        }
         return data.count
     }
     

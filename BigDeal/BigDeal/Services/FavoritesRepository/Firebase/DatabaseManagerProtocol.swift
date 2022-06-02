@@ -21,4 +21,7 @@ protocol DatabaseManagerProtocol {
     
     // Function that return user model from firebase
     func getCurrentUserModel(completion: @escaping (Result<UserModel, Error>) -> Void)
+    
+    // Function that obtain tokens for using shops
+    func getTokens(completion: @escaping (Result<[String: String], Error>) -> Void)
 }

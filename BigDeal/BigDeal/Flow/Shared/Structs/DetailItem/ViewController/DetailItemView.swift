@@ -6,9 +6,11 @@ protocol DetailItemViewProtocol: AnyObject {
 }
 
 class DetailItemView: UIView {
-    weak var delegate: DetailItemViewProtocol?
+    // MARK: - Properties
     
+    weak var delegate: DetailItemViewProtocol?
     var item: Item?
+    // MARK: - UI
     
     var scrollView: UIScrollView = {
         var scroll = UIScrollView()
@@ -102,6 +104,9 @@ class DetailItemView: UIView {
         button.layer.cornerRadius = 6
         return button
     }()
+    // MARK: - Overrided
+    
+    // Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -130,6 +135,7 @@ class DetailItemView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // MARK: - Functions
     
     func setConstraints() {
         scrollView.snp.makeConstraints { make in
@@ -199,11 +205,6 @@ class DetailItemView: UIView {
         }
     }
     
-    @objc func goToShopSite() {
-        guard let url = item?.url else { return }
-        delegate?.goToShopSite(url: url)
-    }
-    
     func configureModel(model: Item) {
         self.item = model
         currentPriceLabel.text = model.newPrice
@@ -212,5 +213,11 @@ class DetailItemView: UIView {
         largeLabel.text = model.clothTitle
         imageView.image = model.clothImage
         button.addTarget(self, action: #selector(goToShopSite), for: .touchUpInside)
+    }
+    // MARK: - OBJC functions
+    
+    @objc func goToShopSite() {
+        guard let url = item?.url else { return }
+        delegate?.goToShopSite(url: url)
     }
 }

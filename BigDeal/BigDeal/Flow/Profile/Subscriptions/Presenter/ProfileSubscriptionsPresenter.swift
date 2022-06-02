@@ -6,14 +6,12 @@ class ProfileSubscriptionsPresenter {
     
     weak var input: ProfileSubscriptionsPresenterInputProtocol?
     var coordinator: ProfileBaseCoordinatorProtocol?
-    
     // MARK: - Initializers
 
     init(coordinator: ProfileBaseCoordinatorProtocol) {
         self.coordinator = coordinator
     }
 }
-
 // MARK: - ProfileSubscriptionsPresenterOutputProtocol
 
 extension ProfileSubscriptionsPresenter: ProfileSubscriptionsPresenterOutputProtocol {
@@ -30,7 +28,6 @@ extension ProfileSubscriptionsPresenter: ProfileSubscriptionsPresenterOutputProt
         return defaultButtonForShops
     }
 }
-
 // MARK: - ProfileBaseCoordinatedProtocol
 
 extension ProfileSubscriptionsPresenter: ProfileBaseCoordinatedProtocol {

@@ -7,12 +7,10 @@ class ProfileSubscriptionsViewController: UIViewController {
     private var output: ProfileSubscriptionsPresenterOutputProtocol?
     private let brandsCheckBoxController = CheckBoxController()
     private let shopsCheckBoxController = CheckBoxController()
-    
     // Reuse identifiers
     
     private let reuseIdForBrandsCheckBoxCell = CustomCheckBoxTableViewCell.customReuseIdForBrandsCheckBox
     private let reuseIdForShopsCheckBoxCell = CustomCheckBoxTableViewCell.customReuseIdForShopsCheckBox
-    
     // MARK: - Initializers
     
     init(output: ProfileSubscriptionsPresenterOutputProtocol) {
@@ -23,7 +21,6 @@ class ProfileSubscriptionsViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - View life cycle
     
     override func loadView() {
@@ -40,8 +37,7 @@ class ProfileSubscriptionsViewController: UIViewController {
         super.viewDidAppear(animated)
         navigationController?.tabBarItem.title = "Subscriptions"
     }
-    
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
     private func setUpBrandsCell(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         guard let checkBoxCell = tableView.dequeueReusableCell(withIdentifier: reuseIdForBrandsCheckBoxCell, for: indexPath) as? CustomCheckBoxTableViewCell else {
@@ -123,12 +119,10 @@ class ProfileSubscriptionsViewController: UIViewController {
         profileSubscriptionsView.profileSubscriptionsTableView.register(CustomCheckBoxTableViewCell.self, forCellReuseIdentifier: reuseIdForShopsCheckBoxCell)
     }
 }
-
 // MARK: - FeedMainPresenterInputProtocol
 
 extension ProfileSubscriptionsViewController: ProfileSubscriptionsPresenterInputProtocol {
 }
-
 // MARK: - UITableViewDelegate
 
 extension ProfileSubscriptionsViewController: UITableViewDelegate {
@@ -163,7 +157,6 @@ extension ProfileSubscriptionsViewController: UITableViewDelegate {
         return 45
     }
 }
-
 // MARK: - UITableViewDataSource
 
 extension ProfileSubscriptionsViewController: UITableViewDataSource {

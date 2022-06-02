@@ -6,11 +6,9 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
     private var output: ProfileSettingsPresenterOutputProtocol?
     private let profileSettingsView = ProfileSettingsView()
     private let sexRadioButtonController = RadioButtonController()
-    
     // Reuse identifiers
     
     private let reuseIdForSexRadioButtonCell = CustomRadioButtonTableViewCell.customReuseIdForSexCategory
-    
     // MARK: - Initializers
     
     init(output: ProfileSettingsPresenterOutputProtocol) {
@@ -21,7 +19,6 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - View life cycle
     
     override func loadView() {
@@ -38,7 +35,6 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         navigationController?.tabBarItem.title = "Settings"
     }
-    
     // MARK: - Private functions
     
     private func setUpSexCategoryCells(by indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
@@ -91,7 +87,6 @@ class ProfileSettingsViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
     }
 }
-
 // MARK: - ProfileSettingsPresenterInputProtocol
 
 extension ProfileSettingsViewController: ProfileSettingsPresenterInputProtocol {
@@ -103,7 +98,6 @@ extension ProfileSettingsViewController: ProfileSettingsPresenterInputProtocol {
         return ""
     }
 }
-
 // MARK: - UITableViewDelegate
 
 extension ProfileSettingsViewController: UITableViewDelegate {
@@ -137,7 +131,6 @@ extension ProfileSettingsViewController: UITableViewDelegate {
         return 45
     }
 }
-
 // MARK: - UITableViewDataSource
 
 extension ProfileSettingsViewController: UITableViewDataSource {    

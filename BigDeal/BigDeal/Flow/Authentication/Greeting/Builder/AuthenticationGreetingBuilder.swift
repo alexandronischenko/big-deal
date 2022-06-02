@@ -4,13 +4,11 @@ class AuthenticationGreetingBuilder: ModuleBuilder {
     // MARK: - Property
     
     let coordinator: AuthenticationCoordinator
-    
     // MARK: - Initializer
     
     init(coordinator: AuthenticationCoordinator) {
         self.coordinator = coordinator
     }
-    
     // MARK: - Function
     
     func build() -> UIViewController {

@@ -1,5 +1,4 @@
 import Foundation
-
 // MARK: - AuthenticationGreetingViewPresenterProtocol
 
 protocol AuthenticationGreetingViewPresenterProtocol: AnyObject {
@@ -13,14 +12,12 @@ class AuthenticationGreetingViewPresenter: AuthenticationBaseCoordinatedProtocol
     
     var coordinator: AuthenticationBaseCoordinatorProtocol?
     weak var view: AuthenticationGreetingViewProtocol?
-    
     // MARK: - Initializers
     
     required init(coordinator: AuthenticationCoordinator) {
         self.coordinator = coordinator
     }
 }
-
 // MARK: - AuthenticationGreetingViewPresenterProtocol
 
 extension AuthenticationGreetingViewPresenter: AuthenticationGreetingViewPresenterProtocol {

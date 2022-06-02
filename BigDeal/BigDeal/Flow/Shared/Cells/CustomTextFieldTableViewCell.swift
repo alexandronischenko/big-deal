@@ -5,8 +5,7 @@ class CustomTextFieldTableViewCell: UITableViewCell {
     // MARK: - Static properties
     
     static let customTextFieldTableViewCellReuseId: String = "customTextFieldTableViewCell"
-    
-    // MARK: - Properties
+    // MARK: - UI
     
     lazy var textField: UITextField = {
         let textField = UITextField()
@@ -21,14 +20,12 @@ class CustomTextFieldTableViewCell: UITableViewCell {
         textField.addTarget(self, action: #selector(textFieldDidPressed), for: .touchUpInside)
         return textField
     }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -40,8 +37,7 @@ class CustomTextFieldTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
     private func setUpConstraintsForViews() {
         textField.snp.makeConstraints { make in
@@ -56,13 +52,12 @@ class CustomTextFieldTableViewCell: UITableViewCell {
         textField.placeholder = text
     }
     
-    // MARK: - Other funcs
+    // MARK: - Other functions
     
     func configureCell(with text: String) {
         setUpPlaceholderForTextField(by: text)
     }
-    
-    // MARK: - OBJC funcs
+    // MARK: - OBJC functions
     
     @objc private func textFieldDidPressed() {
         print("text field has been pressed")

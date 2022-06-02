@@ -19,14 +19,12 @@ class ProfileSubscriptionsView: UIView {
         button.sizeToFit()
         return button
     }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(frame: CGRect) {
@@ -38,8 +36,8 @@ class ProfileSubscriptionsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Private funcs
+    
     private func setUpConstraintsForViews() {
         profileSubscriptionsApplyButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
@@ -56,8 +54,7 @@ class ProfileSubscriptionsView: UIView {
         addSubview(profileSubscriptionsTableView)
         addSubview(profileSubscriptionsApplyButton)
     }
-    
-    // MARK: - OBJC funcs
+    // MARK: - OBJC functions
     
     @objc private func profileSubscriptionsApplyButtonDidPressed() {
         print("profile subscriptions apply button did pressed")

@@ -5,7 +5,6 @@ class AuthenticationRegisterViewController: UIViewController {
     
     var presenter: AuthenticationRegisterViewPresenterProtocol
     var registerView = AuthenticationRegisterView()
-    
     // MARK: - Initializers
     
     init(presenter: AuthenticationRegisterViewPresenterProtocol) {
@@ -20,7 +19,6 @@ class AuthenticationRegisterViewController: UIViewController {
     override func loadView() {
         view = registerView
     }
-    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -33,7 +31,6 @@ class AuthenticationRegisterViewController: UIViewController {
         navigationController?.tabBarItem.title = "Register"
     }
 }
-
 // MARK: - AuthenticationRegisterViewProtocol
 
 extension AuthenticationRegisterViewController: AuthenticationRegisterViewProtocol {

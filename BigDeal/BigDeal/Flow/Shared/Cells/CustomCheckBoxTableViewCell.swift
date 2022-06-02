@@ -8,7 +8,7 @@ class CustomCheckBoxTableViewCell: UITableViewCell {
     static let customReuseIdForSizesCheckBox: String = "customReuseIdForSizesCheckBox"
     static let customReuseIdForShopsCheckBox: String = "customReuseIdForShopsCheckBox"
     
-    // MARK: - Properties
+    // MARK: - UI
     
     lazy var checkBoxButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -20,7 +20,6 @@ class CustomCheckBoxTableViewCell: UITableViewCell {
         button.sizeToFit()
         return button
     }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
@@ -32,7 +31,6 @@ class CustomCheckBoxTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         checkBoxButton.isSelected = false
     }
-    
     // Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -42,8 +40,7 @@ class CustomCheckBoxTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
     private func setTitleForCheckBox(_ title: String) {
         checkBoxButton.setTitle(title, for: .normal)
@@ -62,8 +59,7 @@ class CustomCheckBoxTableViewCell: UITableViewCell {
             make.top.equalToSuperview().inset(3)
         }
     }
-    
-    // MARK: - Other funcs
+    // MARK: - Other functions
     
     func configureCell(with title: String) {
         setTitleForCheckBox(title)

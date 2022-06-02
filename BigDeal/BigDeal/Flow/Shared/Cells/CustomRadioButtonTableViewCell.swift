@@ -7,8 +7,7 @@ class CustomRadioButtonTableViewCell: UITableViewCell {
     static let customReuseIdForSexCategory: String = "customReuseIdForSexCategory"
     static let customReuseIdForSortByCategory: String = "customReuseIdForSortByCategory"
     static let customReuseIdForPriceRangeCategory: String = "customReuseIdForPriceRangeCategory"
-
-    // MARK: - Properties
+    // MARK: - UI
     
     lazy var radioButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -20,7 +19,6 @@ class CustomRadioButtonTableViewCell: UITableViewCell {
         button.sizeToFit()
         return button
     }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
@@ -28,7 +26,6 @@ class CustomRadioButtonTableViewCell: UITableViewCell {
         setUpSelfContentView()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,7 +35,6 @@ class CustomRadioButtonTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Private funcs
     
     private func setUpConstraintsForViews() {
@@ -58,7 +54,6 @@ class CustomRadioButtonTableViewCell: UITableViewCell {
         radioButton.setTitle(title, for: .normal)
         radioButton.setTitle(title, for: .selected)
     }
-    
     // MARK: - Other funcs
     
     func configureCell(with title: String) {

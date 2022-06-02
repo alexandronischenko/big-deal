@@ -9,7 +9,6 @@ class ProfileMainCollectionReusableView: UICollectionReusableView {
     // MARK: - Static properties
     
     static let customHeaderCollectionReusableViewId = "customHeaderCollectionReusableView"
-    
     // MARK: - Properies
     
     weak var delegate: HeaderCollectionReusableViewDelegate?
@@ -72,14 +71,12 @@ class ProfileMainCollectionReusableView: UICollectionReusableView {
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(frame: CGRect) {
@@ -90,8 +87,7 @@ class ProfileMainCollectionReusableView: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
     private func setUpSelfContentView() {
         addSubview(profileHeaderImageView)
@@ -99,14 +95,6 @@ class ProfileMainCollectionReusableView: UICollectionReusableView {
         addSubview(profileHeaderSettingsButton)
         addSubview(profileHeaderSubscriptionsSettingsButton)
         addSubview(profileHeaderMyClothesLabel)
-    }
-    
-    func configure(with model: UserModel) {
-        profileHeaderFullNameLabel.text = model.name
-//        guard let image = model.profilePicture else {
-//            return
-//        }
-//        profileHeaderImageView.image = image
     }
     
     private func setUpConstraintsForViews() {
@@ -132,7 +120,11 @@ class ProfileMainCollectionReusableView: UICollectionReusableView {
             make.top.equalTo(profileHeaderSubscriptionsSettingsButton).inset(40)
         }
     }
+    // MARK: - Other functions
     
+    func configure(with model: UserModel) {
+        profileHeaderFullNameLabel.text = model.name
+    }
     // MARK: - OBJC funcs
     
     @objc func profileSettingsButtonDidPressed() {

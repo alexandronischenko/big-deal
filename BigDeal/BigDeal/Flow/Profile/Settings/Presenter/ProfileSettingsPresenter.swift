@@ -6,14 +6,12 @@ class ProfileSettingsPresenter {
     
     weak var input: ProfileSettingsPresenterInputProtocol?
     var coordinator: ProfileBaseCoordinatorProtocol?
-    
     // MARK: - Initializers
 
     init(coordinator: ProfileBaseCoordinatorProtocol) {
         self.coordinator = coordinator
     }
 }
-
 // MARK: - ProfileSubscriptionsPresenterOutputProtocol
 
 extension ProfileSettingsPresenter: ProfileSettingsPresenterOutputProtocol {
@@ -24,7 +22,6 @@ extension ProfileSettingsPresenter: ProfileSettingsPresenterOutputProtocol {
         return defaultButtonForSexCategory
     }
 }
-
 // MARK: - ProfileBaseCoordinatedProtocol
 
 extension ProfileSettingsPresenter: ProfileBaseCoordinatedProtocol {

@@ -4,13 +4,11 @@ class AuthenticationRegisterBuilder: ModuleBuilder {
     // MARK: - Properties
     
     let coordinator: AuthenticationCoordinator
-    
     // MARK: - Initializers
     
     init(coordinator: AuthenticationCoordinator) {
         self.coordinator = coordinator
     }
-    
     // MARK: - Functions
     
     func build() -> UIViewController {

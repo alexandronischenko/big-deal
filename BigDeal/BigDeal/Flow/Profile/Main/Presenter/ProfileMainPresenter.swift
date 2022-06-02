@@ -8,19 +8,16 @@ class ProfileMainPresenter {
     weak var input: ProfileMainPresenterInputProtocol?
     var coordinator: ProfileBaseCoordinatorProtocol?
     var repository: FavoritesRepositoryProtocol?
-    
     // MARK: - Initializers
 
     init(coordinator: ProfileBaseCoordinatorProtocol) {
         self.coordinator = coordinator
     }
 }
-
 // MARK: - ProfileBaseCoordinatedProtocol
 
 extension ProfileMainPresenter: ProfileBaseCoordinatedProtocol {
 }
-
 // MARK: - ProfileMainPresenterOutputProtocol
 
 extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {

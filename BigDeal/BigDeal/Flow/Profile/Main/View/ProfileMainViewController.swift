@@ -9,7 +9,6 @@ class ProfileMainViewController: UIViewController {
     private let reuseIdForHeaderView = ProfileMainCollectionReusableView.customHeaderCollectionReusableViewId
     private let reuseIdForItemCell = CustomItemCollectionViewCell.customItemCollectionViewCellReuseId
     private let sectionHeader = UICollectionView.elementKindSectionHeader
-    
     // MARK: - Other data and properties
     
     var data: [Item] = []
@@ -21,14 +20,9 @@ class ProfileMainViewController: UIViewController {
         self.output = output
     }
     
-//    deinit {
-//        print("Yo")
-//    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - View life cycle
     
     override func loadView() {
@@ -49,7 +43,6 @@ class ProfileMainViewController: UIViewController {
             self.profileMainView.profileMainCollectionView.reloadData()
         }
     }
-    
     // MARK: - Private properties
     
     private func setUpProfileMainCollectionView() {
@@ -74,7 +67,6 @@ class ProfileMainViewController: UIViewController {
         output?.didTapLogout()
     }
 }
-
 // MARK: - HeaderCollectionReusableViewDelegate
 
 extension ProfileMainViewController: HeaderCollectionReusableViewDelegate {
@@ -85,7 +77,6 @@ extension ProfileMainViewController: HeaderCollectionReusableViewDelegate {
         output?.moveToSubscriptionsScreen()
     }
 }
-
 // MARK: - ProfileMainPresenterInputProtocol
 
 extension ProfileMainViewController: ProfileMainPresenterInputProtocol {
@@ -97,7 +88,6 @@ extension ProfileMainViewController: ProfileMainPresenterInputProtocol {
         present(alert, animated: true, completion: nil)
     }
 }
-
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension ProfileMainViewController: UICollectionViewDelegateFlowLayout {    
@@ -117,7 +107,6 @@ extension ProfileMainViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: view.frame.width / 2.3, height: 300)
     }
 }
-
 // MARK: - UICollectionViewDataSource
 
 extension ProfileMainViewController: UICollectionViewDataSource {

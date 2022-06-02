@@ -6,10 +6,12 @@ protocol DetailItemPresenterProtocol: AnyObject {
 }
 
 class DetailItemPresenter: DetailItemPresenterProtocol {
+    // MARK: - Properties
     var coordinator: FlowCoordinatorProtocol?
     weak var view: DetailItemViewProtocol?
     var repository: FavoritesRepositoryProtocol?
     var model: Item?
+    // MARK: - Initializers
 
     required init(coordinator: FlowCoordinatorProtocol, model: Item, repository: FavoritesRepositoryProtocol) {
         self.coordinator = coordinator
@@ -17,6 +19,7 @@ class DetailItemPresenter: DetailItemPresenterProtocol {
         self.repository = repository
         view?.configureModel(model: model)
     }
+    // MARK: - Functions
 
     func buttonPressedGoToShopSite(url: String) {
 //        called in vc cause cant use this here

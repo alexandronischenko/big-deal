@@ -58,7 +58,6 @@ class SearchCoordinator {
         rootNavigationViewController.pushViewController(detailViewController, animated: true)
     }
 }
-
 // MARK: - SearchBaseCoordinatorProtocol
 
 extension SearchCoordinator: SearchBaseCoordinatorProtocol {

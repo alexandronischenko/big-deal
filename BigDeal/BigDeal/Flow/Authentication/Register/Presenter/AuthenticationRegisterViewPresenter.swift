@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 import FirebaseAuth
-
 // MARK: - AuthenticationRegisterViewPresenterProtocol
 
 protocol AuthenticationRegisterViewPresenterProtocol: AnyObject {
@@ -17,7 +16,6 @@ class AuthenticationRegisterViewPresenter: AuthenticationBaseCoordinatedProtocol
     
     weak var view: AuthenticationRegisterViewProtocol?
     var coordinator: AuthenticationBaseCoordinatorProtocol?
-    
     // MARK: - Initializer
     
     init(coordinator: AuthenticationCoordinator) {
@@ -59,7 +57,6 @@ class AuthenticationRegisterViewPresenter: AuthenticationBaseCoordinatedProtocol
         return (result != nil)
     }
 }
-
 // MARK: - AuthenticationRegisterViewPresenterProtocol
 
 extension AuthenticationRegisterViewPresenter: AuthenticationRegisterViewPresenterProtocol {

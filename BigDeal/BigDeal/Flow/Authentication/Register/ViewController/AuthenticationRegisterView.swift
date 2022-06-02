@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 import SnapKit
-
 // MARK: - AuthenticationRegisterViewProtocol
 
 protocol AuthenticationRegisterViewProtocol: AnyObject {
@@ -21,6 +20,7 @@ class AuthenticationRegisterView: UIView {
     // MARK: - Properties
     
     weak var delegate: AuthenticationRegisterViewProtocol?
+    // MARK: - UI
     
     lazy var scrollView: UIScrollView = {
         var scroll = UIScrollView()
@@ -126,7 +126,6 @@ class AuthenticationRegisterView: UIView {
         button.addTarget(self, action: #selector(didPressedRegisterButton), for: .touchUpInside)
         return button
     }()
-    
     // MARK: - View lifecycle
     
     override init(frame: CGRect) {
@@ -152,7 +151,6 @@ class AuthenticationRegisterView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Private functions
     
     private func setConstraints() {
@@ -208,7 +206,6 @@ class AuthenticationRegisterView: UIView {
             make.trailing.equalTo(passwordTextField.snp.trailing)
         }
     }
-    
     // MARK: - Obj-c functions
     
     @objc func emailTextFieldDidChange(_ textField: UITextField) {
@@ -237,7 +234,6 @@ class AuthenticationRegisterView: UIView {
         }
         delegate?.didPressedRegister(email: email, name: name, password: password)
     }
-    
     // MARK: - Functions
     
     func showErrorLabel(text: String) {

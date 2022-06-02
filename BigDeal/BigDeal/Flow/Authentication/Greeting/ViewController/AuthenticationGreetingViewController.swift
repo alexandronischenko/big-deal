@@ -5,8 +5,8 @@ class AuthenticationGreetingViewController: UIViewController {
     
     var presenter: AuthenticationGreetingViewPresenterProtocol
     var greetingView = AuthenticationGreetingView()
-    
     // MARK: - Initializers
+    
     init(presenter: AuthenticationGreetingViewPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -19,7 +19,6 @@ class AuthenticationGreetingViewController: UIViewController {
     override func loadView() {
         view = greetingView
     }
-    
     // MARK: - View life cycle
     
     override func viewDidLoad() {
@@ -32,8 +31,8 @@ class AuthenticationGreetingViewController: UIViewController {
         navigationController?.tabBarItem.title = "Greeting"
     }
 }
-
 // MARK: - AuthenticationGreetingViewProtocol
+
 extension AuthenticationGreetingViewController: AuthenticationGreetingViewProtocol {
     func didPressedLetsGetStarted() {
         presenter.buttonPressedLetsGetStarted()

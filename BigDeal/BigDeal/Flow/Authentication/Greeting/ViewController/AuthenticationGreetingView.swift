@@ -56,7 +56,6 @@ class AuthenticationGreetingView: UIView {
         button.addTarget(self, action: #selector(didPressedLetsGetStarted), for: .touchUpInside)
         return button
     }()
-    
     // MARK: - View life cycle
     
     override init(frame: CGRect) {
@@ -75,7 +74,6 @@ class AuthenticationGreetingView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Private functions
     
     private func setConstraints() {

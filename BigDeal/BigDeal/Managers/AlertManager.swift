@@ -4,9 +4,11 @@ import Alamofire
 
 class AlertManager {
     // MARK: - Static properties
+    
     static let standard = AlertManager()
     
     // MARK: - Functions
+    
     func dataCollectingErrorAlert(view: UIViewController) {
         guard let collectingError = String?(ErrorsDescriptions.collectingError.rawValue) else {
             return

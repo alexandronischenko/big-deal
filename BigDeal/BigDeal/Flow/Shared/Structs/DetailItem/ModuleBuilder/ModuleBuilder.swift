@@ -1,10 +1,15 @@
 import UIKit
 
-class DetailItemBuilder {    
+class DetailItemBuilder {
+    // MARK: - Properties
+    
     let coordinator: FlowCoordinatorProtocol
+    // MARK: - Initializers
+    
     init(coordinator: FlowCoordinatorProtocol) {
         self.coordinator = coordinator
     }
+    // MARK: - Fucntions
 
     func build(model: Item) -> UIViewController {
         let repository = FavoritesRepository(remoteDataSource: FavoritesRemoteDataSource(), localDataSource: FavoritesLocalDataSource())

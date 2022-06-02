@@ -41,7 +41,6 @@ class SearchMainView: UIView {
         var controller = UISearchController()
         return controller
     }()
-
     // MARK: - Overrided
     
     // Initializers
@@ -75,7 +74,6 @@ class SearchMainView: UIView {
             make.centerY.centerX.equalToSuperview()
         }
     }
-    
     // MARK: - Functions
     
     func updateData(data: [Item]) {

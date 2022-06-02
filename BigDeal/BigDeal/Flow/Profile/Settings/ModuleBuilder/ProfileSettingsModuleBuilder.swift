@@ -5,7 +5,6 @@ class ProfileSettingsModuleBuilder {
     // MARK: - Properties
     
     var coordinator: ProfileBaseCoordinatorProtocol
-    
     // MARK: - Initializers
     
     init(coordinator: ProfileBaseCoordinatorProtocol) {

@@ -12,7 +12,6 @@ class Item: Equatable {
     var id: String
     var imageURL: String
     var isFavorite = false
-
     // MARK: - Initializers
     
     init?(product: AsosProduct) {

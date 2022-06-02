@@ -13,14 +13,12 @@ class AuthenticationLoginViewPresenter: AuthenticationBaseCoordinatedProtocol {
     
     weak var view: AuthenticationLoginViewProtocol?
     var coordinator: AuthenticationBaseCoordinatorProtocol?
-    
     // MARK: - Initializers
     
     init(coordinator: AuthenticationCoordinator) {
         self.coordinator = coordinator
     }
 }
-
 // MARK: - AuthenticationLoginViewPresenterProtocol
 
 extension AuthenticationLoginViewPresenter: AuthenticationLoginViewPresenterProtocol {

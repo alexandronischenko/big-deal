@@ -5,7 +5,6 @@ class AuthenticationLoginScreenViewController: UIViewController {
     
     var presenter: AuthenticationLoginViewPresenterProtocol
     var loginView = AuthenticationLoginView()
-    
     // MARK: - Initializers
     
     init(presenter: AuthenticationLoginViewPresenterProtocol) {
@@ -20,7 +19,6 @@ class AuthenticationLoginScreenViewController: UIViewController {
     override func loadView() {
         view = loginView
     }
-    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -33,8 +31,8 @@ class AuthenticationLoginScreenViewController: UIViewController {
         navigationController?.tabBarItem.title = "Login"
     }
 }
-
 // MARK: - AuthenticationLoginViewProtocol
+
 extension AuthenticationLoginScreenViewController: AuthenticationLoginViewProtocol {
     func presentAlert(error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)

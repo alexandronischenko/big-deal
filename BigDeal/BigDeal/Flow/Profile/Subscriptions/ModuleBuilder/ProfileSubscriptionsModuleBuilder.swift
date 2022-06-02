@@ -5,7 +5,6 @@ class ProfileSubscriptionsModuleBuilder {
     // MARK: - Properties
     
     var coordinator: ProfileBaseCoordinatorProtocol
-    
     // MARK: - Initializers
     
     init(coordinator: ProfileBaseCoordinatorProtocol) {

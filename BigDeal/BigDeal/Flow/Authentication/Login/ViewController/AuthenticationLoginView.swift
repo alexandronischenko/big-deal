@@ -12,6 +12,7 @@ class AuthenticationLoginView: UIView {
     // MARK: - Properties
     
     weak var delegate: AuthenticationLoginViewProtocol?
+    // MARK: - UI
 
     lazy var scrollView: UIScrollView = {
         var scroll = UIScrollView()
@@ -85,7 +86,6 @@ class AuthenticationLoginView: UIView {
         button.addTarget(self, action: #selector(didPressedLoginButton), for: .touchUpInside)
         return button
     }()
-    
     // MARK: - Initializers
         
     override init(frame: CGRect) {
@@ -108,7 +108,6 @@ class AuthenticationLoginView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Private functions
     
     private func setConstraints() {
@@ -149,7 +148,6 @@ class AuthenticationLoginView: UIView {
             make.trailing.equalTo(passwordTextField.snp.trailing)
         }
     }
-    
     // MARK: - Obj-c functions
     
     @objc func didPressedLoginButton() {

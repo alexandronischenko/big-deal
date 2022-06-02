@@ -875,6 +875,9 @@
 		A2732F27280472D100104EB4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A200B7B02823BFD3002D541E /* Asos.swift */,
+				A200B7B42826F2E5002D541E /* StockX.swift */,
+				A228EB89282813B10097D3D3 /* Farfetch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -980,9 +983,6 @@
 			isa = PBXGroup;
 			children = (
 				A297430427FECF6A009E5E7D /* Item.swift */,
-				A200B7B02823BFD3002D541E /* Asos.swift */,
-				A200B7B42826F2E5002D541E /* StockX.swift */,
-				A228EB89282813B10097D3D3 /* Farfetch.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";

@@ -5,6 +5,5 @@ protocol ProfileMainPresenterOutputProtocol: AnyObject {
     func moveToSubscriptionsScreen()
     func moveToDetailFlow(model: Item)
     func didTapLogout()
-    
     func getData()
 }

@@ -19,14 +19,12 @@ class ProfileSettingsView: UIView {
         button.addTarget(self, action: #selector(profileSettingsApplyButtonDidPressed), for: .touchUpInside)
         return button
     }()
-    
     // MARK: - Overrided
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpConstraintsForViews()
     }
-    
     // Initializers
     
     override init(frame: CGRect) {
@@ -38,7 +36,6 @@ class ProfileSettingsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     // MARK: - Private funcs
     
     private func setUpConstraintsForViews() {
@@ -57,7 +54,6 @@ class ProfileSettingsView: UIView {
         addSubview(profileSettingsTableView)
         addSubview(profileSettingsApplyButton)
     }
-    
     // MARK: - OBJC funcs
     
     @objc private func profileSettingsApplyButtonDidPressed(_ sender: UIButton) {

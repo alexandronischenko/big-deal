@@ -609,7 +609,6 @@
 		A23E572427F78A090069F74E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A25664EB28336E350082691E /* FavoritesRepository */,
 				A2B6815E27FF577E00518A90 /* Helpers */,
 				A2F0EDAA27FDEF910049EBAC /* Category */,
 				A2F0ED9C27FDEE2D0049EBAC /* Hot */,
@@ -705,30 +704,22 @@
 			isa = PBXGroup;
 			children = (
 				A202290228377FA900018365 /* Protocols */,
-				A25664F528336FB40082691E /* FavoritesRepositoryProtocol.swift */,
+				A25664EC28336E3B0082691E /* Protocols */,
+				A25664F128336EA60082691E /* FavoritesLocalDataSource.swift */,
+				A25664F328336ECC0082691E /* FavoritesRemoteDataSource.swift */,
 				A25664F728336FFB0082691E /* FavoritesRepository.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
 		};
-		A25664EB28336E350082691E /* FavoritesRepository */ = {
-			isa = PBXGroup;
-			children = (
-				A28A344B2818375700512017 /* Firebase */,
-				A20228F5283633F800018365 /* CoreData */,
-				A25664EC28336E3B0082691E /* Protocols */,
-				A25664F128336EA60082691E /* FavoritesLocalDataSource.swift */,
-				A25664F328336ECC0082691E /* FavoritesRemoteDataSource.swift */,
-			);
-			path = FavoritesRepository;
-			sourceTree = "<group>";
-		};
 		A25664EC28336E3B0082691E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				A25664F528336FB40082691E /* FavoritesRepositoryProtocol.swift */,
 				A25664ED28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift */,
 			);
-			path = Protocols;
+			name = Protocols;
+			path = ../../Services/FavoritesRepository/Protocols;
 			sourceTree = "<group>";
 		};
 		A26256A027FF2750007FA967 /* Greeting */ = {
@@ -971,6 +962,8 @@
 		A297430027FECEAD009E5E7D /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				A28A344B2818375700512017 /* Firebase */,
+				A20228F5283633F800018365 /* CoreData */,
 				A297430127FECEB8009E5E7D /* DataManager.swift */,
 				A2B289AC28170855008D2B75 /* KeychainManager.swift */,
 				A2A54D4C2833A47A005EE999 /* AlertManager.swift */,

@@ -73,6 +73,7 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
                         }
                     })
                 }
+                print(localItems.description)
                 completion(.success(localItems))
             case .failure(let error):
                 completion(.failure(error))

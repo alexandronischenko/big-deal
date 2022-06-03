@@ -133,7 +133,6 @@ extension DatabaseManager: DatabaseManagerProtocol {
                 
                 return
             }
-            print(value)
             completion(.success(value))
         }
     }

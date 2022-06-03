@@ -1,4 +1,5 @@
 import Foundation
+import Alamofire
 
 class FavoritesRepository: FavoritesRepositoryProtocol {
     // MARK: - Properties
@@ -39,26 +40,45 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
     }
     
     func obtainAll(completion: @escaping (Result<[Item], Error>) -> Void) {
-        //        remoteDataSource.obtainFavorites { result in
-        //            switch result {
-        //            case .success(let remoteItems):
-        //                self.localDataSource.obtainFavorites { result in
-        //                    switch result {
-        //                    case .success(let localItems):
-        //                        if localItems == remoteItems {
-        //                            completion(.success(localItems))
-        //                        } else {
-        //                            // Необходимо добавить недостающие элементы в другую базу
-        //                            completion(.success(remoteItems))
-        //                        }
-        //                    case .failure(let error):
-        //                        completion(.failure(error))
-        //                    }
-        //                }
-        //            case .failure(let error):
-        //                completion(.failure(error))
-        //            }
-        //        }
+                remoteDataSource.obtainFavorites { result in
+                    switch result {
+                    case .success(let remoteItems):
+                        self.localDataSource.obtainFavorites { result in
+                            switch result {
+                            case .success(let localItems):
+                                if localItems == remoteItems {
+                                    completion(.success(localItems))
+                                } else {
+                                    // Необходимо добавить недостающие элементы в другую базу
+                                    
+                                    for item in remoteItems {
+                                        let service = ApiServices.accessTokenForSearch.rawValue
+                                        let account = ApiAccounts.asos.rawValue
+                                        guard let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
+                                            return
+                                        }
+                                        let url = DataManager.shared.asosProductsListUrl
+                                        let searchingProduct = item.id
+                                        let parameters: Parameters? = DataManager.shared.obtainParametersForAsosSearch(searchingProduct)
+                                        let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
+                                        let headers: HTTPHeaders = [
+                                            DataManager.shared.asosHostHeader,
+                                            accessTokenHeader
+                                        ]
+                                        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers).responseJSON { response in
+                                            
+                                        }
+                                    }
+                                    completion(.success(remoteItems))
+                                }
+                            case .failure(let error):
+                                completion(.failure(error))
+                            }
+                        }
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
         
         self.localDataSource.obtainFavorites { result in
             switch result {

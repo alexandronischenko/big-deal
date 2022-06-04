@@ -61,7 +61,7 @@ extension CoreDataManager: CoreDataManagerProtocol {
             context.delete(item)
             completion(.success(true))
         } catch {
-            print("Error: \(error.localizedDescription) in \(#function)")
+            Logger.log(level: .error, str: "Error: \(error.localizedDescription)", shouldLogContext: true)
             completion(.failure(error))
         }
     }
@@ -93,7 +93,6 @@ extension CoreDataManager: CoreDataManagerProtocol {
                 }
                 
                 let item = Item(shopTitle: name, clothTitle: name, id: id, oldPrice: oldPrice, newPrice: newPrice, clothImage: downloadedImage, url: url, imageURL: imageURL)
-                print(item)
                 partialResult.append(item)
             }) {
                 completion(.success(result))
@@ -115,7 +114,7 @@ extension CoreDataManager: CoreDataManagerProtocol {
                 completion(.success(false))
             }
         } catch {
-            print("Error: \(error.localizedDescription) in \(#function)")
+            Logger.log(level: .error, str: "Error: \(error.localizedDescription) ", shouldLogContext: true)
             completion(.failure(error))
         }
     }
@@ -128,7 +127,7 @@ extension CoreDataManager: CoreDataManagerProtocol {
             try context.execute(deleteRequest)
             completion(.success(true))
         } catch let error {
-            print("Error: \(error.localizedDescription) in \(#function)")
+            Logger.log(level: .error, str: "Error: \(error.localizedDescription) ", shouldLogContext: true)
             completion(.failure(error))
         }
     }

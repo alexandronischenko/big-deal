@@ -112,11 +112,10 @@ extension DatabaseManager: DatabaseManagerProtocol {
             return
         }
         database.child(email).child("name").observeSingleEvent(of: .value) { snapshot in
-            print(snapshot)
+            Logger.log(level: .info, str: "\(snapshot)", shouldLogContext: true)
             guard let value = snapshot.value as? String else {
                 completion(.failure(DatabaseManagerError.invalidData))
-                print("Error: cannot get dictionary from snapshot.value in \(#function) \r\n \(snapshot)")
-                
+                Logger.log(level: .error, str: "cannot get dictionary from snapshot.value \(snapshot)", shouldLogContext: true)
                 return
             }
             let model = UserModel(name: value, emailAdress: email, profilePicture: nil)
@@ -126,13 +125,24 @@ extension DatabaseManager: DatabaseManagerProtocol {
     
     func getTokens(completion: @escaping (Result<[String: String], Error>) -> Void) {
         database.child("tokens").observeSingleEvent(of: .value) { snapshot in
-            print(snapshot)
+            Logger.log(level: .info, str: "\(snapshot)", shouldLogContext: true)
             guard let value = snapshot.value as? [String: String] else {
+                Logger.log(level: .error, str: "cannot get dictionary from snapshot.value \(snapshot)", shouldLogContext: true)
                 completion(.failure(DatabaseManagerError.invalidData))
-                print("Error: cannot get dictionary from snapshot.value in \(#function) \r\n \(snapshot)")
                 return
             }
+            Logger.log(level: .error, str: "\(snapshot.value)", shouldLogContext: true)
             completion(.success(value))
         }
+    }
+    
+    func getTokens() async -> (Result<[String: String], Error>) {
+        let result = await database.child("tokens").observeSingleEventAndPreviousSiblingKey(of: .value)
+        guard let value = result.0.value as? [String: String] else {
+            Logger.log(level: .error, str: "cannot get dictionary from snapshot.value \(String(describing: result.0.value))", shouldLogContext: true)
+            
+            return Result.failure(NSError(domain: "cannot get dictionary from snapshot.value", code: 0))
+        }
+        return Result.success(value)
     }
 }

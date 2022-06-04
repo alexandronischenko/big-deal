@@ -64,21 +64,28 @@ extension SearchCoordinator: SearchBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        let accessTokenForAsosSearch = DataManager.shared.accessTokensForAsos["tokenForSearch"]
-        let accessTokenForStockXSearch = DataManager.shared.accessTokensForStockX["tokenForSearch"]
-        let accessTokenForFarfetchSearch = DataManager.shared.accessTokensForFarfetch["tokenForSearch"]
+        var accessTokenForAsosSearch: String?
+        var accessTokenForStockXSearch: String?
+        var accessTokenForAsosCategories: String?
+        var accessTokenForStockXCategories: String?
         
-        let accessTokenForAsosCategories = DataManager.shared.accessTokensForAsos["tokenForCategories"]
-        let accessTokenForStockXCategories = DataManager.shared.accessTokensForStockX["tokenForCategories"]
-        let accessTokenForFarfetchCategories = DataManager.shared.accessTokensForFarfetch["tokenForCategories"]
+        DatabaseManager.shared.getTokens { result in
+            switch result {
+            case .success(let dictionary):
+                accessTokenForAsosSearch = dictionary["keyForSearch"]
+                accessTokenForStockXSearch = dictionary["keyForSearch"]
+                accessTokenForAsosCategories = dictionary["keyForCategories"]
+                accessTokenForStockXCategories = dictionary["keyForCategories"]
+            case .failure:
+                break
+            }
+        }
         
         KeychainManager.standard.save(accessTokenForAsosSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.asos.rawValue)
         KeychainManager.standard.save(accessTokenForStockXSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.stockX.rawValue)
-        KeychainManager.standard.save(accessTokenForFarfetchSearch, service: ApiServices.accessTokenForSearch.rawValue, account: ApiAccounts.farfetch.rawValue)
         
         KeychainManager.standard.save(accessTokenForAsosCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.asos.rawValue)
         KeychainManager.standard.save(accessTokenForStockXCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.stockX.rawValue)
-        KeychainManager.standard.save(accessTokenForFarfetchCategories, service: ApiServices.accessTokenForCategories.rawValue, account: ApiAccounts.farfetch.rawValue)
         
         let searchMainViewController = SearchMainModuleBuilder(coordinator: self).buildModule()
         rootViewController = searchMainViewController

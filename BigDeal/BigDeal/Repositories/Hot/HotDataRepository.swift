@@ -6,7 +6,7 @@ class HotDataRepository: HotRepositoryProtocol {
     
     private let remoteDataSource: HotRemoteDataSourceProtocol
     private let localDataSource: HotLocalDataSourceProtocol
-    
+
     // MARK: - Initializers
     
     public init(remoteDataSource: HotRemoteDataSourceProtocol, localDataSource: HotLocalDataSourceProtocol) {

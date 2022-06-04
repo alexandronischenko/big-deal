@@ -41,13 +41,21 @@ extension FeedCoordinator: FeedBaseCoordinatorProtocol {
     // Functions
     
     func start() -> UIViewController {
-        let accessTokenForAsosFeed = DataManager.shared.accessTokensForAsos["tokenForFeed"]
-        let accessTokenForStockXFeed = DataManager.shared.accessTokensForStockX["tokenForFeed"]
-        let accessTokenForFarfetchFeed = DataManager.shared.accessTokensForFarfetch["tokenForFeed"]
+        var accessTokenForAsosFeed: String?
+        var accessTokenForStockXFeed: String?
+        
+        DatabaseManager.shared.getTokens { result in
+            switch result {
+            case .success(let dictionary):
+                accessTokenForAsosFeed = dictionary["keyForHot"]
+                accessTokenForStockXFeed = dictionary["keyForHot"]
+            case .failure:
+                break
+            }
+        }
         
         KeychainManager.standard.save(accessTokenForAsosFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.asos.rawValue)
         KeychainManager.standard.save(accessTokenForStockXFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.stockX.rawValue)
-        KeychainManager.standard.save(accessTokenForFarfetchFeed, service: ApiServices.accessTokenForFeed.rawValue, account: ApiAccounts.farfetch.rawValue)
         
         let feedMainViewController = FeedMainModuleBuilder(coordinator: self).buildModule()
         rootViewController = feedMainViewController

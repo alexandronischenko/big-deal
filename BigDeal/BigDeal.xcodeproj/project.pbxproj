@@ -94,6 +94,8 @@
 		A2A3F53527FE3975003417D6 /* CustomRadioButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F53427FE3975003417D6 /* CustomRadioButtonTableViewCell.swift */; };
 		A2A3F53727FE3987003417D6 /* CustomTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3F53627FE3987003417D6 /* CustomTextFieldTableViewCell.swift */; };
 		A2A54D4D2833A47A005EE999 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A54D4C2833A47A005EE999 /* AlertManager.swift */; };
+		A2B118E4284B881700C25CF6 /* SearchFilterViewControllerTitlesSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B118E3284B881600C25CF6 /* SearchFilterViewControllerTitlesSetUp.swift */; };
+		A2B118E6284B890400C25CF6 /* SearchFilterViewControllerCellsSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B118E5284B890400C25CF6 /* SearchFilterViewControllerCellsSetUp.swift */; };
 		A2B289A42816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289A32816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift */; };
 		A2B289A62816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289A52816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift */; };
 		A2B289A82816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */; };
@@ -276,6 +278,8 @@
 		A2A3F53427FE3975003417D6 /* CustomRadioButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRadioButtonTableViewCell.swift; sourceTree = "<group>"; };
 		A2A3F53627FE3987003417D6 /* CustomTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		A2A54D4C2833A47A005EE999 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		A2B118E3284B881600C25CF6 /* SearchFilterViewControllerTitlesSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterViewControllerTitlesSetUp.swift; sourceTree = "<group>"; };
+		A2B118E5284B890400C25CF6 /* SearchFilterViewControllerCellsSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterViewControllerCellsSetUp.swift; sourceTree = "<group>"; };
 		A2B289A32816C0D6008D2B75 /* AuthenticationProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileCoordinator.swift; sourceTree = "<group>"; };
 		A2B289A52816C0ED008D2B75 /* AuthenticationProfileBaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileBaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		A2B289A72816C115008D2B75 /* AuthenticationProfileBaseCoordinatedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileBaseCoordinatedProtocol.swift; sourceTree = "<group>"; };
@@ -665,6 +669,8 @@
 				A27EBC4B27F0D9C600532EDE /* SearchFilterViewController.swift */,
 				A23D05C42801773400040980 /* SearchFilterView.swift */,
 				A2EE6D482802CC9400D2BA4E /* CustomHeaderView.swift */,
+				A2B118E3284B881600C25CF6 /* SearchFilterViewControllerTitlesSetUp.swift */,
+				A2B118E5284B890400C25CF6 /* SearchFilterViewControllerCellsSetUp.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1771,6 +1777,7 @@
 				A2DFB80A2809643300349967 /* DetailItemView.swift in Sources */,
 				A2A3F52727FE2D7D003417D6 /* ProfileSettingsPresenter.swift in Sources */,
 				A228EB882827F00A0097D3D3 /* API.swift in Sources */,
+				A2B118E4284B881700C25CF6 /* SearchFilterViewControllerTitlesSetUp.swift in Sources */,
 				A27EBC4C27F0D9C600532EDE /* SearchFilterViewController.swift in Sources */,
 				A26256BF27FF2750007FA967 /* AuthenticationRegisterViewController.swift in Sources */,
 				A2113B0927CE745F00EBA9A9 /* BigDeal.xcdatamodeld in Sources */,
@@ -1800,6 +1807,7 @@
 				A200B7B32826AA3F002D541E /* Errors.swift in Sources */,
 				A2A3F51F27FE2CDC003417D6 /* ProfileSettingsView.swift in Sources */,
 				A23D05C3280176C700040980 /* SearchFilterPresenterOutputProtocol.swift in Sources */,
+				A2B118E6284B890400C25CF6 /* SearchFilterViewControllerCellsSetUp.swift in Sources */,
 				A200B7B52826F2E5002D541E /* StockX.swift in Sources */,
 				A25664EE28336E5E0082691E /* FavoritesLocalDataSourceProtocol.swift in Sources */,
 				A22CF8F8281F2DAB00CAEDB7 /* SearchMainModuleBuilder.swift in Sources */,

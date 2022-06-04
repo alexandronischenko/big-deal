@@ -40,45 +40,61 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
     }
     
     func obtainAll(completion: @escaping (Result<[Item], Error>) -> Void) {
-                remoteDataSource.obtainFavorites { result in
+        remoteDataSource.obtainFavorites { result in
+            switch result {
+            case .success(let remoteItems):
+                self.localDataSource.obtainFavorites { result in
                     switch result {
-                    case .success(let remoteItems):
-                        self.localDataSource.obtainFavorites { result in
-                            switch result {
-                            case .success(let localItems):
-                                if localItems == remoteItems {
-                                    completion(.success(localItems))
-                                } else {
-                                    // Необходимо добавить недостающие элементы в другую базу
-                                    
-                                    for item in remoteItems {
-                                        let service = ApiServices.accessTokenForSearch.rawValue
-                                        let account = ApiAccounts.asos.rawValue
-                                        guard let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
-                                            return
-                                        }
-                                        let url = DataManager.shared.asosProductsListUrl
-                                        let searchingProduct = item.id
-                                        let parameters: Parameters? = DataManager.shared.obtainParametersForAsosSearch(searchingProduct)
-                                        let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
-                                        let headers: HTTPHeaders = [
-                                            DataManager.shared.asosHostHeader,
-                                            accessTokenHeader
-                                        ]
-                                        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers).responseJSON { response in
-                                            
-                                        }
-                                    }
-                                    completion(.success(remoteItems))
+                    case .success(let localItems):
+                        if localItems == remoteItems {
+                            completion(.success(localItems))
+                        } else {
+                            // Необходимо добавить недостающие элементы в другую базу
+                            var obtainedItems: [Item] = []
+                            for item in remoteItems {
+                                let service = ApiServices.accessTokenForSearch.rawValue
+                                let account = ApiAccounts.asos.rawValue
+                                guard let accessTokenForAsos = KeychainManager.standard.read(service: service, account: account, type: String.self) else {
+                                    return
                                 }
-                            case .failure(let error):
-                                completion(.failure(error))
+                                let url = DataManager.shared.asosProductsListUrl
+                                let searchingProduct = item.id
+                                let parameters: Parameters? = DataManager.shared.obtainParametersForAsosSearch(searchingProduct)
+                                let accessTokenHeader = HTTPHeader(name: DataManager.shared.asosAccessTokenHeaderName, value: accessTokenForAsos)
+                                let headers: HTTPHeaders = [
+                                    DataManager.shared.asosHostHeader,
+                                    accessTokenHeader
+                                ]
+                                AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers).responseJSON { response in
+                                    switch response.result {
+                                    case .success:
+                                        do {
+                                            guard let data = response.data else {
+                                                return
+                                            }
+                                            let result = try JSONDecoder().decode(Asos.self, from: data)
+                                            guard let items = Item.getAsosArray(from: result.products) else {
+                                                return
+                                            }
+                                            obtainedItems.append(contentsOf: items)
+                                        } catch let error {
+                                            completion(.failure(error))
+                                        }
+                                    case .failure(let error):
+                                        completion(.failure(error))
+                                    }
+                                }
                             }
+                            completion(.success(remoteItems))
                         }
                     case .failure(let error):
                         completion(.failure(error))
                     }
                 }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
         
         self.localDataSource.obtainFavorites { result in
             switch result {
@@ -93,7 +109,7 @@ class FavoritesRepository: FavoritesRepositoryProtocol {
                         }
                     })
                 }
-                print(localItems.description)
+                Logger.log(level: .info, str: "\(localItems.description) ", shouldLogContext: true)
                 completion(.success(localItems))
             case .failure(let error):
                 completion(.failure(error))

@@ -57,6 +57,6 @@ class ProfileSubscriptionsView: UIView {
     // MARK: - OBJC functions
     
     @objc private func profileSubscriptionsApplyButtonDidPressed() {
-        print("profile subscriptions apply button did pressed")
+        Logger.log(level: .info, str: "profile subscriptions apply button did pressed", shouldLogContext: true)
     }
 }

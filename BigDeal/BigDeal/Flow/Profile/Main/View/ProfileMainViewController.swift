@@ -136,7 +136,6 @@ extension ProfileMainViewController: UICollectionViewDataSource {
         DatabaseManager.shared.getCurrentUserModel { result in
             switch result {
             case .success(let model):
-                print("Success in getting user model: \(model.name)")
                 DispatchQueue.main.async {
                     header.configure(with: model)
                     header.reloadInputViews()

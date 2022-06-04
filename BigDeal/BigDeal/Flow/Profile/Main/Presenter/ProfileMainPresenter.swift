@@ -44,11 +44,11 @@ extension ProfileMainPresenter: ProfileMainPresenterOutputProtocol {
                     case .success:
                         break
                     case .failure(let error):
-                        print("Failed to logout. \(error.localizedDescription)")
+                        Logger.log(level: .error, str: "Failed to logout. \(error.localizedDescription)", shouldLogContext: true)
                     }
                 }
             } catch {
-                print("Failed to logout")
+                Logger.log(level: .error, str: "Failed to logout. \(error.localizedDescription)", shouldLogContext: true)
             }
             self.coordinator?.moveTo(flow: .authProfile(.authentication(.greeting)))
         })

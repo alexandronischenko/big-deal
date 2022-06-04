@@ -60,6 +60,6 @@ class CustomTextFieldTableViewCell: UITableViewCell {
     // MARK: - OBJC functions
     
     @objc private func textFieldDidPressed() {
-        print("text field has been pressed")
+        Logger.log(level: .info, str: "text field has been pressed", shouldLogContext: true)
     }
 }

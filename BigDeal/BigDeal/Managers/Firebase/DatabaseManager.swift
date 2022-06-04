@@ -112,11 +112,10 @@ extension DatabaseManager: DatabaseManagerProtocol {
             return
         }
         database.child(email).child("name").observeSingleEvent(of: .value) { snapshot in
-            print(snapshot)
+            Logger.log(level: .info, str: "\(snapshot)", shouldLogContext: true)
             guard let value = snapshot.value as? String else {
                 completion(.failure(DatabaseManagerError.invalidData))
-                print("Error: cannot get dictionary from snapshot.value in \(#function) \r\n \(snapshot)")
-                
+                Logger.log(level: .error, str: "cannot get dictionary from snapshot.value \(snapshot)", shouldLogContext: true)
                 return
             }
             let model = UserModel(name: value, emailAdress: email, profilePicture: nil)
@@ -126,11 +125,10 @@ extension DatabaseManager: DatabaseManagerProtocol {
     
     func getTokens(completion: @escaping (Result<[String: String], Error>) -> Void) {
         database.child("tokens").observeSingleEvent(of: .value) { snapshot in
-            print(snapshot)
+            Logger.log(level: .info, str: "\(snapshot)", shouldLogContext: true)
             guard let value = snapshot.value as? [String: String] else {
                 completion(.failure(DatabaseManagerError.invalidData))
-                print("Error: cannot get dictionary from snapshot.value in \(#function) \r\n \(snapshot)")
-                
+                Logger.log(level: .error, str: "cannot get dictionary from snapshot.value \(snapshot)", shouldLogContext: true)
                 return
             }
             completion(.success(value))

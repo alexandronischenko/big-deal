@@ -27,7 +27,6 @@ extension FileManagerService: FileManagerServiceProtocol {
         if FileManager.default.fileExists(atPath: fileURL.path) {
             do {
                 try FileManager.default.removeItem(atPath: fileURL.path)
-                print("Removed old image")
             } catch let removeError {
                 completion(.failure(FileManagerErrors.couldNotRemoveFileAtPath(path: removeError.localizedDescription)))
             }

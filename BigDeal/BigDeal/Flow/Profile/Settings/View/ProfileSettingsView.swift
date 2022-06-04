@@ -57,6 +57,6 @@ class ProfileSettingsView: UIView {
     // MARK: - OBJC funcs
     
     @objc private func profileSettingsApplyButtonDidPressed(_ sender: UIButton) {
-        print("profile settings apply button did pressed")
+        Logger.log(level: .info, str: "profile settings apply button did pressed", shouldLogContext: true)
     }
 }

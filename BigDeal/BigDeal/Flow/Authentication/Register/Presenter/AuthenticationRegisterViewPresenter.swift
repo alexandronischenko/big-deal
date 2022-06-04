@@ -80,11 +80,10 @@ extension AuthenticationRegisterViewPresenter: AuthenticationRegisterViewPresent
             
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let error = error {
-                    print("Error creating user: \(error) in \(#function)")
+                    Logger.log(level: .error, str: "Error creating user: \(error), shouldLogContext: true")
                     return
                 }
-                
-                print("Auth result: \(String(describing: authResult))")
+                Logger.log(level: .error, str: "Auth result: \(String(describing: authResult))", shouldLogContext: true)
                 
                 let userModel = UserModel(name: name, emailAdress: email, profilePicture: "")
                 

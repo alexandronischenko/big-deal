@@ -130,7 +130,6 @@ extension DatabaseManager: DatabaseManagerProtocol {
             guard let value = snapshot.value as? [String: String] else {
                 completion(.failure(DatabaseManagerError.invalidData))
                 print("Error: cannot get dictionary from snapshot.value in \(#function) \r\n \(snapshot)")
-                
                 return
             }
             completion(.success(value))

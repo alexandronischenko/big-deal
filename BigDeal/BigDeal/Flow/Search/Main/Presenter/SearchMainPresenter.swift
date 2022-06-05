@@ -124,7 +124,7 @@ extension SearchMainPresenter: SearchMainPresenterOutputProtocol {
         var pressedButtonTitle: String?
         var categoryId: String?
         switch sender.currentTitle {
-        case "Outerwear":
+        case "Outwear":
             pressedButtonTitle = CategoryButtonTitle.outwear.rawValue
             categoryId = Category.outwear.rawValue
         case "Sweatshirts":

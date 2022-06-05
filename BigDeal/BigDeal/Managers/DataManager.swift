@@ -30,24 +30,24 @@ class DataManager {
     // Access tokens
     
     var accessTokensForAsos: [String: String] = [
-        "tokenForSearch": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
-        "tokenForFeed": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
-        "tokenForFilter": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
-        "tokenForCategories": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f"
+        "tokenForSearch": "a1639e977bmsha71b7798b57eaddp1e7152jsne2f543546c88",
+        "tokenForFeed": "0f33d03f83mshf7755911431a4d6p1bcc78jsnf15bc8704910",
+        "tokenForFilter": "866e4ba640msh40a0746e826a3edp1c9ce9jsn7309f4ac09f5",
+        "tokenForCategories": "ed15ce6e40msh00e720830144f3ep153498jsna6abd0f7549b"
     ]
     
     var accessTokensForStockX: [String: String] = [
-        "tokenForSearch": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
-        "tokenForFeed": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
-        "tokenForFilter": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
-        "tokenForCategories": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f"
+        "tokenForSearch": "a1639e977bmsha71b7798b57eaddp1e7152jsne2f543546c88",
+        "tokenForFeed": "0f33d03f83mshf7755911431a4d6p1bcc78jsnf15bc8704910",
+        "tokenForFilter": "866e4ba640msh40a0746e826a3edp1c9ce9jsn7309f4ac09f5",
+        "tokenForCategories": "ed15ce6e40msh00e720830144f3ep153498jsna6abd0f7549b"
     ]
     
     var accessTokensForFarfetch: [String: String] = [
-        "tokenForSearch": "1279077585mshb23d041886d9bb3p1b1539jsnfe59a7f5a95c",
-        "tokenForFeed": "15801b7014mshb9c59eb4950d191p127171jsnb11bc270dac0",
-        "tokenForFilter": "59360c4fc7msha024553f3b3f41dp1d5f00jsn9631e1671d9f",
-        "tokenForCategories": "895743ac99msh9c876e80d25b3d8p1c7c54jsnfcc7f96fe3ae"
+        "tokenForSearch": "a1639e977bmsha71b7798b57eaddp1e7152jsne2f543546c88",
+        "tokenForFeed": "0f33d03f83mshf7755911431a4d6p1bcc78jsnf15bc8704910",
+        "tokenForFilter": "866e4ba640msh40a0746e826a3edp1c9ce9jsn7309f4ac09f5",
+        "tokenForCategories": "ed15ce6e40msh00e720830144f3ep153498jsna6abd0f7549b"
     ]
     // Bool
     

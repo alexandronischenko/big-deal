@@ -1,5 +1,7 @@
 # big-deal
 
+## [Project presentation](https://www.icloud.com/keynote/0c3xaqaxFrkhSmLYgAFmTkm9w#BigDeal)
+
 Big deal is an application for finding the best price offer of the requested category or a specific product among numerous online stores.
 
 ## Objective
